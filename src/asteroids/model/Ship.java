@@ -2,7 +2,7 @@ package asteroids.model;
 
 /**
  * 
- * @author joachim
+ * @author joachim & stef
  * @version pre-alpha
  */
 

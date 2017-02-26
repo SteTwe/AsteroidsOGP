@@ -6,6 +6,7 @@
 *.exe
 *.o
 *.so
+*.idea
 
 # Packages #
 ############
@@ -24,6 +25,7 @@
 *.log
 *.sql
 *.sqlite
+*.iml
 
 # OS generated files #
 ######################

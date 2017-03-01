@@ -36,11 +36,14 @@ public class Ship {
     ///Region regarding Velocity///
 
     /**
-     * 
+     *  Initialize the new velocity with the given velocity in direction x and the given velocity in direction y.
      * @param velocityX
      * @param velocityY
+     * @param maximumVelocity
+     *
+     * @post 
      */
-    public Velocity(double velocityX, double velocityY){
+    public Velocity(double velocityX, double velocityY, double maximumVelocity){
 
     }
     /**

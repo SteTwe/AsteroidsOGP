@@ -16,7 +16,9 @@ import java.lang.Math.*;
 public class Ship {
 
 
-    /**
+    
+
+	/**
      *
      *
      * @param x
@@ -30,7 +32,24 @@ public class Ship {
     }
 
     ///Region regarding Position///
-
+    /**
+     * 
+     * @return positionX
+     */
+    public double getPositionX(){
+    	return this.positionX;    	
+    }
+    
+    private double positionX;
+	
+    /**
+     * 
+     * @return positionY
+     */
+    public double getPositionY(){
+    	return this.PositionY;
+    }
+    private double PositionY;
     ///End Region regarding Position///
 
     ///Region regarding Velocity///

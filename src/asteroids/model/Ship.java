@@ -5,7 +5,7 @@ import java.lang.Math.*;
 
 
 /**
- * A class of ships in a universe of Asteroids.	
+ * A class of ships involving a position, a velocity, an angle and a radius
  * 
  * @author joachim & stef
  * @version pre-alpha
@@ -14,7 +14,6 @@ import java.lang.Math.*;
  */
 
 public class Ship {
-
 
     /**
      *
@@ -35,7 +34,8 @@ public class Ship {
      * @return positionX
      */
     public double getPositionX(){
-    	return this.positionX;    	
+
+        return this.positionX;
     }
     
     private double positionX;
@@ -45,9 +45,12 @@ public class Ship {
      * @return positionY
      */
     public double getPositionY(){
-    	return this.PositionY;
+
+        return this.PositionY;
     }
+
     private double PositionY;
+
     ///End Region regarding Position///
 
     ///Region regarding Velocity///
@@ -63,6 +66,15 @@ public class Ship {
     public Velocity(double velocityX, double velocityY, double maximumVelocity){
 
     }
+
+    /**
+     *
+     */
+    private void isValidVelocity(velocity){
+        if ((this.velocity >= 0) && (this.velocity < SPEED_OF_LIGHT_AS_DEFINED_BY_THE_ASSIGNMENT));
+                return true;
+    }
+
     /**
      * constant containing speed of light
      */
@@ -98,7 +110,7 @@ public class Ship {
      * @param velocityY
      *          | The velocity in direction Y.
      *
-     * @return  The total
+     * @return  The total velocity of the ship in the direction x y.
      *
      *
      */
@@ -135,10 +147,21 @@ public class Ship {
      */
     private double maxAngle = Math.toRadians(360);
 
+    /**
+     *
+     */
+    public void setOrientation(){
 
+    }
     ///End Region regarding Orientation///
 
     ///Region regarding Radius///
+
+    /**
+     * Expressing the minimum value of the radius of this ship.
+     * May change in the future.
+     */
+    public double minRadius = 10;
 
     ///End Region regarding Radius///
 

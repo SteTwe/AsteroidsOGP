@@ -16,9 +16,7 @@ import java.lang.Math.*;
 public class Ship {
 
 
-    
-
-	/**
+    /**
      *
      *
      * @param x
@@ -28,7 +26,7 @@ public class Ship {
      * @param angle
      * @param radius
      */
-    public Ship(double x, double y,double velocityX, double velocityY,double angle, double radius){
+    public Ship(double x, double y,double velocityX, double velocityY, double angle, double radius){
     }
 
     ///Region regarding Position///
@@ -114,6 +112,29 @@ public class Ship {
     ///End Region regarding Velocity///
 
     ///Region regarding Orientation///
+
+    /**
+     *  Returns the orientation of this Ship.
+     *
+     *  The orientation expresses a direction the Ship is facing in, as an angle in radians.
+     */
+    @Basic
+    public double getOrientation(){
+        return this.angle;
+    }
+
+    private double angle;
+
+    /**
+     * Expresses the minimum value the orientation of this Ship has to be.
+     */
+    private double minAngle = Math.toRadians(0);
+
+    /**
+     * Expresses the maximum value the orientation of this Ship can be.
+     */
+    private double maxAngle = Math.toRadians(360);
+
 
     ///End Region regarding Orientation///
 

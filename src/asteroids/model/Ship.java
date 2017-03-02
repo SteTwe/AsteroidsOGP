@@ -1,7 +1,5 @@
 package asteroids.model;
-import asteroids.util.ModelException;
 import be.kuleuven.cs.som.annotate.*;
-import java.lang.Math.*;
 
 
 /**
@@ -58,19 +56,21 @@ public class Ship {
      *  Initialize the new velocity with the given velocity in direction x and the given velocity in direction y.
      * @param velocityX
      * @param velocityY
-     * @param maximumVelocity
+     * @param maxVelocity
      *
      * @post 
      */
-    public Velocity(double velocityX, double velocityY, double maximumVelocity){
+    public Velocity(double velocityX, double velocityY, double maxVelocity){
 
+        this.velocityX = velocityX;
+        this.velocityY = velocityY;
     }
 
     /**
      *
      */
-    private void isValidVelocity(velocity){
-        if ((this.velocity >= 0) && (this.velocity < SPEED_OF_LIGHT_AS_DEFINED_BY_THE_ASSIGNMENT));
+    public boolean isValidVelocity(double velocity){
+        if ((this.velocity >= 0) && (this.velocity <= getMaxVelocity()));
                 return true;
     }
 
@@ -79,12 +79,18 @@ public class Ship {
      */
     public static double SPEED_OF_LIGHT_AS_DEFINED_BY_THE_ASSIGNMENT = 300000;
 
+    ///temporary
+    public double getMaxVelocity(){
+        return SPEED_OF_LIGHT_AS_DEFINED_BY_THE_ASSIGNMENT;
+    }
+
     /**
      *
      * @return  the velocity in direction X.
      */
     @Basic
     public double getVelocityX(){
+
         return this.velocityX;
     }
 
@@ -96,6 +102,7 @@ public class Ship {
      */
     @Basic
     public double getVelocityY(){
+
         return this.velocityY;
     }
 
@@ -120,7 +127,9 @@ public class Ship {
         return this.velocity;
     }
 
-    public double velocity;
+    private double velocity;
+
+
     ///End Region regarding Velocity///
 
     ///Region regarding Orientation///

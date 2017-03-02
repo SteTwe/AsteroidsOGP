@@ -45,3 +45,6 @@ Thumbs.db
 
 #folder#
 bin/
+
+#specific files#
+asteroids-part1.pdf

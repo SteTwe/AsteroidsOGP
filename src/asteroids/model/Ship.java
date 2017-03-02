@@ -34,7 +34,6 @@ public class Ship {
      * @return positionX
      */
     public double getPositionX(){
-
         return this.positionX;
     }
     
@@ -102,6 +101,7 @@ public class Ship {
 
     private double velocityY;
 
+
     /**
      * Return the final velocity of this ship based on the velocity in direction X and the velocity in direction Y.
      *
@@ -115,12 +115,12 @@ public class Ship {
      *
      */
     public double calcVelocity(double velocityX, double velocityY){
-        double velocity = 0.0;
-        velocity= Math.sqrt(Math.pow(velocityX, 2) + Math.pow(velocityY, 2));
-        return velocity;
+        ///this.velocity = 0.0;
+        this.velocity= Math.sqrt(Math.pow(velocityX, 2) + Math.pow(velocityY, 2));
+        return this.velocity;
     }
 
-
+    public double velocity;
     ///End Region regarding Velocity///
 
     ///Region regarding Orientation///
@@ -165,5 +165,13 @@ public class Ship {
 
     ///End Region regarding Radius///
 
+    /**
+     *
+     * @param velocity
+     * @param angle
+     */
+    public double thrust (double velocity, double angle){
+        double thrust;
+    }
 
 }

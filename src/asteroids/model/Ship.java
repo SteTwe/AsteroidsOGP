@@ -168,7 +168,7 @@ public class Ship {
     ///Region regarding Radius///
 
     /**
-     * Expressing the minimum value of the radius of this ship.
+     * Expressing the minimum value of the radius of this ship in kilometers.
      * May change in the future.
      */
     public double minRadius = 10;
@@ -183,12 +183,14 @@ public class Ship {
     public double thrust (double velocity, double angle){
         double thrust;
     }
+
+
     /**
      * 
-     * @param duration
+     * @param       duration
+     *              | The duration for how long the ship moves in its current direction.
      * @return
      */
-    
     public double move(double duration){
     	if (duration ==0){
     		

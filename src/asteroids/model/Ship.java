@@ -163,6 +163,20 @@ public class Ship {
     public void setOrientation(){
 
     }
+
+    /**
+     * Return true if the given angle is a valid angle for this ship (for all ships?)
+     * @param angle
+     *          | The given angle for this ship.
+     * @return
+     *          | True if the angle is valid.
+     */
+    public boolean isValidAngle(double angle){
+        if ((this.angle >= minAngle) && (this.angle <= maxAngle));
+        return true;
+    }
+
+
     ///End Region regarding Orientation///
 
     ///Region regarding Radius///

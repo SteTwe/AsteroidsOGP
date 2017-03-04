@@ -126,7 +126,7 @@ public class Ship {
     		return this.velocity;
     	}
         else{
-        	return this.velocity = 300000;
+        	return this.velocity = SPEED_OF_LIGHT_AS_DEFINED_BY_THE_ASSIGNMENT;
         }
     }
 

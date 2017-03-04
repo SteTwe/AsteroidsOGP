@@ -42,7 +42,6 @@ public class Ship {
      * @return positionY
      */
     public double getPositionY(){
-
         return this.PositionY;
     }
 
@@ -90,7 +89,6 @@ public class Ship {
      */
     @Basic
     public double getVelocityX(){
-
         return this.velocityX;
     }
 
@@ -102,7 +100,6 @@ public class Ship {
      */
     @Basic
     public double getVelocityY(){
-
         return this.velocityY;
     }
 
@@ -123,8 +120,14 @@ public class Ship {
      */
     public double calcVelocity(double velocityX, double velocityY){
         ///this.velocity = 0.0;
+    	
         this.velocity= Math.sqrt(Math.pow(velocityX, 2) + Math.pow(velocityY, 2));
-        return this.velocity;
+        if (isValidVelocity(this.velocity)){
+    		return this.velocity;
+    	}
+        else{
+        	return this.velocity = 300000;
+        }
     }
 
     private double velocity;
@@ -181,6 +184,34 @@ public class Ship {
      */
     public double thrust (double velocity, double angle){
         double thrust;
+    }
+    /**
+     * 
+     * @param duration
+     * @return
+     */
+    
+    public double move(double duration){
+    	if (duration ==0){
+    		
+    	}
+    	if (this.velocity == 0){
+    		
+    	}
+    }
+    
+    /**
+     * Turn by adding a given angle to the current orientation. Angle has to be in radians and must be between 0 and 2π.
+     * @param angle
+     */
+    public void turn(double angle){
+    	if((this.angle + angle) >= maxAngle){
+    		//add calculation angle
+    		this.angle = 
+    	}
+    	else{
+    		this.angle += angle;
+    	}
     }
 
 }

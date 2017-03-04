@@ -119,12 +119,10 @@ public class Ship {
      *
      */
     public double calcVelocity(double velocityX, double velocityY){
-        ///this.velocity = 0.0;
-    	
-        this.velocity= Math.sqrt(Math.pow(velocityX, 2) + Math.pow(velocityY, 2));
         if (isValidVelocity(this.velocity)){
-    		return this.velocity;
-    	}
+            this.velocity= Math.sqrt(Math.pow(velocityX, 2) + Math.pow(velocityY, 2));
+            return this.velocity;
+        }
         else{
         	return this.velocity = SPEED_OF_LIGHT_AS_DEFINED_BY_THE_ASSIGNMENT;
         }

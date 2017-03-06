@@ -210,8 +210,17 @@ public class Ship {
      * @param velocity
      * @param angle
      */
-    public void thrust (double velocity, double angle){
-        double thrust;
+    public void thrust (Ship ship, double amount){
+    	if (amount<0){
+    		amount = 0;
+    		double velocityX = getVelocityX() + (amount * Math.cos(getOrientation()));
+            double velocityY = getVelocityY() + (amount * Math.sin(getOrientation()));
+    		
+    	}
+    	double velocityX = getVelocityX() + (amount * Math.cos(getOrientation()));
+        double velocityY = getVelocityY() + (amount * Math.sin(getOrientation()));
+        
+        
     }
 
 

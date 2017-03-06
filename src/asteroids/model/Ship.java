@@ -203,6 +203,8 @@ public class Ship {
      */
     public double minRadius = 10;
 
+	private double radius;
+
     ///End Region regarding Radius///
 
     /**
@@ -300,8 +302,19 @@ public class Ship {
     	}
     	else{
     		double distance = getDistanceBetween(ship1, ship2);
+    		if (ship1.radius > distance){
+    			return true;
+    		}
+    		else if (ship2.radius > distance){
+    			return true;
+    		}
+    		else {
+    			return false;    			
+    		}
     	}
     
     }
+    
+    
 
 }

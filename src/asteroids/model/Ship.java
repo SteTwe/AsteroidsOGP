@@ -283,5 +283,25 @@ public class Ship {
     	}
     	
     }
+    
+    /**
+     * Check if two ships overlap.
+     * @param 	ship1
+     * 			| First spaceship
+     * @param 	ship2
+     * 			| Second spaceship
+     * @return
+     * 			| True if the spaceships overlap
+     */
+    
+    public boolean overlap(Ship ship1, Ship ship2){
+    	if (ship1 == ship2){
+    		return true;
+    	}
+    	else{
+    		double distance = getDistanceBetween(ship1, ship2);
+    	}
+    
+    }
 
 }

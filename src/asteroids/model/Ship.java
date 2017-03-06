@@ -71,7 +71,11 @@ public class Ship {
      *
      * @param velocity
      *          | The velocity that is being checked.
-     * @return
+     * @return  True if the velocity is not greater than the maximum velocity
+     *              and not less than zero.
+     *              |result ==
+     *              |       velocity <= maxVelocity
+     *              |       velocity >= 0
      */
     public boolean isValidVelocity(double velocity){
         if ((this.velocity >= 0) && (this.velocity <= getMaxVelocity())) {
@@ -86,14 +90,19 @@ public class Ship {
      */
     public static double SPEED_OF_LIGHT_AS_DEFINED_BY_THE_ASSIGNMENT = 300000;
 
+    /**
+     *
+     * @return  the maximum Velocity
+     */
     ///temporary
+    @Basic
     public double getMaxVelocity(){
         return SPEED_OF_LIGHT_AS_DEFINED_BY_THE_ASSIGNMENT;
     }
 
     /**
      *
-     * @return  the velocity in direction X.
+     * @return  the velocity in the x-direction.
      */
     @Basic
     public double getVelocityX(){
@@ -104,7 +113,7 @@ public class Ship {
 
     /**
      *
-     * @return  the velocity in direction Y.
+     * @return  the velocity in the y-direction.
      */
     @Basic
     public double getVelocityY(){
@@ -219,10 +228,8 @@ public class Ship {
      */
     public double move(double duration) throws Exception{
     	if (duration < 0){
-    		throw new Exception();
     	}
     	if (this.velocity == 0){
-    		
     	}
     }
     

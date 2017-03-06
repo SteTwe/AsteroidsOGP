@@ -54,7 +54,9 @@ public class Ship {
     /**
      *  Initialize the new velocity with the given velocity in direction x and the given velocity in direction y.
      * @param velocityX
+     *          | The value of the velocity in the x-direction.
      * @param velocityY
+     *          | The value of the velocity in the y-direction.
      * @param maxVelocity
      *
      * @post 
@@ -67,10 +69,16 @@ public class Ship {
 
     /**
      *
+     * @param velocity
+     *          | The velocity that is being checked.
+     * @return
      */
     public boolean isValidVelocity(double velocity){
-        if ((this.velocity >= 0) && (this.velocity <= getMaxVelocity()));
-                return true;
+        if ((this.velocity >= 0) && (this.velocity <= getMaxVelocity())) {
+            return true;
+        }else{
+            return false;
+        }
     }
 
     /**

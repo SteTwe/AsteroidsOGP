@@ -8,7 +8,6 @@ import be.kuleuven.cs.som.annotate.*;
  * @author joachim & stef
  * @version pre-alpha
  * 
- * 
  */
 
 public class Ship {
@@ -211,7 +210,7 @@ public class Ship {
      * @param velocity
      * @param angle
      */
-    public double thrust (double velocity, double angle){
+    public void thrust (double velocity, double angle){
         double thrust;
     }
 
@@ -226,7 +225,7 @@ public class Ship {
      *
      *              | (duration < 0)
      */
-    public double move(double duration) throws Exception{
+    public void move(double duration) throws Exception{
     	if (duration < 0){
     	}
     	if (this.velocity == 0){
@@ -240,7 +239,8 @@ public class Ship {
     public void turn(double angle){
     	if((this.angle + angle) >= maxAngle){
     		//add calculation angle
-    		this.angle = 
+    		this.angle += angle;
+    		this.angle = this.angle - maxAngle;
     	}
     	else{
     		this.angle += angle;

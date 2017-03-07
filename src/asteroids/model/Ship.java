@@ -21,17 +21,17 @@ public class Ship {
      * Initialize a ship with x-position, y-position, velocity in x-direction, velocity in y-direction, angle, radius.
      *
      * @param x
-     *              The x-coordinate.
+     *              The x-coordinate of this new ship.
      * @param y
-     *              The y-coordinate.
+     *              The y-coordinate of this new ship.
      * @param velocityX
-     *              The velocity in the x-direction.
+     *              The velocity in the x-direction of this new ship.
      * @param velocityY
-     *              The velocity in the y-direction.
+     *              The velocity in the y-direction of this new ship.
      * @param angle
-     *              The angle (orientation) which this ship is facing in.
+     *              The angle (orientation) which this new ship is facing in.
      * @invar radius
-     *              The radius of a ship. 
+     *              The radius of this new ship.
      */
     public Ship(double x, double y,double velocityX, double velocityY, double angle, double radius){
     }

@@ -217,10 +217,10 @@ public class Ship {
      * @param angle
      *          | The given angle for this ship.
      * @return
-     *          | True if the angle is valid.
+     *          | True if the angle is between min and max boundaries and is a number.
      */
     public boolean isValidAngle(double angle){
-        if ((this.angle >= minAngle) && (this.angle <= maxAngle));
+        if ((this.angle >= minAngle) && (this.angle <= maxAngle) && (Double.isNaN(angle)));
         return true;
     }
 

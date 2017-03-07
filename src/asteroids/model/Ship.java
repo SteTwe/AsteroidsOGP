@@ -229,9 +229,27 @@ public class Ship {
      */
     public double minRadius = 10;
 
-    
+    /**
+     * Variable holding the radius of this ship.
+     */
 	private double radius;
 
+    /**
+     *
+     * @param minRadius
+     *              The minimum radius for this ship.
+     * @return
+     *              True if the minimum radius is a valid number (see section 2 in the project assignment part 1) and
+     *                  larger than or equal to zero.
+     */
+	public boolean isValidMinRadius(double minRadius){
+
+	    return (!Double.isNaN(minRadius) && minRadius >= 0);
+    }
+
+    /**
+     * Return the radius of this ship.
+     */
 	public double getRadius(){
         return this.radius;
     }
@@ -249,7 +267,7 @@ public class Ship {
      * @return
      *
      *              True if the radius is a valid number (see section 2 in the project assignment part 1) and larger as
-     *                  or equal to the minimum Radius
+     *                  or equal to the minimum Radius.
      */
     public boolean isValidRadius(double radius){
 

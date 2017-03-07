@@ -3,17 +3,21 @@ import be.kuleuven.cs.som.annotate.*;
 
 
 /**
- * A class of ships involving a position, a velocity, an angle and a radius
+ * A class of a ship involving a position, a velocity, an angle and a radius
  * 
  * @author Joachim & Stef
  * @version pre-alpha
- * 
+ *
+ * @invar       The radius of a ship must be higher than or equal to the minimum radius for all ships.
+ *              | isValidRadius(getRadius))
+ *
  */
 
 public class Ship {
 
     /**
-     *
+     * Initialize a ship with
+     * 
      *
      * @param x
      * @param y
@@ -195,6 +199,7 @@ public class Ship {
 
     ///End Region regarding Orientation///
 
+
     ///Region regarding Radius///
 
     /**
@@ -204,6 +209,15 @@ public class Ship {
     public double minRadius = 10;
 
 	private double radius;
+
+	public double getRadius(){
+        return this.radius;
+    }
+
+
+    public void setRadius(){
+        this.radius = radius;
+    }
 
     ///End Region regarding Radius///
 

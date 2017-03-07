@@ -18,43 +18,47 @@ import java.util.DoubleSummaryStatistics;
 public class Ship {
 
     /**
-     * Initialize a ship with
-     *
+     * Initialize a ship with x-position, y-position, velocity in x-direction, velocity in y-direction, angle, radius.
      *
      * @param x
+     *              The x-coordinate.
      * @param y
+     *              The y-coordinate.
      * @param velocityX
+     *              The velocity in the x-direction.
      * @param velocityY
+     *              The velocity in the y-direction.
      * @param angle
-     * @param radius
+     *              The angle (orientation) which this ship is facing in.
+     * @invar radius
+     *              The radius of a ship. 
      */
     public Ship(double x, double y,double velocityX, double velocityY, double angle, double radius){
     }
 
-    ///Region regarding Position///
     /**
-     * 
      * @return positionX
      */
     public double getPositionX(){
         return this.positionX;
     }
-    
+
+    /**
+     * Variable holding the y-coordinate.
+     */
     private double positionX;
 	
     /**
-     * 
      * @return positionY
      */
     public double getPositionY(){
         return this.PositionY;
     }
 
+    /**
+     * Variable holding the x-coordiante.
+     */
     private double PositionY;
-
-    ///End Region regarding Position///
-
-    ///Region regarding Velocity///
 
     public void setVelocity(double velocityX, double velocityY){
         if(isValidVelocity(velocityX))
@@ -64,7 +68,6 @@ public class Ship {
     }
 
     /**
-     *
      * @param velocityX
      */
     public void setVelocityX(double velocityX){
@@ -73,13 +76,11 @@ public class Ship {
     }
 
     /**
-     *
      * @param velocityY
      */
     public void setVelocityY(double velocityY){
 
         this.velocityY = velocityY;
-
     }
 
     /**
@@ -105,7 +106,6 @@ public class Ship {
     public static double SPEED_OF_LIGHT_AS_DEFINED_BY_THE_ASSIGNMENT = 300000;
 
     /**
-     *
      * @return  the maximum Velocity
      */
     ///temporary
@@ -115,7 +115,6 @@ public class Ship {
     }
 
     /**
-     *
      * @return  the velocity in the x-direction.
      */
     @Basic
@@ -129,7 +128,6 @@ public class Ship {
     private double velocityX;
 
     /**
-     *
      * @return  the velocity in the y-direction.
      */
     @Basic
@@ -142,7 +140,6 @@ public class Ship {
      */
     private double velocityY;
 
-
     /**
      * Return the final velocity of this ship based on the velocity in direction X and the velocity in direction Y.
      *
@@ -153,8 +150,6 @@ public class Ship {
      *
      * @return  The total velocity of the ship in the direction x y. If the total velocity exceeds the speed of light
      *              the total velocity is set to the speed of light.
-     *
-     *
      */
     public double calcVelocity(double velocityX, double velocityY){
         if (isValidVelocity(this.velocity)){
@@ -170,11 +165,6 @@ public class Ship {
      * Variable containing the total velocity of the ship.
      */
     private double velocity;
-
-
-    ///End Region regarding Velocity///
-
-    ///Region regarding Orientation///
 
     /**
      *  Returns the orientation of this Ship.
@@ -213,7 +203,6 @@ public class Ship {
      *          |       this.angle = angle
      *          | else
      *          |       this.angle = angle ‰ maxAngle
-     *
      */
     public void setAngle(double angle){
         assert isValidAngle(angle);
@@ -221,7 +210,6 @@ public class Ship {
                 this.angle = angle;
         else
             this.angle = angle % maxAngle;
-
     }
 
     /**
@@ -236,17 +224,12 @@ public class Ship {
         return true;
     }
 
-
-    ///End Region regarding Orientation///
-
-
-    ///Region regarding Radius///
-
     /**
      * Expressing the minimum value of the radius of this ship expressed in kilometers.
      * May change in the future.
+     * Final because it can't change during the lifetime of this ship.
      */
-    public double minRadius = 10;
+    public final double minRadius = 10;
 
     /**
      * Variable holding the radius of this ship.
@@ -281,19 +264,15 @@ public class Ship {
     }
 
     /**
-     *
      * @param radius
-     *
      *              The given radius for this ship.
      * @return
-     *
      *              True if the radius is a valid number (see section 2 in the project assignment part 1) and larger as
      *                  or equal to the minimum Radius.
      */
     public boolean isValidRadius(double radius){
 
         return (!Double.isNaN(radius) && radius >= minRadius);
-
     }
 
     ///End Region regarding Radius///
@@ -318,10 +297,7 @@ public class Ship {
     	}
     	double velocityX = getVelocityX() + (amount * Math.cos(getAngle()));
         double velocityY = getVelocityY() + (amount * Math.sin(getAngle()));
-        
-        
     }
-
 
     /**
      * Move the ship in the current direction for a given amount of time defined by the duration.
@@ -330,10 +306,10 @@ public class Ship {
      * @return
      *
      * @throws      Exception
-     *
+     *              The given duration is not valid.
      *              | (duration < 0)
      */
-    public void move(double duration) throws Exception{
+    public void move(double duration){
     	if (duration < 0){
     	}
     	if (this.velocity == 0){
@@ -417,16 +393,17 @@ public class Ship {
     	}
     
     }
-    
+
     public double getTimeToCollision(Ship ship1, Ship ship2){
 
-    	if(/*never collision*/){
-    		return Double.POSITIVE_INFINITY;
-    	}
+        //if(/*never collision*/){
+        //	return Double.POSITIVE_INFINITY;
+        //}
     }
 
     public double[] getCollisionPosition(Ship ship1, Ship ship2){
 
     }
+
 
 }

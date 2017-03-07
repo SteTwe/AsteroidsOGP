@@ -17,7 +17,7 @@ public class Ship {
 
     /**
      * Initialize a ship with
-     * 
+     *
      *
      * @param x
      * @param y
@@ -178,9 +178,28 @@ public class Ship {
     private double maxAngle = Math.toRadians(360);
 
     /**
+     * Set the angle of the ship to the given angle.
+     *
+     * @param   angle
+     *          The new angle for this ship.
+     * @pre     The given angle must be a valid angle for the ship.
+     *          | isValidAngle(angle)
+     *
+     * @post    If the given given angle is between the minimum and maximum anlge
+     *              then angle of the ship is equal to the given angle.
+     *              If that condition is not met the angle of the ship is equal to the given angle % maxAngle
+     *          | if (angle  > minAngle) && (angle < maxAngle)
+     *          |       this.angle = angle
+     *          | else
+     *          |       this.angle = angle ‰ maxAngle
      *
      */
-    public void setOrientation(){
+    public void setAngle(double angle){
+        assert isValidAngle(angle);
+        if ((angle > minAngle) && (angle < maxAngle))
+                this.angle = angle;
+        else
+            this.angle = angle % maxAngle;
 
     }
 

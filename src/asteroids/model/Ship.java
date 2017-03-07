@@ -355,11 +355,14 @@ public class Ship {
     }
     
     public double getTimeToCollision(Ship ship1, Ship ship2){
-    	
-    	
+
     	if(/*never collision*/){
     		return Double.POSITIVE_INFINITY;
     	}
+    }
+
+    public double[] getCollisionPosition(Ship ship1, Ship ship2){
+        
     }
 
 }

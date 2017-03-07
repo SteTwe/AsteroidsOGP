@@ -12,7 +12,6 @@ import java.util.DoubleSummaryStatistics;
  *
  * @invar       The radius of a ship must be higher than or equal to the minimum radius for all ships.
  *              | isValidRadius(getRadius))
- *
  */
 
 public class Ship {
@@ -31,7 +30,7 @@ public class Ship {
      * @param angle
      *              The angle (orientation) which this new ship is facing in.
      * @invar radius
-     *              The radius of this new ship.
+     *              The radius of this new shipof this new ship.
      */
     public Ship(double x, double y,double velocityX, double velocityY, double angle, double radius){
     }
@@ -91,9 +90,10 @@ public class Ship {
      *              |result ==
      *              |       velocity <= maxVelocity
      *              |       velocity >= 0
+     *              |       velocity is a number
      */
     public boolean isValidVelocity(double velocity){
-        if ((this.velocity >= 0) && (this.velocity <= getMaxVelocity())) {
+        if ((this.velocity >= 0) && (this.velocity <= getMaxVelocity()) && Double.isNaN(velocity)) {
             return true;
         }else{
             return false;

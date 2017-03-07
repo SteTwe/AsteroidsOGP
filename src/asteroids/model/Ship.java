@@ -161,7 +161,7 @@ public class Ship {
      *  The orientation expresses a direction the Ship is facing in, as an angle in radians.
      */
     @Basic
-    public double getOrientation(){
+    public double getAngle(){
         return this.angle;
     }
 
@@ -248,12 +248,12 @@ public class Ship {
     public void thrust (Ship ship, double amount){
     	if (amount<0){
     		amount = 0;
-    		double velocityX = getVelocityX() + (amount * Math.cos(getOrientation()));
-            double velocityY = getVelocityY() + (amount * Math.sin(getOrientation()));
+    		double velocityX = getVelocityX() + (amount * Math.cos(getAngle()));
+            double velocityY = getVelocityY() + (amount * Math.sin(getAngle()));
     		
     	}
-    	double velocityX = getVelocityX() + (amount * Math.cos(getOrientation()));
-        double velocityY = getVelocityY() + (amount * Math.sin(getOrientation()));
+    	double velocityX = getVelocityX() + (amount * Math.cos(getAngle()));
+        double velocityY = getVelocityY() + (amount * Math.sin(getAngle()));
         
         
     }
@@ -277,17 +277,23 @@ public class Ship {
     }
     
     /**
-     * Turn by adding a given angle to the current orientation. Angle has to be in radians and must be between 0 and 2π.
+     * Turn the ship by adding a given angle to the current orientation. Angle has to be in radians and must be between 0 and 2π.
      * @param angle
+     *              The given angle that has to be added to the current angle.
+     *
+     * @post
+     *              Set the angle to the current angle plus the given angle.
+     *                      | setAngle(getAngle() + angle)
      */
     public void turn(double angle){
+        //I think this code is redundant if we use setAngle, that method wil make of for overflow
     	if((this.angle + angle) >= maxAngle){
-    		//add calculation angle
-    		this.angle += angle;
-    		this.angle = this.angle - maxAngle;
+            double calculatedAngle = this.angle + angle;
+    		double newAngle = calculatedAngle - maxAngle;
+    		setAngle(newAngle);
     	}
     	else{
-    		this.angle += angle;
+            setAngle(getAngle() + angle);
     	}
     }
     

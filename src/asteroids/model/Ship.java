@@ -1,6 +1,8 @@
 package asteroids.model;
 import be.kuleuven.cs.som.annotate.*;
 
+import java.util.DoubleSummaryStatistics;
+
 
 /**
  * A class of a ship involving a position, a velocity, an angle and a radius
@@ -227,6 +229,7 @@ public class Ship {
      */
     public double minRadius = 10;
 
+    
 	private double radius;
 
 	public double getRadius(){
@@ -236,6 +239,22 @@ public class Ship {
 
     public void setRadius(){
         this.radius = radius;
+    }
+
+    /**
+     *
+     * @param radius
+     *
+     *              The given radius for this ship.
+     * @return
+     *
+     *              True if the radius is a valid number (see section 2 in the project assignment part 1) and larger as
+     *                  or equal to the minimum Radius
+     */
+    public boolean isValidRadius(double radius){
+
+        return (!Double.isNaN(radius) && radius >= minRadius);
+
     }
 
     ///End Region regarding Radius///
@@ -362,7 +381,7 @@ public class Ship {
     }
 
     public double[] getCollisionPosition(Ship ship1, Ship ship2){
-        
+
     }
 
 }

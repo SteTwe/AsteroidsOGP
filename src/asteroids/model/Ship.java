@@ -255,8 +255,10 @@ public class Ship {
     }
 
 
-    public void setRadius(){
-        this.radius = radius;
+    public void setRadius(double radius){
+	    if(isValidRadius(radius)){
+            this.radius = radius;
+        }
     }
 
     /**

@@ -82,9 +82,7 @@ public class Ship {
 
     }
 
-
     /**
-     *
      * @param velocity
      *          | The velocity that is being checked.
      * @return  True if the velocity is not greater than the maximum velocity
@@ -125,6 +123,9 @@ public class Ship {
         return this.velocityX;
     }
 
+    /**
+     * Variable holding the velocity in the x-direction of this ship.
+     */
     private double velocityX;
 
     /**
@@ -136,6 +137,9 @@ public class Ship {
         return this.velocityY;
     }
 
+    /**
+     * Variable holding the velocity in the y-direction of this ship..
+     */
     private double velocityY;
 
 
@@ -147,7 +151,8 @@ public class Ship {
      * @param velocityY
      *          | The velocity in direction Y.
      *
-     * @return  The total velocity of the ship in the direction x y.
+     * @return  The total velocity of the ship in the direction x y. If the total velocity exceeds the speed of light
+     *              the total velocity is set to the speed of light.
      *
      *
      */
@@ -161,6 +166,9 @@ public class Ship {
         }
     }
 
+    /**
+     * Variable containing the total velocity of the ship.
+     */
     private double velocity;
 
 

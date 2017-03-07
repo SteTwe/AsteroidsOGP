@@ -56,21 +56,32 @@ public class Ship {
 
     ///Region regarding Velocity///
 
+    public void setVelocity(double velocityX, double velocityY){
+        if(isValidVelocity(velocityX))
+            this.setVelocityX(velocityX);
+        if(isValidVelocity(velocityY))
+            this.setVelocityY(velocityY);
+    }
+
     /**
-     *  Initialize the new velocity with the given velocity in direction x and the given velocity in direction y.
-     * @param velocityX
-     *          | The value of the velocity in the x-direction.
-     * @param velocityY
-     *          | The value of the velocity in the y-direction.
-     * @param maxVelocity
      *
-     * @post 
+     * @param velocityX
      */
-    public Velocity(double velocityX, double velocityY, double maxVelocity){
+    public void setVelocityX(double velocityX){
 
         this.velocityX = velocityX;
-        this.velocityY = velocityY;
     }
+
+    /**
+     *
+     * @param velocityY
+     */
+    public void setVelocityY(double velocityY){
+
+        this.velocityY = velocityY;
+
+    }
+
 
     /**
      *
@@ -279,14 +290,20 @@ public class Ship {
 
     ///End Region regarding Radius///
 
+    ///Region regarding thrust///
     /**
      *
-     * @param velocity
-     * @param angle
+     * @param ship
+     *
+     * @param amount
+     *
+     *              The amount of velocity that needs to be added to the current velocity.
+     *
+     * @post        If the given amount is higher than zero, the amount is added to the current velocity. If this results
+     *                  in the velocity being higher than the speed of light, the velocity is set to the speed of light.
      */
     public void thrust (Ship ship, double amount){
     	if (amount<0){
-    		amount = 0;
     		double velocityX = getVelocityX() + (amount * Math.cos(getAngle()));
             double velocityY = getVelocityY() + (amount * Math.sin(getAngle()));
     		

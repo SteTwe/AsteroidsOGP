@@ -16,8 +16,9 @@ public class Facade implements IFacade {
 	@Override
 	public Ship createShip(double x, double y, double xVelocity, double yVelocity, double radius, double orientation)
 			throws ModelException {
+		Ship ship = new Ship(x, y, xVelocity, yVelocity, orientation, radius);
 		// TODO Auto-generated method stub
-		return null;
+		return ship;
 	}
 
 	@Override

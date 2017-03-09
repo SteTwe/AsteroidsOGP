@@ -405,9 +405,6 @@ public class Ship {
 
     public double getTimeToCollision(Ship ship1, Ship ship2){
 
-        //if(/*never collision*/){
-        //	return Double.POSITIVE_INFINITY;
-        //}
     }
 
     /**
@@ -417,6 +414,11 @@ public class Ship {
      * @return
      */
     public double[] getCollisionPosition(Ship ship1, Ship ship2){
+        if ((ship1 == ship2) || (getTimeToCollision(ship1, ship2) == Double.POSITIVE_INFINITY))
+            return null;
+        else{
+            return;
+        }
 
     }
 }

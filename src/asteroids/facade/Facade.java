@@ -44,7 +44,7 @@ public class Facade implements IFacade {
 	@Override
 	public double getShipOrientation(Ship ship) throws ModelException {
 		// TODO Auto-generated method stub
-		return 0;
+		return ship.getAngle();
 	}
 
 	@Override

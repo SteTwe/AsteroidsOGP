@@ -23,8 +23,9 @@ public class Facade implements IFacade {
 
 	@Override
 	public double[] getShipPosition(Ship ship) throws ModelException {
+		double[] positionArray = {ship.getPositionX(), ship.getPositionY()};
 		// TODO Auto-generated method stub
-		return null;
+		return positionArray;
 	}
 
 	@Override

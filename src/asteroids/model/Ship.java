@@ -55,15 +55,15 @@ public class Ship {
     }
 
     /**
-     * Variable holding the x-coordiante.
+     * Variable holding the x-coordinate.
      */
     private double PositionY;
 
     public void setVelocity(double velocityX, double velocityY){
-        if(isValidVelocity(velocityX))
+        if(isValidVelocity(calcVelocity(velocityX,velocityY))){
             this.setVelocityX(velocityX);
-        if(isValidVelocity(velocityY))
             this.setVelocityY(velocityY);
+        }
     }
 
     /**
@@ -102,7 +102,7 @@ public class Ship {
 
     /**
      * constant containing speed of light
-     */
+     */	
     public static double SPEED_OF_LIGHT_AS_DEFINED_BY_THE_ASSIGNMENT = 300000;
 
     /**
@@ -152,13 +152,8 @@ public class Ship {
      *              the total velocity is set to the speed of light.
      */
     public double calcVelocity(double velocityX, double velocityY){
-        if (isValidVelocity(this.velocity)){
-            this.velocity= Math.sqrt(Math.pow(velocityX, 2) + Math.pow(velocityY, 2));
-            return this.velocity;
-        }
-        else{
-        	return this.velocity = SPEED_OF_LIGHT_AS_DEFINED_BY_THE_ASSIGNMENT;
-        }
+            double velocity = Math.sqrt(Math.pow(velocityX, 2) + Math.pow(velocityY, 2));
+            return velocity;
     }
 
     /**
@@ -291,8 +286,10 @@ public class Ship {
      */
     public void thrust (Ship ship, double amount){
     	if (amount<0){
+    		amount = 0;
     		double velocityX = getVelocityX() + (amount * Math.cos(getAngle()));
             double velocityY = getVelocityY() + (amount * Math.sin(getAngle()));
+            while 
     		
     	}
     	double velocityX = getVelocityX() + (amount * Math.cos(getAngle()));
@@ -309,10 +306,15 @@ public class Ship {
      *              The given duration is not valid.
      *              | (duration < 0)
      */
-    public void move(double duration){
+    public void move(Ship ship, double duration){
     	if (duration < 0){
+    		//throw exception
     	}
-    	if (this.velocity == 0){
+    	else if (ship.velocity == 0 || duration ==0){
+    		return;
+    	}
+    	else{
+    		
     	}
     }
     

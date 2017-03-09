@@ -30,8 +30,9 @@ public class Facade implements IFacade {
 
 	@Override
 	public double[] getShipVelocity(Ship ship) throws ModelException {
+		double[] velocityArray = {ship.getVelocityX(), ship.getVelocityY()};
 		// TODO Auto-generated method stub
-		return null;
+		return velocityArray;
 	}
 
 	@Override

@@ -289,11 +289,24 @@ public class Ship {
     		amount = 0;
     		double velocityX = getVelocityX() + (amount * Math.cos(getAngle()));
             double velocityY = getVelocityY() + (amount * Math.sin(getAngle()));
-            while 
-    		
+            while (calcVelocity(velocityX, velocityY)>300000){
+            	amount -= 0.1;
+            	double velocityX = getVelocityX() + (amount * Math.cos(getAngle()));
+                double velocityY = getVelocityY() + (amount * Math.sin(getAngle()));
+            }
+            ship.velocityX = velocityX;
+            ship.velocityY = velocityY;		
     	}
     	double velocityX = getVelocityX() + (amount * Math.cos(getAngle()));
         double velocityY = getVelocityY() + (amount * Math.sin(getAngle()));
+        while (calcVelocity(velocityX, velocityY)>300000){
+        	amount -= 0.1;
+        	double velocityX = getVelocityX() + (amount * Math.cos(getAngle()));
+            double velocityY = getVelocityY() + (amount * Math.sin(getAngle()));
+        }
+        ship.velocityX = velocityX;
+        ship.velocityY = velocityY;		
+        
     }
 
     /**

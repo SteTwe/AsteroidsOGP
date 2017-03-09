@@ -8,8 +8,9 @@ public class Facade implements IFacade {
 
 	@Override
 	public Ship createShip() throws ModelException {
+		Ship ship = new Ship(0,0,0,0,0,10);		
 		// TODO Auto-generated method stub
-		return null;
+		return ship;
 	}
 
 	@Override

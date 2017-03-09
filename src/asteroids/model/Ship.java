@@ -290,11 +290,12 @@ public class Ship {
             double velocityY = getVelocityY() + (amount * Math.sin(getAngle()));
             while (calcVelocity(velocityX, velocityY)>300000){
             	amount -= 0.1;
-                this.velocityX = getVelocityX() + (amount * Math.cos(getAngle()));
-                this.velocityY = getVelocityY() + (amount * Math.sin(getAngle()));
+                double velocityX = getVelocityX() + (amount * Math.cos(getAngle()));
+                double velocityY = getVelocityY() + (amount * Math.sin(getAngle()));
             }
             ship.velocityX = velocityX;
-            ship.velocityY = velocityY;		
+            ship.velocityY = velocityY;
+            return;
     	}
     	double velocityX = getVelocityX() + (amount * Math.cos(getAngle()));
         double velocityY = getVelocityY() + (amount * Math.sin(getAngle()));
@@ -303,8 +304,8 @@ public class Ship {
         	double velocityX = getVelocityX() + (amount * Math.cos(getAngle()));
             double velocityY = getVelocityY() + (amount * Math.sin(getAngle()));
         }
-        double velocityX = velocityX;
-        double velocityY = velocityY;
+        ship.velocityX = velocityX;
+        ship.velocityY = velocityY;
         
     }
 
@@ -408,10 +409,12 @@ public class Ship {
     }
 
     /**
-     *
      * @param ship1
+     *
      * @param ship2
+     *
      * @return
+     *
      */
     public double[] getCollisionPosition(Ship ship1, Ship ship2){
         if ((ship1 == ship2) || (getTimeToCollision(ship1, ship2) == Double.POSITIVE_INFINITY))

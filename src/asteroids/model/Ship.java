@@ -152,8 +152,7 @@ public class Ship {
      *              the total velocity is set to the speed of light.
      */
     public double calcVelocity(double velocityX, double velocityY){
-            double velocity = Math.sqrt(Math.pow(velocityX, 2) + Math.pow(velocityY, 2));
-            return velocity;
+        return Math.sqrt(Math.pow(velocityX, 2) + Math.pow(velocityY, 2));
     }
 
     /**
@@ -291,8 +290,8 @@ public class Ship {
             double velocityY = getVelocityY() + (amount * Math.sin(getAngle()));
             while (calcVelocity(velocityX, velocityY)>300000){
             	amount -= 0.1;
-            	double velocityX = getVelocityX() + (amount * Math.cos(getAngle()));
-                double velocityY = getVelocityY() + (amount * Math.sin(getAngle()));
+                this.velocityX = getVelocityX() + (amount * Math.cos(getAngle()));
+                this.velocityY = getVelocityY() + (amount * Math.sin(getAngle()));
             }
             ship.velocityX = velocityX;
             ship.velocityY = velocityY;		
@@ -304,8 +303,8 @@ public class Ship {
         	double velocityX = getVelocityX() + (amount * Math.cos(getAngle()));
             double velocityY = getVelocityY() + (amount * Math.sin(getAngle()));
         }
-        ship.velocityX = velocityX;
-        ship.velocityY = velocityY;		
+        double velocityX = velocityX;
+        double velocityY = velocityY;
         
     }
 
@@ -361,8 +360,6 @@ public class Ship {
      * @return
      * 				| Calculated distance
      */
-    
-    
     public double getDistanceBetween(Ship ship1, Ship ship2){
     	double x1 = ship1.getPositionX();
     	double y1 = ship1.getPositionY();
@@ -373,11 +370,10 @@ public class Ship {
     		double distance = 0;
     		return distance;
     	}
-    	else{
-    		double distance = Math.sqrt(Math.pow((x1 - x2), 2) + Math.pow((y1 + y2), 2));
-    		return distance;
-    	}
-    	
+    	else {
+            double distance = Math.sqrt(Math.pow((x1 - x2), 2) + Math.pow((y1 + y2), 2));
+            return distance;
+        }
     }
     
     /**
@@ -389,7 +385,6 @@ public class Ship {
      * @return
      * 			| True if the spaceships overlap
      */
-    
     public boolean overlap(Ship ship1, Ship ship2){
     	if (ship1 == ship2){
     		return true;
@@ -406,7 +401,6 @@ public class Ship {
     			return false;    			
     		}
     	}
-    
     }
 
     public double getTimeToCollision(Ship ship1, Ship ship2){
@@ -416,9 +410,13 @@ public class Ship {
         //}
     }
 
+    /**
+     *
+     * @param ship1
+     * @param ship2
+     * @return
+     */
     public double[] getCollisionPosition(Ship ship1, Ship ship2){
 
     }
-
-
 }

@@ -340,9 +340,9 @@ public class Ship {
      *              Set the angle to the current angle plus the given angle.
      *                      | setAngle(getAngle() + angle)
      */
-    public void turn(double angle){
+    public void turn(Ship ship, double angle){
         //I think this code is redundant if we use setAngle, that method wil make of for overflow
-    	if((this.angle + angle) >= maxAngle){
+    	if((ship.angle + angle) >= maxAngle){
             double calculatedAngle = this.angle + angle;
     		double newAngle = calculatedAngle - maxAngle;
     		setAngle(newAngle);

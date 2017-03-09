@@ -71,7 +71,7 @@ public class Facade implements IFacade {
 	@Override
 	public double getDistanceBetween(Ship ship1, Ship ship2) throws ModelException {
 		// TODO Auto-generated method stub
-		return 0;
+		return getDistanceBetween(ship1, ship2);
 	}
 
 	@Override

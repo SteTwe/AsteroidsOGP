@@ -8,17 +8,15 @@ public class Facade implements IFacade {
 
 	@Override
 	public Ship createShip() throws ModelException {
-		Ship ship = new Ship(0,0,0,0,0,10);		
+		return new Ship(0,0,0,0,0,10);
 		// TODO Auto-generated method stub
-		return ship;
 	}
 
 	@Override
 	public Ship createShip(double x, double y, double xVelocity, double yVelocity, double radius, double orientation)
 			throws ModelException {
-		Ship ship = new Ship(x, y, xVelocity, yVelocity, orientation, radius);
+		return new Ship(x, y, xVelocity, yVelocity, orientation, radius);
 		// TODO Auto-generated method stub
-		return ship;
 	}
 
 	@Override
@@ -51,7 +49,6 @@ public class Facade implements IFacade {
 	public void move(Ship ship, double dt) throws ModelException {
 		move(ship, dt);
 		// TODO Auto-generated method stub
-
 	}
 
 	@Override

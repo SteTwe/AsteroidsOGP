@@ -46,12 +46,17 @@ public class Ship {
      * Variable holding the y-coordinate.
      */
     private double positionX;
-	
+
+    private boolean isValidPositionX(double positionX){
+        if (Double.isNaN(positionX)) return false;
+        return true;
+    }
+
     /**
      * @return positionY
      */
     public double getPositionY(){
-        return this.PositionY;
+        return this.positionY;
     }
 
     /**
@@ -59,19 +64,24 @@ public class Ship {
      */
     private double positionY;
 
-    public void setVelocity(double velocityX, double velocityY){
-        if(isValidVelocity(calcVelocity(velocityX,velocityY))){
-            this.setVelocityX(velocityX);
-            this.setVelocityY(velocityY);
-        }
+    private boolean isValidPositionY(double positionY){
+
     }
 
     /**
-     *
      * @return      The position of this ship as an array of positionX and positionY.
      */
     public double[] getPostition(){
         return this.position;
+    }
+
+    private double[] position = new double[2];
+
+
+    private boolean isValidPosition(double[] position){
+        if ((!isValidPositionX(positionX)) || (!isValidPositionY(positionY)) || (position.length != 2))
+            return false;
+        return true;
     }
 
 
@@ -106,6 +116,13 @@ public class Ship {
             return true;
         }else{
             return false;
+        }
+    }
+
+    public void setVelocity(double velocityX, double velocityY){
+        if(isValidVelocity(calcVelocity(velocityX,velocityY))){
+            this.setVelocityX(velocityX);
+            this.setVelocityY(velocityY);
         }
     }
 

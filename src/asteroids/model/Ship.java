@@ -94,6 +94,9 @@ public class Ship {
         this.position = getPosition();
     }
 
+    public double getVelocity(){
+        return this.velocity; }
+
     /**
      * @param velocityX
      */

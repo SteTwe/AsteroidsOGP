@@ -19,9 +19,9 @@ public class Ship {
     /**
      * Initialize a ship with x-position, y-position, velocity in x-direction, velocity in y-direction, angle, radius.
      *
-     * @param x
+     * @param positionX
      *              The x-coordinate of this new ship.
-     * @param y
+     * @param positionY
      *              The y-coordinate of this new ship.
      * @param velocityX
      *              The velocity in the x-direction of this new ship.

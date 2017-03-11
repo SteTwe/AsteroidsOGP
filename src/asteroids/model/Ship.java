@@ -66,6 +66,12 @@ public class Ship {
         }
     }
 
+
+    public double[] getPostition(){
+        return this.position;
+    }
+
+
     /**
      * @param velocityX
      */

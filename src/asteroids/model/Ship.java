@@ -90,6 +90,10 @@ public class Ship {
         return true;
     }
 
+    public void setPosition(double[] position){
+        this.position = getPosition();
+    }
+
     /**
      * @param velocityX
      */
@@ -125,7 +129,7 @@ public class Ship {
     }
 
     public void setVelocity(double[] velocity){
-        
+
     }
 
     /**
@@ -312,8 +316,9 @@ public class Ship {
      *                  in the velocity being higher than the speed of light, the velocity is set to the speed of light.
      */
     public void thrust (Ship ship, double amount){
-    	if (amount<0){
+    	if (amount < 0 || Double.isNaN(amount)){
     		amount = 0;
+    	}
     		double velocityX = getVelocityX() + (amount * Math.cos(getAngle()));
             double velocityY = getVelocityY() + (amount * Math.sin(getAngle()));
             while (calcVelocity(velocityX, velocityY)>300000){
@@ -324,7 +329,7 @@ public class Ship {
             ship.velocityX = velocityX;
             ship.velocityY = velocityY;
             return;
-    	}
+
     	double velocityX = getVelocityX() + (amount * Math.cos(getAngle()));
         double velocityY = getVelocityY() + (amount * Math.sin(getAngle()));
         while (calcVelocity(velocityX, velocityY)>300000){

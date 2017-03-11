@@ -57,7 +57,7 @@ public class Ship {
     /**
      * Variable holding the x-coordinate.
      */
-    private double PositionY;
+    private double positionY;
 
     public void setVelocity(double velocityX, double velocityY){
         if(isValidVelocity(calcVelocity(velocityX,velocityY))){

@@ -70,13 +70,14 @@ public class Ship {
     private double positionY;
 
     private boolean isValidPositionY(double positionY){
-
+        if (Double.isNaN(positionY)) return false;
+        return true;
     }
 
     /**
      * @return      The position of this ship as an array of positionX and positionY.
      */
-    public double[] getPostition(){
+    public double[] getPosition(){
         return this.position;
     }
 
@@ -88,11 +89,6 @@ public class Ship {
             return false;
         return true;
     }
-
-    public void setPosition(double[] position){
-      
-    }
-
 
     /**
      * @param velocityX

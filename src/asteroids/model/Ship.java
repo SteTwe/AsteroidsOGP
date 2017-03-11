@@ -32,7 +32,13 @@ public class Ship {
      * @invar radius
      *              The radius of this new shipof this new ship.
      */
-    public Ship(double x, double y,double velocityX, double velocityY, double angle, double radius){
+    public Ship(double x, double y,double velocityX, double velocityY, double angle, double radius) throws IllegalArgumentException{
+        this.setPosition(new double[] {x,y});
+        this.setVelocity(new double[] {velocityX, velocityY}); //method needs fixing.
+        this.angle = angle;
+        if (!isValidRadius(radius)) throw new IllegalArgumentException();
+        this.radius = radius;
+
     }
 
     /**

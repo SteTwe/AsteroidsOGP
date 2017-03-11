@@ -66,7 +66,10 @@ public class Ship {
         }
     }
 
-
+    /**
+     *
+     * @return      The position of this ship as an array of positionX and positionY.
+     */
     public double[] getPostition(){
         return this.position;
     }

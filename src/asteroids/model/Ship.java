@@ -38,7 +38,6 @@ public class Ship {
         this.angle = angle;
         if (!isValidRadius(radius)) throw new IllegalArgumentException();
         this.radius = radius;
-
     }
 
     /**
@@ -88,6 +87,10 @@ public class Ship {
         if ((!isValidPositionX(positionX)) || (!isValidPositionY(positionY)) || (position.length != 2))
             return false;
         return true;
+    }
+
+    public void setPosition(double[] position){
+      
     }
 
 

@@ -269,5 +269,21 @@ public class Ship {
             this.radius = radius;
     }
 
-    
+    /**
+     * Return if the given radius is a valid radius for this ship.
+     * @param radius
+     *              The given radius.
+     * @pre         The radius should be larger than the minimum radius (which is 10km)
+     *
+     * @return      True if the given angle is larger than the minimum radius and must be a number.
+     *              | return ((radius > minRadius) && (Double.isNaN(radius)))
+     */
+    private boolean isValidRadius(double radius){
+        return ((radius > minRadius) && (Double.isNaN(radius)));
+    }
+
+    /**
+     * Constant holding the minimum radius of a ship. Currently the ship's radius can't be changed during runtime.
+     */
+    private static final double minRadius = 10;
 }

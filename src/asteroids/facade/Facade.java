@@ -19,7 +19,7 @@ public class Facade implements IFacade {
 
 	@Override
 	public double[] getShipPosition(Ship ship) throws ModelException {
-		return new double[]{ship.getPositionX(), ship.getVelocityY()};
+		return new double[]{ship.getPositionX(), ship.getPositionY()};
 	}
 
 	@Override

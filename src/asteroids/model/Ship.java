@@ -1,6 +1,7 @@
 package asteroids.model;
 import be.kuleuven.cs.som.annotate.*;
 
+import java.awt.*;
 import java.util.DoubleSummaryStatistics;
 
 
@@ -66,4 +67,26 @@ public class Ship {
      * Variable holding the y-coordiante of this ship.
      */
     private double positionY;
+
+    /**
+     * Set the x-coordinate of this ship with the given x-coordinate.
+     * @param positionX
+     *              | The given position for this ship.
+     */
+    public void setPositionX(double positionX){
+        if(isValidPositionX(positionX))
+            this.positionX = positionX;
+    }
+
+    /**
+     * Return true if x-coordinate is valid for this ship.
+     * @param positionX
+     *              The given position for this ship.
+     * @return
+     *              true if the position is a number
+     *              | !Double.isNaN(positionX)
+     */
+    private boolean isValidPositionX(double positionX){
+        return (!Double.isNaN(positionX));
+    }
 }

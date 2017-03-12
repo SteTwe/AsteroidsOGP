@@ -116,7 +116,7 @@ public class Ship {
      * Return the velocity in x-direction of this ship.
      * @return
      *              the velocity in the x-direction of this ship
-     *              | this.positionX
+     *              | this.velocityX
      */
     public double getVelocityX(){
         return this.velocityX;
@@ -126,4 +126,20 @@ public class Ship {
      * Variable holding the velocity in the x-direction.
      */
     private double velocityX;
+
+    /**
+     * Return the velocity in x-direction of this ship.
+     * @return
+     *              the velocity in the x-direction of this ship
+     *              | this.velocityY
+     */
+    public double getVelocityY(){
+        return this.velocityY;
+    }
+
+    /**
+     * Variable holding the velocity in the y-direction.
+     */
+    private double velocityY;
+
 }

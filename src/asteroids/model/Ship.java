@@ -491,7 +491,7 @@ public class Ship {
 
         double time = 0;
         //TODO
-        
+
         if (diffVelMult >=0)
             return Double.POSITIVE_INFINITY;
         else if (d < 0)
@@ -500,9 +500,12 @@ public class Ship {
             return time;
     }
 
+    //TODO
     public double[] getCollisionPosition(Ship other){
         if (getTimeToCollision(other) <= 0)
             return null;
+        double x = 0;
+        double y = 0;
         return new double[]{x,y};
     }
 

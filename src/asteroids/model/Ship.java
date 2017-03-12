@@ -183,10 +183,7 @@ public class Ship {
      *              |       return true
      */
     private boolean isValidVelocity(double velocity){
-        if((!Double.isNaN(velocity))&&(velocity <= SPEED_OF_LIGHT))
-            return true;
-        else
-            return false;
+        return((!Double.isNaN(velocity))&&(velocity <= SPEED_OF_LIGHT));
     }
 
     /**

@@ -422,11 +422,11 @@ public class Ship {
             return true;
         }
         else{
-            double distance = getDistanceBetween(Ship other);
+            double distance = getDistanceBetween(other);
             if (this.radius > distance){
                 return true;
             }
-            else if (this.radius > distance){
+            else if (other.radius > distance){
                 return true;
             }
             else {

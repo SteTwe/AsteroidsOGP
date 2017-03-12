@@ -57,6 +57,7 @@ public class Facade implements IFacade {
 		turn(ship, angle);
 		// TODO Auto-generated method stub
 
+		
 	}
 
 	@Override

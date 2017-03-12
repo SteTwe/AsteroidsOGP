@@ -197,6 +197,31 @@ public class Ship {
     private static double SPEED_OF_LIGHT = 300000;
 
     /**
+     * Return the angle (orientation) of this ship.
+     * @return
+     *              The angle of this ship.
+     *              | return this.angle
+     */
+    public double getAngle(){
+        return this.angle;
+    }
+
+    /**
+     * Variable holding the angle of the ship.
+     */
+    private double angle;
+
+    /**
+     * Variable holding the minimum angle this ship must have, being zero; converted to radians.
+     */
+    private double minAngle = Math.toRadians(0);
+
+    /**
+     * Variable holding the maximum angle this ship can have, being 360°;converted to radians.
+     */
+    private static double maxAngle = Math.toRadians(360);
+
+    /**
      * Return the radius of this ship.
      * @return
      *              Return the radius for this ship.

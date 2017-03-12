@@ -446,6 +446,15 @@ public class Ship {
             throw new IllegalArgumentException("ship2 does not exist");
         if (this.overlap(Ship.other))
             throw new IllegalArgumentException("the ships overlap");
+
+        // gegeven formules invullen
+        double[] differencePosition = new double[] {(other.getPositionX()+ this.getPositionX()), (other.getPositionY() - this.getPositionY())};
+        double[] differenceVelocity = new double[] {(other.getVelocityX()+ this.getVelocityX()), (other.getVelocityY() - this.getVelocityY())};
+        double diffPosMult = (Math.pow(differencePosition[0], 2) + (Math.pow(differencePosition[1], 2)));
+        double diffVelMult = (Math.pow(differenceVelocity[0], 2) + (Math.pow(differenceVelocity[1], 2)));
+        double sigma = 0;
+        double d = ((Math.pow((differenceVelocity * differencePosition), 2)) - ((diffVelMult)*((diffPosMult) - Math.pow(sigma, 2))));
+
         return;
     }
 

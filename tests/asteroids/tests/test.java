@@ -27,11 +27,16 @@ public class test {
     @Test
     public void testMotion() throws ModelException{
     	Ship ship1 = facade.createShip(50,50,500,300,15,0);
- 		//facade.thrust(ship1, 0);
+ 		
     	Ship ship2 = facade.createShip(30,10,20,30,12, 0);
     	double distance = facade.getDistanceBetween(ship1, ship2);
     	assertNotNull(distance);
     	assertEquals(44.72135955,distance, EPSILON);
+    	facade.thrust(ship1, 0);
+    	double[] collision = facade.getCollisionPosition(ship1, ship2);
+    	double time = facade.getTimeToCollision(ship1, ship2);
+    	System.out.println(collision);
+    	System.out.println(time);
     }
 }
 

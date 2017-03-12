@@ -48,11 +48,19 @@ public class Facade implements IFacade {
 
 	@Override
 	public void thrust(Ship ship, double amount) throws ModelException {
-		ship.thrust(amount);
+		try{
+			ship.thrust(amount);
+		}catch (Exception e){
+			throw new ModelException(e);
+		}
 	}
 	@Override
 	public void turn(Ship ship, double angle) throws ModelException {
-		ship.turn(angle);
+		try{
+			ship.turn(angle);
+		}catch (Exception e){
+			throw new ModelException(e);
+		}
 	}
 
 	@Override

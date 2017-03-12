@@ -39,7 +39,7 @@ public class Facade implements IFacade {
 	@Override
 	public void move(Ship ship, double dt) throws ModelException {
 		try{
-			move(ship, dt);
+			ship.move(dt);
 		}catch (Exception e){
 			throw new ModelException(e);
 		}

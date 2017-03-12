@@ -477,18 +477,20 @@ public class Ship {
      *              so there's no collision position either.
      *              | if (getTimeToCollision(other) <= 0
      *              |           return null
+     *              Calculate the collision position by multiplying the velocity with the TimeToCollision
+     *              (velocity * speed = position(distance))
      *              | else
+     *              |           collisionPositionX = getTimeToCollision(other) * velocityX;
+     *              |           double collisionPositionY = getTimeToCollision(other) * velocityY;
      *              |           return collision
      */
     public double[] getCollisionPosition(Ship other){
         double time = this.getTimeToCollision(other);
         if (time == Double.POSITIVE_INFINITY)
             return null;
-
-
-        double collisionX = getTimeToCollision(other) * other.velocitX;
-        double collisionY;
-        return new double[]{collisionX,collisionY};
+        double collisionPositionX = getTimeToCollision(other) * velocityX;
+        double collisionPositionY = getTimeToCollision(other) * velocityY;
+        return new double[]{collisionPositionX, collisionPositionY};
     }
 
 }

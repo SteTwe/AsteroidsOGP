@@ -71,7 +71,7 @@ public class Ship {
     /**
      * Set the x-coordinate of this ship with the given x-coordinate.
      * @param positionX
-     *              | The given position for this ship.
+     *              The given position for this ship.
      */
     public void setPositionX(double positionX){
         if(isValidPositionX(positionX))
@@ -88,5 +88,27 @@ public class Ship {
      */
     private boolean isValidPositionX(double positionX){
         return (!Double.isNaN(positionX));
+    }
+
+    /**
+     * Set the y-coordinate of this ship to the given y-coordinate.
+      * @param positionY
+     *              The given y position for this ship.
+     */
+    public void setPositionY(double positionY){
+        if(isValidPositionY(positionY))
+            this.positionY = positionY;
+    }
+
+    /**
+     * Return true if y-coordinate is valid for this ship.
+     * @param positionY
+     *              The given y position for this ship.
+     * @return
+     *              true if the position is a number
+     *              | !Double.isNaN(positionY)
+     */
+    private boolean isValidPositionY(double positionY){
+        return(!Double.isNaN(positionY));
     }
 }

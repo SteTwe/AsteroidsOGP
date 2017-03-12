@@ -388,21 +388,18 @@ public class Ship {
 
     /**
      * Calculate the distance between two spaceships. If the two compared ships are the same, distance is 0.
-     * @param 		ship1
-     * 				| First spaceship
-     * @param		ship2
+     *
+     * @param		other
      * 				| Second spaceship
      * @return
      * 				| Calculated distance
      */
-
-
-    public double getDistanceBetween(Ship ship1, Ship ship2){
-        double x1 = ship1.getPositionX();
-        double y1 = ship1.getPositionY();
-        double x2 = ship2.getPositionX();
-        double y2 = ship2.getPositionY();
-        if (ship1 == ship2){
+    public double getDistanceBetween(Ship other){
+        double x1 = this.getPositionX();
+        double y1 = this.getPositionY();
+        double x2 = other.getPositionX();
+        double y2 = other.getPositionY();
+        if (this == other){
             return 0;
             //return distance;
         }
@@ -415,50 +412,47 @@ public class Ship {
     }
     /**
      * Check if two ships overlap.
-     * @param 	ship1
-     * 			| First spaceship
-     * @param 	ship2
+     * @param 	other
      * 			| Second spaceship
      * @return
      * 			| True if the spaceships overlap
      */
-
-    public boolean overlap(Ship ship1, Ship ship2){
-        if (ship1 == ship2){
+    public boolean overlap(Ship other){
+        if (this == other){
             return true;
         }
         else{
-            double distance = getDistanceBetween(ship1, ship2);
-            if (ship1.radius > distance){
+            double distance = getDistanceBetween(Ship other);
+            if (this.radius > distance){
                 return true;
             }
-            else if (ship2.radius > distance){
+            else if (this.radius > distance){
                 return true;
             }
             else {
                 return false;
             }
         }
-
     }
 
     /**
      *
-     * @param ship1
-     * @param ship2
+     * @param other
      * @return
      * @throws IllegalArgumentException
      */
-    public double getTimeToCollision(Ship ship2) throws IllegalArgumentException{
-        if (Ship.ship2 = null)
+    public double getTimeToCollision(Ship other) throws IllegalArgumentException{
+        if (Ship.other = null)
             throw new IllegalArgumentException("ship2 does not exist");
-        if (this.overlap(Ship.ship2))
+        if (this.overlap(Ship.other))
             throw new IllegalArgumentException("the ships overlap");
         return;
     }
 
-    public double[] getCollisionPosition(Ship ship1, Ship ship2){
-
+    public double[] getCollisionPosition(Ship other){
+        if (!getTimeToCollision(Ship other))
+            return null;
+        return new double[]{x,y};
     }
 
 }

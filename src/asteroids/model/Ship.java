@@ -6,7 +6,7 @@ import be.kuleuven.cs.som.annotate.*;
  * A class of a ship involving a position, a velocity, an angle and a radius
  * 
  * @author Joachim & Stef
- * @version beta v 0.1
+ * @version beta v 0.2
  *
  * @invar       The radius of a ship must be higher than or equal to the minimum radius for all ships.
  *              | isValidRadius(getRadius))
@@ -31,7 +31,7 @@ public class Ship {
         this.setVelocityX(velocityX);
         this.setVelocityY(velocityY);
         this.setAngle(angle);
-        //if (!isValidRadius(radius)) throw new IllegalArgumentException();
+        if (!isValidRadius(radius)) throw new IllegalArgumentException();
         this.radius = radius;
     }
 
@@ -290,7 +290,7 @@ public class Ship {
      *              | return ((radius > minRadius) && (Double.isNaN(radius)))
      */
     private boolean isValidRadius(double radius){
-        return ((radius > minRadius) && (Double.isNaN(radius)));
+        return ((radius > minRadius) && (!Double.isNaN(radius)));
     }
 
     /**
@@ -478,7 +478,7 @@ public class Ship {
      *              | if (getTimeToCollision(other) <= 0
      *              |           return null
      *              | else
-     *              |           return collisionPosition
+     *              |           return collision
      */
     public double[] getCollisionPosition(Ship other){
         if (getTimeToCollision(other) <= 0)

@@ -451,7 +451,7 @@ public class Ship {
         //velocity position multplication
         double diffVelPosMult = (Math.pow(differenceVelocity[0], 2) + Math.pow(differenceVelocity[1], 2));
 
-        //sigma as defined by the assignment
+        //sigma as defined by the assignment (just the sum of the radii of the ships involved)
         double sigma = (this.getRadius() + other.getRadius());
         //d as defined by the assignment
         double d = ((Math.pow((diffVelPosMult), 2)) - (diffVelMult) * (diffPosMult - Math.pow(sigma, 2)));

@@ -54,7 +54,7 @@ public class Facade implements IFacade {
 
 	@Override
 	public void turn(Ship ship, double angle) throws ModelException {
-		turn(ship, angle);
+		ship.turn(angle);
 		// TODO Auto-generated method stub
 
 		

@@ -23,9 +23,9 @@ public class Ship {
      * @param velocityY The velocity in the y-direction of this new ship.
      * @param angle     The angle (orientation) which this new ship is facing in.
      * @param radius    The radius of this new ship.
-     * The radius of this new shipof this new ship.
+     * The radius of this new ship of this new ship.
      */
-    public Ship(double positionX, double positionY, double velocityX, double velocityY, double angle, double radius) throws IllegalArgumentException {
+    public Ship(double positionX, double positionY, double velocityX, double velocityY, double radius, double angle) throws IllegalArgumentException {
         this.setPositionX(positionX);
         this.setPositionY(positionY);
         this.setVelocityX(velocityX);

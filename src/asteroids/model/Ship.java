@@ -111,4 +111,19 @@ public class Ship {
     private boolean isValidPositionY(double positionY){
         return(!Double.isNaN(positionY));
     }
+
+    /**
+     * Return the velocity in x-direction of this ship.
+     * @return
+     *              the velocity in the x-direction of this ship
+     *              | this.positionX
+     */
+    public double getVelocityX(){
+        return this.velocityX;
+    }
+
+    /**
+     * Variable holding the velocity in the x-direction.
+     */
+    private double velocityX;
 }

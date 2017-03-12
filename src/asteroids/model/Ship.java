@@ -36,4 +36,34 @@ public class Ship {
         if (!isValidRadius(radius)) throw new IllegalArgumentException();
         this.radius = radius;
     }
+
+    /**
+     * Return the x-coordinate of this ship.
+     * @return
+     *              the x-coordinate of this ship
+     *              | this.positionX
+     */
+    public double getPositionX(){
+        return this.positionX;
+    }
+
+    /**
+     * Variable holding the x-coordinate of this ship.
+     */
+    private double positionX;
+
+    /**
+     * Return the y-coordinate of this ship.
+     * @return
+     *              the y-coordinate of this ship
+     *              | this.positionY
+     */
+    public double getPositionY(){
+        return this.positionY;
+    }
+
+    /**
+     * Variable holding the y-coordiante of this ship.
+     */
+    private double positionY;
 }

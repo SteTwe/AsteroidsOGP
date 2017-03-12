@@ -467,7 +467,19 @@ public class Ship {
             return time;
     }
 
-    //TODO
+    /**
+     *
+     * @param other
+     *              The given other ship.
+     * @return      Returns the position where the given other ship and this ship will collide.
+     *
+     * @post        If the timToCollision is less than or equals zero there will be no collision
+     *              so there's no collision position either.
+     *              | if (getTimeToCollision(other) <= 0
+     *              |           return null
+     *              | else
+     *              |           return collisionPosition
+     */
     public double[] getCollisionPosition(Ship other){
         if (getTimeToCollision(other) <= 0)
             return null;

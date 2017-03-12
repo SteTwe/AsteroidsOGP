@@ -486,11 +486,13 @@ public class Ship {
      */
     public double[] getCollisionPosition(Ship other){
         double time = this.getTimeToCollision(other);
-        if (time == Double.POSITIVE_INFINITY)
+        if (time == Double.POSITIVE_INFINITY) {
             return null;
-        double collisionPositionX = getTimeToCollision(other) * velocityX;
-        double collisionPositionY = getTimeToCollision(other) * velocityY;
-        return new double[]{collisionPositionX, collisionPositionY};
+        }else {
+            double collisionPositionX = getTimeToCollision(other) * velocityX;
+            double collisionPositionY = getTimeToCollision(other) * velocityY;
+            return new double[]{collisionPositionX, collisionPositionY};
+        }
     }
 
 }

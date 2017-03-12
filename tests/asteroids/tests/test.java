@@ -16,7 +16,9 @@ import asteroids.util.ModelException;
  */
 public class test {
     IFacade facade;
-
+    
+    private static final double EPSILON = 0.0001;
+    
     @Before
     public void setUp() {
         facade = new Facade();
@@ -25,11 +27,11 @@ public class test {
     @Test
     public void testMotion() throws ModelException{
     	Ship ship1 = facade.createShip(50,50,500,300,15,0);
-    	facade.turn(ship1,5);
- 		facade.thrust(ship1, 0);
-    	Ship ship2 = facade.createShip(40,10,20,30,12, 0);
+ 		//facade.thrust(ship1, 0);
+    	Ship ship2 = facade.createShip(30,10,20,30,12, 0);
     	double distance = facade.getDistanceBetween(ship1, ship2);
     	assertNotNull(distance);
+    	assertEquals(40,distance, EPSILON);
     }
 }
 

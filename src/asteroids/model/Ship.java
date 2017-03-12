@@ -3,6 +3,7 @@ import be.kuleuven.cs.som.annotate.*;
 
 import java.awt.*;
 import java.util.DoubleSummaryStatistics;
+import java.util.logging.Level;
 
 
 /**
@@ -141,5 +142,61 @@ public class Ship {
      * Variable holding the velocity in the y-direction.
      */
     private double velocityY;
+
+    private void setVelocityX(double velocityX) {
+        if (isValidVelocityX(velocityX))
+            this.velocityX = velocityX;
+    }
+
+    private void setVelocityY(double velocityY){
+        if (isValidVelocityY(velocityY))
+            this.velocityY = velocityY;
+    }
+
+    private boolean isValidVelocityX(double velocityX){
+        return (!Double.isNaN(velocityX));
+    }
+
+    private boolean isValidVelocityY(double velocityY){
+        return (!Double.isNaN(velocityY));
+    }
+
+    /**
+     * Method computing the total velocity of this ship following the given formula.
+     * @param velocityX
+     *              The ship's velocity in the x-direction.
+     * @param velocityY
+     *              The ship's velocity in the y-direction.
+     */
+    private double computedVelocity(double velocityX, double velocityY){
+        return (Math.sqrt(Math.pow(velocityX, 2) + Math.pow(velocityY, 2)));
+    }
+
+    /**
+     * Checker if the total velocity is valid for this ship.
+     * @param velocity
+     *              The total velocity for this ship.
+     * @return
+     *              True if the velocity is valid for this ship meaning: a numbers and smaller than or
+     *              equal to the speed of light.
+     *              | ((!Double.isNaN(velocity) && (velocity <= SPEED_OF_LIGHT))
+     *              |       return true
+     */
+    private boolean isValidVelocity(double velocity){
+        if((!Double.isNaN(velocity))&&(velocity <= SPEED_OF_LIGHT))
+            return true;
+        else
+            return false;
+    }
+
+    /**
+     * Constant holding the maximum speed.
+     */
+    private static double maxVelocity;
+
+    /**
+     * Constant holding the.
+     */
+    private static double SPEED_OF_LIGHT = 300000;
 
 }

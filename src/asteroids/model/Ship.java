@@ -403,12 +403,13 @@ public class Ship {
         double x2 = ship2.getPositionX();
         double y2 = ship2.getPositionY();
         if (ship1 == ship2){
-            double distance = 0;
-            return distance;
+            return 0;
+            //return distance;
         }
         else{
-            double distance = Math.sqrt(Math.pow((x1 - x2), 2) + Math.pow((y1 + y2), 2));
-            return distance;
+            return (Math.sqrt(Math.pow((x1 - x2), 2) + Math.pow((y1 + y2), 2)));
+            // double distance = Math.sqrt(Math.pow((x1 - x2), 2) + Math.pow((y1 + y2), 2));
+            //return distance;
         }
 
     }
@@ -448,10 +449,10 @@ public class Ship {
      * @return
      * @throws IllegalArgumentException
      */
-    public double getTimeToCollision(Ship ship1, Ship ship2) throws IllegalArgumentException{
+    public double getTimeToCollision(Ship ship2) throws IllegalArgumentException{
         if (Ship.ship2 = null)
             throw new IllegalArgumentException("ship2 does not exist");
-        if (ship1.overlap(Ship.ship2))
+        if (this.overlap(Ship.ship2))
             throw new IllegalArgumentException("the ships overlap");
         return;
     }

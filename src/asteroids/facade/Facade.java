@@ -69,7 +69,7 @@ public class Facade implements IFacade {
 	@Override
 	public boolean overlap(Ship ship1, Ship ship2) throws ModelException {
 		// TODO Auto-generated method stub
-		return overlap(ship1, ship2);
+		return ship1.overlap(ship2);
 	}
 
 	@Override

@@ -38,7 +38,11 @@ public class Facade implements IFacade {
 	}
 	@Override
 	public void move(Ship ship, double dt) throws ModelException {
-		move(ship, dt);
+		try{
+			move(ship, dt);
+		}catch (Exception e){
+			throw new ModelException(e);
+		}
 	}
 
 	@Override

@@ -45,7 +45,7 @@ public class Ship {
         this.setPositionY(0);
         this.setVelocityX(0);
         this.setVelocityY(0);
-        this.setAngle(0);
+        this.angle = Math.PI/2;
         if (!isValidRadius(10)) throw new IllegalArgumentException();
         this.radius = 10;
     }
@@ -101,7 +101,7 @@ public class Ship {
      *              | !Double.isNaN(positionX)
      */
     private boolean isValidPositionX(double positionX){
-        return (!Double.isNaN(positionX));
+        return ((!Double.isNaN(positionX)) && positionX > Double.NEGATIVE_INFINITY && positionX < Double.POSITIVE_INFINITY);
     }
 
     /**
@@ -123,7 +123,7 @@ public class Ship {
      *              | !Double.isNaN(positionY)
      */
     private boolean isValidPositionY(double positionY){
-        return(!Double.isNaN(positionY));
+        return ((!Double.isNaN(positionY)) && positionY > Double.NEGATIVE_INFINITY && positionY < Double.POSITIVE_INFINITY);
     }
 
     /**
@@ -132,6 +132,7 @@ public class Ship {
      *              the velocity in the x-direction of this ship
      *              | this.velocityX
      */
+    @Basic
     public double getVelocityX(){
         return this.velocityX;
     }
@@ -147,6 +148,7 @@ public class Ship {
      *              the velocity in the x-direction of this ship
      *              | this.velocityY
      */
+    @Basic
     public double getVelocityY(){
         return this.velocityY;
     }
@@ -300,21 +302,36 @@ public class Ship {
     /**
      * Constant holding the minimum radius of a ship. Currently the ship's radius can't be changed during runtime.
      */
-    private static final double minRadius = 10;
+    public static final double minRadius = 10;
 
     /**
      * Move the ship for a certain amount of time (duration).
      * @param duration
+     *
+     * @post        The new position of this ship
+     *
+     * @throws IllegalArgumentException
+     *              The duration is les than zero.
      */
-     protected void move(double duration) throws IllegalArgumentException{
+     public void move(double duration) throws IllegalArgumentException{
         if(!isValidDuration(duration))
             throw new IllegalArgumentException("duration not valid");
-
         setPositionX(getPositionX() + duration * getVelocityX());
-        setPositionY(getVelocityY() + duration * getVelocityY());
+        setPositionY(getPositionY() + duration * getVelocityY());
     }
 
     private boolean isValidDuration(double duration){
         return duration >= 0;
     }
+
+    /**
+     * Turn the ship with a given angle.
+     * @param angle
+     *               The given angle that has to be added to the angle of this ship.
+     */
+    public void turn(double angle){
+        setAngle(angle);
+    }
+
+    
 }

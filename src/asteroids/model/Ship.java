@@ -254,4 +254,20 @@ public class Ship {
      * Variable holding the radius for this ship
      */
     private double radius;
+
+    /**
+     * Set a new radius for this ship.
+     * @param radius
+     *              The new radius for this ship.
+     * @pre         The new radius must be valid.
+     *              if (isValidRadius)
+     * @post        If the new radius is valid for this ship, the ship's radius is set to the new radius.
+     *              | this.radius = radius
+     */
+    public void setRadius(double radius){
+        if (isValidRadius(radius))
+            this.radius = radius;
+    }
+
+    
 }

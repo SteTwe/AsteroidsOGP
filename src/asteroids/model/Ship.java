@@ -3,13 +3,23 @@ import be.kuleuven.cs.som.annotate.*;
 
 
 /**
- * A class of a ship involving a position, a velocity, an angle and a radius
+ * A class representing an Asteroid Ship involving a position, a velocity, an angle and a radius
  * 
  * @author Joachim & Stef
- * @version beta v 0.2
+ * @version v1.0
  *
+ * @invar       The x-coordinate must be valid for any ship.
+ *              | isValidPositionX(positionX)
+ * @invar       The y-coordinate must be valid for any ship.
+ *              | isValidPositionY(positionY)
+ * @invar       The velocity in the x-direction must be valid for any ship.
+ *              | isValidVelocityX(velocityX)
+ * @invar       The velocity in the y-direction must be valid for any ship.
+ *              | isValidVelocityY(velocityY)
+ * @invar       The angle must be valid for any ship.
+ *              | isValidAngle(angle)
  * @invar       The radius of a ship must be higher than or equal to the minimum radius for all ships.
- *              | isValidRadius(getRadius))
+ *              | isValidRadius(getRadius)
  */
 
 public class Ship {
@@ -35,6 +45,10 @@ public class Ship {
         this.radius = radius;
     }
 
+    /**
+     * Initialize a ship with x-coordinate = 0, y-coordinate = 0, velocity in the x-direction = 0, velocity in the y-direction = 0, anle(orientation) = Math.PI/2, radius 10
+     * @throws IllegalArgumentException
+     */
     public Ship() throws IllegalArgumentException {
         this.setPositionX(0);
         this.setPositionY(0);
@@ -47,9 +61,9 @@ public class Ship {
 
     /**
      * Return the x-coordinate of this ship.
-     * @return
+     * @return      Return the x-coordinate of this ship.
      *              the x-coordinate of this ship
-     *              | this.positionX
+     *              | result = this.positionX
      */
     @Basic
     public double getPositionX(){
@@ -63,9 +77,9 @@ public class Ship {
 
     /**
      * Return the y-coordinate of this ship.
-     * @return
+     * @return      The y-coordinate of this ship.
      *              the y-coordinate of this ship
-     *              | this.positionY
+     *              | result = this.positionY
      */
     @Basic
     public double getPositionY(){
@@ -81,8 +95,12 @@ public class Ship {
      * Set the x-coordinate of this ship with the given x-coordinate.
      * @param positionX
      *              The given position for this ship.
+     * @pre         The given positionX should be a valid positionX for this ship.
+     *              | isValidPositionX(positionX)
+     * @post        The x-coordinate of this ship is equal to the given positionX.
+     *              | new.getPositionX() == positionX;
      */
-    public void setPositionX(double positionX){
+    private void setPositionX(double positionX){
         if(isValidPositionX(positionX))
             this.positionX = positionX;
     }
@@ -101,10 +119,14 @@ public class Ship {
 
     /**
      * Set the y-coordinate of this ship to the given y-coordinate.
-      * @param positionY
+     * @param positionY
      *              The given y position for this ship.
+     * @pre         The given positionY should be a valid positionY for this ship.
+     *              | isValidPositionY(positionY)
+     * @post        The y-coordinate of this ship is equal to the given positionY.
+     *              | new.getPositionY() == positionY;
      */
-    public void setPositionY(double positionY){
+    private void setPositionY(double positionY){
         if(isValidPositionY(positionY))
             this.positionY = positionY;
     }
@@ -123,7 +145,7 @@ public class Ship {
 
     /**
      * Return the velocity in x-direction of this ship.
-     * @return
+     * @return      Return the velocity in the x-direction
      *              the velocity in the x-direction of this ship
      *              | this.velocityX
      */
@@ -139,7 +161,7 @@ public class Ship {
 
     /**
      * Return the velocity in x-direction of this ship.
-     * @return
+     * @return      Return the velocity in the y-direction
      *              the velocity in the x-direction of this ship
      *              | this.velocityY
      */
@@ -153,20 +175,53 @@ public class Ship {
      */
     private double velocityY;
 
+    /**
+     * Set the x-coordinate of this ship with the given x-coordinate.
+     * @param velocityX
+     *              The given velocityX for this ship.
+     * @pre         The given velocityX should be a valid velocityX for this ship.
+     *              | isValidVelocityX(velocityX)
+     * @post        The velcotiyX of this ship is equal to the given velocityX.
+     *              | new.getVelocityX() == velocityX;
+     */
     private void setVelocityX(double velocityX) {
         if (isValidVelocityX(velocityX))
             this.velocityX = velocityX;
     }
 
+    /**
+     * Set the velocityY of this ship with the given velocityY.
+     * @param velocityY
+     *              The given velocityY for this ship.
+     * @pre         The given velocityY should be a valid velocityY for this ship.
+     *              | isValidVelocityY(velocityY)
+     * @post        The velcotiyY of this ship is equal to the given velocityY.
+     *              | new.getVelocityY() == velocityY;
+     */
     private void setVelocityY(double velocityY){
         if (isValidVelocityY(velocityY))
             this.velocityY = velocityY;
     }
-
+    /**
+     * Return true if velocityX is valid for this ship.
+     * @param velocityX
+     *              The given velocityX for this ship.
+     * @return
+     *              true if the velocityX is a number.
+     *              | !Double.isNaN(velocityY)
+     */
     private boolean isValidVelocityX(double velocityX){
         return (!Double.isNaN(velocityX));
     }
 
+    /**
+     * Return true if the velocityY is valid for this ship.
+     * @param velocityY
+     *              The given velocityY for this ship.
+     * @return
+     *              true if the velocityY is a number.
+     *              | !Double.isNaN(velocity)
+     */
     private boolean isValidVelocityY(double velocityY){
         return (!Double.isNaN(velocityY));
     }
@@ -176,6 +231,9 @@ public class Ship {
      * @param velocityX
      *              The ship's velocity in the x-direction.
      * @param velocityY
+     *
+     * @post        Gives the total velocity for this ship.
+     *              | return (Math.sqrt(Math.pow(velocityX, 2) + Math.pow(velocityY, 2)))
      */
     private double computeVelocity(double velocityX, double velocityY){
         return (Math.sqrt(Math.pow(velocityX, 2) + Math.pow(velocityY, 2)));
@@ -235,6 +293,13 @@ public class Ship {
      * @param angle
      *              The given angle to be added to the current angle of this ship.
      * @pre         The given angle must be a valid angle for this ship
+     *              | assert isValidAngle(angle)
+     * @pre         The sum of the current angle and the given angle must be smaler than the maximum angle.
+     *              If it is bigger, the angle must be equal to (current angle plus the given angle) modulo maxAngle.
+     *              | if getAngle() + angle > maxAngle
+     *              |       this.angle = (getAngle() + angle) % maxAngle
+     *              | else
+     *              |       this.angle = (getAngle() + angle)
      */
     private void setAngle(double angle){
         assert isValidAngle(angle);
@@ -245,6 +310,14 @@ public class Ship {
         }
     }
 
+    /**
+     * Return true if angle is valid for this ship.
+     * @param angle
+     *              The given angle to be added to the current angle of this ship.
+     * @return
+     *              true if the angle is a number.
+     *              | !Double.isNaN(angle)
+     */
     private boolean isValidAngle(double angle){
         return (!Double.isNaN(angle));
     }
@@ -253,7 +326,7 @@ public class Ship {
      * Return the radius of this ship.
      * @return
      *              Return the radius for this ship.
-     *              | return this.radius
+     *              | result == this.radius
      */
     public double getRadius(){
         return this.radius;
@@ -324,6 +397,15 @@ public class Ship {
      *              The amount of velocity that needs to be added to the current velocity.
      *
      * @pre        The amount must be greater than zero, or it will be set to zero.
+     *
+     * @post        The new velocityX and velocityY are set. If there computed total is bigger than the speed of light
+     *                      they should be scaled down relatively.
+     *              | if (newVelocity > SPEED_OF_LIGHT
+     *              |       setVelocityX((newVelocityX / newVelocity) * SPEED_OF_LIGHT);
+     *              |       setVelocityY((newVelocityY / newVelocity) * SPEED_OF_LIGHT);
+     *              | else
+     *              |       setVelocityX(newVelocityX)
+     *              |       setVelocityY(newVelocityY)
      */
     public void thrust (double amount){
         if (amount < 0)
@@ -344,22 +426,20 @@ public class Ship {
      * Turn the ship by adding a given angle to the current orientation. Angle has to be in radians and must be between 0 and 2π.
      * @param angle
      *              The given angle that has to be added to the current angle.
-     *
-     * @post
-     *              Set the angle to the current angle plus the given angle.
-     *                      | setAngle(getAngle() + angle)
+     * @post        Set the angle to the current angle plus the given angle.
+     *              | result == setAngle(getAngle() + angle)
      */
     public void turn(double angle){
         setAngle(angle);
     }
 
     /**
-     * Calculate the distance between two spaceships. If the two compared ships are the same, distance is 0.
-     *
+     * Compute the distance between two spaceships. If the two compared ships are the same, distance is 0.
      * @param		other
      * 				| Second spaceship
-     * @return
-     * 				| Calculated distance
+     * @return      The distance between this ship and the given other ship.
+     * 				        Calculated distance
+     * 				| return (Math.sqrt(Math.pow((x1 - x2), 2) + Math.pow((y1 - y2), 2)));
      */
     public double getDistanceBetween(Ship other){
         double x1 = this.getPositionX();
@@ -368,15 +448,12 @@ public class Ship {
         double y2 = other.getPositionY();
         if (this == other){
             return 0;
-            //return distance;
         }
         else{
             return (Math.sqrt(Math.pow((x1 - x2), 2) + Math.pow((y1 - y2), 2)));
-            // double distance = Math.sqrt(Math.pow((x1 - x2), 2) + Math.pow((y1 - y2), 2));
-            //return distance;
         }
-
     }
+
     /**
      * Check if two ships overlap.
      * @param 	other

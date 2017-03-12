@@ -1,5 +1,6 @@
 package asteroids.model;
 import be.kuleuven.cs.som.annotate.*;
+import sun.util.resources.cldr.dua.CalendarData_dua_CM;
 
 import java.awt.*;
 import java.util.DoubleSummaryStatistics;
@@ -35,8 +36,18 @@ public class Ship {
         this.setVelocityX(velocityX);
         this.setVelocityY(velocityY);
         this.setAngle(angle);
-        if (!isValidRadius(radius)) throw new IllegalArgumentException();
+        //if (!isValidRadius(radius)) throw new IllegalArgumentException();
         this.radius = radius;
+    }
+
+    public Ship() throws IllegalArgumentException {
+        this.setPositionX(0);
+        this.setPositionY(0);
+        this.setVelocityX(0);
+        this.setVelocityY(0);
+        this.setAngle(0);
+        if (!isValidRadius(10)) throw new IllegalArgumentException();
+        this.radius = 10;
     }
 
     /**
@@ -45,6 +56,7 @@ public class Ship {
      *              the x-coordinate of this ship
      *              | this.positionX
      */
+    @Basic
     public double getPositionX(){
         return this.positionX;
     }
@@ -60,6 +72,7 @@ public class Ship {
      *              the y-coordinate of this ship
      *              | this.positionY
      */
+    @Basic
     public double getPositionY(){
         return this.positionY;
     }
@@ -214,12 +227,12 @@ public class Ship {
     /**
      * Variable holding the minimum angle this ship must have, being zero; converted to radians.
      */
-    private double minAngle = Math.toRadians(0);
+    //private double minAngle = Math.toRadians(0);
 
     /**
      * Variable holding the maximum angle this ship can have, being 360°;converted to radians.
      */
-    private static double maxAngle = Math.toRadians(360);
+    private static double maxAngle = 2*Math.PI;
 
     /**
      * Set the new angle for this ship.
@@ -267,6 +280,8 @@ public class Ship {
     public void setRadius(double radius){
         if (isValidRadius(radius))
             this.radius = radius;
+        else
+            this.radius = 10;
     }
 
     /**
@@ -286,4 +301,20 @@ public class Ship {
      * Constant holding the minimum radius of a ship. Currently the ship's radius can't be changed during runtime.
      */
     private static final double minRadius = 10;
+
+    /**
+     * Move the ship for a certain amount of time (duration).
+     * @param duration
+     */
+     protected void move(double duration) throws IllegalArgumentException{
+        if(!isValidDuration(duration))
+            throw new IllegalArgumentException("duration not valid");
+
+        setPositionX(getPositionX() + duration * getVelocityX());
+        setPositionY(getVelocityY() + duration * getVelocityY());
+    }
+
+    private boolean isValidDuration(double duration){
+        return duration >= 0;
+    }
 }

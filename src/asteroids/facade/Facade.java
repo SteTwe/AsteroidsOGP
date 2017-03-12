@@ -8,23 +8,23 @@ public class Facade implements IFacade {
 
 	@Override
 	public Ship createShip() throws ModelException {
-		return new Ship(0,0,0,0,0,10);
+		return new Ship(0, 0, 0, 0, 0, 10);
 	}
 
 	@Override
-	public Ship createShip(double x, double y, double xVelocity, double yVelocity, double radius, double orientation)
+	public Ship createShip(double positionX, double positionY, double velocityX, double velocityY, double radius, double angle)
 			throws ModelException {
-		return new Ship(x, y, xVelocity, yVelocity, orientation, radius);
+		return new Ship(positionX, positionY, velocityX, velocityY, radius, angle);
 	}
 
 	@Override
 	public double[] getShipPosition(Ship ship) throws ModelException {
-		return new double[] {ship.getPositionX(), ship.getVelocityY()};
+		return new double[]{ship.getPositionX(), ship.getVelocityY()};
 	}
 
 	@Override
 	public double[] getShipVelocity(Ship ship) throws ModelException {
-		return new double[] {ship.getVelocityX(), ship.getVelocityY()};
+		return new double[]{ship.getVelocityX(), ship.getVelocityY()};
 	}
 
 	@Override
@@ -36,11 +36,9 @@ public class Facade implements IFacade {
 	public double getShipOrientation(Ship ship) throws ModelException {
 		return ship.getAngle();
 	}
-
 	@Override
 	public void move(Ship ship, double dt) throws ModelException {
 		move(ship, dt);
-		// TODO Auto-generated method stub
 	}
 
 	@Override

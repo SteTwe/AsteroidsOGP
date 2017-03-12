@@ -196,4 +196,18 @@ public class Ship {
      */
     private static double SPEED_OF_LIGHT = 300000;
 
+    /**
+     * Return the radius of this ship.
+     * @return
+     *              Return the radius for this ship.
+     *              | return this.radius
+     */
+    public double getRadius(){
+        return this.radius;
+    }
+
+    /**
+     * Variable holding the radius for this ship
+     */
+    private double radius;
 }

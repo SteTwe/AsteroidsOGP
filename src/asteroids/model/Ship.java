@@ -222,6 +222,16 @@ public class Ship {
     private static double maxAngle = Math.toRadians(360);
 
     /**
+     * Set the new angle for this ship.
+     * @param angle
+     *              The given angle to be added to the current angle of this ship.
+     * @pre         The given angle must be a valid angle for this ship
+     */
+    public void setAngle(double angle){
+        assert isValidAngle(angle);
+    }
+
+    /**
      * Return the radius of this ship.
      * @return
      *              Return the radius for this ship.
@@ -235,14 +245,4 @@ public class Ship {
      * Variable holding the radius for this ship
      */
     private double radius;
-
-    /**
-     * Set the new angle for this ship.
-     * @param angle
-     *              The given angle to be added to the current angle of this ship.
-     * @pre         The given angle must be a valid angle for this ship
-     */
-    public void setAngle(double angle){
-        assert isValidAngle(angle);
-    }
 }

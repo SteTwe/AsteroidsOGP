@@ -374,4 +374,32 @@ public class Ship {
             setAngle(getAngle() + angle);
         }
     }
+
+    /**
+     * Calculate the distance between two spaceships. If the two compared ships are the same, distance is 0.
+     * @param 		ship1
+     * 				| First spaceship
+     * @param		ship2
+     * 				| Second spaceship
+     * @return
+     * 				| Calculated distance
+     */
+
+
+    public double getDistanceBetween(Ship ship1, Ship ship2){
+        double x1 = ship1.getPositionX();
+        double y1 = ship1.getPositionY();
+        double x2 = ship2.getPositionX();
+        double y2 = ship2.getPositionY();
+        //not certain of this comparison
+        if (ship1 == ship2){
+            double distance = 0;
+            return distance;
+        }
+        else{
+            double distance = Math.sqrt(Math.pow((x1 - x2), 2) + Math.pow((y1 + y2), 2));
+            return distance;
+        }
+
+    }
 }

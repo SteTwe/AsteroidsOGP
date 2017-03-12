@@ -74,13 +74,11 @@ public class Facade implements IFacade {
 
 	@Override
 	public double getTimeToCollision(Ship ship1, Ship ship2) throws ModelException {
-		// TODO Auto-generated method stub
 		return ship1.getTimeToCollision(ship2);
 	}
 
 	@Override
 	public double[] getCollisionPosition(Ship ship1, Ship ship2) throws ModelException {
-		// TODO Auto-generated method stub
 		return null;
 	}
 

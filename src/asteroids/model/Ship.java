@@ -26,7 +26,7 @@ public class Ship {
      * @param velocityX The velocity in the x-direction of this new ship.
      * @param velocityY The velocity in the y-direction of this new ship.
      * @param angle     The angle (orientation) which this new ship is facing in.
-     * @invar radius
+     * @param radius    The radius of this new ship.
      * The radius of this new shipof this new ship.
      */
     public Ship(double positionX, double positionY, double velocityX, double velocityY, double angle, double radius) throws IllegalArgumentException {

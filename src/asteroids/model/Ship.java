@@ -441,11 +441,19 @@ public class Ship {
 
     }
 
-    public double getTimeToCollision(Ship ship1, Ship ship2){
-
-        //if(/*never collision*/){
-        //	return Double.POSITIVE_INFINITY;
-        //}
+    /**
+     *
+     * @param ship1
+     * @param ship2
+     * @return
+     * @throws IllegalArgumentException
+     */
+    public double getTimeToCollision(Ship ship1, Ship ship2) throws IllegalArgumentException{
+        if (Ship.ship2 = null)
+            throw new IllegalArgumentException("ship2 does not exist");
+        if (ship1.overlap(Ship.ship2))
+            throw new IllegalArgumentException("the ships overlap");
+        return;
     }
 
     public double[] getCollisionPosition(Ship ship1, Ship ship2){

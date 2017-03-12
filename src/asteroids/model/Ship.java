@@ -425,19 +425,19 @@ public class Ship {
             throw new IllegalArgumentException("the ships overlap");
 
         //difference in x-coordinate
-        double diffPosX = (other.getPositionX() - this.getPositionX());
+        double diffPosX = Math.abs((other.getPositionX() - this.getPositionX()));
 
         //difference in y-coordinate
-        double diffPosY = (other.getPositionY() - this.getPositionY());
+        double diffPosY = Math.abs((other.getPositionY() - this.getPositionY()));
 
         //total position difference
         double[] differencePosition = new double[] {diffPosX, diffPosY};
 
         //difference in velocity in the x-direction
-        double diffVelX = (other.getVelocityX() - this.getVelocityX());
+        double diffVelX = Math.abs(other.getVelocityX() - this.getVelocityX());
 
         //difference in velocity in the y-direction
-        double diffVelY = (other.getVelocityY() - this.getVelocityY());
+        double diffVelY = Math.abs(other.getVelocityY() - this.getVelocityY());
 
         //total velocity difference
         double[] differenceVelocity = new double[] {diffVelX, diffVelY};
@@ -454,7 +454,7 @@ public class Ship {
         //sigma as defined by the assignment (just the sum of the radii of the ships involved)
         double sigma = (this.getRadius() + other.getRadius());
         //d as defined by the assignment
-        double d = ((Math.pow((diffVelPosMult), 2)) - (diffVelMult) * (diffPosMult - Math.pow(sigma, 2)));
+        double d = Math.abs((Math.pow((diffVelPosMult), 2)) - (diffVelMult) * (diffPosMult - Math.pow(sigma, 2)));
 
         double time = -((((Math.pow((diffVelPosMult), 2))+Math.sqrt(d))/(diffVelMult)));
 

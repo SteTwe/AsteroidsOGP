@@ -442,18 +442,42 @@ public class Ship {
      * @throws IllegalArgumentException
      */
     public double getTimeToCollision(Ship other) throws IllegalArgumentException{
-        if (Ship.other = null)
+        if (other == null)
             throw new IllegalArgumentException("ship2 does not exist");
-        if (this.overlap(Ship.other))
+        if (this.overlap(other))
             throw new IllegalArgumentException("the ships overlap");
 
-        // gegeven formules invullen
-        double[] differencePosition = new double[] {(other.getPositionX()+ this.getPositionX()), (other.getPositionY() - this.getPositionY())};
-        double[] differenceVelocity = new double[] {(other.getVelocityX()+ this.getVelocityX()), (other.getVelocityY() - this.getVelocityY())};
+        //difference in x-coordinate
+        double diffPosX = (other.getPositionX() - this.getPositionX());
+
+        //difference in y-coordinate
+        double diffPosY = (other.getPositionY() - this.getPositionY());
+
+        //total position difference
+        double[] differencePosition = new double[] {diffPosX, diffPosY};
+
+        //difference in velocity in the x-direction
+        double diffVelX = (other.getVelocityX() - this.getVelocityX());
+
+        //difference in velocity in the y-direction
+        double diffVelY = (other.getVelocityY() - this.getVelocityY());
+
+        //total velocity difference
+        double[] differenceVelocity = new double[] {diffVelX, diffVelY};
+
+        //position difference multiplication
         double diffPosMult = (Math.pow(differencePosition[0], 2) + (Math.pow(differencePosition[1], 2)));
+
+        //velocity difference multiplication
         double diffVelMult = (Math.pow(differenceVelocity[0], 2) + (Math.pow(differenceVelocity[1], 2)));
-        double sigma = 0;
-        double d = ((Math.pow((differenceVelocity * differencePosition), 2)) - ((diffVelMult)*((diffPosMult) - Math.pow(sigma, 2))));
+
+        //velocity position multplication
+        double diffVelPosMult = (Math.pow(differenceVelocity[0], 2) + Math.pow(differenceVelocity[1], 2));
+
+        //sigma as defined by the assignment
+        double sigma = (Math.pow(diffPosX, 2) + Math.pow(diffPosY, 2));
+        //d as defined by the assignment
+        double d = ((Math.pow((diffVelPosMult), 2)) - (diffVelMult) * (diffPosMult - Math.pow(sigma, 2)));
 
         return;
     }

@@ -6,7 +6,7 @@ import be.kuleuven.cs.som.annotate.*;
  * A class of a ship involving a position, a velocity, an angle and a radius
  * 
  * @author Joachim & Stef
- * @version pre-alpha
+ * @version beta v 0.1
  *
  * @invar       The radius of a ship must be higher than or equal to the minimum radius for all ships.
  *              | isValidRadius(getRadius))

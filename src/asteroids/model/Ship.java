@@ -334,23 +334,34 @@ public class Ship {
             amount = 0;
             double velocityX = getVelocityX() + (amount * Math.cos(getAngle()));
             double velocityY = getVelocityY() + (amount * Math.sin(getAngle()));
-            while (computeVelocity(velocityX, velocityY)>300000){
+            double velocity = computeVelocity(velocityX, velocityY);
+            while (velocity > 300000){
                 amount -= 0.1;
-                double velocityX = getVelocityX() + (amount * Math.cos(getAngle()));
-                double velocityY = getVelocityY() + (amount * Math.sin(getAngle()));
+                double newVelocityX = getVelocityX() + (amount * Math.cos(getAngle()));
+                double newVelocityY = getVelocityY() + (amount * Math.sin(getAngle()));
+                velocity = computeVelocity(newVelocityX, newVelocityY);
+                if(velocity<= 300000){
+                	ship.velocityX = newVelocityX;
+                    ship.velocityY = newVelocityY;
+                    return;
+                }
             }
-            ship.velocityX = velocityX;
-            ship.velocityY = velocityY;
         }
         double velocityX = getVelocityX() + (amount * Math.cos(getAngle()));
         double velocityY = getVelocityY() + (amount * Math.sin(getAngle()));
-        while (computeVelocity(velocityX, velocityY)>300000){
+        double velocity = computeVelocity(velocityX, velocityY);
+        while (velocity > 300000){
             amount -= 0.1;
-            double velocityX = getVelocityX() + (amount * Math.cos(getAngle()));
-            double velocityY = getVelocityY() + (amount * Math.sin(getAngle()));
+            double newVelocityX = getVelocityX() + (amount * Math.cos(getAngle()));
+            double newVelocityY = getVelocityY() + (amount * Math.sin(getAngle()));
+            velocity = computeVelocity(newVelocityX, newVelocityY);
+            if(velocity<= 300000){
+            	ship.velocityX = newVelocityX;
+                ship.velocityY = newVelocityY;
+                return;
+            }
         }
-        ship.velocityX = velocityX;
-        ship.velocityY = velocityY;
+        
 
     }
 
@@ -391,7 +402,6 @@ public class Ship {
         double y1 = ship1.getPositionY();
         double x2 = ship2.getPositionX();
         double y2 = ship2.getPositionY();
-        //not certain of this comparison
         if (ship1 == ship2){
             double distance = 0;
             return distance;

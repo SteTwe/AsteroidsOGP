@@ -319,50 +319,25 @@ public class Ship {
     }
 
     /**
-     *
-     * @param ship
-     *
+     * Method to increase (or decrease) the velocity of this ship.
      * @param amount
-     *
      *              The amount of velocity that needs to be added to the current velocity.
      *
-     * @post        If the given amount is higher than zero, the amount is added to the current velocity. If this results
-     *                  in the velocity being higher than the speed of light, the velocity is set to the speed of light.
+     * @pre        The amount must be greater than zero, or it will be set to zero.
      */
     public void thrust (double amount){
-        if (amount<0){
+        if (amount < 0)
             amount = 0;
-            double velocityX = getVelocityX() + (amount * Math.cos(getAngle()));
-            double velocityY = getVelocityY() + (amount * Math.sin(getAngle()));
-            double velocity = computeVelocity(velocityX, velocityY);
-            while (velocity > 300000){
-                amount -= 0.1;
-                double newVelocityX = getVelocityX() + (amount * Math.cos(getAngle()));
-                double newVelocityY = getVelocityY() + (amount * Math.sin(getAngle()));
-                velocity = computeVelocity(newVelocityX, newVelocityY);
-                if(velocity<= 300000){
-                	this.velocityX = newVelocityX;
-                    this.velocityY = newVelocityY;
-                    return;
-                }
-            }
+        double newVelocityX = getVelocityX()+ amount * Math.cos(getAngle());
+        double newVelocityY = getVelocityY()+ amount * Math.sin(getAngle());
+        double newVelocity = computeVelocity(newVelocityX, newVelocityY);
+        if (newVelocity > SPEED_OF_LIGHT) {
+            setVelocityX((newVelocityX / newVelocity) * SPEED_OF_LIGHT);
+            setVelocityY((newVelocityY / newVelocity) * SPEED_OF_LIGHT);
+        }else{
+            setVelocityX(newVelocityX);
+            setVelocityY(newVelocityY);
         }
-        double velocityX = getVelocityX() + (amount * Math.cos(getAngle()));
-        double velocityY = getVelocityY() + (amount * Math.sin(getAngle()));
-        double velocity = computeVelocity(velocityX, velocityY);
-        while (velocity > 300000){
-            amount -= 0.1;
-            double newVelocityX = getVelocityX() + (amount * Math.cos(getAngle()));
-            double newVelocityY = getVelocityY() + (amount * Math.sin(getAngle()));
-            velocity = computeVelocity(newVelocityX, newVelocityY);
-            if(velocity<= 300000){
-            	this.velocityX = newVelocityX;
-                this.velocityY = newVelocityY;
-                return;
-            }
-        }
-        
-
     }
 
     /**

@@ -375,15 +375,7 @@ public class Ship {
      *                      | setAngle(getAngle() + angle)
      */
     public void turn(double angle){
-        //I think this code is redundant if we use setAngle, that method wil make of for overflow
-        if((this.angle + angle) >= maxAngle){
-            double calculatedAngle = this.angle + angle;
-            double newAngle = calculatedAngle - maxAngle;
-            setAngle(newAngle);
-        }
-        else{
-            setAngle(getAngle() + angle);
-        }
+        setAngle(angle);
     }
 
     /**

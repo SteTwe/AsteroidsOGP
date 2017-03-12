@@ -31,7 +31,7 @@ public class test {
     	Ship ship2 = facade.createShip(30,10,20,30,12, 0);
     	double distance = facade.getDistanceBetween(ship1, ship2);
     	assertNotNull(distance);
-    	assertEquals(40,distance, EPSILON);
+    	assertEquals(44.72135955,distance, EPSILON);
     }
 }
 

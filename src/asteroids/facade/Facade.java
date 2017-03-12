@@ -14,6 +14,7 @@ public class Facade implements IFacade {
 	@Override
 	public Ship createShip(double positionX, double positionY, double velocityX, double velocityY, double radius, double angle)
 			throws ModelException {
+		if (radius < 0) throw new ModelException("Radius below zero");
 		return new Ship(positionX, positionY, velocityX, velocityY, radius, angle);
 	}
 
@@ -71,7 +72,7 @@ public class Facade implements IFacade {
 
 	@Override
 	public double[] getCollisionPosition(Ship ship1, Ship ship2) throws ModelException {
-		return null;
+		return ship1.getCollisionPosition(ship2);
 	}
 
 }

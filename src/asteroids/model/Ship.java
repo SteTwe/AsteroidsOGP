@@ -456,9 +456,9 @@ public class Ship {
         //d as defined by the assignment
         double d = ((Math.pow((diffVelPosMult), 2)) - (diffVelMult) * (diffPosMult - Math.pow(sigma, 2)));
 
-        double time = 0;
-        //TODO
+        double time = -((((Math.pow((diffVelPosMult), 2))+Math.sqrt(d))/(diffVelMult)));
 
+        //given by the assignment
         if (diffVelMult >=0)
             return Double.POSITIVE_INFINITY;
         else if (d < 0)

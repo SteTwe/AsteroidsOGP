@@ -227,8 +227,17 @@ public class Ship {
      *              The given angle to be added to the current angle of this ship.
      * @pre         The given angle must be a valid angle for this ship
      */
-    public void setAngle(double angle){
+    private void setAngle(double angle){
         assert isValidAngle(angle);
+        if ((this.getAngle() + angle) < maxAngle) {
+            this.angle = getAngle() + angle;
+        } else if ((this.getAngle() + angle) > maxAngle){
+            this.angle = ((getAngle() + angle) % maxAngle);
+        }
+    }
+
+    private boolean isValidAngle(double angle){
+        return (!Double.isNaN(angle));
     }
 
     /**

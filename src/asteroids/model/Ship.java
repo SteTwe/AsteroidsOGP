@@ -319,15 +319,6 @@ public class Ship {
     }
 
     /**
-     * Turn the ship with a given angle.
-     * @param angle
-     *               The given angle that has to be added to the angle of this ship.
-     */
-    public void turn(double angle){
-        setAngle(angle);
-    }
-
-    /**
      *
      * @param ship
      *
@@ -361,5 +352,26 @@ public class Ship {
         ship.velocityX = velocityX;
         ship.velocityY = velocityY;
 
+    }
+
+    /**
+     * Turn the ship by adding a given angle to the current orientation. Angle has to be in radians and must be between 0 and 2π.
+     * @param angle
+     *              The given angle that has to be added to the current angle.
+     *
+     * @post
+     *              Set the angle to the current angle plus the given angle.
+     *                      | setAngle(getAngle() + angle)
+     */
+    public void turn(double angle){
+        //I think this code is redundant if we use setAngle, that method wil make of for overflow
+        if((this.angle + angle) >= maxAngle){
+            double calculatedAngle = this.angle + angle;
+            double newAngle = calculatedAngle - maxAngle;
+            setAngle(newAngle);
+        }
+        else{
+            setAngle(getAngle() + angle);
+        }
     }
 }

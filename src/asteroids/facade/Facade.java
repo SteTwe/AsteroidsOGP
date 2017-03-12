@@ -47,7 +47,7 @@ public class Facade implements IFacade {
 
 	@Override
 	public void thrust(Ship ship, double amount) throws ModelException {
-		thrust(ship, amount);
+		ship.thrust(amount);
 		// TODO Auto-generated method stub
 
 	}

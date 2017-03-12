@@ -329,7 +329,7 @@ public class Ship {
      * @post        If the given amount is higher than zero, the amount is added to the current velocity. If this results
      *                  in the velocity being higher than the speed of light, the velocity is set to the speed of light.
      */
-    public void thrust (Ship ship, double amount){
+    public void thrust (double amount){
         if (amount<0){
             amount = 0;
             double velocityX = getVelocityX() + (amount * Math.cos(getAngle()));
@@ -341,8 +341,8 @@ public class Ship {
                 double newVelocityY = getVelocityY() + (amount * Math.sin(getAngle()));
                 velocity = computeVelocity(newVelocityX, newVelocityY);
                 if(velocity<= 300000){
-                	ship.velocityX = newVelocityX;
-                    ship.velocityY = newVelocityY;
+                	this.velocityX = newVelocityX;
+                    this.velocityY = newVelocityY;
                     return;
                 }
             }
@@ -356,8 +356,8 @@ public class Ship {
             double newVelocityY = getVelocityY() + (amount * Math.sin(getAngle()));
             velocity = computeVelocity(newVelocityX, newVelocityY);
             if(velocity<= 300000){
-            	ship.velocityX = newVelocityX;
-                ship.velocityY = newVelocityY;
+            	this.velocityX = newVelocityX;
+                this.velocityY = newVelocityY;
                 return;
             }
         }

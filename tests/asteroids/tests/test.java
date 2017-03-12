@@ -26,7 +26,7 @@ public class test {
     public void testMotion() throws ModelException{
     	Ship ship1 = facade.createShip(50,50,500,300,15,0);
     	facade.turn(ship1,5);
-//    	facade.thrust(ship1, 0);
+ 		facade.thrust(ship1, 0);
     	Ship ship2 = facade.createShip(40,10,20,30,12, 0);
     	double distance = facade.getDistanceBetween(ship1, ship2);
     	assertNotNull(distance);

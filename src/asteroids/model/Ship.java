@@ -481,11 +481,14 @@ public class Ship {
      *              |           return collision
      */
     public double[] getCollisionPosition(Ship other){
-        if (getTimeToCollision(other) <= 0)
+        double time = this.getTimeToCollision(other);
+        if (time == Double.POSITIVE_INFINITY)
             return null;
-        double x = 0;
-        double y = 0;
-        return new double[]{x,y};
+
+
+        double collisionX = getTimeToCollision(other) * other.velocitX;
+        double collisionY;
+        return new double[]{collisionX,collisionY};
     }
 
 }

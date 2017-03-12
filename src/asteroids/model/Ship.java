@@ -438,8 +438,18 @@ public class Ship {
     /**
      *
      * @param other
-     * @return
+     *              The given other ship.
+     * @return      Returns the time until the given ships will collide.
+     *
      * @throws IllegalArgumentException
+     *              If there is no other ship
+     *              | other = null
+     *              |       throw new IllegalArgumentException
+     * @throws IllegalArgumentException
+     *              If the ships overlap. This means the already collided or the spawn as an overlap.
+     *              | this.overlap(other)
+     *              |       throw new IllegalArgumentException
+     *
      */
     public double getTimeToCollision(Ship other) throws IllegalArgumentException{
         if (other == null)
@@ -475,15 +485,23 @@ public class Ship {
         double diffVelPosMult = (Math.pow(differenceVelocity[0], 2) + Math.pow(differenceVelocity[1], 2));
 
         //sigma as defined by the assignment
-        double sigma = (Math.pow(diffPosX, 2) + Math.pow(diffPosY, 2));
+        double sigma = (this.getRadius() + other.getRadius());
         //d as defined by the assignment
         double d = ((Math.pow((diffVelPosMult), 2)) - (diffVelMult) * (diffPosMult - Math.pow(sigma, 2)));
 
-        return;
+        double time = 0;
+        //TODO
+        
+        if (diffVelMult >=0)
+            return Double.POSITIVE_INFINITY;
+        else if (d < 0)
+            return Double.POSITIVE_INFINITY;
+        else
+            return time;
     }
 
     public double[] getCollisionPosition(Ship other){
-        if (!getTimeToCollision(Ship other))
+        if (getTimeToCollision(other) <= 0)
             return null;
         return new double[]{x,y};
     }

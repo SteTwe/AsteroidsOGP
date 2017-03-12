@@ -1,10 +1,5 @@
 package asteroids.model;
 import be.kuleuven.cs.som.annotate.*;
-import sun.util.resources.cldr.dua.CalendarData_dua_CM;
-
-import java.awt.*;
-import java.util.DoubleSummaryStatistics;
-import java.util.logging.Level;
 
 
 /**
@@ -181,9 +176,8 @@ public class Ship {
      * @param velocityX
      *              The ship's velocity in the x-direction.
      * @param velocityY
-     *              The ship's velocity in the y-direction.
      */
-    private double computedVelocity(double velocityX, double velocityY){
+    private double computeVelocity(double velocityX, double velocityY){
         return (Math.sqrt(Math.pow(velocityX, 2) + Math.pow(velocityY, 2)));
     }
 
@@ -333,5 +327,39 @@ public class Ship {
         setAngle(angle);
     }
 
-    
+    /**
+     *
+     * @param ship
+     *
+     * @param amount
+     *
+     *              The amount of velocity that needs to be added to the current velocity.
+     *
+     * @post        If the given amount is higher than zero, the amount is added to the current velocity. If this results
+     *                  in the velocity being higher than the speed of light, the velocity is set to the speed of light.
+     */
+    public void thrust (Ship ship, double amount){
+        if (amount<0){
+            amount = 0;
+            double velocityX = getVelocityX() + (amount * Math.cos(getAngle()));
+            double velocityY = getVelocityY() + (amount * Math.sin(getAngle()));
+            while (computeVelocity(velocityX, velocityY)>300000){
+                amount -= 0.1;
+                double velocityX = getVelocityX() + (amount * Math.cos(getAngle()));
+                double velocityY = getVelocityY() + (amount * Math.sin(getAngle()));
+            }
+            ship.velocityX = velocityX;
+            ship.velocityY = velocityY;
+        }
+        double velocityX = getVelocityX() + (amount * Math.cos(getAngle()));
+        double velocityY = getVelocityY() + (amount * Math.sin(getAngle()));
+        while (computeVelocity(velocityX, velocityY)>300000){
+            amount -= 0.1;
+            double velocityX = getVelocityX() + (amount * Math.cos(getAngle()));
+            double velocityY = getVelocityY() + (amount * Math.sin(getAngle()));
+        }
+        ship.velocityX = velocityX;
+        ship.velocityY = velocityY;
+
+    }
 }

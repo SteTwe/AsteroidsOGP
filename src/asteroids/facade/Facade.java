@@ -48,27 +48,19 @@ public class Facade implements IFacade {
 	@Override
 	public void thrust(Ship ship, double amount) throws ModelException {
 		ship.thrust(amount);
-		// TODO Auto-generated method stub
-
 	}
-
 	@Override
 	public void turn(Ship ship, double angle) throws ModelException {
 		ship.turn(angle);
-		// TODO Auto-generated method stub
-
-		
 	}
 
 	@Override
 	public double getDistanceBetween(Ship ship1, Ship ship2) throws ModelException {
-		// TODO Auto-generated method stub
 		return ship1.getDistanceBetween(ship2);
 	}
 
 	@Override
 	public boolean overlap(Ship ship1, Ship ship2) throws ModelException {
-		// TODO Auto-generated method stub
 		return ship1.overlap(ship2);
 	}
 

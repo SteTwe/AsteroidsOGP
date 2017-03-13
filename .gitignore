@@ -46,6 +46,6 @@ Thumbs.db
 #folder#
 /bin/*
 /javadoc/*
-/.project/*
+.project
 #specific files#
 asteroids-part1.pdf

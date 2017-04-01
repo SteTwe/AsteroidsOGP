@@ -26,10 +26,10 @@ public class World {
     }
 
     private boolean isValidWidth(double width){
-        return ((!Double.isNaN(width)) && width > 0 && width < Double.MAX_VALUE);
+        return ((!Double.isNaN(width)) && width >= 0 && width <= Double.MAX_VALUE);
     }
 
     private boolean isValidHeight(double height){
-        return ((!Double.isNaN(height)) && height > 0 && height < Double.MAX_VALUE);
+        return ((!Double.isNaN(height)) && height >= 0 && height <= Double.MAX_VALUE);
     }
 }

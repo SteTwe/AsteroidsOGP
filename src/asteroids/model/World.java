@@ -53,19 +53,19 @@ public class World {
     }
 
     public void addShip(Ship ship){
-        shipSet.add(ship);
+        this.shipSet.add(ship);
     }
 
     public void removeShip(Ship ship){
-        shipSet.remove(ship);
+        this.shipSet.remove(ship);
     }
 
     public void addBullet(Bullet bullet){
-        bulletSet.add(bullet);
+        this.bulletSet.add(bullet);
     }
 
     public void removeBullet(Bullet bullet){
-        bulletSet.remove(bullet);
+        this.bulletSet.remove(bullet);
     }
 
     public Set<? extends Bullet> getBulletSet(){

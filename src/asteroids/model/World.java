@@ -5,6 +5,8 @@ import be.kuleuven.cs.som.annotate.*;
 import asteroids.model.Ship;
 import asteroids.model.Bullet;
 
+import java.util.Set;
+
 
 /**
  * Created by stef on 1-4-17.
@@ -18,7 +20,8 @@ public class World {
 
     }
 
-    private Ship ship;
+    private Set<Ship> shipSet;
+    private Set<Bullet> bulletSet;
     private Bullet bullet;
 
     private double width;

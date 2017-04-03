@@ -416,6 +416,7 @@ public class Ship {
         }
     }
 
+
     /**
      * Turn the ship by adding a given angle to the current orientation. Angle has to be in radians and must be between 0 and 2π.
      *
@@ -583,4 +584,18 @@ public class Ship {
 
     private static double minMassDensity = 1.42 * Math.pow(10,12);
 
+
+    public void thrustOn(){
+
+    }
+
+    private static double thrustForce = 1.1 * Math.pow(10, 21);
+
+    public static double getThrustForce() {
+        return thrustForce;
+    }
+
+    public double getAcceleration(){
+        return (getThrustForce()/getMass());
+    }
 }

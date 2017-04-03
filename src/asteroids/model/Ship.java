@@ -612,4 +612,10 @@ public class Ship {
         else
             return acceleration;
     }
+
+    private World world;
+
+    public World getWorld() {
+        return this.world;
+    }
 }

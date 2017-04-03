@@ -6,17 +6,17 @@ import asteroids.model.World;
 import asteroids.part2.facade.IFacade;
 import asteroids.util.ModelException;
 
+import java.util.Set;
+
 public class Facade implements IFacade {
 
 	/**************
 	 * SHIP: Basic methods
 	 *************/
-
 	@Override
 	public Ship createShip() throws ModelException {
 		return new Ship(0, 0, 0, 0, 0, 10);
 	}
-
 
 	@Override
 	public Ship createShip(double positionX, double positionY, double velocityX, double velocityY, double radius, double angle)
@@ -38,12 +38,8 @@ public class Facade implements IFacade {
 		return new Ship(x,y, xVelocity, yVelocity, radius, direction, mass);
 	}
 
-
 	@Override
-	public void terminateShip(Ship ship) throws ModelException {
-
-	}
-
+	public void terminateShip(Ship ship) throws ModelException {}
 
 	@Override
 	public boolean isTerminatedShip(Ship ship) throws ModelException {
@@ -84,6 +80,10 @@ public class Facade implements IFacade {
 		}
 	}
 
+
+
+
+
 	@Override
 	public double[] getShipPosition(Ship ship) throws ModelException {
 		return new double[]{ship.getPositionX(), ship.getPositionY()};
@@ -98,11 +98,11 @@ public class Facade implements IFacade {
 	public double getShipRadius(Ship ship) throws ModelException {
 		return ship.getRadius();
 	}
+
 	@Override
 	public double getShipOrientation(Ship ship) throws ModelException {
 		return ship.getAngle();
 	}
-
 
 	@Override
 	public void thrust(Ship ship, double amount) throws ModelException {
@@ -142,13 +142,22 @@ public class Facade implements IFacade {
 		return ship1.getCollisionPosition(ship2);
 	}
 
+
+
 	/**************
 	 * WORLD: Basic methods
 	 *************/
-
 	@Override
 	public World createWorld(double width, double height) throws ModelException {
 		return new World(width, height);
+	}
+
+	@Override
+	public void terminateWorld(World world) throws ModelException { }
+
+	@Override
+	public boolean isTerminatedWorld(World world) throws ModelException {
+		return false;
 	}
 
 	@Override
@@ -156,5 +165,25 @@ public class Facade implements IFacade {
 		return new double[] {world.getWidth(), world.getHeight()};
 	}
 
+	@Override
+	public Set<? extends Ship> getWorldShips(World world) throws ModelException {
+		return null;
+	}
 
+	@Override
+	public Set<? extends Bullet> getWorldBullets(World world) throws ModelException {
+		return null;
+	}
+
+	@Override
+	public void addShipToWorld(World world, Ship ship) throws ModelException { }
+
+	@Override
+	public void removeShipFromWorld(World world, Ship ship) throws ModelException { }
+
+	@Override
+	public void addBulletToWorld(World world, Bullet bullet) throws ModelException { }
+
+	@Override
+	public void removeBulletFromWorld(World world, Bullet bullet) throws ModelException { }
 }

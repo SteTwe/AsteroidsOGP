@@ -586,6 +586,16 @@ public class Ship {
 
 
     public void thrustOn(){
+        double newVelocityX = getVelocityX() + getAcceleration() * Math.cos(getAngle());
+        double newVelocityY = getVelocityY() + getAcceleration() * Math.sin(getAngle());
+        double newVelocity = computeVelocity(newVelocityX, newVelocityY);
+        if (newVelocity > SPEED_OF_LIGHT) {
+            setVelocityX((newVelocityX / newVelocity) * SPEED_OF_LIGHT);
+            setVelocityY((newVelocityY / newVelocity) * SPEED_OF_LIGHT);
+        } else {
+            setVelocityX(newVelocityX);
+            setVelocityY(newVelocityY);
+        }
 
     }
 

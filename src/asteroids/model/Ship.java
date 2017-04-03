@@ -568,9 +568,9 @@ public class Ship {
 
     //Needs work
     private boolean isValidMass(double mass){
-        if (mass >= getMinMass())
+        if ((mass >= getMinMass()) && (!Double.isNaN(mass)))
             return true;
-        return true;
+        return false;
     }
 
     private double getMinMass(){

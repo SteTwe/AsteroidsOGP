@@ -44,6 +44,11 @@ public class Facade implements IFacade {
 	}
 
 	@Override
+	public double getShipMass(Ship ship) throws ModelException {
+		return ship.getMass();
+	}
+
+	@Override
 	public double[] getShipVelocity(Ship ship) throws ModelException {
 		return new double[]{ship.getVelocityX(), ship.getVelocityY()};
 	}

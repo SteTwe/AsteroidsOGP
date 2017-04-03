@@ -32,9 +32,10 @@ public class Ship {
      * @param velocityY The velocity in the y-direction of this new ship.
      * @param angle     The angle (orientation) which this new ship is facing in.
      * @param radius    The radius of this new ship.
-     *                  The radius of this new ship of this new ship.
+     * @param mass      The mass of this new ship.
+     *
      */
-    public Ship(double positionX, double positionY, double velocityX, double velocityY, double radius, double angle) throws IllegalArgumentException {
+    public Ship(double positionX, double positionY, double velocityX, double velocityY, double radius, double angle, double mass) throws IllegalArgumentException {
         this.setPositionX(positionX);
         this.setPositionY(positionY);
         this.setVelocityX(velocityX);
@@ -550,4 +551,24 @@ public class Ship {
             return new double[]{collisionPositionX, collisionPositionY};
         }
     }
+
+    private double mass;
+
+    public void setMass(double mass){
+        if (isValidMass(mass))
+            this.mass = mass;
+        else
+            //Temporary
+            this.mass = 0;
+    }
+
+    public double getMass(){
+        return this.mass;
+    }
+
+    //Needs work
+    private boolean isValidMass(double mass){
+        return true;
+    }
+
 }

@@ -53,7 +53,9 @@ public class World {
     }
 
     public void addShip(Ship ship){
-        this.shipSet.add(ship);
+        if (getShipSet().contains(ship));
+        else
+            this.shipSet.add(ship);
     }
 
     public void removeShip(Ship ship){
@@ -61,7 +63,9 @@ public class World {
     }
 
     public void addBullet(Bullet bullet){
-        this.bulletSet.add(bullet);
+        if (getBulletSet().contains(bullet));
+        else
+            this.bulletSet.add(bullet);
     }
 
     public void removeBullet(Bullet bullet){

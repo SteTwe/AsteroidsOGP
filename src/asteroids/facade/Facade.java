@@ -38,14 +38,55 @@ public class Facade implements IFacade {
 		return new Ship(x,y, xVelocity, yVelocity, radius, direction, mass);
 	}
 
+
 	@Override
-	public double[] getShipPosition(Ship ship) throws ModelException {
-		return new double[]{ship.getPositionX(), ship.getPositionY()};
+	public void terminateShip(Ship ship) throws ModelException {
+
+	}
+
+
+	@Override
+	public boolean isTerminatedShip(Ship ship) throws ModelException {
+		return false;
 	}
 
 	@Override
 	public double getShipMass(Ship ship) throws ModelException {
 		return ship.getMass();
+	}
+
+	@Override
+	public World getShipWorld(Ship ship) throws ModelException {
+		return ship.getWorld();
+	}
+
+	@Override
+	public boolean isShipThrusterActive(Ship ship) throws ModelException {
+		return false;
+	}
+
+	@Override
+	public void setThrusterActive(Ship ship, boolean active) throws ModelException {
+
+	}
+
+	@Override
+	public double getShipAcceleration(Ship ship) throws ModelException {
+		return ship.getAcceleration();
+	}
+
+	@Override
+	public void move(Ship ship, double dt) throws ModelException {
+		try{
+			ship.move(dt);
+		}catch (Exception e){
+			throw new ModelException(e);
+		}
+	}
+
+	@Override
+	public double[] getShipPosition(Ship ship) throws ModelException {
+		return new double[]{ship.getPositionX(), ship.getPositionY()};
 	}
 
 	@Override
@@ -57,19 +98,11 @@ public class Facade implements IFacade {
 	public double getShipRadius(Ship ship) throws ModelException {
 		return ship.getRadius();
 	}
-
 	@Override
 	public double getShipOrientation(Ship ship) throws ModelException {
 		return ship.getAngle();
 	}
-	@Override
-	public void move(Ship ship, double dt) throws ModelException {
-		try{
-			ship.move(dt);
-		}catch (Exception e){
-			throw new ModelException(e);
-		}
-	}
+
 
 	@Override
 	public void thrust(Ship ship, double amount) throws ModelException {
@@ -79,6 +112,7 @@ public class Facade implements IFacade {
 			throw new ModelException(e);
 		}
 	}
+
 	@Override
 	public void turn(Ship ship, double angle) throws ModelException {
 		try{
@@ -108,7 +142,6 @@ public class Facade implements IFacade {
 		return ship1.getCollisionPosition(ship2);
 	}
 
-
 	/**************
 	 * WORLD: Basic methods
 	 *************/
@@ -123,5 +156,5 @@ public class Facade implements IFacade {
 		return new double[] {world.getWidth(), world.getHeight()};
 	}
 
-	
+
 }

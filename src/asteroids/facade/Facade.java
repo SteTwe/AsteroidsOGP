@@ -2,10 +2,15 @@ package asteroids.facade;
 
 import asteroids.model.Bullet;
 import asteroids.model.Ship;
+import asteroids.model.World;
 import asteroids.part2.facade.IFacade;
 import asteroids.util.ModelException;
 
 public class Facade implements IFacade {
+
+	/**************
+	 * SHIP: Basic methods
+	 *************/
 
 	@Override
 	public Ship createShip() throws ModelException {
@@ -98,4 +103,20 @@ public class Facade implements IFacade {
 		return ship1.getCollisionPosition(ship2);
 	}
 
+
+	/**************
+	 * WORLD: Basic methods
+	 *************/
+
+	@Override
+	public World createWorld(double width, double height) throws ModelException {
+		return new World(width, height);
+	}
+
+	@Override
+	public double[] getWorldSize(World world) throws ModelException {
+		return new double[] {world.getWidth(), world.getHeight()};
+	}
+
+	
 }

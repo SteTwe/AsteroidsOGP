@@ -1,6 +1,9 @@
 package asteroids.model;
+
 import be.kuleuven.cs.som.annotate.*;
 
+import asteroids.model.Ship;
+import asteroids.model.Bullet;
 
 
 /**

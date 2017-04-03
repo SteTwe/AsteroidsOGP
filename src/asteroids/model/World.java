@@ -35,4 +35,12 @@ public class World {
     private boolean isValidHeight(double height){
         return ((!Double.isNaN(height)) && height >= 0 && height <= Double.MAX_VALUE);
     }
+
+    public double getHeight() {
+        return this.height;
+    }
+
+    public double getWidth() {
+        return this.width;
+    }
 }

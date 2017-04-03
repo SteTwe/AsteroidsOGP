@@ -1,7 +1,8 @@
 package asteroids.facade;
 
+import asteroids.model.Bullet;
 import asteroids.model.Ship;
-import asteroids.part1.facade.IFacade;
+import asteroids.part2.facade.IFacade;
 import asteroids.util.ModelException;
 
 public class Facade implements IFacade {
@@ -10,6 +11,7 @@ public class Facade implements IFacade {
 	public Ship createShip() throws ModelException {
 		return new Ship(0, 0, 0, 0, 0, 10);
 	}
+
 
 	@Override
 	public Ship createShip(double positionX, double positionY, double velocityX, double velocityY, double radius, double angle)

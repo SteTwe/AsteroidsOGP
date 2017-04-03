@@ -559,7 +559,7 @@ public class Ship {
             this.mass = mass;
         else
             //Temporary
-            this.mass = 0;
+            this.mass = getMinMass();
     }
 
     public double getMass(){
@@ -568,7 +568,19 @@ public class Ship {
 
     //Needs work
     private boolean isValidMass(double mass){
+        if (mass >= getMinMass())
+            return true;
         return true;
     }
+
+    private double getMinMass(){
+        return ((4/3)* Math.PI * Math.pow(this.getRadius(), 3) * getMinMassDensity());
+    }
+
+    public static double getMinMassDensity() {
+        return minMassDensity;
+    }
+
+    private static double minMassDensity = 1.42 * Math.pow(10,12);
 
 }

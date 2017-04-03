@@ -18,6 +18,9 @@ public class World {
 
     }
 
+    private Ship ship;
+    private Bullet bullet;
+
     private double width;
     private double height;
 

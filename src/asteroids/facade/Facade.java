@@ -24,6 +24,16 @@ public class Facade implements IFacade {
 	}
 
 	@Override
+	public Ship createShip(double x, double y, double xVelocity, double yVelocity, double radius, double direction,
+						   double mass) throws ModelException{
+		if(Double.isNaN(x)|| Double.isNaN(y)
+				|| Double.isNaN(xVelocity) || Double.isNaN(yVelocity) || Double.isNaN(radius)
+				|| Double.isNaN(direction) || Double.isNaN(mass)) throw new ModelException("Invalid argument");
+		if (radius < 0) throw new ModelException("Radius below zero");
+		return new Ship(x,y, xVelocity, yVelocity, radius, direction, mass);
+	}
+
+	@Override
 	public double[] getShipPosition(Ship ship) throws ModelException {
 		return new double[]{ship.getPositionX(), ship.getPositionY()};
 	}

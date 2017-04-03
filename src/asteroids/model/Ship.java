@@ -606,6 +606,10 @@ public class Ship {
     }
 
     public double getAcceleration(){
-        return (getThrustForce()/getMass());
+        double acceleration = getThrustForce()/getMass();
+        if (acceleration < 0)
+            return 0;
+        else
+            return acceleration;
     }
 }

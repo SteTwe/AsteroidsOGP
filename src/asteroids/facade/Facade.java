@@ -181,7 +181,9 @@ public class Facade implements IFacade {
 	}
 
 	@Override
-	public void removeShipFromWorld(World world, Ship ship) throws ModelException { }
+	public void removeShipFromWorld(World world, Ship ship) throws ModelException {
+		world.removeShip(ship);
+	}
 
 	@Override
 	public void addBulletToWorld(World world, Bullet bullet) throws ModelException {
@@ -189,5 +191,7 @@ public class Facade implements IFacade {
 	}
 
 	@Override
-	public void removeBulletFromWorld(World world, Bullet bullet) throws ModelException { }
+	public void removeBulletFromWorld(World world, Bullet bullet) throws ModelException {
+		world.removeBullet(bullet);
+	}
 }

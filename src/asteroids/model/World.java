@@ -2,9 +2,8 @@ package asteroids.model;
 
 import be.kuleuven.cs.som.annotate.*;
 
-import asteroids.model.Ship;
-import asteroids.model.Bullet;
 
+import java.util.HashSet;
 import java.util.Set;
 
 
@@ -20,8 +19,8 @@ public class World {
 
     }
 
-    private Set<Ship> shipSet;
-    private Set<Bullet> bulletSet;
+    private Set<Ship> shipSet = new HashSet<>();
+    private Set<Bullet> bulletSet = new HashSet<>();
     private Bullet bullet;
 
     private double width;
@@ -51,5 +50,29 @@ public class World {
 
     public double getWidth() {
         return this.width;
+    }
+
+    public void addShip(Ship ship){
+        shipSet.add(ship);
+    }
+
+    public void removeShip(Ship ship){
+        shipSet.remove(ship);
+    }
+
+    public void addBullet(Bullet bullet){
+        bulletSet.add(bullet);
+    }
+
+    public void removeBullet(Bullet bullet){
+        bulletSet.remove(bullet);
+    }
+
+    public Set<? extends Bullet> getBulletSet(){
+        return this.bulletSet;
+    }
+
+    public Set<? extends Ship> getShipSet() {
+        return this.shipSet;
     }
 }

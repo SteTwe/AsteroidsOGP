@@ -167,16 +167,18 @@ public class Facade implements IFacade {
 
 	@Override
 	public Set<? extends Ship> getWorldShips(World world) throws ModelException {
-		return null;
+		return world.getShipSet();
 	}
 
 	@Override
 	public Set<? extends Bullet> getWorldBullets(World world) throws ModelException {
-		return null;
+		return world.getBulletSet();
 	}
 
 	@Override
-	public void addShipToWorld(World world, Ship ship) throws ModelException { }
+	public void addShipToWorld(World world, Ship ship) throws ModelException {
+	
+	}
 
 	@Override
 	public void removeShipFromWorld(World world, Ship ship) throws ModelException { }

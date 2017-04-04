@@ -281,7 +281,7 @@ public class Ship {
     /**
      * Variable holding the minimum angle this ship must have, being zero; converted to radians.
      */
-    //private double minAngle = Math.toRadians(0);
+    private double minAngle = Math.toRadians(0);
 
     /**
      * Variable holding the maximum angle this ship can have, being 360°;converted to radians.
@@ -555,19 +555,24 @@ public class Ship {
 
     private double mass;
 
-    public void setMass(double mass){
+    public void setTotalMass(double mass){
         if (isValidMass(mass))
-            this.mass = mass;
+            this.mass = calculateMass(mass);
         else
             //Temporary
             this.mass = getMinMass();
+    }
+
+    public double calculateMass(double massShip){
+        //TODO mass of the ship + mass of the bullets
+        return 0;
     }
 
     public double getMass(){
         return this.mass;
     }
 
-    //Needs work
+    //TODO
     private boolean isValidMass(double mass){
         if ((mass >= getMinMass()) && (!Double.isNaN(mass)))
             return true;
@@ -584,7 +589,7 @@ public class Ship {
 
     private static double minMassDensity = 1.42 * Math.pow(10,12);
 
-
+    //TODO
     public void thrustOn(){
         double newVelocityX = getVelocityX() + getAcceleration() * Math.cos(getAngle());
         double newVelocityY = getVelocityY() + getAcceleration() * Math.sin(getAngle());

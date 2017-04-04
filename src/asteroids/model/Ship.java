@@ -138,7 +138,7 @@ public class Ship {
      *
      * @param positionY The given y position for this ship.
      * @return true if the position is a number
-     * | !Double.isNaN(positionY)
+     * | result == !Double.isNaN(positionY)
      */
     private boolean isValidPositionY(double positionY) {
         return ((!Double.isNaN(positionY)) && positionY > Double.NEGATIVE_INFINITY && positionY < Double.POSITIVE_INFINITY);
@@ -149,7 +149,7 @@ public class Ship {
      *
      * @return Return the velocity in the x-direction
      * the velocity in the x-direction of this ship
-     * | this.velocityX
+     * | result == this.velocityX
      */
     @Basic
     public double getVelocityX() {
@@ -166,7 +166,7 @@ public class Ship {
      *
      * @return Return the velocity in the y-direction
      * the velocity in the x-direction of this ship
-     * | this.velocityY
+     * | result == this.velocityY
      */
     @Basic
     public double getVelocityY() {
@@ -211,7 +211,7 @@ public class Ship {
      *
      * @param velocityX The given velocityX for this ship.
      * @return true if the velocityX is a number.
-     * | !Double.isNaN(velocityY)
+     * | result == !Double.isNaN(velocityY)
      */
     private boolean isValidVelocityX(double velocityX) {
         return (!Double.isNaN(velocityX));
@@ -222,7 +222,7 @@ public class Ship {
      *
      * @param velocityY The given velocityY for this ship.
      * @return true if the velocityY is a number.
-     * | !Double.isNaN(velocity)
+     * | result == !Double.isNaN(velocity)
      */
     private boolean isValidVelocityY(double velocityY) {
         return (!Double.isNaN(velocityY));

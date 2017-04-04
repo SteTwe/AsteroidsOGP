@@ -81,4 +81,9 @@ public class World {
     public Set<? extends Ship> getShipSet() {
         return this.shipSet;
     }
+
+    public void terminateWorld(){
+        this.getBulletSet().clear();
+        this.getShipSet().clear();
+    }
 }

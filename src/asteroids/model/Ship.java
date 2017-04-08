@@ -43,6 +43,7 @@ public class Ship {
         this.setAngle(angle);
         if (!isValidRadius(radius)) throw new IllegalArgumentException();
         this.radius = radius;
+        this.mass = mass;
     }
 
     /**
@@ -368,6 +369,10 @@ public class Ship {
      * Constant holding the minimum radius of a ship. Currently the ship's radius can't be changed during runtime.
      */
     public static final double minRadius = 10;
+
+    private void setMass(double mass){
+
+    }
 
     /**
      * Move the ship for a certain amount of time (duration).

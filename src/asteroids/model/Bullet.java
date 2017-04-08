@@ -3,7 +3,7 @@ import be.kuleuven.cs.som.annotate.*;
 
 /**
  * Created by stef on 2-4-17.
- * @author joachim
+ * @author Joachim & Stef
  */
 public class Bullet {
 

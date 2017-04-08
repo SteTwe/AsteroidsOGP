@@ -6,7 +6,7 @@ import be.kuleuven.cs.som.annotate.*;
  * A class representing an Asteroid Ship involving a position, a velocity, an angle and a radius
  *
  * @author Joachim & Stef
- * @version v1.0
+ * @version v1.1
  * @invar The x-coordinate must be valid for any ship.
  * | isValidPositionX(positionX)
  * @invar The y-coordinate must be valid for any ship.

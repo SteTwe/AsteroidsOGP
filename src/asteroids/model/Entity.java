@@ -2,6 +2,8 @@ package asteroids.model;
 
 import be.kuleuven.cs.som.annotate.Basic;
 
+import java.util.DoubleSummaryStatistics;
+
 /**
  * Created by joachim on 09/04/2017.
  * @author joachim
@@ -25,7 +27,7 @@ public abstract class Entity {
         if (!isValidRadius(radius)) throw new IllegalArgumentException();
         this.radius = radius;
     }
-    
+
     @Basic
     public double getPositionX(){
         return this.positionX;
@@ -67,10 +69,48 @@ public abstract class Entity {
 
     @Basic
     public double getVelocityY(){
-        return this.velocityX;
+        return this.velocityY;
     }
 
+    private double velocityY;
 
+    private void setVelocityX(double velocityX){
+        if (isValidVelocityX(velocityX))
+            this.velocityX = velocityX;
+    }
+
+    private void setVelocityY(double velocityY){
+        if (isValidVelocityY(velocityY))
+            this.velocityY = velocityY;
+    }
+
+    private boolean isValidVelocityX(double velocityX){
+        return(!Double.isNaN(velocityX));
+    }
+
+    private boolean isValidVelocityY(double velocityY){
+        return(!Double.isNaN(velocityY));
+    }
+
+    private static double SPEED_OF_LIGHT = 300000;
+
+    private World world;
+
+    public World getWorld(){
+        return world;
+    }
+
+    //TODO
+    public void setWorld(World world){
+
+    }
+
+    //TODO
+    public void removeWorld(){
+
+    }
+
+    
 
 }
 

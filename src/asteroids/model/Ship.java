@@ -605,13 +605,26 @@ public class Ship {
         if (newVelocity > SPEED_OF_LIGHT) {
             setVelocityX((newVelocityX / newVelocity) * SPEED_OF_LIGHT);
             setVelocityY((newVelocityY / newVelocity) * SPEED_OF_LIGHT);
+            setActiveThruster();
         }
         else {
             setVelocityX(newVelocityX);
             setVelocityY(newVelocityY);
+            setActiveThruster();
         }
 
     }
+
+    private boolean activeThruster = false;
+
+    public void setActiveThruster(){activeThruster = true;}
+    
+    public void resetActiveThruster(){activeThruster = false;}
+
+    public boolean getThrusterActive(){
+        return this.activeThruster;
+    }
+
 
     public void thrustOff(){
         double oldVelocityX = getVelocityX() - getAcceleration() * Math.cos(getAngle());
@@ -620,10 +633,12 @@ public class Ship {
         if (oldVelocity > SPEED_OF_LIGHT){
             setVelocityX((oldVelocityX/oldVelocity) * SPEED_OF_LIGHT);
             setVelocityY((oldVelocityY/oldVelocity) * SPEED_OF_LIGHT);
+            resetActiveThruster();
         }
         else {
             setVelocityX(oldVelocityX);
             setVelocityY(oldVelocityY);
+            resetActiveThruster();
         }
     }
 

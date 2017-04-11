@@ -81,6 +81,124 @@ public class Facade implements IFacade {
 	}
 
 
+	/**************
+	 * BULLET: Basic methods
+	 *************/
+
+	@Override
+	public Bullet createBullet(double x, double y, double xVelocity, double yVelocity, double radius) throws ModelException {
+		return null;
+	}
+
+	@Override
+	public void terminateBullet(Bullet bullet) throws ModelException {
+
+	}
+
+	@Override
+	public boolean isTerminatedBullet(Bullet bullet) throws ModelException {
+		return false;
+	}
+
+	@Override
+	public double[] getBulletPosition(Bullet bullet) throws ModelException {
+		return new double[0];
+	}
+
+	@Override
+	public double[] getBulletVelocity(Bullet bullet) throws ModelException {
+		return new double[0];
+	}
+
+	@Override
+	public double getBulletRadius(Bullet bullet) throws ModelException {
+		return 0;
+	}
+
+	@Override
+	public double getBulletMass(Bullet bullet) throws ModelException {
+		return 0;
+	}
+
+	@Override
+	public World getBulletWorld(Bullet bullet) throws ModelException {
+		return null;
+	}
+
+	@Override
+	public Ship getBulletShip(Bullet bullet) throws ModelException {
+		return null;
+	}
+
+	@Override
+	public Ship getBulletSource(Bullet bullet) throws ModelException {
+		return null;
+	}
+
+
+
+
+
+	/**************
+	 * WORLD: Basic methods
+	 *************/
+	@Override
+	public World createWorld(double width, double height) throws ModelException {
+		return new World(width, height);
+	}
+
+
+
+	@Override
+	public void terminateWorld(World world) throws ModelException {
+		world.terminateWorld();
+	}
+
+	@Override
+	public boolean isTerminatedWorld(World world) throws ModelException {
+		if (world.getBulletSet().isEmpty() && world.getShipSet().isEmpty()) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+
+	@Override
+	public double[] getWorldSize(World world) throws ModelException {
+		return new double[] {world.getWidth(), world.getHeight()};
+	}
+
+	@Override
+	public Set<? extends Ship> getWorldShips(World world) throws ModelException {
+		return world.getShipSet();
+	}
+
+	@Override
+	public Set<? extends Bullet> getWorldBullets(World world) throws ModelException {
+		return world.getBulletSet();
+	}
+
+	@Override
+	public void addShipToWorld(World world, Ship ship) throws ModelException {
+		world.addShip(ship);
+	}
+
+	@Override
+	public void removeShipFromWorld(World world, Ship ship) throws ModelException {
+		world.removeShip(ship);
+	}
+
+
+	@Override
+	public void addBulletToWorld(World world, Bullet bullet) throws ModelException {
+		world.addBullet(bullet);
+	}
+
+	@Override
+	public void removeBulletFromWorld(World world, Bullet bullet) throws ModelException {
+		world.removeBullet(bullet);
+	}
 
 
 
@@ -140,65 +258,5 @@ public class Facade implements IFacade {
 	@Override
 	public double[] getCollisionPosition(Ship ship1, Ship ship2) throws ModelException {
 		return ship1.getCollisionPosition(ship2);
-	}
-
-
-
-	/**************
-	 * WORLD: Basic methods
-	 *************/
-	@Override
-	public World createWorld(double width, double height) throws ModelException {
-		return new World(width, height);
-	}
-
-	@Override
-	public void terminateWorld(World world) throws ModelException {
-		world.terminateWorld();
-	}
-
-	@Override
-	public boolean isTerminatedWorld(World world) throws ModelException {
-		if (world.getBulletSet().isEmpty() && world.getShipSet().isEmpty()) {
-			return true;
-		}
-		else {
-			return false;
-		}
-	}
-
-	@Override
-	public double[] getWorldSize(World world) throws ModelException {
-		return new double[] {world.getWidth(), world.getHeight()};
-	}
-
-	@Override
-	public Set<? extends Ship> getWorldShips(World world) throws ModelException {
-		return world.getShipSet();
-	}
-
-	@Override
-	public Set<? extends Bullet> getWorldBullets(World world) throws ModelException {
-		return world.getBulletSet();
-	}
-
-	@Override
-	public void addShipToWorld(World world, Ship ship) throws ModelException {
-		world.addShip(ship);
-	}
-
-	@Override
-	public void removeShipFromWorld(World world, Ship ship) throws ModelException {
-		world.removeShip(ship);
-	}
-
-	@Override
-	public void addBulletToWorld(World world, Bullet bullet) throws ModelException {
-		world.addBullet(bullet);
-	}
-
-	@Override
-	public void removeBulletFromWorld(World world, Bullet bullet) throws ModelException {
-		world.removeBullet(bullet);
 	}
 }

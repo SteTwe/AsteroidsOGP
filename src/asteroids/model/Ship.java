@@ -617,11 +617,11 @@ public class Ship {
 
     private boolean activeThruster = false;
 
-    public void setActiveThruster(){activeThruster = true;}
-    
-    public void resetActiveThruster(){activeThruster = false;}
+    private void setActiveThruster(){activeThruster = true;}
 
-    public boolean getThrusterActive(){
+    private void resetActiveThruster(){activeThruster = false;}
+
+    public boolean getActiveThruster(){
         return this.activeThruster;
     }
 

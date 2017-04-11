@@ -58,7 +58,7 @@ public class Facade implements IFacade {
 
 	@Override
 	public boolean isShipThrusterActive(Ship ship) throws ModelException {
-		return ship.getThrusterActive();
+		return ship.getActiveThruster();
 	}
 
 	@Override

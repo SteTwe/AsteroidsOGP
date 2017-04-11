@@ -8,7 +8,7 @@ import java.util.DoubleSummaryStatistics;
  * Created by joachim on 09/04/2017.
  * @author joachim
  */
-public abstract class Entity {
+public abstract class Object {
 
     /**
      * Initialize a new entity with x-position, y-position, velocity in x-direction, velocity in y-direction, radius.
@@ -19,7 +19,7 @@ public abstract class Entity {
      * @param velocityY The velocity in the y-direction of this new ship.
      * @param radius    The radius of this new ship.
      */
-    public Entity(double positionX, double positionY, double velocityX, double velocityY, double radius) throws IllegalArgumentException {
+    public Object(double positionX, double positionY, double velocityX, double velocityY, double radius) throws IllegalArgumentException {
         this.setPositionX(positionX);
         this.setPositionY(positionY);
         this.setVelocityX(velocityX);

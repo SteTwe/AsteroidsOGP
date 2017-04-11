@@ -1,6 +1,9 @@
 package asteroids.model;
 import be.kuleuven.cs.som.annotate.*;
 
+import java.util.HashSet;
+import java.util.Set;
+
 
 /**
  * A class representing an Asteroid Ship involving a position, a velocity, an angle and a radius
@@ -594,7 +597,7 @@ public class Ship {
 
     private static double minMassDensity = 1.42 * Math.pow(10,12);
 
-    //TODO
+
     public void thrustOn(){
         double newVelocityX = getVelocityX() + getAcceleration() * Math.cos(getAngle());
         double newVelocityY = getVelocityY() + getAcceleration() * Math.sin(getAngle());
@@ -602,12 +605,28 @@ public class Ship {
         if (newVelocity > SPEED_OF_LIGHT) {
             setVelocityX((newVelocityX / newVelocity) * SPEED_OF_LIGHT);
             setVelocityY((newVelocityY / newVelocity) * SPEED_OF_LIGHT);
-        } else {
+        }
+        else {
             setVelocityX(newVelocityX);
             setVelocityY(newVelocityY);
         }
 
     }
+
+    public void thrustOff(){
+        double oldVelocityX = getVelocityX() - getAcceleration() * Math.cos(getAngle());
+        double oldVelocityY = getVelocityY() - getAcceleration() * Math.sin(getAngle());
+        double oldVelocity = computeVelocity(oldVelocityX, oldVelocityY);
+        if (oldVelocity > SPEED_OF_LIGHT){
+            setVelocityX((oldVelocityX/oldVelocity) * SPEED_OF_LIGHT);
+            setVelocityY((oldVelocityY/oldVelocity) * SPEED_OF_LIGHT);
+        }
+        else {
+            setVelocityX(oldVelocityX);
+            setVelocityY(oldVelocityY);
+        }
+    }
+
 
     private static double thrustForce = 1.1 * Math.pow(10, 21);
 
@@ -628,4 +647,9 @@ public class Ship {
     public World getWorld() {
         return this.world;
     }
+
+    private Set<Bullet> bulletSet = new HashSet<>();
+
+
+    public Set getBullets(){return this.bulletSet;  }
 }

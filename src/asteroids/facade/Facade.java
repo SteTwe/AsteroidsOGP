@@ -63,7 +63,7 @@ public class Facade implements IFacade {
 
 	@Override
 	public void setThrusterActive(Ship ship, boolean active) throws ModelException {
-
+		ship.thrustOn();
 	}
 
 	@Override

@@ -3,9 +3,11 @@ package asteroids.facade;
 import asteroids.model.Bullet;
 import asteroids.model.Ship;
 import asteroids.model.World;
+import asteroids.part2.CollisionListener;
 import asteroids.part2.facade.IFacade;
 import asteroids.util.ModelException;
 
+import java.util.Collection;
 import java.util.Set;
 
 public class Facade implements IFacade {
@@ -135,19 +137,14 @@ public class Facade implements IFacade {
 		return null;
 	}
 
-
-
-
-
 	/**************
 	 * WORLD: Basic methods
 	 *************/
+
 	@Override
 	public World createWorld(double width, double height) throws ModelException {
 		return new World(width, height);
 	}
-
-
 
 	@Override
 	public void terminateWorld(World world) throws ModelException {
@@ -189,8 +186,7 @@ public class Facade implements IFacade {
 		world.removeShip(ship);
 	}
 
-
-	@Override
+    @Override
 	public void addBulletToWorld(World world, Bullet bullet) throws ModelException {
 		world.addBullet(bullet);
 	}
@@ -201,13 +197,110 @@ public class Facade implements IFacade {
 	}
 
 
+    /**************
+     * SHIP: Methods related to loaded bullets
+     *************/
 
-	@Override
+    @Override
+    public Set<? extends Bullet> getBulletsOnShip(Ship ship) throws ModelException {
+        return null;
+    }
+
+    @Override
+    public int getNbBulletsOnShip(Ship ship) throws ModelException {
+        return 0;
+    }
+
+    @Override
+    public void loadBulletOnShip(Ship ship, Bullet bullet) throws ModelException {
+
+    }
+
+    @Override
+    public void loadBulletsOnShip(Ship ship, Collection<Bullet> bullets) throws ModelException {
+
+    }
+
+    @Override
+    public void removeBulletFromShip(Ship ship, Bullet bullet) throws ModelException {
+
+    }
+
+    @Override
+    public void fireBullet(Ship ship) throws ModelException {
+
+    }
+
+    @Override
 	public double[] getShipPosition(Ship ship) throws ModelException {
 		return new double[]{ship.getPositionX(), ship.getPositionY()};
 	}
 
-	@Override
+
+
+    /******************
+     * COLLISIONS
+     **************/
+    @Override
+    public double getTimeCollisionBoundary(Object object) throws ModelException {
+        return 0;
+    }
+
+    @Override
+    public double[] getPositionCollisionBoundary(Object object) throws ModelException {
+        return new double[0];
+    }
+
+    @Override
+    public double getTimeCollisionEntity(Object entity1, Object entity2) throws ModelException {
+        return 0;
+    }
+
+    @Override
+    public double[] getPositionCollisionEntity(Object entity1, Object entity2) throws ModelException {
+        return new double[0];
+    }
+
+    @Override
+    public double getTimeNextCollision(World world) throws ModelException {
+        return 0;
+    }
+
+    @Override
+    public double[] getPositionNextCollision(World world) throws ModelException {
+        return new double[0];
+    }
+
+    @Override
+    public void evolve(World world, double dt, CollisionListener collisionListener) throws ModelException {
+
+    }
+
+    @Override
+    public Object getEntityAt(World world, double x, double y) throws ModelException {
+        return null;
+    }
+
+    @Override
+    public Set<? extends Object> getEntities(World world) throws ModelException {
+        return null;
+    }
+
+    @Override
+    public void thrust(Ship ship, double amount) throws ModelException {
+        try{
+            ship.thrust(amount);
+        }catch (Exception e){
+            throw new ModelException(e);
+        }
+    }
+
+
+    /******************
+     * METHODS PART 1
+     **************/
+
+    @Override
 	public double[] getShipVelocity(Ship ship) throws ModelException {
 		return new double[]{ship.getVelocityX(), ship.getVelocityY()};
 	}
@@ -220,15 +313,6 @@ public class Facade implements IFacade {
 	@Override
 	public double getShipOrientation(Ship ship) throws ModelException {
 		return ship.getAngle();
-	}
-
-	@Override
-	public void thrust(Ship ship, double amount) throws ModelException {
-		try{
-			ship.thrust(amount);
-		}catch (Exception e){
-			throw new ModelException(e);
-		}
 	}
 
 	@Override

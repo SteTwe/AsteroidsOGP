@@ -20,4 +20,17 @@ public class Bullet {
 
     }
 
+    //TODO
+    public void terminate(){
+
+    }
+
+    //TODO
+    public double getMass(){
+
+    }
+
+    //TODO
+    public
+
 }

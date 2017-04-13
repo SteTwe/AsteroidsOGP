@@ -16,6 +16,7 @@ public class Bullet {
      * @param velocityY The velocity in the y-direction of this new bullet.
      * @param radius    The radius of this new bullet.
      */
+
     public Bullet(double positionX, double positionY, double velocityX, double velocityY, double radius) throws IllegalArgumentException {
 
     }

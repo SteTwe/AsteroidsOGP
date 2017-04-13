@@ -123,6 +123,11 @@ public abstract class Entity {
 
     private double radius;
 
+    //TODO
+    public void setRadius(double radius){
+        this.radius = radius;
+    }
+
 
     private World world;
 

@@ -55,7 +55,11 @@ public class Bullet {
         return minRadius;
     }
 
-    private double density;
+    /**
+     * Constant holding the density of a bullet following the given formula.
+     * 7.8 * 10^12 kg/m^3
+     */
+    private double density = 7.8 * Math.pow(10, 12);
 
 
 }

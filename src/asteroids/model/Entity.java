@@ -30,6 +30,11 @@ public abstract class Entity {
         this.radius = radius;
     }
 
+    /**
+     * Returning the x-coordiante of this entity's position.
+     * @return  Returns the x-coordinate of this entity.
+     *          | result == this.positionX
+     */
     @Basic
     public double getPositionX(){
         return this.positionX;
@@ -37,6 +42,11 @@ public abstract class Entity {
 
     private double positionX;
 
+    /**
+     * Returning the y-coordinate of this entity's position
+     * @return  Returns the y-coordinate of this entity.
+     *          | result == this.positionY
+     */
     @Basic
     public double getPositionY(){
         return this.positionY;

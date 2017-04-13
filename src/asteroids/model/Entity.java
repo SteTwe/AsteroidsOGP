@@ -1,6 +1,7 @@
 package asteroids.model;
 
 import be.kuleuven.cs.som.annotate.Basic;
+import be.kuleuven.cs.som.annotate.Raw;
 
 import java.util.DoubleSummaryStatistics;
 
@@ -107,6 +108,21 @@ public abstract class Entity {
     }
 
     private static double SPEED_OF_LIGHT = 300000;
+
+    /**
+     * Return the radius of this entity.
+     *
+     * @return Return the radius for this entity.
+     * | result == radius
+     */
+    @Basic
+    @Raw
+    public double getRadius(){
+        return radius;
+    }
+
+    private double radius;
+
 
     private World world;
 

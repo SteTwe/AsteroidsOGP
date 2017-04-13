@@ -31,6 +31,28 @@ public class Bullet {
     }
 
     //TODO
-    public
+    public void setShip(Ship ship){
+
+    }
+
+    //TODO
+    public Ship getShip(){
+
+    }
+
+    //TODO
+    public double getMass(){
+
+    }
+
+    /**
+     * Constant holding the minimum radius of a bullet.
+     */
+    public static double minRadius = 1;
+
+
+    public double getMinRadius(){
+        return minRadius;
+    }
 
 }

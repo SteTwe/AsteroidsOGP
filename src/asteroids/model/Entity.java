@@ -75,18 +75,33 @@ public abstract class Entity {
 
     }
 
+    /**
+     * Returning this entity's velocity in the x-direction.
+     * @return Returns the velocity of this entity in the x-direction.
+     *          | result == this.velocityX
+     */
     @Basic
     public double getVelocityX(){
         return this.velocityX;
     }
 
+    /**
+     * Variable containting the entity's velocity in the x-direction.
+     */
     private double velocityX;
 
+    /**
+     * Returning this entity's velocity in the y-direction.
+     * @return Returns the velocity of this entity in the y-direction.
+     *          | result == this.velocityY
+     */
     @Basic
     public double getVelocityY(){
         return this.velocityY;
     }
-
+    /**
+     * Variable containting the entity's velocity in the y-direction.
+     */
     private double velocityY;
 
     private void setVelocityX(double velocityX){

@@ -42,7 +42,7 @@ public class Bullet {
 
     //TODO
     public double getMass(){
-
+        return(3/4 * Math.PI * Math.pow(radius, 3) * density);
     }
 
     /**
@@ -50,9 +50,12 @@ public class Bullet {
      */
     public static double minRadius = 1;
 
-
+    @Basic
     public double getMinRadius(){
         return minRadius;
     }
+
+    private double density;
+
 
 }

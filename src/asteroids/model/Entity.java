@@ -5,6 +5,7 @@ import be.kuleuven.cs.som.annotate.Basic;
 import java.util.DoubleSummaryStatistics;
 
 /**
+ * A class representing an Asteroid entity involving a position, a velocity, and a radius.
  * Created by joachim on 09/04/2017.
  * @author joachim
  */
@@ -42,9 +43,15 @@ public abstract class Entity {
 
     private double positionY;
 
-    //TODO
+    /**
+     * Return true if the x-coordinate is valid for this entity.
+     *
+     * @param positionX The given position for this ship.
+     * @return true if the position is a number
+     *          | result == !Double.isNaN(positionX)
+     */
     private boolean isValidPositionX(double positionX){
-
+        return (!Double.isNaN(positionX));
     }
 
     //TODO
@@ -52,8 +59,15 @@ public abstract class Entity {
 
     }
 
+    /**
+     * Return true if the y-coordinate is valid for this entity.
+     *
+     * @param positionY The given position for this entity.
+     * @return true if the position is a number
+     *          | result == !Double.isNaN(positionY)
+     */
     private boolean isValidPositionY(double positionY){
-
+        return (!Double.isNaN(positionY));
     }
     //TODO
     private void setPositionY(double positionY){

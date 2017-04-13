@@ -148,11 +148,6 @@ public abstract class Entity {
 
     private double radius;
 
-    //TODO
-    public void setRadius(double radius){
-        this.radius = radius;
-    }
-
     /**
      * Constant holding the minimum radius of an entity.
      */
@@ -168,6 +163,17 @@ public abstract class Entity {
      */
     public boolean isValidRadius(double radius){
         return ((radius > minRadius) && (Double.isNaN(radius)));
+    }
+
+    /**
+     *
+     * @param radius
+     */
+    public void setRadius(double radius){
+        if (isValidRadius(radius))
+            this.radius = radius;
+        else
+            this.radius = minRadius;
     }
 
     private World world;

@@ -18,7 +18,7 @@ public class Bullet extends Entity{
      */
 
     public Bullet(double positionX, double positionY, double velocityX, double velocityY, double radius) throws IllegalArgumentException {
-
+        super(positionX, positionY, velocityX, velocityY, radius);
     }
 
     //TODO

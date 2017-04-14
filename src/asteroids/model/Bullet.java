@@ -85,7 +85,18 @@ public class Bullet extends Entity{
      */
     private double density = 7.8 * Math.pow(10, 12);
 
+    //TODO
+    public void bounce(){
 
+    }
+
+    //TODO
+    public double numberOfBounces = 2;
+
+    //TODO
+    public double getNumberOfBounces(){
+
+    }
 
 
 }

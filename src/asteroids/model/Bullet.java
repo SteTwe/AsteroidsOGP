@@ -31,6 +31,7 @@ public class Bullet extends Entity{
 
     }
 
+    //TODO
     /**
      *
      * @return
@@ -66,7 +67,7 @@ public class Bullet extends Entity{
         return status;
     }
 
-    //TODO 
+    //TODO
     private boolean status = false;
 
 

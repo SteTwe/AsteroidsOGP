@@ -216,7 +216,13 @@ public abstract class Entity {
     //TODO
     private boolean status = false;
 
+    //TODO
     public double getTimeToCollisionWithBoudary(){
+
+    }
+
+    //TODO
+    public double[] getCollisionPositionWithBoundary() {
 
     }
 

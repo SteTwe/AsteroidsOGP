@@ -235,7 +235,8 @@ public abstract class Entity {
 
         // if (getCollisionPositionWithBoundary(positionX) == 0 || getCollisionPositionWithBoundary(positionX) == world height => negate y-velocity
         // if (getCollisionPositionWithBoundary(positionY) == 0 || getCollisionPositionWithBoundary(positionY) == world width => negate x-velocity
-
+        // getWorld().getHeight()
+        // getWorld().getHeight()
     }
 
 

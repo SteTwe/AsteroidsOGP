@@ -202,7 +202,7 @@ public abstract class Entity {
 
     //TODO
     public void removeWorld(){
-
+        this.world = null;
     }
 
     //TODO
@@ -237,7 +237,7 @@ public abstract class Entity {
         // negate y-velocity
         // if ((getCollisionPositionWithBoundary(positionY) == 0) || (getCollisionPositionWithBoundary(positionY) == getWorld().getWidth())
         // negate x-velocity
-       
+
     }
 
 

@@ -30,12 +30,18 @@ public class Bullet extends Entity{
 
     }
 
-    //TODO
+    /**
+     * Return the ship to which the current bullet is attached to.
+     *
+     * @return The ship
+     *          | result == this.ship
+     */
     public Ship getShip(){
         return  this.ship;
     }
 
     private Ship ship;
+
 
     
     //TODO

@@ -22,11 +22,6 @@ public class Bullet extends Entity{
     }
 
     //TODO
-    public void terminate(){
-
-    }
-
-    //TODO
     public void setShip(Ship ship){
 
     }
@@ -35,7 +30,6 @@ public class Bullet extends Entity{
     public Ship getShip(){
 
     }
-
 
     /**
      *
@@ -61,6 +55,19 @@ public class Bullet extends Entity{
      * 7.8 * 10^12 kg/m^3
      */
     private double density = 7.8 * Math.pow(10, 12);
+
+    //TODO
+    public void terminate(){
+        status = true;
+    }
+
+    //TODO
+    public boolean isTerminated(){
+        return status;
+    }
+
+    //TODO 
+    private boolean status = false;
 
 
 }

@@ -228,6 +228,16 @@ public abstract class Entity {
 
     }
 
+    //TODO
+    public void collideWithBoundary(){
+        //if boundary is horizontal => negate y-velocity
+        //if boundary is vertical => negate x-velocity
+
+        // if (getCollisionPositionWithBoundary(positionX) == 0 || getCollisionPositionWithBoundary(positionX) == world height => negate y-velocity
+        // if (getCollisionPositionWithBoundary(positionY) == 0 || getCollisionPositionWithBoundary(positionY) == world width => negate x-velocity
+
+    }
+
 
 
 }

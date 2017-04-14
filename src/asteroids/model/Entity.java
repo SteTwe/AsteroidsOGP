@@ -233,10 +233,11 @@ public abstract class Entity {
         //if boundary is horizontal => negate y-velocity
         //if boundary is vertical => negate x-velocity
 
-        // if (getCollisionPositionWithBoundary(positionX) == 0 || getCollisionPositionWithBoundary(positionX) == world height => negate y-velocity
-        // if (getCollisionPositionWithBoundary(positionY) == 0 || getCollisionPositionWithBoundary(positionY) == world width => negate x-velocity
-        // getWorld().getHeight()
-        // getWorld().getHeight()
+        // if ((getCollisionPositionWithBoundary(positionX) == 0) || (getCollisionPositionWithBoundary(positionX) == getWorld().getHeight())
+        // negate y-velocity
+        // if ((getCollisionPositionWithBoundary(positionY) == 0) || (getCollisionPositionWithBoundary(positionY) == getWorld().getWidth())
+        // negate x-velocity
+       
     }
 
 

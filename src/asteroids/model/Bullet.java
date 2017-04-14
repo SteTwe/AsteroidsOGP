@@ -5,7 +5,7 @@ import be.kuleuven.cs.som.annotate.*;
  * Created by stef on 2-4-17.
  * @author Joachim & Stef
  */
-public class Bullet {
+public class Bullet extends Entity{
 
     /**
      * Initialize a bullet with x-position, y-position, velocity in x-direction, velocity in y-direction, radius.
@@ -16,18 +16,13 @@ public class Bullet {
      * @param velocityY The velocity in the y-direction of this new bullet.
      * @param radius    The radius of this new bullet.
      */
-    
+
     public Bullet(double positionX, double positionY, double velocityX, double velocityY, double radius) throws IllegalArgumentException {
 
     }
 
     //TODO
     public void terminate(){
-
-    }
-
-    //TODO
-    public double getMass(){
 
     }
 
@@ -41,8 +36,13 @@ public class Bullet {
 
     }
 
-    //TODO
+
+    /**
+     *
+     * @return
+     */
     public double getMass(){
+        double radius = getRadius(); //getting getRadius from superclass Entity
         return(3/4 * Math.PI * Math.pow(radius, 3) * density);
     }
 

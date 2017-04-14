@@ -55,8 +55,8 @@ public class Bullet extends Entity{
     /**
      * Set the source of the bullet to the given ship
      */
-    public void setBulletsource(){
-
+    public void setBulletsource(Ship ship){
+        this.bulletSource = ship;
     }
 
     //TODO

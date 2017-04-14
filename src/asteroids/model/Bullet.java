@@ -36,21 +36,21 @@ public class Bullet extends Entity{
      * @return The ship
      *          | result == this.ship
      */
-    public Ship getShip(){
-        return  this.ship;
+    public Ship getBulletShip(){
+        return  this.bulletShip;
     }
 
-    private Ship ship;
+    private Ship bulletShip;
 
 
     /**
      * Return the source of this bullet as a Ship.
      */
     public Ship getBulletSource(){
-        return this.bulletsource;
+        return this.bulletSource;
     }
 
-    private Ship bulletsource;
+    private Ship bulletSource;
 
     /**
      * Set the source of the bullet to the given ship

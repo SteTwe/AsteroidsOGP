@@ -67,7 +67,8 @@ public abstract class Entity {
 
     //TODO
     private void setPositionX(double positionX){
-
+        if (isValidPositionX(positionX))
+            this.positionX = positionX;
     }
 
     /**
@@ -80,9 +81,19 @@ public abstract class Entity {
     private boolean isValidPositionY(double positionY){
         return (!Double.isNaN(positionY));
     }
-    //TODO
-    private void setPositionY(double positionY){
 
+    /**
+     * Set the y-coordinate of this entity to the given y-coordiante
+     *
+     * @param positionY The given y-position of this entity.
+     * @pre The given positionY should be a valid positionY for this entity.
+     *      | isValidPositionY(positionY)
+     * @post The y-coordinate of this entity is equal to the given positionY.
+     *      | new.getPositionY() == positionY;
+     */
+    private void setPositionY(double positionY){
+        if (isValidPositionY(positionY))
+            this.positionY = positionY;
     }
 
     /**
@@ -206,7 +217,7 @@ public abstract class Entity {
     private boolean status = false;
 
     public double getTimeToCollisionWithBoudary(){
-        
+
     }
 
 

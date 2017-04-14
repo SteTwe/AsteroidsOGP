@@ -21,6 +21,10 @@ public class Bullet extends Entity{
         super(positionX, positionY, velocityX, velocityY, radius);
     }
 
+    /**
+     * Sets the ship of the current bullet to the given ship.
+     * @param ship
+     */
     //TODO
     public void setShip(Ship ship){
 
@@ -28,9 +32,12 @@ public class Bullet extends Entity{
 
     //TODO
     public Ship getShip(){
-
+        return  this.ship;
     }
 
+    private Ship ship;
+
+    
     //TODO
     /**
      *
@@ -69,6 +76,7 @@ public class Bullet extends Entity{
 
     //TODO
     private boolean status = false;
+
 
 
 }

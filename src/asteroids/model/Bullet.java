@@ -105,6 +105,7 @@ public class Bullet extends Entity{
     public double getNumberOfBounces(){
         return this.numberOfBounces;
     }
+    
 
 
 }

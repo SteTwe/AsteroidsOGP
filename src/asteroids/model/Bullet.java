@@ -64,9 +64,10 @@ public class Bullet extends Entity{
      *
      * @return
      */
+    @Override
     public double getMass(){
         double radius = getRadius(); //getting getRadius from superclass Entity
-        return(3/4 * Math.PI * Math.pow(radius, 3) * density);
+        return(3/4 * Math.PI * Math.pow(radius, 3) * getDensity());
     }
 
     /**
@@ -85,7 +86,9 @@ public class Bullet extends Entity{
      */
     private double density = 7.8 * Math.pow(10, 12);
 
-
+    public double getDensity(){
+        return density;
+    }
     /**
      * Decrements the number of bounces until destruction
      */

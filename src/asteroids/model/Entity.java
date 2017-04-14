@@ -187,6 +187,8 @@ public abstract class Entity {
             this.radius = minRadius;
     }
 
+    public abstract double getMass();
+
     private World world;
 
     public World getWorld(){

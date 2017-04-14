@@ -85,18 +85,6 @@ public class Bullet extends Entity{
      */
     private double density = 7.8 * Math.pow(10, 12);
 
-    //TODO
-    public void terminate(){
-        status = true;
-    }
-
-    //TODO
-    public boolean isTerminated(){
-        return status;
-    }
-
-    //TODO
-    private boolean status = false;
 
 
 

@@ -192,6 +192,20 @@ public abstract class Entity {
 
     }
 
+    //TODO
+    public void terminate(){
+        status = true;
+    }
+
+    //TODO
+    public boolean isTerminated(){
+        return status;
+    }
+
+    //TODO
+    private boolean status = false;
+
+
 
 
 }

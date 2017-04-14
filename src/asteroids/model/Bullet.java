@@ -43,7 +43,15 @@ public class Bullet extends Entity{
     private Ship ship;
 
 
-    
+    /**
+     * Return the source of this bullet as a Ship.
+     */
+    public Ship getBulletSource(){
+        return this.bulletsource;
+    }
+
+    private Ship bulletsource;
+
     //TODO
     /**
      *

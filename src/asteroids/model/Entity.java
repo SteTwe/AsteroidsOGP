@@ -200,7 +200,10 @@ public abstract class Entity {
 
     }
 
-    //TODO
+    /**
+     * Remove the world this entity is part of.
+     * world is equal to null
+     */
     public void removeWorld(){
         this.world = null;
     }

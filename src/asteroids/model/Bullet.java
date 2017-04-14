@@ -85,17 +85,25 @@ public class Bullet extends Entity{
      */
     private double density = 7.8 * Math.pow(10, 12);
 
-    //TODO
-    public void bounce(){
 
+    /**
+     * Decrements the number of bounces until destruction
+     */
+    public void bounce(){
+        numberOfBounces--;
     }
 
-    //TODO
+    /**
+     * Variable holding the amount of bounces until destruction of this bullet.
+     */
     public double numberOfBounces = 2;
 
-    //TODO
+    /**
+     * Returns the number of bounces left until destruction of this bullet.
+     * @return
+     */
     public double getNumberOfBounces(){
-
+        return this.numberOfBounces;
     }
 
 

@@ -24,7 +24,7 @@ import java.util.Set;
  * | isValidRadius(getRadius)
  */
 
-public class Ship {
+public class Ship extends Entity{
 
     /**
      * Initialize a ship with x-position, y-position, velocity in x-direction, velocity in y-direction, angle, radius.
@@ -39,29 +39,10 @@ public class Ship {
      *
      */
     public Ship(double positionX, double positionY, double velocityX, double velocityY, double radius, double angle, double mass) throws IllegalArgumentException {
-        this.setPositionX(positionX);
-        this.setPositionY(positionY);
-        this.setVelocityX(velocityX);
-        this.setVelocityY(velocityY);
+        super (positionX, positionY, velocityX, velocityY, radius);
         this.setAngle(angle);
         if (!isValidRadius(radius)) throw new IllegalArgumentException();
-        this.radius = radius;
-        this.mass = mass;
-    }
-
-    /**
-     * Initialize a ship with x-coordinate = 0, y-coordinate = 0, velocity in the x-direction = 0, velocity in the y-direction = 0, anle(orientation) = Math.PI/2, radius 10
-     *
-     * @throws IllegalArgumentException
-     */
-    public Ship() throws IllegalArgumentException {
-        this.setPositionX(0);
-        this.setPositionY(0);
-        this.setVelocityX(0);
-        this.setVelocityY(0);
-        this.angle = Math.PI / 2;
-        if (!isValidRadius(10)) throw new IllegalArgumentException();
-        this.radius = 10;
+        this.setMass(mass);
     }
 
     /**

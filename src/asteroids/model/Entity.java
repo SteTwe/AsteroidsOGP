@@ -153,10 +153,22 @@ public abstract class Entity {
             this.velocityY = velocityY;
     }
 
+    /**
+     * Return true if the velocityX is valid for this entity.
+     * @param velocityX The given velocityX for this entity.
+     * @return true if the velocityX is a number
+     *          | result == !Double.isNaN(velocityX)
+     */
     private boolean isValidVelocityX(double velocityX){
         return(!Double.isNaN(velocityX));
     }
 
+    /**
+     * Return true if the velocityY is valid for this entity.
+     * @param velocityY The given velocityY for this entity.
+     * @return true if the velocityY is a number
+     *          | result == !Double.isNaN(velocityY)
+     */
     private boolean isValidVelocityY(double velocityY){
         return(!Double.isNaN(velocityY));
     }

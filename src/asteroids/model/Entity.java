@@ -125,11 +125,29 @@ public abstract class Entity {
      */
     private double velocityY;
 
+    /**
+     * Set the velocity in the x-direction of this entity with the given velocityX.
+     *
+     * @param velocityX The given velocityX for this entity.
+     * @pre The given velocityX should be a valid velocityX for this entity.
+     *      | isValidVelocityX(velocityX)
+     * @post The velocityX of this entity is equal to the given velocityX.
+     *      | new.getVelocityX() == velocityX.
+     */
     private void setVelocityX(double velocityX){
         if (isValidVelocityX(velocityX))
             this.velocityX = velocityX;
     }
 
+    /**
+     * Set the velocity in the y-direction of this entity with the given velocityY.
+     *
+     * @param velocityY The given velocityY for this entity.
+     * @pre The given velocityY should be a valid velocityY for this entity.
+     *      | isValidVelocityY(velocityY)
+     * @post The velocityY of this entity is equal to the given velocityY.
+     *      | new.getVelocity() == velocityY.
+     */
     private void setVelocityY(double velocityY){
         if (isValidVelocityY(velocityY))
             this.velocityY = velocityY;

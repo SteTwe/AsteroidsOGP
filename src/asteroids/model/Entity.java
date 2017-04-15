@@ -251,17 +251,24 @@ public abstract class Entity {
         this.world = null;
     }
 
-    //TODO
+    /**
+     * Terminate this entity.
+     */
     public void terminate(){
         status = true;
     }
 
-    //TODO
+    /**
+     * Return true if this entity's status (if it's already terminated or not)
+     * @return
+     */
     public boolean isTerminated(){
         return status;
     }
 
-    //TODO
+    /**
+     * Boolean holding the standard value of this entity's status (not terminated => false)
+     */
     private boolean status = false;
 
 

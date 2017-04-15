@@ -264,17 +264,27 @@ public abstract class Entity {
     //TODO
     private boolean status = false;
 
-    //TODO
+
+    /**
+     * Method returning the time until a collision happens between this entity and a boundary.
+     * @return
+     */
     public double getTimeToCollisionWithBoudary(){
 
     }
 
-    //TODO
+    /**
+     * Method returning a pair of coordinates that represent the location of collision between an entity and a boundary.
+     * @return
+     */
     public double[] getCollisionPositionWithBoundary() {
 
     }
 
-    //TODO
+    /**
+     * Method executing the change in velocity in order to resolve a collision with a boundary.
+     *
+     */
     public void collideWithBoundary(){
         //if boundary is horizontal => negate y-velocity
         //if boundary is vertical => negate x-velocity

@@ -173,6 +173,19 @@ public abstract class Entity {
         return(!Double.isNaN(velocityY));
     }
 
+
+    /**
+     * Method computing the total velocity of this entity following the given formula.
+     *
+     * @param velocityX The entity's velocity in the x-direction.
+     * @param velocityY The entity's velocity in the y-direction.
+     * @post Gives the total velocity for this entity.
+     * | return (Math.sqrt(Math.pow(velocityX, 2) + Math.pow(velocityY, 2)))
+     */
+     public double computeVelocity(double velocityX, double velocityY) {
+        return (Math.sqrt(Math.pow(velocityX, 2) + Math.pow(velocityY, 2)));
+    }
+
     private static double SPEED_OF_LIGHT = 300000;
 
     /**

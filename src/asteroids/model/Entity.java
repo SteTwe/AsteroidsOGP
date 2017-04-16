@@ -40,7 +40,7 @@ public abstract class Entity {
         return this.positionX;
     }
 
-    private double positionX;
+    public double positionX;
 
     /**
      * Returning the y-coordinate of this entity's position
@@ -52,7 +52,7 @@ public abstract class Entity {
         return this.positionY;
     }
 
-    private double positionY;
+    public double positionY;
 
     /**
      * Return true if the x-coordinate is valid for this entity.
@@ -66,7 +66,7 @@ public abstract class Entity {
     }
 
     //TODO
-    private void setPositionX(double positionX){
+    public void setPositionX(double positionX){
         if (isValidPositionX(positionX))
             this.positionX = positionX;
     }
@@ -91,7 +91,7 @@ public abstract class Entity {
      * @post The y-coordinate of this entity is equal to the given positionY.
      *      | new.getPositionY() == positionY;
      */
-    private void setPositionY(double positionY){
+    public void setPositionY(double positionY){
         if (isValidPositionY(positionY))
             this.positionY = positionY;
     }
@@ -109,7 +109,7 @@ public abstract class Entity {
     /**
      * Variable containting the entity's velocity in the x-direction.
      */
-    private double velocityX;
+    public double velocityX;
 
     /**
      * Returning this entity's velocity in the y-direction.
@@ -123,7 +123,7 @@ public abstract class Entity {
     /**
      * Variable containting the entity's velocity in the y-direction.
      */
-    private double velocityY;
+    public double velocityY;
 
     /**
      * Set the velocity in the x-direction of this entity with the given velocityX.
@@ -134,7 +134,7 @@ public abstract class Entity {
      * @post The velocityX of this entity is equal to the given velocityX.
      *      | new.getVelocityX() == velocityX.
      */
-    private void setVelocityX(double velocityX){
+    public void setVelocityX(double velocityX){
         if (isValidVelocityX(velocityX))
             this.velocityX = velocityX;
     }
@@ -148,7 +148,7 @@ public abstract class Entity {
      * @post The velocityY of this entity is equal to the given velocityY.
      *      | new.getVelocity() == velocityY.
      */
-    private void setVelocityY(double velocityY){
+    public void setVelocityY(double velocityY){
         if (isValidVelocityY(velocityY))
             this.velocityY = velocityY;
     }

@@ -519,5 +519,14 @@ public class Ship extends Entity{
 
         }
 
+        @Override
+        public void terminate() {
+            super.terminate();
+            if (this.getWorld() != null)
+                getWorld().removeShip(this);
+        }
+
+    }
+
     }
 }

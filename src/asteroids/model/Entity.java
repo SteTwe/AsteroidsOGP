@@ -329,12 +329,15 @@ public abstract class Entity {
             return collisionInYDirection;
     }
 
+    public double[] getApparentPosition
+
     /**
      * Method returning a pair of coordinates that represent the location of collision between an entity and a boundary.
      * @return
      */
     public double[] getCollisionPositionWithBoundary() {
-
+        double[] collisionPosition = {};
+        return collisionPosition;
     }
 
     /**

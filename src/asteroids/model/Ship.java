@@ -161,16 +161,9 @@ public class Ship extends Entity{
 
     /**
      * Move the ship for a certain amount of time (duration).
-     *
-     * @param duration
-     * @throws IllegalArgumentException The duration is les than zero.
-     * @post The new position of this ship
-     */
-    public void move(double duration) throws IllegalArgumentException {
-        if (!isValidDuration(duration))
-            throw new IllegalArgumentException("duration not valid");
-        setPositionX(getPositionX() + duration * getVelocityX());
-        setPositionY(getPositionY() + duration * getVelocityY());
+    */
+    public void move(double duration) {
+       super.move(duration);
     }
 
     private boolean isValidDuration(double duration) {

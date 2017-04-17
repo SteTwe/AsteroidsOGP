@@ -178,6 +178,9 @@ public class Ship extends Entity{
             this.mass = minMass;
     }
 
+    /**
+     * Variable holding the minimum mass of this ship.
+     */
     private double minMass = 4/3 * Math.PI * Math.pow(getRadius(), 3) * density;
 
     /**

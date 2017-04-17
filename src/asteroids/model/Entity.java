@@ -186,6 +186,10 @@ public abstract class Entity {
         return (Math.sqrt(Math.pow(velocityX, 2) + Math.pow(velocityY, 2)));
     }
 
+    public double getMaxVelocity(){
+         return SPEED_OF_LIGHT;
+    }
+
     private static double SPEED_OF_LIGHT = 300000;
 
     /**

@@ -1,8 +1,5 @@
 package asteroids.model;
-import be.kuleuven.cs.som.annotate.*;
-import javafx.scene.text.FontSmoothingType;
 
-import java.sql.BatchUpdateException;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -339,17 +336,16 @@ public class Ship extends Entity{
 
     public void setTotalMass(double mass){
         if (isValidMass(mass))
-            this.mass = calculateMass(mass);
+            this.mass = getMass(mass);
         else
             //Temporary
             this.mass = getMinMass();
     }
 
-    private double calculateMass(double massShip){
+    private double getMass(double massShip){
         double totalMass = this.mass;
-        for (Bullet bullet : (getBullets()))
+        for (Bullet bullet : this.getBullets())
             totalMass += bullet.getMass();
-        return totalMass;
         return totalMass;
     }
 

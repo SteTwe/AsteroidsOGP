@@ -457,26 +457,32 @@ public class Ship extends Entity{
             //Jx = (J deltax) / sigma
             //Jy = (J deltay) / sigma
 
+            //mi
             double shipMass = this.getMass();
+            //mj
             double entityMass = entity.getMass();
 
-            double[] deltaV = {entity.getPositionX() - this.getPositionX(), entity.getPositionY() - this.getPositionY()};
-            double[] deltaR = {entity.getVelocityX() - this.getVelocityX(), entity.getVelocityY() - this.getVelocityY()};
-            double sigma;
+            double[] deltaR = {entity.getPositionX() - this.getPositionX(), entity.getPositionY() - this.getPositionY()};
+            double[] deltaV = {entity.getVelocityX() - this.getVelocityX(), entity.getVelocityY() - this.getVelocityY()};
+            double sigma = this.getRadius() + entity.getRadius();
 
-            double newShipVelocityX;   //vxi + Jx/mi
-            double newShipVelocityY;   //vyi + Jy/mi
-            double newEntityVelocityX; //vxj + Jx/mj
-            double newEntityVelocityY; //vyj + Jy/mj
+            //J = (2 mi mj * (deltav * deltar)/(radius*(mi + mj))
+            double j = (2 * shipMass * entityMass * (deltaV[0] * deltaR[0] + deltaV[1] * deltaR[1])) / sigma * (shipMass + entityMass);
+
+            //jx & jy
+            double jx = (j * deltaR[0] / sigma);
+            double jy = (j * deltaR[1] / sigma);
+
 
             double currentShipVelocityX = this.getVelocityX();      //vxi
             double currentShipVelocityY = this.getVelocityY();      //vyi
             double currentEntityVelocityX = entity.getVelocityX();  //vxj
             double currentEntityVelocityY = entity.getVelocityY();  //vyj
 
-            //J = (2 mi mj * (deltav * deltar)/(radius*(mi + mj))
-            double j = (2 * shipMass * entityMass * (deltaV[0] * deltaR[0] + deltaV[1] * deltaR[1])) / sigma * (shipMass + entityMass);
-
+            double newShipVelocityX = currentShipVelocityX + jx / shipMass;   //vxi + Jx/mi
+            double newShipVelocityY = currentShipVelocityY + jy / shipMass;   //vyi + Jy/mi
+            double newEntityVelocityX = currentEntityVelocityX + jx / entityMass; //vxj + Jx/mj
+            double newEntityVelocityY = currentEntityVelocityY + jy / entityMass; //vyj + Jy/mj
 
             this.setVelocityX(newShipVelocityX);
             this.setVelocityY(newShipVelocityY;

@@ -348,6 +348,7 @@ public class Ship extends Entity{
         for (Bullet bullet : (getBullets()))
             totalMass += bullet.getMass();
         return totalMass;
+        return totalMass;
     }
 
     //TODO
@@ -437,4 +438,10 @@ public class Ship extends Entity{
 
 
     public Set getBullets(){return this.bulletSet;  }
+
+    //TODO => ship and bullet collision
+    @Override
+    public void collide(){
+
+    };
 }

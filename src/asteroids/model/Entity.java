@@ -304,11 +304,15 @@ public abstract class Entity {
         //frist collision => calculate collisions in both X and Y directions seperately
         double collisionInXDirection = Double.POSITIVE_INFINITY; //should return POSITIVE_INFINITY by default
         double collisionInYDirection = Double.POSITIVE_INFINITY; //should return POSITIVE_INFINITY by default
-
+        
         if (collisionInXDirection < 0)
             collisionInXDirection = Double.POSITIVE_INFINITY;
         if (collisionInYDirection < 0)
             collisionInYDirection = Double.POSITIVE_INFINITY;
+        if (collisionInXDirection <= collisionInYDirection)
+            return collisionInXDirection;
+        else if (collisionInXDirection > collisionInYDirection)
+            return collisionInYDirection;
     }
 
     /**

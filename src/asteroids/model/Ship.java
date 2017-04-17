@@ -343,7 +343,7 @@ public class Ship extends Entity{
             this.mass = getMinMass();
     }
 
-    public double calculateMass(double massShip){
+    private double calculateMass(double massShip){
         //TODO mass of the ship + mass of the bullets
         return 0;
     }

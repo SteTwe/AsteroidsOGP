@@ -106,8 +106,8 @@ public class Bullet extends Entity{
     public double getNumberOfBounces(){
         return this.numberOfBounces;
     }
-    
-    
+
+    @Override
     public void collide(){
 
     }

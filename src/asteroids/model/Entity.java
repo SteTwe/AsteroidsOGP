@@ -426,8 +426,16 @@ public abstract class Entity {
         }
     }
 
-    public void getPositionCollisionEntity(Entity ship2){
+    public double[] getPositionCollisionEntity(Entity ship2){
 
+        double time = this.getTimeCollisionWithEntity(ship2);
+        if (time == Double.POSITIVE_INFINITY) {
+            return null;
+        } else {
+            double collisionPositionX = getTimeCollisionWithEntity(ship2) * velocityX;
+            double collisionPositionY = getTimeCollisionWithEntity(ship2) * velocityY;
+            return new double[]{collisionPositionX, collisionPositionY};
+        }
     }
 
 

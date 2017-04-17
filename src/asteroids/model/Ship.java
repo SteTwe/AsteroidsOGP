@@ -164,6 +164,13 @@ public class Ship extends Entity{
         //return mass of ship + mass of all bullets
     }
 
+    /**
+     * Sets the mass of this ship to the given mass.
+     * @param mass The given mass.
+     *
+     *
+     * following: m >= 4/3 * Math.PI * radius^3 * density => the mass of the ship must be equal to or bigger than this formula.
+     */
     private void setMass(double mass){
 
     }

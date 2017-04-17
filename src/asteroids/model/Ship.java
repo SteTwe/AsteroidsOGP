@@ -2,6 +2,7 @@ package asteroids.model;
 import be.kuleuven.cs.som.annotate.*;
 import javafx.scene.text.FontSmoothingType;
 
+import java.sql.BatchUpdateException;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -491,13 +492,16 @@ public class Ship extends Entity{
 
         }
         if (entity instanceof Bullet){
-            if (bullet.getSource() == this){
-                this.
-            }
-            else{
-                bullet.terminate();
-                this.terminate();
-            }
+            Bullet bullet = (Bullet) entity;
+                if (bullet.getBulletSource() == this){
+                    bullet.setPositionX(this.getPositionX());
+                    bullet.setPositionY(this.getPositionY());
+                    this.loadBullet(bullet);
+                }
+                else{
+                    bullet.terminate();
+                    this.terminate();
+                }
 
         }
 

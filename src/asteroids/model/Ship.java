@@ -456,8 +456,16 @@ public class Ship extends Entity{
             //Jx = (J deltax) / radius
             //Jy = (J deltay) / radius
             //J = (2 mi mj * (deltav * deltar)/(radius*(mi + mj))
-            
 
+            double newShipVelocityX;   //vxi + Jx/mi
+            double newShipVelocityY;   //vyi + Jy/mi
+            double newEntityVelocityX; //vxj + Jx/mj
+            double newEntityVelocityY; //vyj + JY/mj
+
+            this.setVelocityX(newShipVelocityX);
+            this.setVelocityY(newShipVelocityY;
+            entity.setVelocityX(newEntityVelocityX);
+            entity.setVelocityY(newEntityVelocityY;
 
         }
         if (entity instanceof Bullet){

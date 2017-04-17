@@ -327,6 +327,9 @@ public abstract class Entity {
 
     }
 
+    /**
+     * method is implemented in Ship and Bullet
+     */
     public abstract void collide(Entity entity);
 
 }

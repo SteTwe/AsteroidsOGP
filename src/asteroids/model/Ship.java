@@ -172,7 +172,10 @@ public class Ship extends Entity{
      * following: m >= 4/3 * Math.PI * radius^3 * density => the mass of the ship must be equal to or bigger than this formula.
      */
     private void setMass(double mass){
-
+        if (mass >= minMass)
+            this.mass =  mass;
+        else
+            this.mass = minMass;
     }
 
     /**

@@ -171,7 +171,9 @@ public class Ship extends Entity{
     /**
      * density = 1.42 * 10^12
      */
-    private static double density;
+    private static double density = 1.42 * Math.pow(10, 12);
+
+
     /**
      * Move the ship for a certain amount of time (duration).
     */

@@ -1,5 +1,6 @@
 package asteroids.model;
 import be.kuleuven.cs.som.annotate.*;
+import javafx.scene.text.FontSmoothingType;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -453,14 +454,29 @@ public class Ship extends Entity{
         if (entity instanceof Ship){
             //(vxi, vyi) = vxi + Jx/mi, vyi + Jy/mi)
             //(vxj, vyj) = vxj + Jx/mj, vyj + JY/mj)
-            //Jx = (J deltax) / radius
-            //Jy = (J deltay) / radius
-            //J = (2 mi mj * (deltav * deltar)/(radius*(mi + mj))
+            //Jx = (J deltax) / sigma
+            //Jy = (J deltay) / sigma
+
+            double shipMass = this.getMass();
+            double entityMass = entity.getMass();
+
+            double deltaV;
+            double deltaR;
+            double sigma;
 
             double newShipVelocityX;   //vxi + Jx/mi
             double newShipVelocityY;   //vyi + Jy/mi
             double newEntityVelocityX; //vxj + Jx/mj
-            double newEntityVelocityY; //vyj + JY/mj
+            double newEntityVelocityY; //vyj + Jy/mj
+
+            double currentShipVelocityX = this.getVelocityX();      //vxi
+            double currentShipVelocityY = this.getVelocityY();      //vyi
+            double currentEntityVelocityX = entity.getVelocityX();  //vxj
+            double currentEntityVelocityY = entity.getVelocityY();  //vyj
+
+            //J = (2 mi mj * (deltav * deltar)/(radius*(mi + mj))
+            double j = (2 * shipMass * entityMass * (deltaV * deltaR)) / sigma * (shipMass + entityMass);
+
 
             this.setVelocityX(newShipVelocityX);
             this.setVelocityY(newShipVelocityY;

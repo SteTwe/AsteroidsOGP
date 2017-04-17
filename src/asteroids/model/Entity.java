@@ -307,10 +307,16 @@ public abstract class Entity {
 
         //time = distance / velocity
 
-        //horizontal
+        double[] position = {getPositionX(), getPositionY()};
+        double[] velocity = {getVelocityX(), getVelocityY()};
 
+        //horizontal
+        //collisionInXDirection =
+        // world-x-coordinate - positionX - radius / velocityX
 
         //vertical
+        //collisionInYDirection =
+        // world-y-coordinate - positionY - radius / velocityY
 
 
         if (collisionInXDirection < 0)

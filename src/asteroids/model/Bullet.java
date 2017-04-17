@@ -58,8 +58,6 @@ public class Bullet extends Entity{
     public void setBulletsource(Ship ship){
         this.bulletSource = ship;
     }
-
-    //TODO
     /**
      *
      * @return
@@ -109,6 +107,13 @@ public class Bullet extends Entity{
         return this.numberOfBounces;
     }
     
+    
+    public void collide(){
 
+    }
+
+    public void collideWithBoundary(){
+
+    }
 
 }

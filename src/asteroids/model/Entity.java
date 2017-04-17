@@ -340,6 +340,27 @@ public abstract class Entity {
             throw new IllegalArgumentException("the ships overlap");
     }
 
+    /**
+     * Check if two entities overlap.
+     *
+     * @param entity2 | Second entity
+     * @return | True if the entities overlap
+     */
+    public boolean overlap(Entity entity2) {
+        if (this == entity2) {
+            return true;
+        } else {
+            double distance = getDistanceBetween(entity2);
+            if (this.radius > distance) {
+                return true;
+            } else if (entity2.radius > distance) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+    }
+
     public void getPositionCollisionEntity(Entity ship2){
 
     }

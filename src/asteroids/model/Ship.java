@@ -460,8 +460,8 @@ public class Ship extends Entity{
             double shipMass = this.getMass();
             double entityMass = entity.getMass();
 
-            double[] deltaV;
-            double[] deltaR;
+            double[] deltaV = {entity.getPositionX() - this.getPositionX(), entity.getPositionY() - this.getPositionY()};
+            double[] deltaR = {entity.getVelocityX() - this.getVelocityX(), entity.getVelocityY() - this.getVelocityY()};
             double sigma;
 
             double newShipVelocityX;   //vxi + Jx/mi

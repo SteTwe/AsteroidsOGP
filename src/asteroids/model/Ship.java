@@ -345,9 +345,9 @@ public class Ship extends Entity{
 
     private double calculateMass(double massShip){
         double totalMass = this.mass;
-        for (getBullets())
-            totalMass += bullet.getMass;
-        return 0;
+        for (Bullet bullet : (getBullets()))
+            totalMass += bullet.getMass();
+        return totalMass;
     }
 
     //TODO

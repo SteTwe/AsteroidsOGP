@@ -304,7 +304,15 @@ public abstract class Entity {
         //frist collision => calculate collisions in both X and Y directions seperately
         double collisionInXDirection = Double.POSITIVE_INFINITY; //should return POSITIVE_INFINITY by default
         double collisionInYDirection = Double.POSITIVE_INFINITY; //should return POSITIVE_INFINITY by default
-        
+
+        //time = distance / velocity
+
+        //horizontal
+
+
+        //vertical
+
+
         if (collisionInXDirection < 0)
             collisionInXDirection = Double.POSITIVE_INFINITY;
         if (collisionInYDirection < 0)

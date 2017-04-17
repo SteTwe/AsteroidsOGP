@@ -237,6 +237,13 @@ public abstract class Entity {
     public abstract double getMass();
 
 
+    /**
+     * Move the entity for a certain amount of time (duration).
+     *
+     * @param duration  The amount of time to move.
+     * @throws IllegalArgumentException The duration is les than zero.
+     * @post The new position of this entity
+     */
     public void move(double duration){
         if (!isValidDuration(duration))
             throw new IllegalArgumentException("duration not valid");

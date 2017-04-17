@@ -451,6 +451,8 @@ public class Ship extends Entity{
     @Override
     public void collide(Entity entity){
         if (entity instanceof Ship){
+            //(vxi, vyi) = vxi + Jx/mi, vyi + Jy/mi)
+            //(vxj, vyj) = vxj + Jx/mj, vyj + JY/mj)
 
 
         }

@@ -440,14 +440,24 @@ public class Ship extends Entity{
     public Set getBullets(){return this.bulletSet;  }
 
     /**
-     * Resolves a collision between two entities, both being a ship or a bullet.
+     * Resolves a collision between this ship and another entity, being a ship or a bullet.
      *
-     * @param entity
+     * @param entity The entity this ship collides with.
+     * When two ships collide, they bounce of each other => velocity change
+     * When this ship collides with a bullet fired by itself, the bullet is reloaded onto the ship
+     * When this ship collides with a bullet fired by another ship, the ship AND the bullet die.
      */
     //TODO => ship and bullet collision
     @Override
     public void collide(Entity entity){
         if (entity instanceof Ship){
+            if (bullet.getSource() == this){
+                this.
+            }
+            else{
+                bullet.terminate();
+                this.terminate();
+            }
 
         }
         if (entity instanceof Bullet){

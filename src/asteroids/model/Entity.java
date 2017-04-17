@@ -302,8 +302,8 @@ public abstract class Entity {
      */
     public double getTimeToCollisionWithBoudary(){
         //frist collision => calculate collisions in both X and Y directions seperately
-        double collisionInXDirection;
-        double collisioninYDirection;
+        double collisionInXDirection = Double.POSITIVE_INFINITY; //should return POSITIVE_INFINITY by default
+        double collisioninYDirection = Double.POSITIVE_INFINITY; //should return POSITIVE_INFINITY by default
     }
 
     /**

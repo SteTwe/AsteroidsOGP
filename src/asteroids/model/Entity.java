@@ -296,6 +296,11 @@ public abstract class Entity {
     private boolean status = false;
 
 
+
+
+
+
+
     /**
      * Method returning the time until a collision happens between this entity and a boundary.
      * @return
@@ -326,6 +331,16 @@ public abstract class Entity {
         // negate x-velocity
 
     }
+
+
+    public void getTimeCollisionWithEntity(Entity ship2){
+
+    }
+
+    public void getPositionCollisionEntity(Entity ship2){
+
+    }
+
 
     /**
      * method is implemented in Ship and Bullet

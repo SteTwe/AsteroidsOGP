@@ -327,7 +327,7 @@ public abstract class Entity {
 
     }
 
-
+    public abstract void collide(Entity entity);
 
 }
 

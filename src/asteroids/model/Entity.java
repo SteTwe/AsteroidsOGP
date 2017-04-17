@@ -236,6 +236,19 @@ public abstract class Entity {
 
     public abstract double getMass();
 
+
+    public void move(double duration){
+        if (!isValidDuration(duration))
+            throw new IllegalArgumentException("duration not valid");
+        setPositionX(getPositionX() + duration * getVelocityX());
+        setPositionY(getPositionY() + duration * getVelocityY());
+    }
+
+    private boolean isValidDuration(double duration) {
+        return duration >= 0;
+    }
+
+
     private World world;
 
     public World getWorld(){

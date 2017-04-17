@@ -453,6 +453,10 @@ public class Ship extends Entity{
         if (entity instanceof Ship){
             //(vxi, vyi) = vxi + Jx/mi, vyi + Jy/mi)
             //(vxj, vyj) = vxj + Jx/mj, vyj + JY/mj)
+            //Jx = (J deltax) / radius
+            //Jy = (J deltay) / radius
+            //J = (2 mi mj * (deltav * deltar)/(radius*(mi + mj))
+            
 
 
         }

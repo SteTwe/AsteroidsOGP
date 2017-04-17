@@ -334,9 +334,9 @@ public class Ship extends Entity{
 
     private double mass;
 
-    public void setTotalMass(double mass){
+    public void setMass(double mass){
         if (isValidMass(mass))
-            this.mass = getMass(mass);
+            this.mass = getMass();
         else
             //Temporary
             this.mass = getMinMass();

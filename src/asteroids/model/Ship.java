@@ -439,9 +439,20 @@ public class Ship extends Entity{
 
     public Set getBullets(){return this.bulletSet;  }
 
+    /**
+     * Resolves a collision between two entities, both being a ship or a bullet.
+     *
+     * @param entity
+     */
     //TODO => ship and bullet collision
     @Override
-    public void collide(){
+    public void collide(Entity entity){
+        if (entity instanceof Ship){
+
+        }
+        if (entity instanceof Bullet){
+
+        }
 
     };
 }

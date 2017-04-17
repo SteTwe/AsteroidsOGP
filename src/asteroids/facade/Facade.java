@@ -17,7 +17,7 @@ public class Facade implements IFacade {
 	 *************/
 	@Override
 	public Ship createShip() throws ModelException {
-		return new Ship(0, 0, 0, 0, 0, 10);
+		return new Ship(0, 0, 0, 0, 0, 10, 0);
 	}
 
 	@Override
@@ -27,7 +27,7 @@ public class Facade implements IFacade {
 				|| Double.isNaN(velocityX) || Double.isNaN(velocityY) || Double.isNaN(radius) 
 				|| Double.isNaN(angle)) throw new ModelException("Invalid argument");
 		if (radius < 0) throw new ModelException("Radius below zero");
-		return new Ship(positionX, positionY, velocityX, velocityY, radius, angle);
+		return new Ship(positionX, positionY, velocityX, velocityY, radius, angle, mass);
 	}
 
 	@Override
@@ -41,11 +41,13 @@ public class Facade implements IFacade {
 	}
 
 	@Override
-	public void terminateShip(Ship ship) throws ModelException {}
+	public void terminateShip(Ship ship) throws ModelException {
+		ship.terminate();
+	}
 
 	@Override
 	public boolean isTerminatedShip(Ship ship) throws ModelException {
-		return false;
+		return ship.isTerminated();
 	}
 
 	@Override
@@ -109,32 +111,33 @@ public class Facade implements IFacade {
 
 	@Override
 	public double[] getBulletVelocity(Bullet bullet) throws ModelException {
-		return new double[0];
+		double[] position = {bullet.getVelocityX(), bullet.getVelocityY()};
+		return position;
 	}
 
 	@Override
 	public double getBulletRadius(Bullet bullet) throws ModelException {
-		return 0;
+		return bullet.getRadius();
 	}
 
 	@Override
 	public double getBulletMass(Bullet bullet) throws ModelException {
-		return 0;
+		return bullet.getMass();
 	}
 
 	@Override
 	public World getBulletWorld(Bullet bullet) throws ModelException {
-		return null;
+		return bullet.getWorld();
 	}
 
 	@Override
 	public Ship getBulletShip(Bullet bullet) throws ModelException {
-		return null;
+		return bullet.getBulletShip();
 	}
 
 	@Override
 	public Ship getBulletSource(Bullet bullet) throws ModelException {
-		return null;
+		return bullet.getBulletSource();
 	}
 
 	/**************

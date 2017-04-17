@@ -296,6 +296,7 @@ public abstract class Entity {
     private boolean status = false;
 
 
+    //TODO
     /**
      * Method returning the time until THE FIRST collision that happens between this entity and a boundary.
      * @return
@@ -329,8 +330,7 @@ public abstract class Entity {
             return collisionInYDirection;
     }
 
-    public double[] getApparentPosition
-
+    //TODO
     /**
      * Method returning a pair of coordinates that represent the location of collision between an entity and a boundary.
      * @return
@@ -340,6 +340,7 @@ public abstract class Entity {
         return collisionPosition;
     }
 
+    //TODO
     /**
      * Method executing the change in velocity in order to resolve a collision with a boundary.
      *
@@ -406,7 +407,6 @@ public abstract class Entity {
         else
             return time;
     }
-    }
 
     /**
      * Check if two entities overlap.
@@ -460,7 +460,6 @@ public abstract class Entity {
             return new double[]{collisionPositionX, collisionPositionY};
         }
     }
-
 
     /**
      * method is implemented in Ship and Bullet

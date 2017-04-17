@@ -155,6 +155,15 @@ public class Ship extends Entity{
      */
     public static final double minRadius = 10;
 
+    /**
+     * Returns the total mass of a ship, this includes the mass of all the carried bullets.
+     * @return
+     */
+    @Override
+    public double getMass(){
+        //return mass of ship + mass of all bullets
+    }
+
     private void setMass(double mass){
 
     }

@@ -361,6 +361,26 @@ public abstract class Entity {
         }
     }
 
+    /**
+     * Compute the distance between two entities. If the two compared entities are the same, distance is 0.
+     *
+     * @return The distance between this entity and the given other entity.
+     * Calculated distance
+     * | return (Math.sqrt(Math.pow((x1 - x2), 2) + Math.pow((y1 - y2), 2)));
+     * @param        entity2 | Second entity
+     */
+    public double getDistanceBetween(Entity entity2) {
+        double x1 = this.getPositionX();
+        double y1 = this.getPositionY();
+        double x2 = entity2.getPositionX();
+        double y2 = entity2.getPositionY();
+        if (this == entity2) {
+            return 0;
+        } else {
+            return (Math.sqrt(Math.pow((x1 - x2), 2) + Math.pow((y1 - y2), 2)));
+        }
+    }
+
     public void getPositionCollisionEntity(Entity ship2){
 
     }

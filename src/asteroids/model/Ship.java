@@ -436,7 +436,7 @@ public class Ship extends Entity{
     private Set<Bullet> bulletSet = new HashSet<>();
 
 
-    public Set getBullets(){return this.bulletSet;  }
+    public Set getBullets(){return this.bulletSet;}
 
 
     public void loadBullet(Bullet bullet){
@@ -500,9 +500,9 @@ public class Ship extends Entity{
             double newEntityVelocityY = currentEntityVelocityY + jy / entityMass; //vyj + Jy/mj
 
             this.setVelocityX(newShipVelocityX);
-            this.setVelocityY(newShipVelocityY;
+            this.setVelocityY(newShipVelocityY);
             entity.setVelocityX(newEntityVelocityX);
-            entity.setVelocityY(newEntityVelocityY;
+            entity.setVelocityY(newEntityVelocityY);
 
         }
         if (entity instanceof Bullet){

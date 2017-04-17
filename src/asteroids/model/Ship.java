@@ -146,7 +146,7 @@ public class Ship extends Entity{
      * | return ((radius > minRadius) && (Double.isNaN(radius)))
      * @pre The radius should be larger than the minimum radius (which is 10km)
      */
-    private boolean isValidRadius(double radius) {
+    public boolean isValidRadius(double radius) {
         return ((radius > minRadius) && (!Double.isNaN(radius)));
     }
 

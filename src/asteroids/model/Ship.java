@@ -169,6 +169,10 @@ public class Ship extends Entity{
     }
 
     /**
+     * density = 1.42 * 10^12
+     */
+    private static double density;
+    /**
      * Move the ship for a certain amount of time (duration).
     */
     public void move(double duration) {

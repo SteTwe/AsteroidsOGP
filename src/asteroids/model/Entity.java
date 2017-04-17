@@ -334,7 +334,10 @@ public abstract class Entity {
 
 
     public void getTimeCollisionWithEntity(Entity ship2){
-
+        if (ship2 == null)
+            throw new IllegalArgumentException("ship2 does not exist");
+        if (this.overlap(ship2))
+            throw new IllegalArgumentException("the ships overlap");
     }
 
     public void getPositionCollisionEntity(Entity ship2){

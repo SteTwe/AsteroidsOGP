@@ -451,6 +451,10 @@ public class Ship extends Entity{
     @Override
     public void collide(Entity entity){
         if (entity instanceof Ship){
+
+
+        }
+        if (entity instanceof Bullet){
             if (bullet.getSource() == this){
                 this.
             }
@@ -458,9 +462,6 @@ public class Ship extends Entity{
                 bullet.terminate();
                 this.terminate();
             }
-
-        }
-        if (entity instanceof Bullet){
 
         }
 

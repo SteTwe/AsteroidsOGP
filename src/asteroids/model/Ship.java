@@ -441,6 +441,23 @@ public class Ship extends Entity{
 
     public Set getBullets(){return this.bulletSet;  }
 
+
+    public void loadBullet(Bullet bullet){
+        if (!isValidBullet(bullet)) throw new IllegalArgumentException("Bullet is not valid for this ship");
+        //add bullet to the set of bullets of this ship
+        bulletSet.add(bullet);
+        //a bullet can only be in a ship or in a world, not in both
+        bullet.getWorld().removeBullet(bullet);
+        //change the bullet's position to the position of the ship is loaded on
+        bullet.setPositionX(this.getPositionX());
+        bullet.setPositionY(this.getPositionY());
+        bullet.setShip(this);
+    }
+
+    public boolean isValidBullet(Bullet bullet){
+        return true;
+    }
+
     /**
      * Resolves a collision between this ship and another entity, being a ship or a bullet.
      *
@@ -505,5 +522,5 @@ public class Ship extends Entity{
 
         }
 
-    };
+    }
 }

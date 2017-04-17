@@ -155,39 +155,6 @@ public class Ship extends Entity{
      */
     public static final double minRadius = 10;
 
-    /**
-     * Returns the total mass of a ship, this includes the mass of all the carried bullets.
-     * @return
-     */
-    @Override
-    public double getMass(){
-        //return mass of ship + mass of all bullets
-    }
-
-    /**
-     * Sets the mass of this ship to the given mass.
-     * @param mass The given mass.
-     *
-     *
-     * following: m >= 4/3 * Math.PI * radius^3 * density => the mass of the ship must be equal to or bigger than this formula.
-     */
-    private void setMass(double mass){
-        if (mass >= minMass)
-            this.mass =  mass;
-        else
-            this.mass = minMass;
-    }
-
-    /**
-     * Variable holding the minimum mass of this ship.
-     */
-    private double minMass = 4/3 * Math.PI * Math.pow(getRadius(), 3) * density;
-
-    /**
-     * density = 1.42 * 10^12
-     */
-    private static double density = 1.42 * Math.pow(10, 12);
-
 
     /**
      * Move the ship for a certain amount of time (duration).
@@ -379,10 +346,6 @@ public class Ship extends Entity{
     public double calculateMass(double massShip){
         //TODO mass of the ship + mass of the bullets
         return 0;
-    }
-
-    public double getMass(){
-        return this.mass;
     }
 
     //TODO

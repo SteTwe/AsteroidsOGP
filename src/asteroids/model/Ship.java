@@ -475,7 +475,7 @@ public class Ship extends Entity{
             double currentEntityVelocityY = entity.getVelocityY();  //vyj
 
             //J = (2 mi mj * (deltav * deltar)/(radius*(mi + mj))
-            double j = (2 * shipMass * entityMass * (deltaV * deltaR)) / sigma * (shipMass + entityMass);
+            double j = (2 * shipMass * entityMass * (deltaV[0] * deltaR[0] + deltaV[1] * deltaR[1])) / sigma * (shipMass + entityMass);
 
 
             this.setVelocityX(newShipVelocityX);

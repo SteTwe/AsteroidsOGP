@@ -342,7 +342,8 @@ public class Ship extends Entity{
             this.mass = getMinMass();
     }
 
-    private double getMass(double massShip){
+    @Override
+    public double getMass(){
         double totalMass = this.mass;
         for (Bullet bullet : this.getBullets())
             totalMass += bullet.getMass();

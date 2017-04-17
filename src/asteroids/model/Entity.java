@@ -296,17 +296,14 @@ public abstract class Entity {
     private boolean status = false;
 
 
-
-
-
-
-
     /**
-     * Method returning the time until a collision happens between this entity and a boundary.
+     * Method returning the time until THE FIRST collision that happens between this entity and a boundary.
      * @return
      */
     public double getTimeToCollisionWithBoudary(){
-
+        //frist collision => calculate collisions in both X and Y directions seperately
+        double collisionInXDirection;
+        double collisioninYDirection;
     }
 
     /**

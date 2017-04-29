@@ -21,6 +21,7 @@ public class World {
 
     private Set<Ship> shipSet = new HashSet<>();
     private Set<Bullet> bulletSet = new HashSet<>();
+    private Set<Entity> entitySet = new HashSet<>();
 
 
     private double width;
@@ -56,6 +57,7 @@ public class World {
         if (getShipSet().contains(ship));
         else
             this.shipSet.add(ship);
+            this.entitySet.add(ship);
     }
 
     public void removeShip(Ship ship){
@@ -66,6 +68,7 @@ public class World {
         if (getBulletSet().contains(bullet));
         else
             this.bulletSet.add(bullet);
+            this.entitySet.add(bullet);
     }
 
     public void removeBullet(Bullet bullet){

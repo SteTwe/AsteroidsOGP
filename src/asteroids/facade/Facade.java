@@ -91,7 +91,11 @@ public class Facade implements IFacade {
 
 	@Override
 	public Bullet createBullet(double x, double y, double xVelocity, double yVelocity, double radius) throws ModelException {
-		return null;
+		if(Double.isNaN(x)|| Double.isNaN(y)
+				|| Double.isNaN(xVelocity) || Double.isNaN(yVelocity)
+				|| Double.isNaN(radius)) throw new ModelException("Invalid argument");
+		if (radius < 0) throw new ModelException("Radius below zero");
+		return new Bullet(x, y, xVelocity, yVelocity, radius);
 	}
 
 	@Override

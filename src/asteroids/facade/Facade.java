@@ -204,7 +204,7 @@ public class Facade implements IFacade {
 
     @Override
     public Set<? extends Bullet> getBulletsOnShip(Ship ship) throws ModelException {
-        return null;
+        return ship.getBullets();
     }
 
     @Override

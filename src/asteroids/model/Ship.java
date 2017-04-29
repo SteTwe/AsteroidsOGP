@@ -436,7 +436,7 @@ public class Ship extends Entity{
     private Set<Bullet> bulletSet = new HashSet<>();
 
 
-    public Set getBullets(){return this.bulletSet;}
+    public Set<Bullet> getBullets(){return this.bulletSet;}
 
 
     public void loadBullet(Bullet bullet){

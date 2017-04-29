@@ -209,7 +209,7 @@ public class Facade implements IFacade {
 
     @Override
     public int getNbBulletsOnShip(Ship ship) throws ModelException {
-        return 0;
+        return ship.getBullets().size();
     }
 
     @Override

@@ -156,12 +156,7 @@ public class Facade implements IFacade {
 
 	@Override
 	public boolean isTerminatedWorld(World world) throws ModelException {
-		if (world.getBulletSet().isEmpty() && world.getShipSet().isEmpty()) {
-			return true;
-		}
-		else {
-			return false;
-		}
+		return (world.getBulletSet().isEmpty() && world.getShipSet().isEmpty());
 	}
 
 	@Override

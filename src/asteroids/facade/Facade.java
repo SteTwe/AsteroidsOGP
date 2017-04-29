@@ -110,13 +110,12 @@ public class Facade implements IFacade {
 
 	@Override
 	public double[] getBulletPosition(Bullet bullet) throws ModelException {
-		return new double[0];
+		return new double[] {bullet.getPositionX(), bullet.getPositionY()};
 	}
 
 	@Override
 	public double[] getBulletVelocity(Bullet bullet) throws ModelException {
-		double[] position = {bullet.getVelocityX(), bullet.getVelocityY()};
-		return position;
+		return new double[] {bullet.getVelocityX(), bullet.getVelocityY()};
 	}
 
 	@Override

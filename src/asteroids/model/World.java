@@ -21,7 +21,7 @@ public class World {
 
     private Set<Ship> shipSet = new HashSet<>();
     private Set<Bullet> bulletSet = new HashSet<>();
-    private Bullet bullet;
+    
 
     private double width;
     private double height;

@@ -100,12 +100,12 @@ public class Facade implements IFacade {
 
 	@Override
 	public void terminateBullet(Bullet bullet) throws ModelException {
-
+		bullet.terminateBullet();
 	}
 
 	@Override
 	public boolean isTerminatedBullet(Bullet bullet) throws ModelException {
-		return false;
+		return bullet.isTerminated();
 	}
 
 	@Override

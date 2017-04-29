@@ -84,4 +84,10 @@ public class World {
         this.getBulletSet().clear();
         this.getShipSet().clear();
     }
+
+    public Entity getEntityAtPosition(double x, double y){
+
+
+        return null;
+    }
 }

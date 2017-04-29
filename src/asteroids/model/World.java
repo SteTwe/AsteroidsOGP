@@ -21,7 +21,7 @@ public class World {
 
     private Set<Ship> shipSet = new HashSet<>();
     private Set<Bullet> bulletSet = new HashSet<>();
-    
+
 
     private double width;
     private double height;
@@ -53,8 +53,7 @@ public class World {
     }
 
     public void addShip(Ship ship){
-        if (getShipSet().contains(ship))
-            return;
+        if (getShipSet().contains(ship));
         else
             this.shipSet.add(ship);
     }
@@ -64,8 +63,7 @@ public class World {
     }
 
     public void addBullet(Bullet bullet){
-        if (getBulletSet().contains(bullet))
-            return;
+        if (getBulletSet().contains(bullet));
         else
             this.bulletSet.add(bullet);
     }

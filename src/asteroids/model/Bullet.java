@@ -108,7 +108,22 @@ public class Bullet extends Entity{
     }
 
     @Override
-    public void collide(){
+    public void collide(Entity entity){
+        if (entity instanceof Ship){
+            if (this.getBulletSource() == entity){
+                this.setPositionX(entity.getPositionX());
+                this.setPositionY(entity.getPositionY());
+                ((Ship) entity).loadBullet(this);
+            }
+            else{
+                this.terminate();
+                entity.terminate();
+            }
+        }
+        if (entity instanceof Bullet){
+            this.terminate();
+            entity.terminate();
+        }
 
     }
 

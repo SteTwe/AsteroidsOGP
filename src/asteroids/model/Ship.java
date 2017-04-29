@@ -465,8 +465,8 @@ public class Ship extends Entity{
      */
     //TODO => ship and bullet collision
     @Override
-    public void collide(Entity entity){
-        if (entity instanceof Ship){
+    public void collide(Entity entity) {
+        if (entity instanceof Ship) {
             //(vxi, vyi) = vxi + Jx/mi, vyi + Jy/mi)
             //(vxj, vyj) = vxj + Jx/mj, vyj + JY/mj)
             //Jx = (J deltax) / sigma
@@ -505,28 +505,27 @@ public class Ship extends Entity{
             entity.setVelocityY(newEntityVelocityY);
 
         }
-        if (entity instanceof Bullet){
+        if (entity instanceof Bullet) {
             Bullet bullet = (Bullet) entity;
-                if (bullet.getBulletSource() == this){
-                    bullet.setPositionX(this.getPositionX());
-                    bullet.setPositionY(this.getPositionY());
-                    this.loadBullet(bullet);
-                }
-                else{
-                    bullet.terminate();
-                    this.terminate();
-                }
+            if (bullet.getBulletSource() == this) {
+                bullet.setPositionX(this.getPositionX());
+                bullet.setPositionY(this.getPositionY());
+                this.loadBullet(bullet);
+            } else {
+                bullet.terminate();
+                this.terminate();
+            }
 
         }
+    }
 
-        @Override
-        public void terminate() {
-            super.terminate();
-            if (this.getWorld() != null)
-                getWorld().removeShip(this);
+    @Override
+    public void terminate() {
+        super.terminate();
+        if (this.getWorld() != null)
+            getWorld().removeShip(this);
         }
 
     }
 
-    }
-}
+

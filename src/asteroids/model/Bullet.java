@@ -134,7 +134,7 @@ public class Bullet extends Entity{
     public void terminateBullet(){
         super.terminate();
         if (this.getWorld() != null)
-            getWorld().removeBullet(this);
+            getWorld().removeBulletWorld(this);
     }
 
 }

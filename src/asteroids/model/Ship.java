@@ -445,7 +445,7 @@ public class Ship extends Entity{
         //add bullet to the set of bullets of this ship
         bulletSet.add(bullet);
         //a bullet can only be in a ship or in a world, not in both
-        bullet.getWorld().removeBullet(bullet);
+        bullet.getWorld().removeBulletWorld(bullet);
         //change the bullet's position to the position of the ship is loaded on
         bullet.setPositionX(this.getPositionX());
         bullet.setPositionY(this.getPositionY());
@@ -458,7 +458,7 @@ public class Ship extends Entity{
             //add bullet to the set of bullets of this ship
             bulletSet.add(bullet);
             //a bullet can only be in a ship or in a world, not in both
-            bullet.getWorld().removeBullet(bullet);
+            bullet.getWorld().removeBulletWorld(bullet);
             //change the bullet's position to the position of the ship is loaded on
             bullet.setPositionX(this.getPositionX());
             bullet.setPositionY(this.getPositionY());
@@ -539,6 +539,10 @@ public class Ship extends Entity{
         if (this.getWorld() != null)
             getWorld().removeShip(this);
         }
+
+    public void removeBulletShip(Bullet bullet){
+        this.bulletSet.remove(bullet);
+    }
 
     }
 

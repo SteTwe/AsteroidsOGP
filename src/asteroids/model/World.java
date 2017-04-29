@@ -71,7 +71,7 @@ public class World {
             this.entitySet.add(bullet);
     }
 
-    public void removeBullet(Bullet bullet){
+    public void removeBulletWorld(Bullet bullet){
         this.bulletSet.remove(bullet);
     }
 

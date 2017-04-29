@@ -229,7 +229,7 @@ public class Facade implements IFacade {
 
     @Override
     public void fireBullet(Ship ship) throws ModelException {
-
+		ship.fireBullet();
     }
 
     @Override

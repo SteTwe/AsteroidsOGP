@@ -42,7 +42,7 @@ public class Facade implements IFacade {
 
 	@Override
 	public void terminateShip(Ship ship) throws ModelException {
-		ship.terminate();
+		ship.terminateShip();
 	}
 
 	@Override

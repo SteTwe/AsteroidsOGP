@@ -512,15 +512,14 @@ public class Ship extends Entity{
                 bullet.setPositionY(this.getPositionY());
                 this.loadBullet(bullet);
             } else {
-                bullet.terminate();
-                this.terminate();
+                bullet.terminateBullet();
+                this.terminateShip();
             }
 
         }
     }
 
-    @Override
-    public void terminate() {
+    public void terminateShip() {
         super.terminate();
         if (this.getWorld() != null)
             getWorld().removeShip(this);

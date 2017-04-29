@@ -1,5 +1,6 @@
 package asteroids.model;
 
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -449,6 +450,20 @@ public class Ship extends Entity{
         bullet.setPositionX(this.getPositionX());
         bullet.setPositionY(this.getPositionY());
         bullet.setShip(this);
+    }
+
+    public void loadSetOfBullets(Collection<Bullet> bullets){
+        for (Bullet bullet : bullets){
+            if (!isValidBullet(bullet)) throw new IllegalArgumentException("Bullet is not valid for this ship");
+            //add bullet to the set of bullets of this ship
+            bulletSet.add(bullet);
+            //a bullet can only be in a ship or in a world, not in both
+            bullet.getWorld().removeBullet(bullet);
+            //change the bullet's position to the position of the ship is loaded on
+            bullet.setPositionX(this.getPositionX());
+            bullet.setPositionY(this.getPositionY());
+            bullet.setShip(this);
+        }
     }
 
     public boolean isValidBullet(Bullet bullet){

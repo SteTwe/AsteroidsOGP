@@ -214,12 +214,12 @@ public class Facade implements IFacade {
 
     @Override
     public void loadBulletOnShip(Ship ship, Bullet bullet) throws ModelException {
-
+    	ship.loadBullet(bullet);
     }
 
     @Override
     public void loadBulletsOnShip(Ship ship, Collection<Bullet> bullets) throws ModelException {
-
+    	ship.loadSetOfBullets(bullets);
     }
 
     @Override

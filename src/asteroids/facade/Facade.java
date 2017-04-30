@@ -27,7 +27,7 @@ public class Facade implements IFacade {
 				|| Double.isNaN(velocityX) || Double.isNaN(velocityY) || Double.isNaN(radius) 
 				|| Double.isNaN(angle)) throw new ModelException("Invalid argument");
 		if (radius < 0) throw new ModelException("Radius below zero");
-		return new Ship(positionX, positionY, velocityX, velocityY, radius, angle, mass);
+		return new Ship(positionX, positionY, velocityX, velocityY, radius, angle,0);
 	}
 
 	@Override

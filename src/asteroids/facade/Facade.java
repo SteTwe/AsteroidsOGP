@@ -284,7 +284,7 @@ public class Facade implements IFacade {
 
     @Override
     public Set<? extends Object> getEntities(World world) throws ModelException {
-        return null;
+        return world.getEntitySet();
     }
 
     @Override

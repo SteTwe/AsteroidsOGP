@@ -544,6 +544,7 @@ public class Ship extends Entity{
         this.bulletSet.remove(bullet);
     }
 
+    //TODO
     public void fireBullet(){
         Bullet bullet = this.bulletSet.iterator().next();
         this.removeBulletShip(bullet);

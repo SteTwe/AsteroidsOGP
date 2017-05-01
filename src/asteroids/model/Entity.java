@@ -301,8 +301,8 @@ public abstract class Entity {
      * Method returning the time until THE FIRST collision that happens between this entity and a boundary.
      * @return
      */
-    public double getTimeToCollisionWithBoudary(){
-        //frist collision => calculate collisions in both X and Y directions seperately
+    public double getTimeToCollisionWithBoundary(){
+        //first collision => calculate collisions in both X and Y directions seperately
         double collisionInXDirection = Double.POSITIVE_INFINITY; //should return POSITIVE_INFINITY by default
         double collisionInYDirection = Double.POSITIVE_INFINITY; //should return POSITIVE_INFINITY by default
 
@@ -328,6 +328,60 @@ public abstract class Entity {
             return collisionInXDirection;
         else if (collisionInXDirection > collisionInYDirection)
             return collisionInYDirection;
+
+
+
+        double upperBoundaryY = this.getWorld().getHeight();
+        double lowerBoundaryY = 0;
+        double leftBoundaryX  = 0;
+        double rightBoundaryX = this.getWorld().getWidth();
+
+        /*******************
+         *  Collision in Y direction
+         ****************/
+
+        //Difference in position
+        double diffPosYUpper = upperBoundaryY - this.getPositionY();
+        double diffPosYLower = lowerBoundaryY - this.getPositionY();
+        //Difference in velocity
+        double diffVelYUpper = 0 - this.getVelocityY();
+        double diffVelYLower = 0 - this.getVelocityY();
+        //Position difference multiplication
+        double diffPosMultUpper = (Math.pow(diffPosYUpper, 2));
+        double diffPosMultLower = (Math.pow(diffPosYLower, 2));
+        //Velocity difference multiplication
+        double diffVelMultUpper = (Math.pow(diffVelYUpper, 2));
+        double diffVelMultLower = (Math.pow(diffVelYLower, 2));
+        //Velocity position multiplication
+        double diffVelPosMultUpper = (diffPosYUpper * diffVelYUpper);
+        double diffVelPosMultLower = (diffPosYLower * diffVelYLower);
+        //Sigma = radius of the entity
+        double sigma = this.radius;
+        //d as defined by assingment
+        double dUpper = (Math.pow(diffVelPosMultUpper, 2) - (diffVelMultUpper) * ((diffPosMultUpper) - Math.pow(sigma, 2)));
+        double dLower = (Math.pow(diffVelPosMultLower, 2) - (diffVelMultLower) * ((diffPosMultLower) - Math.pow(sigma, 2)));
+
+        double timeUpper = -((diffVelPosMultUpper + Math.sqrt(dUpper)) / diffVelMultUpper);
+        double timeLower = -((diffVelPosMultLower + Math.sqrt(dLower)) / diffVelMultLower);
+
+        if (diffVelPosMultUpper >= 0)
+            return Double.POSITIVE_INFINITY;
+        else if (diffVelPosMultLower >= 0)
+            return Double.POSITIVE_INFINITY;
+        else if (dUpper < 0)
+            return Double.POSITIVE_INFINITY;
+        else if (dLower < 0)
+            return Double.POSITIVE_INFINITY;
+        else
+            return timeUpper;
+
+
+
+
+
+
+
+        return 0;
     }
 
     //TODO

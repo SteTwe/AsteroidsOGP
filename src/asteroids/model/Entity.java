@@ -259,12 +259,12 @@ public abstract class Entity {
     private World world;
 
     public World getWorld(){
-        return world;
+        return this.world;
     }
 
-    //TODO
-    public void setWorld(World world){
 
+    public void setWorld(World world){
+        this.world = world;
     }
 
     /**

@@ -279,7 +279,7 @@ public class Facade implements IFacade {
 
     @Override
     public Object getEntityAt(World world, double x, double y) throws ModelException {
-        return null;
+        return world.getEntityAtPosition(x,y);
     }
 
     @Override

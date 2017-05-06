@@ -91,17 +91,13 @@ public class World {
         this.getBulletSet().clear();
         this.getShipSet().clear();
     }
-    //TODO finish method
+
     public Entity getEntityAtPosition(double x, double y){
         for (Entity entity : this.getEntitySet()){
             if (entity.getPositionX() == x && entity.getPositionY() == y) {
                 return entity;
             }
-
-        };
-
-
-
+        }
         return null;
     }
 }

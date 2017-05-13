@@ -127,8 +127,10 @@ public class World {
      */
     public void addShip(Ship ship) throws IllegalArgumentException{
         if (getShipSet().contains(ship)) throw new IllegalArgumentException("Ship is already in the world.");
-        else
+        else {
             this.entitySet.add(ship);
+            ship.setWorld(this);
+        }
     }
 
     /**
@@ -156,8 +158,10 @@ public class World {
      */
     public void addBullet(Bullet bullet) throws IllegalArgumentException{
         if (getBulletSet().contains(bullet)) throw new IllegalArgumentException("Bullet is already in world.");
-        else
+        else {
             this.entitySet.add(bullet);
+            bullet.setWorld(this);
+        }
     }
 
     /**

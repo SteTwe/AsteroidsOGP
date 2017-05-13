@@ -11,10 +11,8 @@ import asteroids.facade.Facade;
 import asteroids.part1.facade.IFacade;
 import asteroids.util.ModelException;
 
-/**
- * Created by joachim on 12/03/2017.
- */
-public class testclass {
+
+public class testclassWorld {
     private static final double EPSILON = 0.0001;
 
     IFacade facade;

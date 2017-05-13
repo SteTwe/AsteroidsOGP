@@ -214,9 +214,11 @@ public class World {
         return this.entitySet;
     }
 
+    /**
+     * Terminate the world by removing all of its entities.
+     */
     public void terminateWorld(){
-        this.getBulletSet().clear();
-        this.getShipSet().clear();
+        this.getEntitySet().clear();
     }
 
     /**

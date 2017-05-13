@@ -450,8 +450,12 @@ public class Ship extends Entity{
         if (!isValidBullet(bullet)) throw new IllegalArgumentException("Bullet is not valid for this ship");
         //add bullet to the set of bullets of this ship
         bulletSet.add(bullet);
-        World world = this.getWorld();
-
+        //if ship is linked to a world, remove bullet from world, bullet cannot be in world and on ship at the same time
+        if (this.getWorld() != null){
+            World world = this.getWorld();
+            System.out.println(world);
+            world.removeBulletWorld(bullet);
+        }
         //change the bullet's position to the position of the ship is loaded on
         bullet.setPositionX(this.getPositionX());
         bullet.setPositionY(this.getPositionY());
@@ -463,6 +467,12 @@ public class Ship extends Entity{
             if (!isValidBullet(bullet)) throw new IllegalArgumentException("Bullet is not valid for this ship");
             //add bullet to the set of bullets of this ship
             bulletSet.add(bullet);
+            //if ship is linked to a world, remove bullet from world, bullet cannot be in world and on ship at the same time
+            if (this.getWorld() != null){
+                World world = this.getWorld();
+                System.out.println(world);
+                world.removeBulletWorld(bullet);
+            }
             //change the bullet's position to the position of the ship is loaded on
             bullet.setPositionX(this.getPositionX());
             bullet.setPositionY(this.getPositionY());

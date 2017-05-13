@@ -39,9 +39,12 @@ public class Ship extends Entity{
      *
      */
     public Ship(double positionX, double positionY, double velocityX, double velocityY, double radius, double angle, double mass) throws IllegalArgumentException {
-        super (positionX, positionY, velocityX, velocityY, radius);
+        super (positionX, positionY, velocityX, velocityY);
         this.setAngle(angle);
-        if (!isValidRadius(radius)) throw new IllegalArgumentException();
+        if (isValidRadius(radius)) {
+            this.setRadius(radius);
+        }
+        else throw new IllegalArgumentException();
         this.setMass(mass);
     }
     /**
@@ -440,7 +443,7 @@ public class Ship extends Entity{
     public Set<Bullet> getBullets(){return this.bulletSet;}
 
 
-    public void loadBullet(Bullet bullet){
+    public void loadBullet(Bullet bullet) throws IllegalArgumentException{
         if (!isValidBullet(bullet)) throw new IllegalArgumentException("Bullet is not valid for this ship");
         //add bullet to the set of bullets of this ship
         bulletSet.add(bullet);
@@ -452,7 +455,7 @@ public class Ship extends Entity{
         bullet.setShip(this);
     }
 
-    public void loadSetOfBullets(Collection<Bullet> bullets){
+    public void loadSetOfBullets(Collection<Bullet> bullets) throws IllegalArgumentException{
         for (Bullet bullet : bullets){
             if (!isValidBullet(bullet)) throw new IllegalArgumentException("Bullet is not valid for this ship");
             //add bullet to the set of bullets of this ship
@@ -467,6 +470,12 @@ public class Ship extends Entity{
     }
 
     public boolean isValidBullet(Bullet bullet){
+        if (getBullets().contains(bullet)) return false;
+        for (Bullet bullet2 : getBullets()){
+            if (bullet.overlap(bullet2)){
+                return false;
+            }
+        }
         return true;
     }
 

@@ -21,13 +21,11 @@ public abstract class Entity {
      * @param velocityY The velocity in the y-direction of this new ship.
      * @param radius    The radius of this new ship.
      */
-    public Entity(double positionX, double positionY, double velocityX, double velocityY, double radius) throws IllegalArgumentException {
+    public Entity(double positionX, double positionY, double velocityX, double velocityY) throws IllegalArgumentException {
         this.setPositionX(positionX);
         this.setPositionY(positionY);
         this.setVelocityX(velocityX);
         this.setVelocityY(velocityY);
-        if (!isValidRadius(radius)) throw new IllegalArgumentException();
-        this.radius = radius;
     }
 
     /**

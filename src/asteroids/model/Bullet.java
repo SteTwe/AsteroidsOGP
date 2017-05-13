@@ -1,6 +1,8 @@
 package asteroids.model;
 import be.kuleuven.cs.som.annotate.*;
 
+import java.util.IllegalFormatCodePointException;
+
 /**
  * Created by stef on 2-4-17.
  * @author Joachim & Stef
@@ -18,7 +20,11 @@ public class Bullet extends Entity{
      */
 
     public Bullet(double positionX, double positionY, double velocityX, double velocityY, double radius) throws IllegalArgumentException {
-        super(positionX, positionY, velocityX, velocityY, radius);
+        super(positionX, positionY, velocityX, velocityY);
+        if (isValidRadius(radius)){
+            this.setRadius(radius);
+        }
+        else throw new IllegalArgumentException();
     }
 
     /**
@@ -72,6 +78,10 @@ public class Bullet extends Entity{
      * Constant holding the minimum radius of a bullet.
      */
     public static double minRadius = 1;
+
+    public boolean isValidRadius(double radius){
+        return ((radius > minRadius) && (!Double.isNaN(radius)));
+    }
 
     @Basic
     public double getMinRadius(){

@@ -453,7 +453,6 @@ public class Ship extends Entity{
         //if ship is linked to a world, remove bullet from world, bullet cannot be in world and on ship at the same time
         if (this.getWorld() != null){
             World world = this.getWorld();
-            System.out.println(world);
             world.removeBulletWorld(bullet);
         }
         //change the bullet's position to the position of the ship is loaded on
@@ -470,7 +469,6 @@ public class Ship extends Entity{
             //if ship is linked to a world, remove bullet from world, bullet cannot be in world and on ship at the same time
             if (this.getWorld() != null){
                 World world = this.getWorld();
-                System.out.println(world);
                 world.removeBulletWorld(bullet);
             }
             //change the bullet's position to the position of the ship is loaded on

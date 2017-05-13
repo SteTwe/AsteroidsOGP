@@ -27,7 +27,7 @@ public class testclass {
 
 
     @Test
-    public void testWorld() throws ModelException{
+    public void testWorldMethods() throws ModelException{
         World world = facade.createWorld(1000,800);
         //Test setters
         world.setWidth(1050);
@@ -84,6 +84,15 @@ public class testclass {
 
 
     }
+
+    public void testShipMethods() throws ModelException{
+
+    }
+
+    public void testBulletMethods() throws ModelException{
+
+    }
 }
+
 
 

@@ -38,16 +38,6 @@ public class World {
     private Set<Entity> entitySet = new HashSet<>();
 
     /**
-     * Set containing all the ships present in the world.
-     */
-    private Set<Ship> shipSet = new HashSet<>();
-
-    /**
-     * Set containing all the bullets present in the world.
-     */
-    private Set<Bullet> bulletSet = new HashSet<>();
-
-    /**
      * Variable holding the width of the world.
      */
     private double width;
@@ -58,7 +48,7 @@ public class World {
     private double height;
 
     /**
-     * 
+     *
      * @param width
      */
     private void setWidth(double width){
@@ -90,31 +80,41 @@ public class World {
     public void addShip(Ship ship){
         if (getShipSet().contains(ship));
         else
-            this.shipSet.add(ship);
             this.entitySet.add(ship);
     }
 
     public void removeShip(Ship ship){
-        this.shipSet.remove(ship);
+        this.entitySet.remove(ship);
     }
 
     public void addBullet(Bullet bullet){
         if (getBulletSet().contains(bullet));
         else
-            this.bulletSet.add(bullet);
             this.entitySet.add(bullet);
     }
 
     public void removeBulletWorld(Bullet bullet){
-        this.bulletSet.remove(bullet);
+        this.entitySet.remove(bullet);
     }
 
     public Set<? extends Bullet> getBulletSet(){
-        return this.bulletSet;
+        Set<Bullet> bulletSet = new HashSet<>();
+        for (Entity entity : getEntitySet()){
+            if (entity instanceof Bullet){
+                bulletSet.add((Bullet) entity);
+            }
+        }
+        return bulletSet;
     }
 
     public Set<? extends Ship> getShipSet() {
-        return this.shipSet;
+        Set<Ship> shipSet = new HashSet<>();
+        for (Entity entity : getEntitySet()){
+            if (entity instanceof Ship){
+                shipSet.add((Ship) entity);
+            }
+        }
+        return shipSet;
     }
 
     public Set<? extends Entity> getEntitySet() {

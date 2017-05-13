@@ -146,14 +146,29 @@ public class World {
         else throw new IllegalArgumentException("Ship is not in world.");
     }
 
-    
+    /**
+     * Add the given bullet to the world.
+     *
+     * @param bullet The bullet to add.
+     * @throws IllegalArgumentException The bullet is already in the world
+     * @post The given bullet is in the world.
+     *       | entitySet.contains(bullet)
+     */
     public void addBullet(Bullet bullet) throws IllegalArgumentException{
         if (getBulletSet().contains(bullet)) throw new IllegalArgumentException("Bullet is already in world.");
         else
             this.entitySet.add(bullet);
     }
 
-    public void removeBulletWorld(Bullet bullet){
+    /**
+     * Remove the given bullet from the world.
+     *
+     * @param bullet Bullet to remove.
+     * @throws IllegalArgumentException The bullet is not in the world.
+     * @post The given is not in the world.
+     *       | !entitySet.contains(bullet)
+     */
+    public void removeBulletWorld(Bullet bullet) throws IllegalArgumentException{
         if (getEntitySet().contains(bullet)){
             this.entitySet.remove(bullet);
         }

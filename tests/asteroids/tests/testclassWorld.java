@@ -1,6 +1,7 @@
 package asteroids.tests;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.Before;
@@ -34,9 +35,6 @@ public class testclassWorld {
         world.setHeight(850);
         assertEquals(850, facade.getWorldSize(world)[1], EPSILON);
 
-
-
-
         // Create some ships
         Ship ship1 = facade.createShip(250,350,10,5,200,0,1.0E20);
         Ship ship2 = facade.createShip(150,60,7,8,150,0.1, 1.1E20);
@@ -51,17 +49,10 @@ public class testclassWorld {
         facade.addShipToWorld(world, ship1);
         // Expected : 1
         System.out.println(facade.getWorldBullets(world));
-        System.out.println(facade.getShipWorld(ship1));
-        System.out.println(facade.getBulletWorld(bullet2));
-
-
+        
         facade.loadBulletOnShip(ship1, bullet2);
         // Expected : empty , bullet cannot be on ship and world at same time
-        System.out.println(facade.getWorldBullets(world));
-
-
-        System.out.println(facade.getWorldBullets(world));
-        System.out.println(facade.getWorldShips(world));
+        assertTrue(facade.getWorldBullets(world).isEmpty());
 
     }
 }

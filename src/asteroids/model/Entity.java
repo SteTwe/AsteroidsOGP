@@ -374,14 +374,6 @@ public abstract class Entity {
             return Double.POSITIVE_INFINITY;
         else
             return timeUpper;
-
-
-
-
-
-
-
-        return 0;
     }
 
     //TODO

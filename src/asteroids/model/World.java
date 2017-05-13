@@ -117,25 +117,31 @@ public class World {
         return this.height;
     }
 
-
+    
     public void addShip(Ship ship) throws IllegalArgumentException{
-        if (getShipSet().contains(ship)) throw new IllegalArgumentException();
+        if (getShipSet().contains(ship)) throw new IllegalArgumentException("Ship is already in the world.");
         else
             this.entitySet.add(ship);
     }
 
     public void removeShip(Ship ship){
-        this.entitySet.remove(ship);
+        if (getEntitySet().contains(ship)) {
+            this.entitySet.remove(ship);
+        }
+        else throw new IllegalArgumentException("Ship is not in world.");
     }
 
     public void addBullet(Bullet bullet) throws IllegalArgumentException{
-        if (getBulletSet().contains(bullet)) throw new IllegalArgumentException();
+        if (getBulletSet().contains(bullet)) throw new IllegalArgumentException("Bullet is already in world.");
         else
             this.entitySet.add(bullet);
     }
 
     public void removeBulletWorld(Bullet bullet){
-        this.entitySet.remove(bullet);
+        if (getEntitySet().contains(bullet)){
+            this.entitySet.remove(bullet);
+        }
+        else throw new IllegalArgumentException("Bullet is not in world");
     }
 
     public Set<? extends Bullet> getBulletSet(){

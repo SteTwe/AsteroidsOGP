@@ -8,25 +8,59 @@ import java.util.Set;
 
 
 /**
- * Created by stef on 1-4-17.
+* A class representing an Asteroid World involving the dimensions, witdh and height.
+ *
+ * @author Stef & Joachim
+ * @version pre-alpha
+ * @invar The width must be valid for any world.
+ * | isValidWidth(width)
+ * @invar The height must be valid for any world.
+ * | isValidHeight(height)
  */
 public class World {
 
-
+    /**
+     * Initaliaze a world with width and height.
+     *
+     * @param width     The width of the world.
+     * @param height    The height of the world.
+     *
+     */
     public World(double width, double height){
         this.setWidth(width);
         this.setHeight(height);
 
     }
 
-    private Set<Ship> shipSet = new HashSet<>();
-    private Set<Bullet> bulletSet = new HashSet<>();
+    /**
+     * Set containing all the entities present in the world.
+     */
     private Set<Entity> entitySet = new HashSet<>();
 
+    /**
+     * Set containing all the ships present in the world.
+     */
+    private Set<Ship> shipSet = new HashSet<>();
 
+    /**
+     * Set containing all the bullets present in the world.
+     */
+    private Set<Bullet> bulletSet = new HashSet<>();
+
+    /**
+     * Variable holding the width of the world.
+     */
     private double width;
+
+    /**
+     * Variable holding the height of the world.
+     */
     private double height;
 
+    /**
+     * 
+     * @param width
+     */
     private void setWidth(double width){
         if (isValidWidth(width))
             this.width = width;

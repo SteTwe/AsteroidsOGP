@@ -58,6 +58,13 @@ public class Bullet extends Entity{
 
     private Ship bulletSource;
 
+    private World world;
+
+    public World getWorld(){
+        return this.world;
+    }
+
+
     /**
      * Set the source of the bullet to the given ship
      */
@@ -96,6 +103,10 @@ public class Bullet extends Entity{
 
     public double getDensity(){
         return density;
+    }
+
+    public void setWorld(World world){
+        this.world = world;
     }
     /**
      * Decrements the number of bounces until destruction

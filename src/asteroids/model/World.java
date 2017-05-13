@@ -48,33 +48,73 @@ public class World {
     private double height;
 
     /**
+     * Set the width of this world with the given width.
      *
-     * @param width
+     * @param width The given width for this world.
+     * @pre The given width should be a valid width for this world.
+     *      | isValidWidth(width)
+     * @post The width of this world is equal to the given width.
+     *      | new.getWidth() == width
      */
     private void setWidth(double width){
         if (isValidWidth(width))
             this.width = width;
     }
 
+    /**
+     * Set the height of this world with the given height.
+     *
+     * @param height The given height for this world.
+     * @pre The given height should be a valid height for this world.
+     *      | isValidHeight(height)
+     * @post The height of this world is equal to the given height.
+     *      | new.getHeight() == height
+     */
     private void setHeight(double height){
         if (isValidHeight(height))
             this.height = height;
     }
 
+    /**
+     * Return true if the width is valid for this world.
+     *
+     * @param width The given width for this world.
+     * @return True if the width is a number and lies in the range 0 to Double.MAX_VALUE.
+     *          | result == ((!Double.isNaN(width)) && width >= 0 && width <= Double.MAX_VALUE)
+     */
     private boolean isValidWidth(double width){
         return ((!Double.isNaN(width)) && width >= 0 && width <= Double.MAX_VALUE);
     }
 
+    /**
+     * Return true if the height is valid for this world.
+     *
+     * @param height The given height for this world.
+     * @return True if the height is a number and lies in the range 0 to Double.MAX_VALUE.
+     *          | result == ((!Double.isNaN(height)) && height >= 0 && height <= Double.MAX_VALUE)
+     */
     private boolean isValidHeight(double height){
         return ((!Double.isNaN(height)) && height >= 0 && height <= Double.MAX_VALUE);
     }
 
-    public double getHeight() {
-        return this.height;
-    }
-
+    /**
+     * Returning this world's width.
+     *
+     * @return Returns the width of this world.
+     *          | result == this.width
+     */
     public double getWidth() {
         return this.width;
+    }
+
+    /**
+     * Returning this world's height.
+     *
+     * @return Returns the height of this world.
+     *          | result == this.height
+     */
+d    public double getHeight() {
+        return this.height;
     }
 
     public void addShip(Ship ship){

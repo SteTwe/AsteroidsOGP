@@ -219,6 +219,14 @@ public class World {
         this.getShipSet().clear();
     }
 
+    /**
+     * Return the entity, if any, at the given x- and y-coordinate.
+     *
+     * @param x Given x-coordinate.
+     * @param y Given y-coordinate.
+     * @return Returns the entity positioned at the given coordinates.
+     *          | givenPosition == entity.position
+     */
     public Entity getEntityAtPosition(double x, double y){
         for (Entity entity : this.getEntitySet()){
             if (entity.getPositionX() == x && entity.getPositionY() == y) {

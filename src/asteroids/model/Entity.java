@@ -256,14 +256,12 @@ public abstract class Entity {
 
     private World world;
 
-    public World getWorld(){
+    private World getWorld(){
         return this.world;
     }
 
 
-    public void setWorld(World world){
-        this.world = world;
-    }
+
 
     /**
      * Remove the world this entity is part of.

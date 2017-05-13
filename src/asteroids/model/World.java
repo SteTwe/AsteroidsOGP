@@ -175,6 +175,11 @@ public class World {
         else throw new IllegalArgumentException("Bullet is not in world");
     }
 
+    /**
+     * Return the set of Bullets of this world.
+     *
+     * @return Return the set of Bullets of this world.
+     */
     public Set<? extends Bullet> getBulletSet(){
         Set<Bullet> bulletSet = new HashSet<>();
         for (Entity entity : getEntitySet()){
@@ -185,6 +190,11 @@ public class World {
         return bulletSet;
     }
 
+    /**
+     * Return the set of Ships of this world.
+     *
+     * @return Return the set of Ships of this world.
+     */
     public Set<? extends Ship> getShipSet() {
         Set<Ship> shipSet = new HashSet<>();
         for (Entity entity : getEntitySet()){
@@ -195,6 +205,11 @@ public class World {
         return shipSet;
     }
 
+    /**
+     * Return the set of Entities of this world.
+     *
+     * @return Return the set of Entities of this world.
+     */
     public Set<? extends Entity> getEntitySet() {
         return this.entitySet;
     }

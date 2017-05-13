@@ -113,12 +113,13 @@ public class World {
      * @return Returns the height of this world.
      *          | result == this.height
      */
-d    public double getHeight() {
+    public double getHeight() {
         return this.height;
     }
 
-    public void addShip(Ship ship){
-        if (getShipSet().contains(ship));
+
+    public void addShip(Ship ship) throws IllegalArgumentException{
+        if (getShipSet().contains(ship)) throw new IllegalArgumentException();
         else
             this.entitySet.add(ship);
     }
@@ -127,8 +128,8 @@ d    public double getHeight() {
         this.entitySet.remove(ship);
     }
 
-    public void addBullet(Bullet bullet){
-        if (getBulletSet().contains(bullet));
+    public void addBullet(Bullet bullet) throws IllegalArgumentException{
+        if (getBulletSet().contains(bullet)) throw new IllegalArgumentException();
         else
             this.entitySet.add(bullet);
     }

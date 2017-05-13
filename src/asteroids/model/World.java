@@ -56,7 +56,7 @@ public class World {
      * @post The width of this world is equal to the given width.
      *      | new.getWidth() == width
      */
-    private void setWidth(double width){
+    public void setWidth(double width){
         if (isValidWidth(width))
             this.width = width;
     }
@@ -70,7 +70,7 @@ public class World {
      * @post The height of this world is equal to the given height.
      *      | new.getHeight() == height
      */
-    private void setHeight(double height){
+    public void setHeight(double height){
         if (isValidHeight(height))
             this.height = height;
     }

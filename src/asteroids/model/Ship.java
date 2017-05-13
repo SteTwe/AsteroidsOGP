@@ -371,6 +371,9 @@ public class Ship extends Entity{
 
     private static double minMassDensity = 1.42 * Math.pow(10,12);
 
+    public void setWorld(World world){
+        this.world = world;
+    }
 
     public void thrustOn(){
         double newVelocityX = getVelocityX() + getAcceleration() * Math.cos(getAngle());
@@ -447,6 +450,8 @@ public class Ship extends Entity{
         if (!isValidBullet(bullet)) throw new IllegalArgumentException("Bullet is not valid for this ship");
         //add bullet to the set of bullets of this ship
         bulletSet.add(bullet);
+        World world = this.getWorld();
+
         //change the bullet's position to the position of the ship is loaded on
         bullet.setPositionX(this.getPositionX());
         bullet.setPositionY(this.getPositionY());

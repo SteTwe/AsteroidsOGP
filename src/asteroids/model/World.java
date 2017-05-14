@@ -137,15 +137,15 @@ public class World {
      * Remove the given ship from the world.
      *
      * @param ship The ship to remove.
-     * @throws IllegalArgumentException The ship is not in the world.
      * @post The given ship is not in the world.
      *       | !entitySet.contains(ship)
      */
     public void removeShip(Ship ship) throws IllegalArgumentException{
-        if (getEntitySet().contains(ship)) {
+        try{
             this.entitySet.remove(ship);
         }
-        else throw new IllegalArgumentException("Ship is not in world.");
+        catch (Exception e){
+        }
     }
 
     /**

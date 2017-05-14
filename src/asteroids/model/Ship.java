@@ -559,7 +559,13 @@ public class Ship extends Entity{
 
     //TODO
     public void fireBullet(){
-        Bullet bullet = this.bulletSet.iterator().next();
+        Bullet bullet = getBullets().iterator().next();
+        double angleThis = this.getAngle();
+        double angle = getAngle();
+        System.out.println(angleThis);
+        System.out.println(angle);
+
+        System.out.println(bullet);
         this.removeBulletShip(bullet);
         // bullet speed is 250 km/s in same direction ship is faced
         // calculate separate velocities with 2 equations:

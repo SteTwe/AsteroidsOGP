@@ -168,15 +168,15 @@ public class World {
      * Remove the given bullet from the world.
      *
      * @param bullet Bullet to remove.
-     * @throws IllegalArgumentException The bullet is not in the world.
      * @post The given is not in the world.
      *       | !entitySet.contains(bullet)
      */
-    public void removeBulletWorld(Bullet bullet) throws IllegalArgumentException{
-        if (getEntitySet().contains(bullet)){
+    public void removeBulletWorld(Bullet bullet){
+        try {
             this.entitySet.remove(bullet);
         }
-        else throw new IllegalArgumentException("Bullet is not in world");
+        catch (Exception e){
+        }
     }
 
     /**

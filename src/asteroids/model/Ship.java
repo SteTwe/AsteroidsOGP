@@ -443,7 +443,9 @@ public class Ship extends Entity{
     private Set<Bullet> bulletSet = new HashSet<>();
 
 
-    public Set<Bullet> getBullets(){return this.bulletSet;}
+    public Set<Bullet> getBullets(){
+        return this.bulletSet;}
+
 
 
     public void loadBullet(Bullet bullet) throws IllegalArgumentException{
@@ -557,15 +559,12 @@ public class Ship extends Entity{
         this.bulletSet.remove(bullet);
     }
 
-    //TODO
+    /**
+     * Fire a bullet from the ship.
+     *
+     */
     public void fireBullet(){
         Bullet bullet = getBullets().iterator().next();
-        double angleThis = this.getAngle();
-        double angle = getAngle();
-        System.out.println(angleThis);
-        System.out.println(angle);
-
-        System.out.println(bullet);
         this.removeBulletShip(bullet);
         // bullet speed is 250 km/s in same direction ship is faced
         // calculate separate velocities with 2 equations:
@@ -574,9 +573,17 @@ public class Ship extends Entity{
         // rewrite equations to get the used equations for velocity calculations.
         double newVelocityX = Math.sqrt((Math.pow(250,2)) / (((Math.pow((this.getVelocityY()/this.getVelocityX()),2)) + 1)));
         double newVelocityY = ((this.getVelocityY() / this.getVelocityX()) * newVelocityX);
-
         bullet.setVelocityX(newVelocityX);
         bullet.setVelocityY(newVelocityY);
+
+        // bullet position is next to the ship so that both don't overlap
+        // new positionX is current positionX + both radii + 1 (adds a little space)
+        double bulletRadius = bullet.getRadius();
+        double shipRadius = this.getRadius();
+        double newXPositionBullet = bullet.getPositionX() + bulletRadius + shipRadius + 1;
+        bullet.setPositionX(newXPositionBullet);
+
+
     }
 }
 

@@ -301,13 +301,14 @@ public abstract class Entity {
     public double getTimeToCollisionWithBoundary(){
         double[] velocity = {getVelocityX(), getVelocityY()};
         double[] position = {getPositionX(), getPositionY()};
+        double[] worldSize = {getWorld().getWidth(), getWorld().getHeight()};
         double time = Double.POSITIVE_INFINITY;
         //in direction X:
         //double x = (afstand tussen rand radius en  horizontale boundary) / Xsnelheid
-        double timeInDirectionX = (getWorld().getWidth() - position[0] - getRadius()) / velocity[0];
+        double timeInDirectionX = (worldSize[0] - position[0] - getRadius()) / velocity[0];
         //in direction Y:
         //double y = (afstand tussen rand radius en verticale boundary) / Ysnelheid
-        double timeInDirectionY = (getWorld().getHeight() - position[1] - getRadius()) / velocity[1];
+        double timeInDirectionY = (worldSize[1] - position[1] - getRadius()) / velocity[1];
 
         // choose smallest of the two
         return time;

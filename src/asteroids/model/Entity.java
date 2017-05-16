@@ -473,7 +473,6 @@ public abstract class Entity {
 
     /**
      * Compute the distance between two entities. If the two compared entities are the same, distance is 0.
-     *
      * @return The distance between this entity and the given other entity.
      * Calculated distance
      * | return (Math.sqrt(Math.pow((x1 - x2), 2) + Math.pow((y1 - y2), 2)));
@@ -491,8 +490,16 @@ public abstract class Entity {
         }
     }
 
-    public double[] getPositionCollisionEntity(Entity ship2){
+    /**
+     * Compute the distance between the centers of two entities.
+     * @param entity2
+     * @return
+     */
+    public double getDistanceBetweenCenter(Entity entity2){
 
+    }
+
+    public double[] getPositionCollisionEntity(Entity ship2){
         double time = this.getTimeCollisionWithEntity(ship2);
         if (time == Double.POSITIVE_INFINITY) {
             return null;

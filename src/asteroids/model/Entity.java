@@ -314,13 +314,20 @@ public abstract class Entity {
         return time;
     }
 
+    public double[] getMovementPrediction(double t){
+        double[] velocity = {getVelocityX(), getVelocityY()};
+        double[] position = {getPositionX(), getPositionY()};
+        double[] newPosition = {position[0] + velocity[0] * t, position[1] + velocity[1] * t};
+        return newPosition;
+    }
+
     //TODO
     /**
      * Method returning a pair of coordinates that represent the location of collision between an entity and a boundary.
      * @return
      */
     public double[] getCollisionPositionWithBoundary() {
-        double[] collisionPosition = {};
+        double[] collisionPosition = this.getMovementPrediction(getTimeToCollisionWithBoundary());
         return collisionPosition;
     }
 

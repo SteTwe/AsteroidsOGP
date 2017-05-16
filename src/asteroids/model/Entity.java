@@ -302,6 +302,10 @@ public abstract class Entity {
         double[] velocity = {getVelocityX(), getVelocityY()};
         double[] position = {getPositionX(), getPositionY()};
         double time = Double.POSITIVE_INFINITY;
+        //in direction X:
+        //double x = (afstand tussen rand radius en  horizontale boundary) / Xsnelheid
+        //in direction Y:
+        //double y = (afstand tussen rand radius en verticale boundary) / Ysnelheid
         return time;
     }
 

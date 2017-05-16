@@ -307,6 +307,8 @@ public abstract class Entity {
         double timeInDirectionX = (getWorld().getWidth() - position[0] - getRadius()) / velocity[0];
         //in direction Y:
         //double y = (afstand tussen rand radius en verticale boundary) / Ysnelheid
+        double timeInDirectionY = (getWorld().getHeight() - position[1] - getRadius()) / velocity[1];
+
         // choose smallest of the two
         return time;
     }

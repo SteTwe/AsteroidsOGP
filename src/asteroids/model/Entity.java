@@ -29,7 +29,7 @@ public abstract class Entity {
     }
 
     /**
-     * Returning the x-coordiante of this entity's position.
+     * Returning the x-coordinate of this entity's position.
      * @return  Returns the x-coordinate of this entity.
      *          | result == this.positionX
      */

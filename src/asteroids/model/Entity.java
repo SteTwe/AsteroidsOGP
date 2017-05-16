@@ -453,8 +453,9 @@ public abstract class Entity {
     /**
      * Check if two entities overlap.
      *
-     * @param entity2 | Second entity
-     * @return | True if the entities overlap
+     * @param       entity2
+     *              | Second entity
+     * @return      | True if the entities overlap
      */
     public boolean overlap(Entity entity2) {
         if (this == entity2) {
@@ -479,15 +480,7 @@ public abstract class Entity {
      *              | return (Math.sqrt(Math.pow((x1 - x2), 2) + Math.pow((y1 - y2), 2)));
      */
     public double getDistanceBetween(Entity entity2) {
-        double x1 = this.getPositionX();
-        double y1 = this.getPositionY();
-        double x2 = entity2.getPositionX();
-        double y2 = entity2.getPositionY();
-        if (this == entity2) {
-            return 0;
-        } else {
-            return (Math.sqrt(Math.pow((x1 - x2), 2) + Math.pow((y1 - y2), 2)));
-        }
+
     }
 
     /**
@@ -496,7 +489,7 @@ public abstract class Entity {
      * @return
      */
     public double getDistanceBetweenCenter(Entity entity2){
-
+        
     }
 
     public double[] getPositionCollisionEntity(Entity ship2){

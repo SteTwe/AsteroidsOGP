@@ -296,7 +296,7 @@ public abstract class Entity {
     /**
      * Method returning the time until THE FIRST collision that happens between this entity and a boundary.
      * @return
-     * shall return Double.POSITIVE_INFINITY if the entities never collide. => default is Double.POSITIVE_INFINITY
+     * shall return Double.POSITIVE_INFINITY if the entity and boundary never collide. => default is Double.POSITIVE_INFINITY
      */
     public double getTimeToCollisionWithBoundary(){
         double[] velocity = {getVelocityX(), getVelocityY()};

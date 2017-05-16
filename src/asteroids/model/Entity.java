@@ -304,8 +304,10 @@ public abstract class Entity {
         double time = Double.POSITIVE_INFINITY;
         //in direction X:
         //double x = (afstand tussen rand radius en  horizontale boundary) / Xsnelheid
+        double timeInDirectionX = (getWorld().getWidth() - position[0] - getRadius()) / velocity[0];
         //in direction Y:
         //double y = (afstand tussen rand radius en verticale boundary) / Ysnelheid
+        // choose smallest of the two
         return time;
     }
 

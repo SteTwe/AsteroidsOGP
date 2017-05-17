@@ -342,8 +342,12 @@ public abstract class Entity {
 
         // if ((getCollisionPositionWithBoundary(positionX) == 0) || (getCollisionPositionWithBoundary(positionX) == getWorld().getHeight())
         // negate y-velocity
+        if (getCollisionPositionWithBoundary()[0] == 0 || getCollisionPositionWithBoundary()[0] == getWorld().getHeight())
+            this.velocityY = - velocityY;
         // if ((getCollisionPositionWithBoundary(positionY) == 0) || (getCollisionPositionWithBoundary(positionY) == getWorld().getWidth())
         // negate x-velocity
+        if (getCollisionPositionWithBoundary()[1] == 0 || getCollisionPositionWithBoundary()[1] == getWorld().getWidth())
+            this.velocityX = - velocityX;
 
     }
 

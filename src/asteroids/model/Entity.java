@@ -3,6 +3,7 @@ package asteroids.model;
 import be.kuleuven.cs.som.annotate.Basic;
 import be.kuleuven.cs.som.annotate.Raw;
 
+import java.awt.*;
 import java.util.DoubleSummaryStatistics;
 
 /**
@@ -21,11 +22,12 @@ public abstract class Entity {
      * @param velocityY The velocity in the y-direction of this new ship.
      * @param radius    The radius of this new ship.
      */
-    public Entity(double positionX, double positionY, double velocityX, double velocityY) throws IllegalArgumentException {
+    public Entity(double positionX, double positionY, double velocityX, double velocityY, double radius) throws IllegalArgumentException {
         this.setPositionX(positionX);
         this.setPositionY(positionY);
         this.setVelocityX(velocityX);
         this.setVelocityY(velocityY);
+        this.setRadius(radius);
     }
 
     /**

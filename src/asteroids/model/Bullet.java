@@ -97,7 +97,7 @@ public class Bullet extends Entity{
      * COLLISION RELATED
      **************/
     /**
-     * Resolve collisions with bullets between this bullet and another entity, being a ship, a bullet or a minorplant.
+     * Resolve collisions with bullets between this bullet and another entity, being a ship, a bullet or a minorplanet.
      *
      * @param entity The entity this bullet collides with.
      * When two bullets collide, they are both terminated.
@@ -107,6 +107,7 @@ public class Bullet extends Entity{
      * When this bullet collides with a planetoid, the planetoid and bullet both die.
      */
     @Override
+    //TODO remove cuz in Entity
     public void collide(Entity entity){
         if (entity instanceof Ship){
             if (this.getBulletSource() == entity){

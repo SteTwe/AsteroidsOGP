@@ -598,6 +598,48 @@ public class Ship extends Entity{
 
 
     }
+
+    public void shipBounce(Ship other){
+        //(vxi, vyi) = vxi + Jx/mi, vyi + Jy/mi)
+        //(vxj, vyj) = vxj + Jx/mj, vyj + JY/mj)
+        //Jx = (J deltax) / sigma
+        //Jy = (J deltay) / sigma
+
+        //mi
+        double shipMass = this.getShipMass();
+        //mj
+        double otherMass = other.getShipMass();
+
+        double[] deltaR = {other.getPositionX() - this.getPositionX(), other.getPositionY() - this.getPositionY()};
+        double[] deltaV = {other.getVelocityX() - this.getVelocityX(), other.getVelocityY() - this.getVelocityY()};
+        double sigma = this.getRadius() + other.getRadius();
+
+        //J = (2 mi mj * (deltav * deltar)/(radius*(mi + mj))
+        double j = (2 * shipMass * otherMass * (deltaV[0] * deltaR[0] + deltaV[1] * deltaR[1])) / sigma * (shipMass + otherMass);
+
+        //jx & jy
+        double jx = (j * deltaR[0] / sigma);
+        double jy = (j * deltaR[1] / sigma);
+
+
+        double currentShipVelocityX = this.getVelocityX();      //vxi
+        double currentShipVelocityY = this.getVelocityY();      //vyi
+        double currentEntityVelocityX = other.getVelocityX();  //vxj
+        double currentEntityVelocityY = other.getVelocityY();  //vyj
+
+        double newShipVelocityX = currentShipVelocityX + jx / shipMass;   //vxi + Jx/mi
+        double newShipVelocityY = currentShipVelocityY + jy / shipMass;   //vyi + Jy/mi
+        double newEntityVelocityX = currentEntityVelocityX + jx / otherMass; //vxj + Jx/mj
+        double newEntityVelocityY = currentEntityVelocityY + jy / otherMass; //vyj + Jy/mj
+
+        this.setVelocityX(newShipVelocityX);
+        this.setVelocityY(newShipVelocityY);
+        other.setVelocityX(newEntityVelocityX);
+        other.setVelocityY(newEntityVelocityY);
+
+    }
+
+    
 }
 
 

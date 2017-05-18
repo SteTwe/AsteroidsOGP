@@ -559,7 +559,48 @@ public abstract class Entity {
     /**
      * method is implemented in Ship and Bullet
      */
-    public abstract void collide(Entity entity);
+    public void collide(Entity entity){
+        if (this instanceof Bullet){
+            Bullet bullet = (Bullet) this;
+            if (entity instanceof Ship){
+                if (bullet.getBulletSource() == entity){
+                    ((Ship) entity).loadBullet(bullet);
+                }
+                else{
+                    bullet.terminate();
+                    entity.terminate();
+                }
+
+            }
+            else {
+                this.terminate();
+                entity.terminate();
+            }
+        }
+        if (this instanceof Ship){
+            Ship ship = (Ship) this;
+            if (entity instanceof Ship){
+                ship.shipBounce((Ship) entity);
+            }
+            else if (entity instanceof Bullet){
+                Bullet bullet = (Bullet) entity;
+                if (bullet.getBulletSource() == ship){
+                    ship.loadBullet(bullet);
+                }
+                else {
+                    bullet.terminate();
+                    ship.terminate();
+                }
+            }
+            else if (entity instanceof Asteroid){
+                ship.terminate();
+            }
+            else if (entity instanceof Planetoid){
+                ship.teleportShip();
+            }
+        }
+
+    }
 
 }
 

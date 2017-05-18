@@ -52,7 +52,7 @@ public class Facade implements IFacade {
 
 	@Override
 	public double getShipMass(Ship ship) throws ModelException {
-		return ship.getMass();
+		return ship.getShipMass();
 	}
 
 	@Override
@@ -125,7 +125,7 @@ public class Facade implements IFacade {
 
 	@Override
 	public double getBulletMass(Bullet bullet) throws ModelException {
-		return bullet.getMass();
+		return bullet.getBulletMass();
 	}
 
 	@Override

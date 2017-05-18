@@ -71,7 +71,7 @@ public class Bullet extends Entity{
      *
      * @return
      */
-    public double getMass(){
+    public double getBulletMass(){
         double radius = getRadius(); //getting getRadius from superclass Entity
         return(3/4 * Math.PI * Math.pow(radius, 3) * getDensity());
     }

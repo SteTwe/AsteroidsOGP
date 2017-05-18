@@ -285,16 +285,16 @@ public class Ship extends Entity{
 
     public void setMass(double mass){
         if (isValidMass(mass))
-            this.mass = getMass();
+            this.mass = mass;
         else
             //Temporary
             this.mass = getMinMass();
     }
 
-    public double getMass(){
+    public double getShipMass(){
         double totalMass = this.mass;
         for (Bullet bullet : this.getBullets())
-            totalMass += bullet.getMass();
+            totalMass += bullet.getBulletMass();
         return totalMass;
     }
 
@@ -371,7 +371,7 @@ public class Ship extends Entity{
     }
 
     public double getAcceleration(){
-        double acceleration = getThrustForce()/getMass();
+        double acceleration = getThrustForce()/ getShipMass();
         if (acceleration < 0)
             return 0;
         else
@@ -448,9 +448,9 @@ public class Ship extends Entity{
             //Jy = (J deltay) / sigma
 
             //mi
-            double shipMass = this.getMass();
+            double shipMass = this.getShipMass();
             //mj
-            double otherMass = other.getMass();
+            double otherMass = other.getShipMass();
 
             double[] deltaR = {other.getPositionX() - this.getPositionX(), other.getPositionY() - this.getPositionY()};
             double[] deltaV = {other.getVelocityX() - this.getVelocityX(), other.getVelocityY() - this.getVelocityY()};

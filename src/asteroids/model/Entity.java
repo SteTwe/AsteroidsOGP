@@ -348,6 +348,11 @@ public abstract class Entity {
     /******************
      * WORLD RELATED
      **************/
+    public void setWorld(World world){
+        if (getWorld() == null){
+            this.world = world;
+        }
+    }
     public World getWorld(){
         return this.world;
     }

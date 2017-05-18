@@ -18,4 +18,19 @@ public abstract class MinorPlanet extends Entity {
         this.world = world;
     }
 
+    @Override
+    public void collideWith(Bullet bullet) {
+        bullet.terminate();
+        this.terminate();
+    }
+
+    @Override
+    public void collideWith(Collideable other) {
+        if (other instanceof MinorPlanet){
+            this.bounceOffEntity((MinorPlanet) other);
+        }
+    }
+
+    @Override
+    public abstract void collideWith(Ship ship);
 }

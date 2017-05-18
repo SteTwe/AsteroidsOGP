@@ -9,11 +9,6 @@ public class Planetoid extends MinorPlanet {
         super(positionX, positionY, velocityX, velocityY, radius);
     }
 
-    @Override
-    public void collideWith(Bullet bullet) {
-        this.terminate();
-        bullet.terminate();
-    }
 
     @Override
     public void collideWith(Collideable other) {
@@ -23,13 +18,5 @@ public class Planetoid extends MinorPlanet {
     @Override
     public void collideWith(Ship ship) {
         ship.teleportShip();
-    }
-
-    public void collideWith(Planetoid planetoid){
-        this.bounceOffEntity(planetoid);
-    }
-
-    public void collideWith(Asteroid asteroid){
-        this.bounceOffEntity(asteroid);
     }
 }

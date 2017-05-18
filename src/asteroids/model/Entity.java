@@ -324,25 +324,16 @@ public abstract class Entity implements Collideable {
         return 0;
     }
 
-    public double getBulletMass(){
-        return this.calcMass();
-    }
-
-    public double getAsteroidMass(){
-        return this.calcMass();
-    }
-
-    public double getPlanetoidMass(){
-        return this.calcMass();
-    }
-
-    public double getShipMass(){
-        Ship ship = (Ship) this;
-        double totalmass = this.calcMass();
-        for (Bullet bullet : ship.getBullets()){
-            totalmass += bullet.getBulletMass();
+    public double getMass(){
+        if (this instanceof Ship){
+            Ship ship = (Ship) this;
+            double totalmass = this.calcMass();
+            for (Bullet bullet : ship.getBullets()){
+                totalmass += bullet.getMass();
+            }
+            return totalmass;
         }
-        return totalmass;
+        else return this.calcMass();
     }
 
     /******************
@@ -556,13 +547,43 @@ public abstract class Entity implements Collideable {
         }
     }
 
-    public void bounceOffEntity(Entity entity){
-        if (this instanceof Ship) {
-            ((Ship) this).shipBounce((Ship) entity);
-        }
-        if (this instanceof MinorPlanet){
-            ((MinorPlanet) this).minorPlanetBounce((MinorPlanet) entity);
-        }
+    public void bounceOffEntity(Entity other){
+        //(vxi, vyi) = vxi + Jx/mi, vyi + Jy/mi)
+        //(vxj, vyj) = vxj + Jx/mj, vyj + JY/mj)
+        //Jx = (J deltax) / sigma
+        //Jy = (J deltay) / sigma
+
+        //mi
+        double thisMass = this.getMass();
+        //mj
+        double otherMass = other.getMass();
+
+        double[] deltaR = {other.getPositionX() - this.getPositionX(), other.getPositionY() - this.getPositionY()};
+        double[] deltaV = {other.getVelocityX() - this.getVelocityX(), other.getVelocityY() - this.getVelocityY()};
+        double sigma = this.getRadius() + other.getRadius();
+
+        //J = (2 mi mj * (deltav * deltar)/(radius*(mi + mj))
+        double j = (2 * thisMass * otherMass * (deltaV[0] * deltaR[0] + deltaV[1] * deltaR[1])) / sigma * (thisMass + otherMass);
+
+        //jx & jy
+        double jx = (j * deltaR[0] / sigma);
+        double jy = (j * deltaR[1] / sigma);
+
+
+        double currentThisVelocityX = this.getVelocityX();      //vxi
+        double currentShipVelocityY = this.getVelocityY();      //vyi
+        double currentEntityVelocityX = other.getVelocityX();  //vxj
+        double currentEntityVelocityY = other.getVelocityY();  //vyj
+
+        double newThisVelocityX = currentThisVelocityX + jx / thisMass;   //vxi + Jx/mi
+        double newThisVelocityY = currentShipVelocityY + jy / thisMass;   //vyi + Jy/mi
+        double newEntityVelocityX = currentEntityVelocityX + jx / otherMass; //vxj + Jx/mj
+        double newEntityVelocityY = currentEntityVelocityY + jy / otherMass; //vyj + Jy/mj
+
+        this.setVelocityX(newThisVelocityX);
+        this.setVelocityY(newThisVelocityY);
+        other.setVelocityX(newEntityVelocityX);
+        other.setVelocityY(newEntityVelocityY);
     }
 
 

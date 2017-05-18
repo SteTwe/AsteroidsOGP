@@ -27,8 +27,16 @@ public abstract class Entity {
         this.setPositionY(positionY);
         this.setVelocityX(velocityX);
         this.setVelocityY(velocityY);
-        this.setRadius(radius);
+        if (this.isValidRadius(radius)) {
+            this.setRadius(radius);
+        }
+        else throw new IllegalArgumentException("Invalid radius");
     }
+
+    /****************
+     * Variables entity
+     */
+    public double radius;
 
     /**
      * Returning the x-coordinate of this entity's position.
@@ -204,12 +212,14 @@ public abstract class Entity {
         return radius;
     }
 
-    private double radius;
+
 
     /**
      * Constant holding the minimum radius of an entity.
      */
-    public double minRadius;
+    public double minRadiusShip = 10;
+
+    public double minRadiusBullet = 1;
 
     /**
      * Return if the given radius is a valid radius for this entity.
@@ -220,7 +230,12 @@ public abstract class Entity {
      * @pre The radius should be larger than the minimum radius
      */
     public boolean isValidRadius(double radius){
-        return ((radius > minRadius) && (Double.isNaN(radius)));
+        if (this instanceof Bullet) {
+            return ((radius > minRadiusBullet) && (Double.isNaN(radius)));
+        }
+        else if (this instanceof Ship){
+            return ((radius> minRadiusShip) && (Double.isNaN(radius)));
+        }
     }
 
     /**

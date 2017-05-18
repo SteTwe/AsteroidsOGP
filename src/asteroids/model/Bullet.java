@@ -20,11 +20,7 @@ public class Bullet extends Entity{
      */
 
     public Bullet(double positionX, double positionY, double velocityX, double velocityY, double radius) throws IllegalArgumentException {
-        super(positionX, positionY, velocityX, velocityY);
-        if (isValidRadius(radius)){
-            this.setRadius(radius);
-        }
-        else throw new IllegalArgumentException();
+        super(positionX, positionY, velocityX, velocityY, radius);
     }
 
     /**
@@ -81,19 +77,6 @@ public class Bullet extends Entity{
         return(3/4 * Math.PI * Math.pow(radius, 3) * getDensity());
     }
 
-    /**
-     * Constant holding the minimum radius of a bullet.
-     */
-    public static double minRadius = 1;
-
-    public boolean isValidRadius(double radius){
-        return ((radius > minRadius) && (!Double.isNaN(radius)));
-    }
-
-    @Basic
-    public double getMinRadius(){
-        return minRadius;
-    }
 
     /**
      * Constant holding the density of a bullet following the given formula.

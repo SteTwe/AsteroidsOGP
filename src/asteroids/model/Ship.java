@@ -39,12 +39,8 @@ public class Ship extends Entity{
      *
      */
     public Ship(double positionX, double positionY, double velocityX, double velocityY, double radius, double angle, double mass) throws IllegalArgumentException {
-        super (positionX, positionY, velocityX, velocityY);
+        super (positionX, positionY, velocityX, velocityY, radius);
         this.setAngle(angle);
-        if (isValidRadius(radius)) {
-            this.setRadius(radius);
-        }
-        else throw new IllegalArgumentException();
         this.setMass(mass);
     }
     /**
@@ -110,53 +106,6 @@ public class Ship extends Entity{
         return (!Double.isNaN(angle));
     }
 
-    /**
-     * Return the radius of this ship.
-     *
-     * @return Return the radius for this ship.
-     * | result == this.radius
-     */
-    public double getRadius() {
-        return this.radius;
-    }
-
-    /**
-     * Variable holding the radius for this ship
-     */
-    private double radius;
-
-    /**
-     * Set a new radius for this ship.
-     *
-     * @param radius The new radius for this ship.
-     * @pre The new radius must be valid.
-     * if (isValidRadius)
-     * @post If the new radius is valid for this ship, the ship's radius is set to the new radius.
-     * | this.radius = radius
-     */
-    public void setRadius(double radius) {
-        if (isValidRadius(radius))
-            this.radius = radius;
-        else
-            this.radius = 10;
-    }
-
-    /**
-     * Return if the given radius is a valid radius for this ship.
-     *
-     * @param radius The given radius.
-     * @return True if the given angle is larger than the minimum radius and must be a number.
-     * | return ((radius > minRadius) && (Double.isNaN(radius)))
-     * @pre The radius should be larger than the minimum radius (which is 10km)
-     */
-    public boolean isValidRadius(double radius) {
-        return ((radius > minRadius) && (!Double.isNaN(radius)));
-    }
-
-    /**
-     * Constant holding the minimum radius of a ship. Currently the ship's radius can't be changed during runtime.
-     */
-    public static final double minRadius = 10;
 
 
     /**

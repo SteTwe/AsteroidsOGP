@@ -23,21 +23,21 @@ public class Facade implements IFacade {
 	@Override
 	public Ship createShip(double positionX, double positionY, double velocityX, double velocityY, double radius, double angle)
 			throws ModelException {
-		if(Double.isNaN(positionX)|| Double.isNaN(positionY) 
-				|| Double.isNaN(velocityX) || Double.isNaN(velocityY) || Double.isNaN(radius) 
+		if (Double.isNaN(positionX) || Double.isNaN(positionY)
+				|| Double.isNaN(velocityX) || Double.isNaN(velocityY) || Double.isNaN(radius)
 				|| Double.isNaN(angle)) throw new ModelException("Invalid argument");
 		if (radius < 0) throw new ModelException("Radius below zero");
-		return new Ship(positionX, positionY, velocityX, velocityY, radius, angle,0);
+		return new Ship(positionX, positionY, velocityX, velocityY, radius, angle, 0);
 	}
 
 	@Override
 	public Ship createShip(double x, double y, double xVelocity, double yVelocity, double radius, double direction,
-						   double mass) throws ModelException{
-		if(Double.isNaN(x)|| Double.isNaN(y)
+						   double mass) throws ModelException {
+		if (Double.isNaN(x) || Double.isNaN(y)
 				|| Double.isNaN(xVelocity) || Double.isNaN(yVelocity) || Double.isNaN(radius)
 				|| Double.isNaN(direction) || Double.isNaN(mass)) throw new ModelException("Invalid argument");
 		if (radius < 0) throw new ModelException("Radius below zero");
-		return new Ship(x,y, xVelocity, yVelocity, radius, direction, mass);
+		return new Ship(x, y, xVelocity, yVelocity, radius, direction, mass);
 	}
 
 	@Override
@@ -77,9 +77,9 @@ public class Facade implements IFacade {
 
 	@Override
 	public void move(Ship ship, double dt) throws ModelException {
-		try{
+		try {
 			ship.move(dt);
-		}catch (Exception e){
+		} catch (Exception e) {
 			throw new ModelException(e);
 		}
 	}
@@ -91,7 +91,7 @@ public class Facade implements IFacade {
 
 	@Override
 	public Bullet createBullet(double x, double y, double xVelocity, double yVelocity, double radius) throws ModelException {
-		if(Double.isNaN(x)|| Double.isNaN(y)
+		if (Double.isNaN(x) || Double.isNaN(y)
 				|| Double.isNaN(xVelocity) || Double.isNaN(yVelocity)
 				|| Double.isNaN(radius)) throw new ModelException("Invalid argument");
 		if (radius < 0) throw new ModelException("Radius below zero");
@@ -110,12 +110,12 @@ public class Facade implements IFacade {
 
 	@Override
 	public double[] getBulletPosition(Bullet bullet) throws ModelException {
-		return new double[] {bullet.getPositionX(), bullet.getPositionY()};
+		return new double[]{bullet.getPositionX(), bullet.getPositionY()};
 	}
 
 	@Override
 	public double[] getBulletVelocity(Bullet bullet) throws ModelException {
-		return new double[] {bullet.getVelocityX(), bullet.getVelocityY()};
+		return new double[]{bullet.getVelocityX(), bullet.getVelocityY()};
 	}
 
 	@Override
@@ -164,7 +164,7 @@ public class Facade implements IFacade {
 
 	@Override
 	public double[] getWorldSize(World world) throws ModelException {
-		return new double[] {world.getWidth(), world.getHeight()};
+		return new double[]{world.getWidth(), world.getHeight()};
 	}
 
 	@Override
@@ -187,7 +187,7 @@ public class Facade implements IFacade {
 		world.removeShip(ship);
 	}
 
-    @Override
+	@Override
 	public void addBulletToWorld(World world, Bullet bullet) throws ModelException {
 		world.addBullet(bullet);
 	}
@@ -198,110 +198,109 @@ public class Facade implements IFacade {
 	}
 
 
-    /**************
-     * SHIP: Methods related to loaded bullets
-     *************/
+	/**************
+	 * SHIP: Methods related to loaded bullets
+	 *************/
 
-    @Override
-    public Set<? extends Bullet> getBulletsOnShip(Ship ship) throws ModelException {
-        return ship.getBullets();
-    }
+	@Override
+	public Set<? extends Bullet> getBulletsOnShip(Ship ship) throws ModelException {
+		return ship.getBullets();
+	}
 
-    @Override
-    public int getNbBulletsOnShip(Ship ship) throws ModelException {
-        return ship.getBullets().size();
-    }
+	@Override
+	public int getNbBulletsOnShip(Ship ship) throws ModelException {
+		return ship.getBullets().size();
+	}
 
-    @Override
-    public void loadBulletOnShip(Ship ship, Bullet bullet) throws ModelException {
-    	ship.loadBullet(bullet);
-    }
+	@Override
+	public void loadBulletOnShip(Ship ship, Bullet bullet) throws ModelException {
+		ship.loadBullet(bullet);
+	}
 
-    @Override
-    public void loadBulletsOnShip(Ship ship, Collection<Bullet> bullets) throws ModelException {
-    	ship.loadSetOfBullets(bullets);
-    }
+	@Override
+	public void loadBulletsOnShip(Ship ship, Collection<Bullet> bullets) throws ModelException {
+		ship.loadSetOfBullets(bullets);
+	}
 
-    @Override
-    public void removeBulletFromShip(Ship ship, Bullet bullet) throws ModelException {
-    	ship.removeBulletShip(bullet);
-    }
+	@Override
+	public void removeBulletFromShip(Ship ship, Bullet bullet) throws ModelException {
+		ship.removeBulletShip(bullet);
+	}
 
-    @Override
-    public void fireBullet(Ship ship) throws ModelException {
+	@Override
+	public void fireBullet(Ship ship) throws ModelException {
 		ship.fireBullet();
-    }
+	}
 
-    @Override
+	@Override
 	public double[] getShipPosition(Ship ship) throws ModelException {
 		return new double[]{ship.getPositionX(), ship.getPositionY()};
 	}
 
 
+	/******************
+	 * COLLISIONS
+	 **************/
+	@Override
+	public double getTimeCollisionBoundary(Object object) throws ModelException {
+		return 0;
+	}
 
-    /******************
-     * COLLISIONS
-     **************/
-    @Override
-    public double getTimeCollisionBoundary(Object object) throws ModelException {
-        return 0;
-    }
+	@Override
+	public double[] getPositionCollisionBoundary(Object object) throws ModelException {
+		return new double[0];
+	}
 
-    @Override
-    public double[] getPositionCollisionBoundary(Object object) throws ModelException {
-        return new double[0];
-    }
+	@Override
+	public double getTimeCollisionEntity(Object entity1, Object entity2) throws ModelException {
+		return 0;
+	}
 
-    @Override
-    public double getTimeCollisionEntity(Object entity1, Object entity2) throws ModelException {
-        return 0;
-    }
+	@Override
+	public double[] getPositionCollisionEntity(Object entity1, Object entity2) throws ModelException {
+		return new double[0];
+	}
 
-    @Override
-    public double[] getPositionCollisionEntity(Object entity1, Object entity2) throws ModelException {
-        return new double[0];
-    }
+	@Override
+	public double getTimeNextCollision(World world) throws ModelException {
+		return 0;
+	}
 
-    @Override
-    public double getTimeNextCollision(World world) throws ModelException {
-        return 0;
-    }
+	@Override
+	public double[] getPositionNextCollision(World world) throws ModelException {
+		return new double[0];
+	}
 
-    @Override
-    public double[] getPositionNextCollision(World world) throws ModelException {
-        return new double[0];
-    }
+	@Override
+	public void evolve(World world, double dt, CollisionListener collisionListener) throws ModelException {
 
-    @Override
-    public void evolve(World world, double dt, CollisionListener collisionListener) throws ModelException {
+	}
 
-    }
+	@Override
+	public Object getEntityAt(World world, double x, double y) throws ModelException {
+		return world.getEntityAtPosition(x, y);
+	}
 
-    @Override
-    public Object getEntityAt(World world, double x, double y) throws ModelException {
-        return world.getEntityAtPosition(x,y);
-    }
+	@Override
+	public Set<? extends Object> getEntities(World world) throws ModelException {
+		return world.getEntitySet();
+	}
 
-    @Override
-    public Set<? extends Object> getEntities(World world) throws ModelException {
-        return world.getEntitySet();
-    }
-
-    @Override
-    public void thrust(Ship ship, double amount) throws ModelException {
-        try{
-            ship.thrust(amount);
-        }catch (Exception e){
-            throw new ModelException(e);
-        }
-    }
+	@Override
+	public void thrust(Ship ship, double amount) throws ModelException {
+		try {
+			ship.thrust(amount);
+		} catch (Exception e) {
+			throw new ModelException(e);
+		}
+	}
 
 
-    /******************
-     * METHODS PART 1
-     **************/
+	/******************
+	 * METHODS PART 1
+	 **************/
 
-    @Override
+	@Override
 	public double[] getShipVelocity(Ship ship) throws ModelException {
 		return new double[]{ship.getVelocityX(), ship.getVelocityY()};
 	}
@@ -318,9 +317,9 @@ public class Facade implements IFacade {
 
 	@Override
 	public void turn(Ship ship, double angle) throws ModelException {
-		try{
+		try {
 			ship.turn(angle);
-		}catch (Exception e){
+		} catch (Exception e) {
 			throw new ModelException(e);
 		}
 	}
@@ -349,44 +348,20 @@ public class Facade implements IFacade {
 	 * PART 3
 	 **************/
 
+	/******************
+	 * ADMINISTRATIVE STUFF
+	 **************/
 	@Override
-	public Asteroid createAsteroid(double x, double y, double xVelocity, double yVelocity, double radius) throws ModelException {
+	public int getNbStudentsInTeam() {
+		return 2;
+	}
+
+	/**************
+	 * WORLD: Asteroids and planetoids
+	 *************/
+	@Override
+	public Set<? extends Asteroid> getWorldAsteroids(World world) throws ModelException {
 		return null;
-	}
-
-	@Override
-	public boolean isTerminatedAsteroid(Asteroid asteroid) throws ModelException {
-		return false;
-	}
-
-	@Override
-	public List<Object> executeProgram(Ship ship, double dt) throws ModelException {
-		return null;
-	}
-
-	@Override
-	public World getPlanetoidWorld(Planetoid planetoid) throws ModelException {
-		return null;
-	}
-
-	@Override
-	public Program getShipProgram(Ship ship) throws ModelException {
-		return null;
-	}
-
-	@Override
-	public double getAsteroidRadius(Asteroid asteroid) throws ModelException {
-		return 0;
-	}
-
-	@Override
-	public double getPlanetoidMass(Planetoid planetoid) throws ModelException {
-		return 0;
-	}
-
-	@Override
-	public double[] getPlanetoidPosition(Planetoid planetoid) throws ModelException {
-		return new double[0];
 	}
 
 	@Override
@@ -395,7 +370,7 @@ public class Facade implements IFacade {
 	}
 
 	@Override
-	public void removePlanetoidFromWorld(World world, Planetoid planetoid) throws ModelException {
+	public void removeAsteroidFromWorld(World world, Asteroid asteroid) throws ModelException {
 
 	}
 
@@ -405,8 +380,22 @@ public class Facade implements IFacade {
 	}
 
 	@Override
-	public double getAsteroidMass(Asteroid asteroid) throws ModelException {
-		return 0;
+	public void addPlanetoidToWorld(World world, Planetoid planetoid) throws ModelException {
+
+	}
+
+	@Override
+	public void removePlanetoidFromWorld(World world, Planetoid planetoid) throws ModelException {
+
+	}
+
+
+	/**************
+	 * ASTEROID: Basic methods
+	 *************/
+	@Override
+	public Asteroid createAsteroid(double x, double y, double xVelocity, double yVelocity, double radius) throws ModelException {
+		return null;
 	}
 
 	@Override
@@ -415,37 +404,56 @@ public class Facade implements IFacade {
 	}
 
 	@Override
+	public boolean isTerminatedAsteroid(Asteroid asteroid) throws ModelException {
+		return false;
+	}
+
+	@Override
+	public double[] getAsteroidPosition(Asteroid asteroid) throws ModelException {
+		return new double[0];
+	}
+
+	@Override
+	public double[] getAsteroidVelocity(Asteroid asteroid) throws ModelException {
+		return new double[0];
+	}
+
+	@Override
+	public double getAsteroidRadius(Asteroid asteroid) throws ModelException {
+		return 0;
+	}
+
+	@Override
+	public double getAsteroidMass(Asteroid asteroid) throws ModelException {
+		return 0;
+	}
+
+	@Override
+	public World getAsteroidWorld(Asteroid asteroid) throws ModelException {
+		return null;
+	}
+
+	/**************
+	 * PLANETOID: Basic methods
+	 *************/
+
+	@Override
+	public Planetoid createPlanetoid(double x, double y, double xVelocity, double yVelocity, double radius, double totalTraveledDistance) throws ModelException {
+		return null;
+	}
+
+	@Override
 	public void terminatePlanetoid(Planetoid planetoid) throws ModelException {
 
 	}
 
 	@Override
-	public void addPlanetoidToWorld(World world, Planetoid planetoid) throws ModelException {
-
+	public boolean isTerminatedPlanetoid(Planetoid planetoid) throws ModelException {
+		return false;
 	}
 
 	@Override
-	public double getPlanetoidTotalTraveledDistance(Planetoid planetoid) throws ModelException {
-		return 0;
-	}
-
-	@Override
-	public void loadProgramOnShip(Ship ship, Program program) throws ModelException {
-
-	}
-
-	@Override
-	public double getPlanetoidRadius(Planetoid planetoid) throws ModelException {
-		return 0;
-	}
-
-	@Override
-	public IProgramFactory<?, ?, ?, ? extends Program> createProgramFactory() throws ModelException {
-		return null;
-	}
-
-	@Override
-	public double[] getAsteroidVelocity(Asteroid asteroid) throws ModelException {
+	public double[] getPlanetoidPosition(Planetoid planetoid) throws ModelException {
 		return new double[0];
 	}
 
@@ -455,41 +463,46 @@ public class Facade implements IFacade {
 	}
 
 	@Override
-	public void removeAsteroidFromWorld(World world, Asteroid asteroid) throws ModelException {
-
+	public double getPlanetoidRadius(Planetoid planetoid) throws ModelException {
+		return 0;
 	}
 
 	@Override
-	public World getAsteroidWorld(Asteroid asteroid) throws ModelException {
+	public double getPlanetoidMass(Planetoid planetoid) throws ModelException {
+		return 0;
+	}
+
+	@Override
+	public double getPlanetoidTotalTraveledDistance(Planetoid planetoid) throws ModelException {
+		return 0;
+	}
+
+	@Override
+	public World getPlanetoidWorld(Planetoid planetoid) throws ModelException {
+		return null;
+	}
+
+	/**********
+	 * PROGRAMS
+	 **********/
+
+	@Override
+	public Program getShipProgram(Ship ship) throws ModelException {
 		return null;
 	}
 
 	@Override
-	public Set<? extends Asteroid> getWorldAsteroids(World world) throws ModelException {
+	public void loadProgramOnShip(Ship ship, Program program) throws ModelException {
+
+	}
+
+	@Override
+	public List<Object> executeProgram(Ship ship, double dt) throws ModelException {
 		return null;
 	}
 
 	@Override
-	public Planetoid createPlanetoid(double x, double y, double xVelocity, double yVelocity, double radius, double totalTraveledDistance) throws ModelException {
+	public IProgramFactory<?, ?, ?, ? extends Program> createProgramFactory() throws ModelException {
 		return null;
 	}
-
-	@Override
-	public double[] getAsteroidPosition(Asteroid asteroid) throws ModelException {
-		return new double[0];
-	}
-
-	@Override
-	public boolean isTerminatedPlanetoid(Planetoid planetoid) throws ModelException {
-		return false;
-	}
-
-	/******************
-	 * ADMINISTRATIVE STUFF
-	 **************/
-	@Override
-	public int getNbStudentsInTeam() {
-		return 2;
-	}
-
 }

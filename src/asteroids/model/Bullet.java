@@ -67,26 +67,6 @@ public class Bullet extends Entity{
         this.bulletSource = ship;
     }
 
-    /**
-     *
-     * @return
-     */
-    public double getBulletMass(){
-        double radius = getRadius(); //getting getRadius from superclass Entity
-        return(3/4 * Math.PI * Math.pow(radius, 3) * getDensity());
-    }
-
-
-    /**
-     * Constant holding the density of a bullet following the given formula.
-     * 7.8 * 10^12 kg/m^3
-     */
-    private double density = 7.8 * Math.pow(10, 12);
-
-    public double getDensity(){
-        return density;
-    }
-
     public void setWorld(World world){
         this.world = world;
     }

@@ -335,12 +335,20 @@ public abstract class Entity {
     public double getPlanetoidMass(){
         return this.calcMass();
     }
-    
+
+    public double getShipMass(){
+        Ship ship = (Ship) this;
+        double totalmass = this.calcMass();
+        for (Bullet bullet : ship.getBullets()){
+            totalmass += bullet.getBulletMass();
+        }
+        return totalmass;
+    }
 
     /******************
      * WORLD RELATED
      **************/
-    private World getWorld(){
+    public World getWorld(){
         return this.world;
     }
 

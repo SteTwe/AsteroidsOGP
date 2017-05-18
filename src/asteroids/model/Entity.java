@@ -237,7 +237,7 @@ public abstract class Entity {
      * Return if the given radius is a valid radius for this entity.
      *
      * @param radius The given radius.
-     * @return True if the given angle is larger than the minimum radius and must be a number.
+     * @return True if the given radius is larger than the minimum radius and must be a number.
      *          | return ((radius > minRadius) && (Double.isNaN(radius)))
      * @pre The radius should be larger than the minimum radius
      */

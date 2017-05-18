@@ -43,8 +43,9 @@ public class Ship extends Entity{
         this.setAngle(angle);
         this.setMass(mass);
     }
+
     /**
-     * Constant holding the.
+     * Constant holding the speed of light.
      */
     private static double SPEED_OF_LIGHT = 300000;
 
@@ -115,10 +116,6 @@ public class Ship extends Entity{
        super.move(duration);
     }
 
-    private boolean isValidDuration(double duration) {
-        return duration >= 0;
-    }
-
     /**
      * Method to increase (or decrease) the velocity of this ship.
      *
@@ -147,7 +144,6 @@ public class Ship extends Entity{
             setVelocityY(newVelocityY);
         }
     }
-
 
     /**
      * Turn the ship by adding a given angle to the current orientation. Angle has to be in radians and must be between 0 and 2π.
@@ -295,7 +291,6 @@ public class Ship extends Entity{
             this.mass = getMinMass();
     }
 
-    @Override
     public double getMass(){
         double totalMass = this.mass;
         for (Bullet bullet : this.getBullets())
@@ -446,6 +441,7 @@ public class Ship extends Entity{
     @Override
     public void collide(Entity entity) {
         if (entity instanceof Ship) {
+            Ship other = (Ship) entity;
             //(vxi, vyi) = vxi + Jx/mi, vyi + Jy/mi)
             //(vxj, vyj) = vxj + Jx/mj, vyj + JY/mj)
             //Jx = (J deltax) / sigma
@@ -454,14 +450,14 @@ public class Ship extends Entity{
             //mi
             double shipMass = this.getMass();
             //mj
-            double entityMass = entity.getMass();
+            double otherMass = other.getMass();
 
-            double[] deltaR = {entity.getPositionX() - this.getPositionX(), entity.getPositionY() - this.getPositionY()};
-            double[] deltaV = {entity.getVelocityX() - this.getVelocityX(), entity.getVelocityY() - this.getVelocityY()};
-            double sigma = this.getRadius() + entity.getRadius();
+            double[] deltaR = {other.getPositionX() - this.getPositionX(), other.getPositionY() - this.getPositionY()};
+            double[] deltaV = {other.getVelocityX() - this.getVelocityX(), other.getVelocityY() - this.getVelocityY()};
+            double sigma = this.getRadius() + other.getRadius();
 
             //J = (2 mi mj * (deltav * deltar)/(radius*(mi + mj))
-            double j = (2 * shipMass * entityMass * (deltaV[0] * deltaR[0] + deltaV[1] * deltaR[1])) / sigma * (shipMass + entityMass);
+            double j = (2 * shipMass * otherMass * (deltaV[0] * deltaR[0] + deltaV[1] * deltaR[1])) / sigma * (shipMass + otherMass);
 
             //jx & jy
             double jx = (j * deltaR[0] / sigma);
@@ -470,18 +466,18 @@ public class Ship extends Entity{
 
             double currentShipVelocityX = this.getVelocityX();      //vxi
             double currentShipVelocityY = this.getVelocityY();      //vyi
-            double currentEntityVelocityX = entity.getVelocityX();  //vxj
-            double currentEntityVelocityY = entity.getVelocityY();  //vyj
+            double currentEntityVelocityX = other.getVelocityX();  //vxj
+            double currentEntityVelocityY = other.getVelocityY();  //vyj
 
             double newShipVelocityX = currentShipVelocityX + jx / shipMass;   //vxi + Jx/mi
             double newShipVelocityY = currentShipVelocityY + jy / shipMass;   //vyi + Jy/mi
-            double newEntityVelocityX = currentEntityVelocityX + jx / entityMass; //vxj + Jx/mj
-            double newEntityVelocityY = currentEntityVelocityY + jy / entityMass; //vyj + Jy/mj
+            double newEntityVelocityX = currentEntityVelocityX + jx / otherMass; //vxj + Jx/mj
+            double newEntityVelocityY = currentEntityVelocityY + jy / otherMass; //vyj + Jy/mj
 
             this.setVelocityX(newShipVelocityX);
             this.setVelocityY(newShipVelocityY);
-            entity.setVelocityX(newEntityVelocityX);
-            entity.setVelocityY(newEntityVelocityY);
+            other.setVelocityX(newEntityVelocityX);
+            other.setVelocityY(newEntityVelocityY);
 
         }
         if (entity instanceof Bullet) {

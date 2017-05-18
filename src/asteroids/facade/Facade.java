@@ -1,13 +1,13 @@
 package asteroids.facade;
 
-import asteroids.model.Bullet;
-import asteroids.model.Ship;
-import asteroids.model.World;
+import asteroids.model.*;
 import asteroids.part2.CollisionListener;
-import asteroids.part2.facade.IFacade;
+import asteroids.part3.facade.IFacade;
+import asteroids.part3.programs.IProgramFactory;
 import asteroids.util.ModelException;
 
 import java.util.Collection;
+import java.util.List;
 import java.util.Set;
 
 public class Facade implements IFacade {
@@ -344,4 +344,152 @@ public class Facade implements IFacade {
 	public double[] getCollisionPosition(Ship ship1, Ship ship2) throws ModelException {
 		return ship1.getCollisionPosition(ship2);
 	}
+
+	/******************
+	 * PART 3
+	 **************/
+
+	@Override
+	public Asteroid createAsteroid(double x, double y, double xVelocity, double yVelocity, double radius) throws ModelException {
+		return null;
+	}
+
+	@Override
+	public boolean isTerminatedAsteroid(Asteroid asteroid) throws ModelException {
+		return false;
+	}
+
+	@Override
+	public List<Object> executeProgram(Ship ship, double dt) throws ModelException {
+		return null;
+	}
+
+	@Override
+	public World getPlanetoidWorld(Planetoid planetoid) throws ModelException {
+		return null;
+	}
+
+	@Override
+	public Program getShipProgram(Ship ship) throws ModelException {
+		return null;
+	}
+
+	@Override
+	public double getAsteroidRadius(Asteroid asteroid) throws ModelException {
+		return 0;
+	}
+
+	@Override
+	public double getPlanetoidMass(Planetoid planetoid) throws ModelException {
+		return 0;
+	}
+
+	@Override
+	public double[] getPlanetoidPosition(Planetoid planetoid) throws ModelException {
+		return new double[0];
+	}
+
+	@Override
+	public void addAsteroidToWorld(World world, Asteroid asteroid) throws ModelException {
+
+	}
+
+	@Override
+	public void removePlanetoidFromWorld(World world, Planetoid planetoid) throws ModelException {
+
+	}
+
+	@Override
+	public Set<? extends Planetoid> getWorldPlanetoids(World world) throws ModelException {
+		return null;
+	}
+
+	@Override
+	public double getAsteroidMass(Asteroid asteroid) throws ModelException {
+		return 0;
+	}
+
+	@Override
+	public void terminateAsteroid(Asteroid asteroid) throws ModelException {
+
+	}
+
+	@Override
+	public void terminatePlanetoid(Planetoid planetoid) throws ModelException {
+
+	}
+
+	@Override
+	public void addPlanetoidToWorld(World world, Planetoid planetoid) throws ModelException {
+
+	}
+
+	@Override
+	public double getPlanetoidTotalTraveledDistance(Planetoid planetoid) throws ModelException {
+		return 0;
+	}
+
+	@Override
+	public void loadProgramOnShip(Ship ship, Program program) throws ModelException {
+
+	}
+
+	@Override
+	public double getPlanetoidRadius(Planetoid planetoid) throws ModelException {
+		return 0;
+	}
+
+	@Override
+	public IProgramFactory<?, ?, ?, ? extends Program> createProgramFactory() throws ModelException {
+		return null;
+	}
+
+	@Override
+	public double[] getAsteroidVelocity(Asteroid asteroid) throws ModelException {
+		return new double[0];
+	}
+
+	@Override
+	public double[] getPlanetoidVelocity(Planetoid planetoid) throws ModelException {
+		return new double[0];
+	}
+
+	@Override
+	public void removeAsteroidFromWorld(World world, Asteroid asteroid) throws ModelException {
+
+	}
+
+	@Override
+	public World getAsteroidWorld(Asteroid asteroid) throws ModelException {
+		return null;
+	}
+
+	@Override
+	public Set<? extends Asteroid> getWorldAsteroids(World world) throws ModelException {
+		return null;
+	}
+
+	@Override
+	public Planetoid createPlanetoid(double x, double y, double xVelocity, double yVelocity, double radius, double totalTraveledDistance) throws ModelException {
+		return null;
+	}
+
+	@Override
+	public double[] getAsteroidPosition(Asteroid asteroid) throws ModelException {
+		return new double[0];
+	}
+
+	@Override
+	public boolean isTerminatedPlanetoid(Planetoid planetoid) throws ModelException {
+		return false;
+	}
+
+	/******************
+	 * ADMINISTRATIVE STUFF
+	 **************/
+	@Override
+	public int getNbStudentsInTeam() {
+		return 2;
+	}
+
 }

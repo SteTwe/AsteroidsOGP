@@ -32,6 +32,10 @@ public class World {
 
     }
 
+
+    /******************
+     * VARIABLES WORLD
+     **************/
     /**
      * Set containing all the entities present in the world.
      */
@@ -47,6 +51,10 @@ public class World {
      */
     private double height;
 
+
+    /******************
+     * DIMENSION RELATED
+     **************/
     /**
      * Set the width of this world with the given width.
      *
@@ -117,6 +125,10 @@ public class World {
         return this.height;
     }
 
+
+    /******************
+     * ENTITY RELATED
+     **************/
     /**
      * Add the given ship to the world.
      *

@@ -368,18 +368,13 @@ public class Ship extends Entity{
                 bullet.setPositionY(this.getPositionY());
                 this.loadBullet(bullet);
             } else {
-                bullet.terminateBullet();
-                this.terminateShip();
+                bullet.terminate();
+                this.terminate();
             }
 
         }
     }
 
-    public void terminateShip() {
-        super.terminate();
-        if (this.getWorld() != null)
-            getWorld().removeShip(this);
-        }
 
     public void removeBulletShip(Bullet bullet){
         this.bulletSet.remove(bullet);

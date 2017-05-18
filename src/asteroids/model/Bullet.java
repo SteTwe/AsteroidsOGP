@@ -99,25 +99,19 @@ public class Bullet extends Entity{
                 ((Ship) entity).loadBullet(this);
             }
             else{
-                this.terminateBullet();
+                this.terminate();
                 ((Ship) entity).terminateShip();
             }
         }
         if (entity instanceof Bullet){
-            this.terminateBullet();
-            ((Bullet) entity).terminateBullet();
+            this.terminate();
+            ((Bullet) entity).terminate();
         }
 
     }
 
     public void collideWithBoundary(){
 
-    }
-
-    public void terminateBullet(){
-        super.terminate();
-        if (this.getWorld() != null)
-            getWorld().removeBulletWorld(this);
     }
 
 }

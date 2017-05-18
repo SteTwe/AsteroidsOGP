@@ -360,11 +360,21 @@ public abstract class Entity {
         this.world = null;
     }
 
+    //TODO add minorplanets
     /**
      * Terminate this entity.
      */
     public void terminate(){
         status = true;
+        if (this instanceof Bullet){
+            if (this.getWorld() != null)
+                getWorld().removeBulletWorld((Bullet) this);
+        }
+        if (this instanceof Ship){
+            if (this.getWorld() != null)
+                getWorld().removeShip((Ship) this);
+        }
+
     }
 
     /**

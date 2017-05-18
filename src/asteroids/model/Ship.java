@@ -362,6 +362,38 @@ public class Ship extends Entity{
         }
     }
 
+    /**
+     * Resolve collision with a given bullet: if the bullet was fired from this ship, reload it,
+     * else terminate both ship and bullet.
+     * @param bullet The given bullet.
+     */
+    public void collideWith(Bullet bullet) {
+        if (bullet.getBulletSource() == this){
+            this.loadBullet(bullet);
+        }
+        else {
+            bullet.terminate();
+            this.terminate();
+        }
+    }
+
+    /**
+     * Resolve collision with another ship. The ships bounce off each other.
+     * @param ship The other ship.
+     */
+    public void collideWith(Ship ship){
+        this.bounceOffEntity(ship);
+    }
+
+    /**
+     * //TODO Update doc
+     * Resolve collision with another entity.
+     * @param other The other entity.
+     */
+    public void collideWith(Collideable other) {
+        other.collideWith(this);
+    }
+
 
     /**********
      * MASS RELATED
@@ -525,27 +557,4 @@ public class Ship extends Entity{
 
 
     }
-
-    //TODO COLLISIONRELATED
-
-
-    public void collideWith(Bullet bullet) {
-        if (bullet.getBulletSource() == this){
-            this.loadBullet(bullet);
-        }
-        else {
-            bullet.terminate();
-            this.terminate();
-        }
-    }
-
-    public void collideWith(Ship ship){
-        this.bounceOffEntity(ship);
-    }
-
-    public void collideWith(Collideable other) {
-        other.collideWith(this);
-    }
 }
-
-

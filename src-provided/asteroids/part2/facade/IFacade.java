@@ -238,9 +238,6 @@ public interface IFacade extends asteroids.part1.facade.IFacade {
 	 */
 	public Ship getBulletSource(Bullet bullet) throws ModelException;
 
-
-
-
 	/**************
 	 * WORLD: Basic methods
 	 *************/

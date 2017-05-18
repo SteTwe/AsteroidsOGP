@@ -500,7 +500,11 @@ public class Ship extends Entity{
      */
     public void fireBullet(){
         Bullet bullet = getBullets().iterator().next();
+        // Remove bullet from ship
         this.removeBulletShip(bullet);
+        // set ship as bulletSource
+        bullet.setBulletsource(this);
+
         // bullet speed is 250 km/s in same direction ship is faced
         // calculate separate velocities with 2 equations:
         // sqrt(pow(newVelocityX, 2) + pow(newVelocityY, 2)) = 250 km/s  | basic formula for calculation of bullet speed must equal 250 km/s

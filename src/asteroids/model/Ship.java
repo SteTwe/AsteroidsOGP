@@ -58,6 +58,11 @@ public class Ship extends Entity{
      */
     private double mass;
 
+    /**
+     * Set holding the bullets of this ship.
+     */
+    private Set<Bullet> bulletSet = new HashSet<>();
+
 
     /**********
      * ANGLE RELATED
@@ -384,11 +389,23 @@ public class Ship extends Entity{
     /**********
      * BULLET RELATED
      **********/
-    private Set<Bullet> bulletSet = new HashSet<>();
-
+    /**
+     * Return the bullets loaded onto this ship.
+     *
+     * @return Return the bullets loaded onto this ship.
+     */
     public Set<Bullet> getBullets(){
-        return this.bulletSet;}
+        return this.bulletSet;
+    }
 
+    /**
+     * Load the given bullet onto the ship.
+     *
+     * @param bullet Bullet to load onto the ship.
+     * @throws IllegalArgumentException Bullet is already loaded onto the ship.
+     * @post Bullet is loaded on the ship.
+     *       | bulletSet.contains(bullet)
+     */
     public void loadBullet(Bullet bullet) throws IllegalArgumentException{
         if (!isValidBullet(bullet)) throw new IllegalArgumentException("Bullet is not valid for this ship");
         //add bullet to the set of bullets of this ship
@@ -404,6 +421,15 @@ public class Ship extends Entity{
         bullet.setShip(this);
     }
 
+    /**
+     * Load a set of bullets onto the ship.
+     *
+     * @param bullets Bullets to load onto the ship.
+     * @throws IllegalArgumentException Bullet is already loaded onto the ship.
+     * @post Bullets are loaded on the ship.
+     *       | for (Bullet bullet : bulletSet)
+     *       |      bulletSet.contains(bullet)
+     */
     public void loadSetOfBullets(Collection<Bullet> bullets) throws IllegalArgumentException{
         for (Bullet bullet : bullets){
             if (!isValidBullet(bullet)) throw new IllegalArgumentException("Bullet is not valid for this ship");
@@ -421,6 +447,12 @@ public class Ship extends Entity{
         }
     }
 
+    /**
+     * Return true if given bullet is not loaded on ship.
+     * @param bullet The given bullet.
+     * @return  True if bullet is not loaded on ship.
+     *          | result == !getBullets().contains(bullet)
+     */
     public boolean isValidBullet(Bullet bullet){
         if (getBullets().contains(bullet)) return false;
         return true;
@@ -498,6 +530,9 @@ public class Ship extends Entity{
         }
     }
 
+    /**
+     * Teleport ship to a random location. If location is already occupied, terminate ship.
+     */
     public void teleportShip(){
         // Generate random positionX within bounds of world.
         double lowerX = 0 + getRadius();
@@ -518,13 +553,19 @@ public class Ship extends Entity{
         }
     }
 
+    /**
+     * Remove given bullet from ship.
+     *
+     * @param bullet The bullet to remove.
+     * @post Bullet is not loaded on bullet.
+     *       | !bulletSet.contains(bullet)
+     */
     public void removeBulletShip(Bullet bullet){
         this.bulletSet.remove(bullet);
     }
 
     /**
      * Fire a bullet from the ship.
-     *
      */
     public void fireBullet(){
         Bullet bullet = getBullets().iterator().next();

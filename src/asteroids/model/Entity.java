@@ -233,6 +233,8 @@ public abstract class Entity {
      */
     public double minRadiusBullet = 1;
 
+    public double minRadiusMinorPlanet = 5;
+
     /**
      * Return if the given radius is a valid radius for this entity.
      *
@@ -243,10 +245,14 @@ public abstract class Entity {
      */
     public boolean isValidRadius(double radius){
         if (this instanceof Bullet) {
-            return ((radius > minRadiusBullet) && (Double.isNaN(radius)));
+            return ((radius > minRadiusBullet) && (!Double.isNaN(radius)));
         }
         else if (this instanceof Ship){
-            return ((radius> minRadiusShip) && (Double.isNaN(radius)));
+            return ((radius > minRadiusShip) && (!Double.isNaN(radius)));
+        }
+
+        else if (this instanceof MinorPlanet){
+            return ((radius > minRadiusMinorPlanet) && (!Double.isNaN(radius)));
         }
         else {
             return false;
@@ -264,6 +270,7 @@ public abstract class Entity {
         else {
             if (this instanceof Bullet) this.radius = minRadiusBullet;
             if (this instanceof Ship) this.radius = minRadiusShip;
+            if (this instanceof MinorPlanet) this.radius = minRadiusMinorPlanet;
         }
     }
 

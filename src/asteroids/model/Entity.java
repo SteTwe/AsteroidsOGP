@@ -371,23 +371,8 @@ public abstract class Entity {
      */
     public void terminate(){
         status = true;
-        if (this instanceof Bullet){
-            if (this.getWorld() != null)
-                getWorld().removeBulletWorld((Bullet) this);
-        }
-        if (this instanceof Ship){
-            if (this.getWorld() != null)
-                getWorld().removeShip((Ship) this);
-        }
-        if (this instanceof Asteroid){
-            if (this.getWorld() != null){
-                getWorld().removeMinorPlanet((Asteroid) this);
-            }
-        }
-        if (this instanceof Planetoid){
-            if (this.getWorld() != null){
-                getWorld().removeMinorPlanet((Planetoid) this);
-            }
+        if (getWorld() != null){
+            getWorld().removeEntity(this);
         }
     }
 

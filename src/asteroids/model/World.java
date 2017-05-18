@@ -130,99 +130,6 @@ public class World {
      * ENTITY RELATED
      **************/
     /**
-     * Add the given ship to the world.
-     *
-     * @param ship The ship to add.
-     * @throws IllegalArgumentException The ship is already in the world.
-     * @post The given ship is in the world.
-     *       | entitySet.contains(ship)
-     */
-    public void addShip(Ship ship) throws IllegalArgumentException{
-        if (getShipSet().contains(ship)) throw new IllegalArgumentException("Ship is already in the world.");
-        else {
-            this.entitySet.add(ship);
-            ship.setWorld(this);
-        }
-    }
-
-    /**
-     * Remove the given ship from the world.
-     *
-     * @param ship The ship to remove.
-     * @post The given ship is not in the world.
-     *       | !entitySet.contains(ship)
-     */
-    public void removeShip(Ship ship){
-        try{
-            this.entitySet.remove(ship);
-        }
-        catch (Exception e){
-        }
-    }
-
-    /**
-     * Add the given bullet to the world.
-     *
-     * @param bullet The bullet to add.
-     * @throws IllegalArgumentException The bullet is already in the world
-     * @post The given bullet is in the world.
-     *       | entitySet.contains(bullet)
-     */
-    public void addBullet(Bullet bullet) throws IllegalArgumentException{
-        if (getBulletSet().contains(bullet)) throw new IllegalArgumentException("Bullet is already in world.");
-        else {
-            this.entitySet.add(bullet);
-            bullet.setWorld(this);
-        }
-    }
-
-    /**
-     * Remove the given bullet from the world.
-     *
-     * @param bullet Bullet to remove.
-     * @post The given bullet is not in the world.
-     *       | !entitySet.contains(bullet)
-     */
-    public void removeBulletWorld(Bullet bullet){
-        try {
-            this.entitySet.remove(bullet);
-        }
-        catch (Exception e){
-        }
-    }
-
-    /**
-     * Add the given minorplanet to the world.
-     *
-     * @param planet The planet to add.
-     * @throws IllegalArgumentException The planet is already in the world.
-     * @post The given planet is in the world
-     *       | entitySet.contains(planet)
-     */
-    public void addMinorPlanet(MinorPlanet planet) throws IllegalArgumentException{
-        if (getMinorPlanetSet().contains(planet)) throw new IllegalArgumentException("Planet is already in the world.");
-        else {
-            this.entitySet.add(planet);
-            planet.setWorld(this);
-        }
-    }
-
-    /**
-     * Remove the given planet from the world.
-     *
-     * @param planet The planet to remove.
-     * @post The given planet is not in the world.
-     *       | !entitySet.contains(planet)
-     */
-    public void removeMinorPlanet(MinorPlanet planet){
-        try{
-            this.entitySet.remove(planet);
-        }
-        catch (Exception e){
-        }
-    }
-
-    /**
      * Return the set of Bullets of this world.
      *
      * @return Return the set of Bullets of this world.
@@ -253,16 +160,60 @@ public class World {
     }
 
     /**
-     * Return the set of MinorPlanets of this world.
-     * @return Return the set of MinorPlanets of this world.
+     * Return the set of Asteroids of this world.
+     * @return Return the set of Asteroids of this world.
      */
-    public Set<? extends MinorPlanet> getMinorPlanetSet(){
-        Set<MinorPlanet> planetSet = new HashSet<>();
+    public Set<? extends Asteroid> getAsteroidSet(){
+        Set<Asteroid> asteroidSet = new HashSet<>();
         for (Entity entity : getEntitySet()){
-            if (entity instanceof MinorPlanet)
-                planetSet.add((MinorPlanet) entity);
+            if (entity instanceof Asteroid)
+                asteroidSet.add((Asteroid) entity);
         }
-        return planetSet;
+        return asteroidSet;
+    }
+
+    /**
+     * Return the set of Planetoids in this world.
+     * @return Return the set of Planetoids in this world.
+     */
+    public Set<? extends Planetoid> getPlanetoidSet(){
+        Set<Planetoid> planetoidSet = new HashSet<>();
+        for (Entity entity: getEntitySet()){
+            if (entity instanceof Planetoid){
+                planetoidSet.add((Planetoid) entity);
+            }
+        }
+        return planetoidSet;
+    }
+
+    /**
+     * Add the given entity to the world.
+     *
+     * @param entity The entity to add.
+     * @throws IllegalArgumentException The entity is already in the world.
+     * @post The given entity is in the world.
+     *       | entitySet.contains(entity)
+     */
+    public void addEntity(Entity entity) throws IllegalArgumentException {
+        if (getEntitySet().contains(entity)) throw new IllegalArgumentException("Entity is already in the world.");
+        else {
+            this.entitySet.add(entity);
+        }
+    }
+
+    /**
+     * Remove the given entity from the world.
+     *
+     * @param entity Entity to remove.
+     * @post The given entity is not in the world.
+     *       | !entitySet.contains(entity)
+     */
+    public void removeEntity(Entity entity){
+        try {
+            this.entitySet.remove(entity);
+        }
+        catch (Exception e){
+            }
     }
 
     /**

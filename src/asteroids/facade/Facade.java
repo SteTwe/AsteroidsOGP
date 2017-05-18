@@ -5,6 +5,7 @@ import asteroids.part2.CollisionListener;
 import asteroids.part3.facade.IFacade;
 import asteroids.part3.programs.IProgramFactory;
 import asteroids.util.ModelException;
+import jdk.nashorn.internal.runtime.WithObject;
 
 import java.util.Collection;
 import java.util.List;
@@ -243,37 +244,43 @@ public class Facade implements IFacade {
 	 **************/
 	@Override
 	public double getTimeCollisionBoundary(Object object) throws ModelException {
+		//TODO
 		return 0;
 	}
 
 	@Override
 	public double[] getPositionCollisionBoundary(Object object) throws ModelException {
+		//TODO
 		return new double[0];
 	}
 
 	@Override
 	public double getTimeCollisionEntity(Object entity1, Object entity2) throws ModelException {
+		//TODO
 		return 0;
 	}
 
 	@Override
 	public double[] getPositionCollisionEntity(Object entity1, Object entity2) throws ModelException {
+		//TODO
 		return new double[0];
 	}
 
 	@Override
 	public double getTimeNextCollision(World world) throws ModelException {
+		//TODO
 		return 0;
 	}
 
 	@Override
 	public double[] getPositionNextCollision(World world) throws ModelException {
+		//TODO
 		return new double[0];
 	}
 
 	@Override
 	public void evolve(World world, double dt, CollisionListener collisionListener) throws ModelException {
-
+		//TODO
 	}
 
 	@Override
@@ -361,32 +368,32 @@ public class Facade implements IFacade {
 	 *************/
 	@Override
 	public Set<? extends Asteroid> getWorldAsteroids(World world) throws ModelException {
-		return null;
+		return world.getAsteroidSet();
 	}
 
 	@Override
 	public void addAsteroidToWorld(World world, Asteroid asteroid) throws ModelException {
-
+		world.addEntity(asteroid);
 	}
 
 	@Override
 	public void removeAsteroidFromWorld(World world, Asteroid asteroid) throws ModelException {
-
+		world.removeEntity(asteroid);
 	}
 
 	@Override
 	public Set<? extends Planetoid> getWorldPlanetoids(World world) throws ModelException {
-		return null;
+		return world.getPlanetoidSet();
 	}
 
 	@Override
 	public void addPlanetoidToWorld(World world, Planetoid planetoid) throws ModelException {
-
+		world.addEntity(planetoid);
 	}
 
 	@Override
 	public void removePlanetoidFromWorld(World world, Planetoid planetoid) throws ModelException {
-
+		world.removeEntity(planetoid);
 	}
 
 
@@ -395,42 +402,42 @@ public class Facade implements IFacade {
 	 *************/
 	@Override
 	public Asteroid createAsteroid(double x, double y, double xVelocity, double yVelocity, double radius) throws ModelException {
-		return null;
+		return new Asteroid(x, y, xVelocity, yVelocity, radius);
 	}
 
 	@Override
 	public void terminateAsteroid(Asteroid asteroid) throws ModelException {
-
+		asteroid.terminate();
 	}
 
 	@Override
 	public boolean isTerminatedAsteroid(Asteroid asteroid) throws ModelException {
-		return false;
+		return asteroid.isTerminated();
 	}
 
 	@Override
 	public double[] getAsteroidPosition(Asteroid asteroid) throws ModelException {
-		return new double[0];
+		return new double[]{asteroid.getPositionX(), asteroid.getPositionY()};
 	}
 
 	@Override
 	public double[] getAsteroidVelocity(Asteroid asteroid) throws ModelException {
-		return new double[0];
+		return new double[]{asteroid.getVelocityX(), asteroid.getVelocityY()};
 	}
 
 	@Override
 	public double getAsteroidRadius(Asteroid asteroid) throws ModelException {
-		return 0;
+		return asteroid.getRadius();
 	}
 
 	@Override
 	public double getAsteroidMass(Asteroid asteroid) throws ModelException {
-		return 0;
+		return asteroid.getAsteroidMass();
 	}
 
 	@Override
 	public World getAsteroidWorld(Asteroid asteroid) throws ModelException {
-		return null;
+		return asteroid.getWorld();
 	}
 
 	/**************
@@ -439,47 +446,48 @@ public class Facade implements IFacade {
 
 	@Override
 	public Planetoid createPlanetoid(double x, double y, double xVelocity, double yVelocity, double radius, double totalTraveledDistance) throws ModelException {
-		return null;
+		return new Planetoid(x, y, xVelocity, yVelocity, radius);
 	}
 
 	@Override
 	public void terminatePlanetoid(Planetoid planetoid) throws ModelException {
-
+		planetoid.terminate();
 	}
 
 	@Override
 	public boolean isTerminatedPlanetoid(Planetoid planetoid) throws ModelException {
-		return false;
+		return planetoid.isTerminated();
 	}
 
 	@Override
 	public double[] getPlanetoidPosition(Planetoid planetoid) throws ModelException {
-		return new double[0];
+		return new double[]{planetoid.getPositionX(), planetoid.getPositionY()};
 	}
 
 	@Override
 	public double[] getPlanetoidVelocity(Planetoid planetoid) throws ModelException {
-		return new double[0];
+		return new double[]{planetoid.getVelocityX(), planetoid.getVelocityY()};
 	}
 
 	@Override
 	public double getPlanetoidRadius(Planetoid planetoid) throws ModelException {
-		return 0;
+		return planetoid.getRadius();
 	}
 
 	@Override
 	public double getPlanetoidMass(Planetoid planetoid) throws ModelException {
-		return 0;
+		return planetoid.getPlanetoidMass();
 	}
 
 	@Override
 	public double getPlanetoidTotalTraveledDistance(Planetoid planetoid) throws ModelException {
+		//TODO
 		return 0;
 	}
 
 	@Override
 	public World getPlanetoidWorld(Planetoid planetoid) throws ModelException {
-		return null;
+		return planetoid.getWorld();
 	}
 
 	/**********
@@ -488,21 +496,24 @@ public class Facade implements IFacade {
 
 	@Override
 	public Program getShipProgram(Ship ship) throws ModelException {
+		//TODO
 		return null;
 	}
 
 	@Override
 	public void loadProgramOnShip(Ship ship, Program program) throws ModelException {
-
+		//TODO
 	}
 
 	@Override
 	public List<Object> executeProgram(Ship ship, double dt) throws ModelException {
+		//TODO
 		return null;
 	}
 
 	@Override
 	public IProgramFactory<?, ?, ?, ? extends Program> createProgramFactory() throws ModelException {
+		//TODO
 		return null;
 	}
 }

@@ -7,9 +7,7 @@ import asteroids.part3.programs.IProgramFactory;
 import asteroids.util.ModelException;
 import jdk.nashorn.internal.runtime.WithObject;
 
-import java.util.Collection;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 public class Facade implements IFacade {
 
@@ -160,7 +158,7 @@ public class Facade implements IFacade {
 
 	@Override
 	public boolean isTerminatedWorld(World world) throws ModelException {
-		return (world.getBulletSet().isEmpty() && world.getShipSet().isEmpty());
+		return (world.getEntitySet().isEmpty());
 	}
 
 	@Override
@@ -170,12 +168,24 @@ public class Facade implements IFacade {
 
 	@Override
 	public Set<? extends Ship> getWorldShips(World world) throws ModelException {
-		return world.getShipSet();
+		Set<Ship> shipSet = new HashSet<>();
+		for (Entity entity : world.getEntitySet()){
+			if (entity instanceof Ship){
+				shipSet.add((Ship) entity);
+			}
+		}
+		return shipSet;
 	}
 
 	@Override
 	public Set<? extends Bullet> getWorldBullets(World world) throws ModelException {
-		return world.getBulletSet();
+		Set<Bullet> bulletSet = new HashSet<>();
+		for (Entity entity : world.getEntitySet()){
+			if (entity instanceof Bullet){
+				bulletSet.add((Bullet) entity);
+			}
+		}
+		return bulletSet;
 	}
 
 	@Override
@@ -368,7 +378,13 @@ public class Facade implements IFacade {
 	 *************/
 	@Override
 	public Set<? extends Asteroid> getWorldAsteroids(World world) throws ModelException {
-		return world.getAsteroidSet();
+		Set<Asteroid> asteroidSet = new HashSet<>();
+		for (Entity entity : world.getEntitySet()){
+			if (entity instanceof Asteroid){
+				asteroidSet.add((Asteroid) entity);
+			}
+		}
+		return asteroidSet;
 	}
 
 	@Override
@@ -383,7 +399,13 @@ public class Facade implements IFacade {
 
 	@Override
 	public Set<? extends Planetoid> getWorldPlanetoids(World world) throws ModelException {
-		return world.getPlanetoidSet();
+		Set<Planetoid> planetoidSet = new HashSet<>();
+		for (Entity entity : world.getEntitySet()){
+			if (entity instanceof Planetoid){
+				planetoidSet.add((Planetoid) entity);
+			}
+		}
+		return planetoidSet;
 	}
 
 	@Override

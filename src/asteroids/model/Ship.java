@@ -121,7 +121,6 @@ public class Ship extends Entity{
     }
 
 
-
     /**********
      * MOVEMENT RELATED
      **********/

@@ -130,63 +130,6 @@ public class World {
      * ENTITY RELATED
      **************/
     /**
-     * Return the set of Bullets of this world.
-     *
-     * @return Return the set of Bullets of this world.
-     */
-    public Set<? extends Bullet> getBulletSet(){
-        Set<Bullet> bulletSet = new HashSet<>();
-        for (Entity entity : getEntitySet()){
-            if (entity instanceof Bullet){
-                bulletSet.add((Bullet) entity);
-            }
-        }
-        return bulletSet;
-    }
-
-    /**
-     * Return the set of Ships of this world.
-     *
-     * @return Return the set of Ships of this world.
-     */
-    public Set<? extends Ship> getShipSet() {
-        Set<Ship> shipSet = new HashSet<>();
-        for (Entity entity : getEntitySet()){
-            if (entity instanceof Ship){
-                shipSet.add((Ship) entity);
-            }
-        }
-        return shipSet;
-    }
-
-    /**
-     * Return the set of Asteroids of this world.
-     * @return Return the set of Asteroids of this world.
-     */
-    public Set<? extends Asteroid> getAsteroidSet(){
-        Set<Asteroid> asteroidSet = new HashSet<>();
-        for (Entity entity : getEntitySet()){
-            if (entity instanceof Asteroid)
-                asteroidSet.add((Asteroid) entity);
-        }
-        return asteroidSet;
-    }
-
-    /**
-     * Return the set of Planetoids in this world.
-     * @return Return the set of Planetoids in this world.
-     */
-    public Set<? extends Planetoid> getPlanetoidSet(){
-        Set<Planetoid> planetoidSet = new HashSet<>();
-        for (Entity entity: getEntitySet()){
-            if (entity instanceof Planetoid){
-                planetoidSet.add((Planetoid) entity);
-            }
-        }
-        return planetoidSet;
-    }
-
-    /**
      * Add the given entity to the world.
      *
      * @param entity The entity to add.

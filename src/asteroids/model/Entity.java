@@ -43,6 +43,11 @@ public abstract class Entity implements Collideable {
     public double velocityY;
     private World world;
 
+    /**
+     * Boolean holding the condition of this entity (not terminated => false).
+     */
+    private boolean status = false;
+
 
     /******************
      * POSITION RELATED
@@ -116,7 +121,6 @@ public abstract class Entity implements Collideable {
         if (isValidPositionY(positionY))
             this.positionY = positionY;
     }
-
 
 
     /******************
@@ -199,14 +203,15 @@ public abstract class Entity implements Collideable {
      * | return (Math.sqrt(Math.pow(velocityX, 2) + Math.pow(velocityY, 2)))
      */
     public double computeVelocity(double velocityX, double velocityY) {
+        //TODO Velocity cannot exceed Speed of light!!
         return (Math.sqrt(Math.pow(velocityX, 2) + Math.pow(velocityY, 2)));
     }
 
-    public double getMaxVelocity(){
-         return SPEED_OF_LIGHT;
-    }
-
+    /**
+     * Constant holding the speed of light as defined by the assignment.
+     */
     private static double SPEED_OF_LIGHT = 300000;
+
 
     /******************
      * RADIUS RELATED
@@ -233,6 +238,9 @@ public abstract class Entity implements Collideable {
      */
     public double minRadiusBullet = 1;
 
+    /**
+     * Constant holding the minimum radius of a MinorPlanet.
+     */
     public double minRadiusMinorPlanet = 5;
 
     /**
@@ -292,18 +300,47 @@ public abstract class Entity implements Collideable {
         setPositionY(getPositionY() + duration * getVelocityY());
     }
 
+    /**
+     * Return true if the duration is valid.
+     *
+     * @param duration The given duration.
+     * @return  True if duration is higher or equal to 0.
+     *          |return (duration >= 0)
+     */
     private boolean isValidDuration(double duration) {
         return (duration >= 0);
     }
 
+
     /******************
      * MASS RELATED
      **************/
+    /**
+     * Constant holding the massdensity of Planetoids.
+     */
     private double densityPlanetoids = 0.917 * Math.pow(10, 12);
+
+    /**
+     * Constant holding the massdensity of Asteroids.
+     */
     private double densityAsteroids = 2.65 * Math.pow(10, 12);
+
+    /**
+     * Constant holding the massdensity of Bullets.
+     */
     private double densityBullet = 7.8 * Math.pow(10, 12);
+
+    /**
+     * Constant holding the massdensity of Ships.
+     */
     private double densityShip = 1.42 * Math.pow(10, 12);
 
+    /**
+     * Calculate and return the mass of the entity.
+     *
+     * @return  Returns the calculated mass of the entity.
+     *          | result == (4/3) * Math.PI * Math.pow(radius,3) * massDensityEntity
+     */
     public double calcMass(){
         if (this instanceof Planetoid){
             double massPlanetoid = ((4/3) * Math.PI * Math.pow(this.getRadius(), 3) * densityPlanetoids);
@@ -324,6 +361,15 @@ public abstract class Entity implements Collideable {
         return 0;
     }
 
+    /**
+     * Return the mass of the entity. If the entity is a ship, return mass + mass of the loaded bullets.
+     *
+     * @return  Returns the total mass of the entity.
+     *          | if (entity instanceof Ship)
+     *          |       return (massShip + massBulletsOfShip)
+     *          | else
+     *          |       return massEntity
+     */
     public double getMass(){
         if (this instanceof Ship){
             Ship ship = (Ship) this;
@@ -336,27 +382,41 @@ public abstract class Entity implements Collideable {
         else return this.calcMass();
     }
 
+
     /******************
      * WORLD RELATED
      **************/
+    /**
+     * Set the world of this entity to the given world.
+     *
+     * @param world The given world.
+     * @post The world of this entity equals the given world.
+     *       | entity.getWorld == world
+     */
     public void setWorld(World world){
         if (getWorld() == null){
             this.world = world;
         }
     }
+
+    /**
+     * Return this entities world. Returns null if the entity isn't linked to a world.
+     *
+     * @return World linked with this entity
+     */
     public World getWorld(){
         return this.world;
     }
 
     /**
      * Remove the world this entity is part of.
-     * world is equal to null
+     * @post    The world of this entity is null.
+     *          | entity.getWorld == null
      */
     public void removeWorld(){
         this.world = null;
     }
 
-    //TODO add minorplanets
     /**
      * Terminate this entity.
      */
@@ -372,13 +432,9 @@ public abstract class Entity implements Collideable {
      * @return
      */
     public boolean isTerminated(){
-        return status;
+        return this.status;
     }
 
-    /**
-     * Boolean holding the standard value of this entity's status (not terminated => false)
-     */
-    private boolean status = false;
 
     /******************
      * COLLISION RELATED
@@ -536,6 +592,7 @@ public abstract class Entity implements Collideable {
 
     }
 
+    //TODO doc, implementation?
     public double[] getPositionCollisionEntity(Entity ship2){
         double time = this.getTimeCollisionWithEntity(ship2);
         if (time == Double.POSITIVE_INFINITY) {
@@ -547,6 +604,12 @@ public abstract class Entity implements Collideable {
         }
     }
 
+    /**
+     * Resolve the bouncing of this entity with another given entity.
+     *
+     * @param other The other entity.
+     * //TODO @post?
+     */
     public void bounceOffEntity(Entity other){
         //(vxi, vyi) = vxi + Jx/mi, vyi + Jy/mi)
         //(vxj, vyj) = vxj + Jx/mj, vyj + JY/mj)
@@ -585,8 +648,6 @@ public abstract class Entity implements Collideable {
         other.setVelocityX(newEntityVelocityX);
         other.setVelocityY(newEntityVelocityY);
     }
-
-
 }
 
 interface Collideable{

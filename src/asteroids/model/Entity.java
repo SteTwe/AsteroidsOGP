@@ -393,7 +393,6 @@ public abstract class Entity {
     /******************
      * COLLISION RELATED
      **************/
-
     //TODO
     /**
      * Method returning the time until THE FIRST collision that happens between this entity and a boundary.

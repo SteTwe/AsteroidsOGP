@@ -100,7 +100,7 @@ public class Bullet extends Entity{
             }
             else{
                 this.terminate();
-                ((Ship) entity).terminateShip();
+                ((Ship) entity).terminate();
             }
         }
         if (entity instanceof Bullet){

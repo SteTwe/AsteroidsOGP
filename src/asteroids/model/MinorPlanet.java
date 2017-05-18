@@ -7,7 +7,7 @@ import be.kuleuven.cs.som.annotate.*;
  */
 public class MinorPlanet extends Entity{
 
-    public MinorPlanet(double positionX, double positionY, double velocityX, double velocityY, double radius){
+    public MinorPlanet(double positionX, double positionY, double velocityX, double velocityY, double radius) throws IllegalArgumentException{
         super(positionX, positionY, velocityX, velocityY, radius);
     }
 

@@ -58,7 +58,6 @@ public class Ship extends Entity{
     private double mass;
 
 
-
     /**********
      * ANGLE RELATED
      **********/
@@ -168,6 +167,139 @@ public class Ship extends Entity{
         setAngle(angle);
     }
 
+
+    /**********
+     * COLLISION RELATED
+     **********/
+
+    /**
+     * Compute the distance between two spaceships. If the two compared ships are the same, distance is 0.
+     *
+     * @return The distance between this ship and the given other ship.
+     * Calculated distance
+     * | return (Math.sqrt(Math.pow((x1 - x2), 2) + Math.pow((y1 - y2), 2)));
+     * @param        other | Second spaceship
+     */
+    public double getDistanceBetween(Ship other) {
+        double x1 = this.getPositionX();
+        double y1 = this.getPositionY();
+        double x2 = other.getPositionX();
+        double y2 = other.getPositionY();
+        if (this == other) {
+            return 0;
+        } else {
+            return (Math.sqrt(Math.pow((x1 - x2), 2) + Math.pow((y1 - y2), 2)));
+        }
+    }
+
+    /**
+     * Check if two ships overlap.
+     *
+     * @param other | Second spaceship
+     * @return | True if the spaceships overlap
+     */
+    public boolean overlap(Ship other) {
+        if (this == other) {
+            return true;
+        } else {
+            double distance = getDistanceBetween(other);
+            if (this.radius > distance) {
+                return true;
+            } else if (other.radius > distance) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+    }
+
+    /**
+     * @param other The given other ship.
+     * @return Returns the time until the given ships will collide.
+     * @throws IllegalArgumentException If there is no other ship
+     *                                  | other = null
+     *                                  |       throw new IllegalArgumentException
+     * @throws IllegalArgumentException If the ships overlap. This means the already collided or the spawn as an overlap.
+     *                                  | this.overlap(other)
+     *                                  |       throw new IllegalArgumentException
+     */
+    public double getTimeToCollision(Ship other) throws IllegalArgumentException {
+        if (other == null)
+            throw new IllegalArgumentException("ship2 does not exist");
+        if (this.overlap(other))
+            throw new IllegalArgumentException("the ships overlap");
+
+        //difference in x-coordinate
+        double diffPosX = (other.getPositionX() - this.getPositionX());
+
+        //difference in y-coordinate
+        double diffPosY = (other.getPositionY() - this.getPositionY());
+
+        //total position difference
+        double[] differencePosition = new double[]{diffPosX, diffPosY};
+
+        //difference in velocity in the x-direction
+        double diffVelX = (other.getVelocityX() - this.getVelocityX());
+
+        //difference in velocity in the y-direction
+        double diffVelY = (other.getVelocityY() - this.getVelocityY());
+
+        //total velocity difference
+        double[] differenceVelocity = new double[]{diffVelX, diffVelY};
+
+        //position difference multiplication
+        double diffPosMult = (Math.pow(differencePosition[0], 2) + (Math.pow(differencePosition[1], 2)));
+
+        //velocity difference multiplication
+        double diffVelMult = (Math.pow(differenceVelocity[0], 2) + (Math.pow(differenceVelocity[1], 2)));
+
+        //velocity position multiplication
+        double diffVelPosMult = ((differenceVelocity[0] * differencePosition[0]) + differenceVelocity[1] * differencePosition[1]);
+
+        //sigma as defined by the assignment (just the sum of the radii of the ships involved)
+        double sigma = (this.getRadius() + other.getRadius());
+        //d as defined by the assignment
+        double d = (Math.pow((diffVelPosMult), 2)) - (diffVelMult) * (diffPosMult - Math.pow(sigma, 2));
+
+        double time = -((diffVelPosMult + Math.sqrt(d)) / diffVelMult);
+
+        //given by the assignment
+        if (diffVelPosMult >= 0)
+            return Double.POSITIVE_INFINITY;
+        else if (d < 0)
+            return Double.POSITIVE_INFINITY;
+        else
+            return time;
+    }
+
+    /**
+     * @param other The given other ship.
+     * @return Returns the position where the given other ship and this ship will collide.
+     * @post If the timToCollision is less than or equals zero there will be no collision
+     * so there's no collision position either.
+     * | if (getTimeToCollision(other) <= 0
+     * |           return null
+     * Calculate the collision position by multiplying the velocity with the TimeToCollision
+     * (velocity * speed = position(distance))
+     * | else
+     * |           collisionPositionX = getTimeToCollision(other) * velocityX;
+     * |           double collisionPositionY = getTimeToCollision(other) * velocityY;
+     * |           return collision
+     */
+    public double[] getCollisionPosition(Ship other) {
+        double time = this.getTimeToCollision(other);
+        if (time == Double.POSITIVE_INFINITY) {
+            return null;
+        } else {
+            double collisionPositionX = getTimeToCollision(other) * velocityX;
+            double collisionPositionY = getTimeToCollision(other) * velocityY;
+            return new double[]{collisionPositionX, collisionPositionY};
+        }
+    }
+
+
+
+
     public void thrustOn(){
         double newVelocityX = getVelocityX() + getAcceleration() * Math.cos(getAngle());
         double newVelocityY = getVelocityY() + getAcceleration() * Math.sin(getAngle());
@@ -242,8 +374,9 @@ public class Ship extends Entity{
 
     public double getShipMass(){
         double totalMass = this.mass;
-        for (Bullet bullet : this.getBullets())
+        for (Bullet bullet : this.getBullets()) {
             totalMass += bullet.getBulletMass();
+        }
         return totalMass;
     }
 
@@ -263,7 +396,6 @@ public class Ship extends Entity{
     }
 
     private static double minMassDensity = 1.42 * Math.pow(10,12);
-
 
     /**********
      * BULLET RELATED
@@ -374,7 +506,6 @@ public class Ship extends Entity{
 
         }
     }
-
 
     public void removeBulletShip(Bullet bullet){
         this.bulletSet.remove(bullet);

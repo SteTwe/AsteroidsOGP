@@ -16,11 +16,11 @@ public abstract class Entity {
     /**
      * Initialize a new entity with x-position, y-position, velocity in x-direction, velocity in y-direction, radius.
      *
-     * @param positionX The x-coordinate of this new ship.
-     * @param positionY The y-coordinate of this new ship.
-     * @param velocityX The velocity in the x-direction of this new ship.
-     * @param velocityY The velocity in the y-direction of this new ship.
-     * @param radius    The radius of this new ship.
+     * @param positionX The x-coordinate of this new entity.
+     * @param positionY The y-coordinate of this new entity.
+     * @param velocityX The velocity in the x-direction of this new entity.
+     * @param velocityY The velocity in the y-direction of this new entity.
+     * @param radius    The radius of this new entity.
      */
     public Entity(double positionX, double positionY, double velocityX, double velocityY, double radius) throws IllegalArgumentException {
         this.setPositionX(positionX);

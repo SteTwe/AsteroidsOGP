@@ -67,11 +67,11 @@ public class Bullet extends Entity{
     public void setBulletsource(Ship ship){
         this.bulletSource = ship;
     }
+
     /**
      *
      * @return
      */
-    @Override
     public double getMass(){
         double radius = getRadius(); //getting getRadius from superclass Entity
         return(3/4 * Math.PI * Math.pow(radius, 3) * getDensity());

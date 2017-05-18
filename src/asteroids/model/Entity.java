@@ -296,6 +296,46 @@ public abstract class Entity {
         return (duration >= 0);
     }
 
+    /******************
+     * MASS RELATED
+     **************/
+    private double densityPlanetoids = 0.917 * Math.pow(10, 12);
+    private double densityAsteroids = 2.65 * Math.pow(10, 12);
+    private double densityBullet = 7.8 * Math.pow(10, 12);
+    private double densityShip = 1.42 * Math.pow(10, 12);
+
+    public double calcMass(){
+        if (this instanceof Planetoid){
+            double massPlanetoid = ((4/3) * Math.PI * Math.pow(this.getRadius(), 3) * densityPlanetoids);
+            return massPlanetoid;
+        }
+        if (this instanceof Asteroid){
+            double massAsteroid = ((4/3) * Math.PI * Math.pow(this.getRadius(), 3) * densityAsteroids);
+            return massAsteroid;
+        }
+        if (this instanceof Bullet){
+            double massBullet = ((4/3) * Math.PI * Math.pow(this.getRadius(), 3) * densityBullet);
+            return massBullet;
+        }
+        if (this instanceof Ship){
+            double massShip = ((4/3) * Math.PI * Math.pow(this.getRadius(), 3) * densityShip);
+            return massShip;
+        }
+        return 0;
+    }
+
+    public double getBulletMass(){
+        return this.calcMass();
+    }
+
+    public double getAsteroidMass(){
+        return this.calcMass();
+    }
+
+    public double getPlanetoidMass(){
+        return this.calcMass();
+    }
+    
 
     /******************
      * WORLD RELATED

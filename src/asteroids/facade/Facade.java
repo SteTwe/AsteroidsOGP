@@ -42,7 +42,7 @@ public class Facade implements IFacade {
 
 	@Override
 	public void terminateShip(Ship ship) throws ModelException {
-		ship.terminateShip();
+		ship.terminate();
 	}
 
 	@Override
@@ -100,7 +100,7 @@ public class Facade implements IFacade {
 
 	@Override
 	public void terminateBullet(Bullet bullet) throws ModelException {
-		bullet.terminateBullet();
+		bullet.terminate();
 	}
 
 	@Override

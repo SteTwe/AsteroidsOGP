@@ -293,7 +293,7 @@ public abstract class Entity {
     }
 
     private boolean isValidDuration(double duration) {
-        return duration >= 0;
+        return (duration >= 0);
     }
 
 

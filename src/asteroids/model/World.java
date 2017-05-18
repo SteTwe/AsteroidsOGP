@@ -152,7 +152,7 @@ public class World {
      * @post The given ship is not in the world.
      *       | !entitySet.contains(ship)
      */
-    public void removeShip(Ship ship) throws IllegalArgumentException{
+    public void removeShip(Ship ship){
         try{
             this.entitySet.remove(ship);
         }
@@ -180,7 +180,7 @@ public class World {
      * Remove the given bullet from the world.
      *
      * @param bullet Bullet to remove.
-     * @post The given is not in the world.
+     * @post The given bullet is not in the world.
      *       | !entitySet.contains(bullet)
      */
     public void removeBulletWorld(Bullet bullet){
@@ -191,6 +191,14 @@ public class World {
         }
     }
 
+    /**
+     * Add the given minorplanet to the world.
+     *
+     * @param planet The planet to add.
+     * @throws IllegalArgumentException The planet is already in the world.
+     * @post The given planet is in the world
+     *       | entitySet.contains(planet)
+     */
     public void addMinorPlanet(MinorPlanet planet) throws IllegalArgumentException{
         if (getMinorPlanetSet().contains(planet)) throw new IllegalArgumentException("Planet is already in the world.");
         else {
@@ -199,7 +207,14 @@ public class World {
         }
     }
 
-    public void removeMinorPlanet(MinorPlanet planet) throws IllegalArgumentException{
+    /**
+     * Remove the given planet from the world.
+     *
+     * @param planet The planet to remove.
+     * @post The given planet is not in the world.
+     *       | !entitySet.contains(planet)
+     */
+    public void removeMinorPlanet(MinorPlanet planet){
         try{
             this.entitySet.remove(planet);
         }
@@ -237,6 +252,10 @@ public class World {
         return shipSet;
     }
 
+    /**
+     * Return the set of MinorPlanets of this world.
+     * @return Return the set of MinorPlanets of this world.
+     */
     public Set<? extends MinorPlanet> getMinorPlanetSet(){
         Set<MinorPlanet> planetSet = new HashSet<>();
         for (Entity entity : getEntitySet()){

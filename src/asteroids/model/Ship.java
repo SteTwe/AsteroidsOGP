@@ -171,6 +171,10 @@ public class Ship extends Entity{
      */
     private static double SPEED_OF_LIGHT = 300000;
 
+    /**
+     * Activate thruster.
+     */
+    //TODO
     public void thrustOn(){
         double newVelocityX = getVelocityX() + getAcceleration() * Math.cos(getAngle());
         double newVelocityY = getVelocityY() + getAcceleration() * Math.sin(getAngle());
@@ -188,40 +192,42 @@ public class Ship extends Entity{
 
     }
 
+    /**
+     * Variable holding the condition of the thruster.
+     */
     private boolean activeThruster = false;
 
+    /**
+     * Set thruster condition active.
+     */
     private void setActiveThruster(){activeThruster = true;}
 
+    /**
+     * Reset condition of the thruster.
+     */
     private void resetActiveThruster(){activeThruster = false;}
 
+    /**
+     * Return the condition of the thruster.
+     *
+     * @return Return the condition of the thruster.
+     */
     public boolean getActiveThruster(){
         return this.activeThruster;
     }
 
-    public void thrustOff(){
-        double oldVelocityX = getVelocityX() - getAcceleration() * Math.cos(getAngle());
-        double oldVelocityY = getVelocityY() - getAcceleration() * Math.sin(getAngle());
-        double oldVelocity = computeVelocity(oldVelocityX, oldVelocityY);
-        if (oldVelocity > SPEED_OF_LIGHT){
-            setVelocityX((oldVelocityX/oldVelocity) * SPEED_OF_LIGHT);
-            setVelocityY((oldVelocityY/oldVelocity) * SPEED_OF_LIGHT);
-            resetActiveThruster();
-        }
-        else {
-            setVelocityX(oldVelocityX);
-            setVelocityY(oldVelocityY);
-            resetActiveThruster();
-        }
-    }
-
+    /**
+     * Constant holding the thrust force.
+     */
     private static double thrustForce = 1.1 * Math.pow(10, 18);
 
-    public static double getThrustForce() {
-        return thrustForce;
-    }
-
+    /**
+     * Return the acceleration of the ship.
+     *
+     * @return Return the acceleration of the ship.
+     */
     public double getAcceleration(){
-        double acceleration = getThrustForce()/ getShipMass();
+        double acceleration = thrustForce/ getShipMass();
         if (acceleration < 0)
             return 0;
         else

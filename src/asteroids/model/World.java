@@ -191,6 +191,22 @@ public class World {
         }
     }
 
+    public void addMinorPlanet(MinorPlanet planet) throws IllegalArgumentException{
+        if (getMinorPlanetSet().contains(planet)) throw new IllegalArgumentException("Planet is already in the world.");
+        else {
+            this.entitySet.add(planet);
+            planet.setWorld(this);
+        }
+    }
+
+    public void removeMinorPlanet(MinorPlanet planet) throws IllegalArgumentException{
+        try{
+            this.entitySet.remove(planet);
+        }
+        catch (Exception e){
+        }
+    }
+
     /**
      * Return the set of Bullets of this world.
      *
@@ -219,6 +235,15 @@ public class World {
             }
         }
         return shipSet;
+    }
+
+    public Set<? extends MinorPlanet> getMinorPlanetSet(){
+        Set<MinorPlanet> planetSet = new HashSet<>();
+        for (Entity entity : getEntitySet()){
+            if (entity instanceof MinorPlanet)
+                planetSet.add((MinorPlanet) entity);
+        }
+        return planetSet;
     }
 
     /**

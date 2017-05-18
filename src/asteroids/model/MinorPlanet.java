@@ -12,7 +12,12 @@ public class MinorPlanet extends Entity{
     }
 
 
-    
+    public World world;
+
+    public void setWorld(World world) {
+        this.world = world;
+    }
+
     @Override
     public void collide(Entity entity) {
 

@@ -97,15 +97,19 @@ public class Bullet extends Entity{
      * COLLISION RELATED
      **************/
     /**
-     * Resolve collisions with bullets. //TODO should go to entity!
-     * @param entity
+     * Resolve collisions with bullets between this bullet and another entity, being a ship, a bullet or a minorplant.
+     *
+     * @param entity The entity this bullet collides with.
+     * When two bullets collide, they are both terminated.
+     * When this bullet collides with the ship where it's fired from, the bullet will be reloaded to the ship.
+     * When this bullet collides with another ship, the ship and bullet both die.
+     * When this bullet collides with an asteroid, the asteroid and bullet both die.
+     * When this bullet collides with a planetoid, the planetoid and bullet both die.
      */
     @Override
     public void collide(Entity entity){
         if (entity instanceof Ship){
             if (this.getBulletSource() == entity){
-                this.setPositionX(entity.getPositionX());
-                this.setPositionY(entity.getPositionY());
                 ((Ship) entity).loadBullet(this);
             }
             else{
@@ -116,6 +120,14 @@ public class Bullet extends Entity{
         if (entity instanceof Bullet){
             this.terminate();
             ((Bullet) entity).terminate();
+        }
+        if (entity instanceof Asteroid){
+            this.terminate();
+            ((Asteroid) entity).terminate();
+        }
+        if (entity instanceof Planetoid){
+            this.terminate();
+            ((Planetoid) entity).terminate();
         }
 
     }

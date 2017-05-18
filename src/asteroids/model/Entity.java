@@ -33,11 +33,20 @@ public abstract class Entity {
         else throw new IllegalArgumentException("Invalid radius");
     }
 
-    /****************
-     * Variables entity
-     */
+    /******************
+     * VARIABLES ENTITY
+     **************/
     public double radius;
+    public double positionX;
+    public double positionY;
+    public double velocityX;
+    public double velocityY;
+    private World world;
 
+
+    /******************
+     * POSITION RELATED
+     **************/
     /**
      * Returning the x-coordinate of this entity's position.
      * @return  Returns the x-coordinate of this entity.
@@ -48,8 +57,6 @@ public abstract class Entity {
         return this.positionX;
     }
 
-    public double positionX;
-
     /**
      * Returning the y-coordinate of this entity's position
      * @return  Returns the y-coordinate of this entity.
@@ -59,8 +66,6 @@ public abstract class Entity {
     public double getPositionY(){
         return this.positionY;
     }
-
-    public double positionY;
 
     /**
      * Return true if the x-coordinate is valid for this entity.
@@ -73,7 +78,15 @@ public abstract class Entity {
         return (!Double.isNaN(positionX));
     }
 
-    //TODO
+    /**
+     * Set the x-coordinate of this entity to the given x-coordiante
+     *
+     * @param positionX The given x-position of this entity.
+     * @pre The given positionX should be a valid positionX for this entity.
+     *      | isValidPositionX(positionX)
+     * @post The x-coordinate of this entity is equal to the given positionX.
+     *      | new.getPositionX() == positionX;
+     */
     public void setPositionX(double positionX){
         if (isValidPositionX(positionX))
             this.positionX = positionX;
@@ -104,6 +117,11 @@ public abstract class Entity {
             this.positionY = positionY;
     }
 
+
+
+    /******************
+     * VELOCITY RELATED
+     **************/
     /**
      * Returning this entity's velocity in the x-direction.
      * @return Returns the velocity of this entity in the x-direction.
@@ -115,11 +133,6 @@ public abstract class Entity {
     }
 
     /**
-     * Variable containting the entity's velocity in the x-direction.
-     */
-    public double velocityX;
-
-    /**
      * Returning this entity's velocity in the y-direction.
      * @return Returns the velocity of this entity in the y-direction.
      *          | result == this.velocityY
@@ -128,10 +141,6 @@ public abstract class Entity {
     public double getVelocityY(){
         return this.velocityY;
     }
-    /**
-     * Variable containting the entity's velocity in the y-direction.
-     */
-    public double velocityY;
 
     /**
      * Set the velocity in the x-direction of this entity with the given velocityX.
@@ -181,7 +190,6 @@ public abstract class Entity {
         return(!Double.isNaN(velocityY));
     }
 
-
     /**
      * Method computing the total velocity of this entity following the given formula.
      *
@@ -190,7 +198,7 @@ public abstract class Entity {
      * @post Gives the total velocity for this entity.
      * | return (Math.sqrt(Math.pow(velocityX, 2) + Math.pow(velocityY, 2)))
      */
-     public double computeVelocity(double velocityX, double velocityY) {
+    public double computeVelocity(double velocityX, double velocityY) {
         return (Math.sqrt(Math.pow(velocityX, 2) + Math.pow(velocityY, 2)));
     }
 
@@ -200,6 +208,9 @@ public abstract class Entity {
 
     private static double SPEED_OF_LIGHT = 300000;
 
+    /******************
+     * RADIUS RELATED
+     **************/
     /**
      * Return the radius of this entity.
      *
@@ -209,16 +220,17 @@ public abstract class Entity {
     @Basic
     @Raw
     public double getRadius(){
-        return radius;
+        return this.radius;
     }
 
-
-
     /**
-     * Constant holding the minimum radius of an entity.
+     * Constant holding the minimum radius of a ship.
      */
     public double minRadiusShip = 10;
 
+    /**
+     * Constant holding the minimum radius of a bullet.
+     */
     public double minRadiusBullet = 1;
 
     /**
@@ -249,9 +261,10 @@ public abstract class Entity {
             this.radius = minRadius;
     }
 
-    public abstract double getMass();
 
-
+    /******************
+     * MOVEMENT RELATED
+     **************/
     /**
      * Move the entity for a certain amount of time (duration).
      *
@@ -271,14 +284,12 @@ public abstract class Entity {
     }
 
 
-    private World world;
-
+    /******************
+     * WORLD RELATED
+     **************/
     private World getWorld(){
         return this.world;
     }
-
-
-
 
     /**
      * Remove the world this entity is part of.
@@ -308,6 +319,9 @@ public abstract class Entity {
      */
     private boolean status = false;
 
+    /******************
+     * COLLISION RELATED
+     **************/
 
     //TODO
     /**

@@ -364,7 +364,7 @@ public class Ship extends Entity{
     }
 
 
-    private static double thrustForce = 1.1 * Math.pow(10, 21);
+    private static double thrustForce = 1.1 * Math.pow(10, 18);
 
     public static double getThrustForce() {
         return thrustForce;

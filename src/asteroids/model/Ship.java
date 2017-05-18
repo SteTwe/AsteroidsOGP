@@ -433,7 +433,7 @@ public class Ship extends Entity{
      * When this ship collides with a bullet fired by itself, the bullet is reloaded onto the ship
      * When this ship collides with a bullet fired by another ship, the ship AND the bullet die.
      */
-    //TODO => ship and bullet collision
+    //TODO => should go to entity
     @Override
     public void collide(Entity entity) {
         if (entity instanceof Ship) {

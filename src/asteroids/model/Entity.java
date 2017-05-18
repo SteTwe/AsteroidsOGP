@@ -374,7 +374,16 @@ public abstract class Entity {
             if (this.getWorld() != null)
                 getWorld().removeShip((Ship) this);
         }
-
+        if (this instanceof Asteroid){
+            if (this.getWorld() != null){
+                getWorld().removeMinorPlanet((Asteroid) this);
+            }
+        }
+        if (this instanceof Planetoid){
+            if (this.getWorld() != null){
+                getWorld().removeMinorPlanet((Planetoid) this);
+            }
+        }
     }
 
     /**

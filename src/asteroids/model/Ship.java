@@ -116,13 +116,6 @@ public class Ship extends Entity{
 
 
 
-
-    /**
-     * Constant holding the speed of light.
-     */
-    private static double SPEED_OF_LIGHT = 300000;
-
-
     /**********
      * MOVEMENT RELATED
      **********/
@@ -167,11 +160,72 @@ public class Ship extends Entity{
         setAngle(angle);
     }
 
+    /**
+     * Constant holding the speed of light.
+     */
+    private static double SPEED_OF_LIGHT = 300000;
+
+    public void thrustOn(){
+        double newVelocityX = getVelocityX() + getAcceleration() * Math.cos(getAngle());
+        double newVelocityY = getVelocityY() + getAcceleration() * Math.sin(getAngle());
+        double newVelocity = computeVelocity(newVelocityX, newVelocityY);
+        if (newVelocity > SPEED_OF_LIGHT) {
+            setVelocityX((newVelocityX / newVelocity) * SPEED_OF_LIGHT);
+            setVelocityY((newVelocityY / newVelocity) * SPEED_OF_LIGHT);
+            setActiveThruster();
+        }
+        else {
+            setVelocityX(newVelocityX);
+            setVelocityY(newVelocityY);
+            setActiveThruster();
+        }
+
+    }
+
+    private boolean activeThruster = false;
+
+    private void setActiveThruster(){activeThruster = true;}
+
+    private void resetActiveThruster(){activeThruster = false;}
+
+    public boolean getActiveThruster(){
+        return this.activeThruster;
+    }
+
+    public void thrustOff(){
+        double oldVelocityX = getVelocityX() - getAcceleration() * Math.cos(getAngle());
+        double oldVelocityY = getVelocityY() - getAcceleration() * Math.sin(getAngle());
+        double oldVelocity = computeVelocity(oldVelocityX, oldVelocityY);
+        if (oldVelocity > SPEED_OF_LIGHT){
+            setVelocityX((oldVelocityX/oldVelocity) * SPEED_OF_LIGHT);
+            setVelocityY((oldVelocityY/oldVelocity) * SPEED_OF_LIGHT);
+            resetActiveThruster();
+        }
+        else {
+            setVelocityX(oldVelocityX);
+            setVelocityY(oldVelocityY);
+            resetActiveThruster();
+        }
+    }
+
+    private static double thrustForce = 1.1 * Math.pow(10, 18);
+
+    public static double getThrustForce() {
+        return thrustForce;
+    }
+
+    public double getAcceleration(){
+        double acceleration = getThrustForce()/ getShipMass();
+        if (acceleration < 0)
+            return 0;
+        else
+            return acceleration;
+    }
+
 
     /**********
      * COLLISION RELATED
      **********/
-
     /**
      * Compute the distance between two spaceships. If the two compared ships are the same, distance is 0.
      *
@@ -298,104 +352,33 @@ public class Ship extends Entity{
     }
 
 
-
-
-    public void thrustOn(){
-        double newVelocityX = getVelocityX() + getAcceleration() * Math.cos(getAngle());
-        double newVelocityY = getVelocityY() + getAcceleration() * Math.sin(getAngle());
-        double newVelocity = computeVelocity(newVelocityX, newVelocityY);
-        if (newVelocity > SPEED_OF_LIGHT) {
-            setVelocityX((newVelocityX / newVelocity) * SPEED_OF_LIGHT);
-            setVelocityY((newVelocityY / newVelocity) * SPEED_OF_LIGHT);
-            setActiveThruster();
-        }
-        else {
-            setVelocityX(newVelocityX);
-            setVelocityY(newVelocityY);
-            setActiveThruster();
-        }
-
-    }
-
-    private boolean activeThruster = false;
-
-    private void setActiveThruster(){activeThruster = true;}
-
-    private void resetActiveThruster(){activeThruster = false;}
-
-    public boolean getActiveThruster(){
-        return this.activeThruster;
-    }
-
-
-    public void thrustOff(){
-        double oldVelocityX = getVelocityX() - getAcceleration() * Math.cos(getAngle());
-        double oldVelocityY = getVelocityY() - getAcceleration() * Math.sin(getAngle());
-        double oldVelocity = computeVelocity(oldVelocityX, oldVelocityY);
-        if (oldVelocity > SPEED_OF_LIGHT){
-            setVelocityX((oldVelocityX/oldVelocity) * SPEED_OF_LIGHT);
-            setVelocityY((oldVelocityY/oldVelocity) * SPEED_OF_LIGHT);
-            resetActiveThruster();
-        }
-        else {
-            setVelocityX(oldVelocityX);
-            setVelocityY(oldVelocityY);
-            resetActiveThruster();
-        }
-    }
-
-
-    private static double thrustForce = 1.1 * Math.pow(10, 18);
-
-    public static double getThrustForce() {
-        return thrustForce;
-    }
-
-    public double getAcceleration(){
-        double acceleration = getThrustForce()/ getShipMass();
-        if (acceleration < 0)
-            return 0;
-        else
-            return acceleration;
-    }
-
-
-
     /**********
      * MASS RELATED
      **********/
+    /**
+     * Set the mass of this ship to the given mass.
+     *
+     * @param mass  The given mass.
+     * @post The mass of this ship is equal to the given mass.
+     *       | new.getMass() == mass
+     */
     public void setMass(double mass){
         if (isValidMass(mass))
             this.mass = mass;
-        else
-            //Temporary
-            this.mass = getMinMass();
-    }
-
-    public double getShipMass(){
-        double totalMass = this.mass;
-        for (Bullet bullet : this.getBullets()) {
-            totalMass += bullet.getBulletMass();
         }
-        return totalMass;
-    }
 
-    //TODO
+    /**
+     * Return true if the mass is valid for this ship.
+     *
+     * @param mass The given mass.
+     * @return True if the given mass is a number.
+     *         | result = !Double.isNaN(mass)
+     */
     private boolean isValidMass(double mass){
-        if ((mass >= getMinMass()) && (!Double.isNaN(mass)))
-            return true;
-        return false;
+        return (!Double.isNaN(mass));
     }
 
-    private double getMinMass(){
-        return ((4/3)* Math.PI * Math.pow(this.getRadius(), 3) * getMinMassDensity());
-    }
 
-    public static double getMinMassDensity() {
-        return minMassDensity;
-    }
-
-    private static double minMassDensity = 1.42 * Math.pow(10,12);
 
     /**********
      * BULLET RELATED

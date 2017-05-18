@@ -248,6 +248,9 @@ public abstract class Entity {
         else if (this instanceof Ship){
             return ((radius> minRadiusShip) && (Double.isNaN(radius)));
         }
+        else {
+            return false;
+        }
     }
 
     /**
@@ -255,10 +258,13 @@ public abstract class Entity {
      * @param radius
      */
     public void setRadius(double radius){
-        if (isValidRadius(radius))
+        if (isValidRadius(radius)) {
             this.radius = radius;
-        else
-            this.radius = minRadius;
+        }
+        else {
+            if (this instanceof Bullet) this.radius = minRadiusBullet;
+            if (this instanceof Ship) this.radius = minRadiusShip;
+        }
     }
 
 

@@ -3,6 +3,7 @@ package asteroids.model;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.concurrent.ThreadLocalRandom;
 
 
 /**
@@ -430,10 +431,12 @@ public class Ship extends Entity{
      *
      * @param entity The entity this ship collides with.
      * When two ships collide, they bounce of each other => velocity change
-     * When this ship collides with a bullet fired by itself, the bullet is reloaded onto the ship
+     * When this ship collides with a bullet fired by itself, the bullet is reloaded onto the ship.
      * When this ship collides with a bullet fired by another ship, the ship AND the bullet die.
+     * When this ship collides with an asteroid, the ship dies. The asteroid is not affected.
+     * When this ship collides with a planetoid, the ship is teleported to a random position in the world.
+     *               If that position is occupied, the ship dies. The planteoid is not affected.
      */
-    //TODO => should go to entity
     @Override
     public void collide(Entity entity) {
         if (entity instanceof Ship) {
@@ -486,7 +489,32 @@ public class Ship extends Entity{
                 bullet.terminate();
                 this.terminate();
             }
+        }
+        if (entity instanceof Asteroid){
+            this.terminate();
+        }
+        if (entity instanceof Planetoid){
+            this.teleportShip();
+        }
+    }
 
+    public void teleportShip(){
+        // Generate random positionX within bounds of world.
+        double lowerX = 0 + getRadius();
+        double upperX = getWorld().getWidth() - getRadius() + 1;
+        double newPositionX = ThreadLocalRandom.current().nextDouble(lowerX, upperX);
+        // Generate random positionY within bounds of world.
+        double lowerY = 0 + getRadius();
+        double upperY = getWorld().getHeight() - getRadius() + 1;
+        double newPositionY = ThreadLocalRandom.current().nextDouble(lowerY, upperY);
+
+        if (getWorld().getEntityAtPosition(newPositionX, newPositionY) == null){
+            // Set new positions.
+            this.setPositionX(newPositionX);
+            this.setPositionY(newPositionY);
+        }
+        else {
+            this.terminate();
         }
     }
 

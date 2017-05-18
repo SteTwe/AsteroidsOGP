@@ -390,7 +390,6 @@ public class Ship extends Entity{
     }
 
 
-
     /**********
      * BULLET RELATED
      **********/
@@ -464,78 +463,6 @@ public class Ship extends Entity{
     }
 
     /**
-     * Resolves a collision between this ship and another entity, being a ship or a bullet.
-     *
-     * @param entity The entity this ship collides with.
-     * When two ships collide, they bounce of each other => velocity change
-     * When this ship collides with a bullet fired by itself, the bullet is reloaded onto the ship.
-     * When this ship collides with a bullet fired by another ship, the ship AND the bullet die.
-     * When this ship collides with an asteroid, the ship dies. The asteroid is not affected.
-     * When this ship collides with a planetoid, the ship is teleported to a random position in the world.
-     *               If that position is occupied, the ship dies. The planteoid is not affected.
-     */
-    @Override
-    public void collide(Entity entity) {
-        if (entity instanceof Ship) {
-            Ship other = (Ship) entity;
-            //(vxi, vyi) = vxi + Jx/mi, vyi + Jy/mi)
-            //(vxj, vyj) = vxj + Jx/mj, vyj + JY/mj)
-            //Jx = (J deltax) / sigma
-            //Jy = (J deltay) / sigma
-
-            //mi
-            double shipMass = this.getShipMass();
-            //mj
-            double otherMass = other.getShipMass();
-
-            double[] deltaR = {other.getPositionX() - this.getPositionX(), other.getPositionY() - this.getPositionY()};
-            double[] deltaV = {other.getVelocityX() - this.getVelocityX(), other.getVelocityY() - this.getVelocityY()};
-            double sigma = this.getRadius() + other.getRadius();
-
-            //J = (2 mi mj * (deltav * deltar)/(radius*(mi + mj))
-            double j = (2 * shipMass * otherMass * (deltaV[0] * deltaR[0] + deltaV[1] * deltaR[1])) / sigma * (shipMass + otherMass);
-
-            //jx & jy
-            double jx = (j * deltaR[0] / sigma);
-            double jy = (j * deltaR[1] / sigma);
-
-
-            double currentShipVelocityX = this.getVelocityX();      //vxi
-            double currentShipVelocityY = this.getVelocityY();      //vyi
-            double currentEntityVelocityX = other.getVelocityX();  //vxj
-            double currentEntityVelocityY = other.getVelocityY();  //vyj
-
-            double newShipVelocityX = currentShipVelocityX + jx / shipMass;   //vxi + Jx/mi
-            double newShipVelocityY = currentShipVelocityY + jy / shipMass;   //vyi + Jy/mi
-            double newEntityVelocityX = currentEntityVelocityX + jx / otherMass; //vxj + Jx/mj
-            double newEntityVelocityY = currentEntityVelocityY + jy / otherMass; //vyj + Jy/mj
-
-            this.setVelocityX(newShipVelocityX);
-            this.setVelocityY(newShipVelocityY);
-            other.setVelocityX(newEntityVelocityX);
-            other.setVelocityY(newEntityVelocityY);
-
-        }
-        if (entity instanceof Bullet) {
-            Bullet bullet = (Bullet) entity;
-            if (bullet.getBulletSource() == this) {
-                bullet.setPositionX(this.getPositionX());
-                bullet.setPositionY(this.getPositionY());
-                this.loadBullet(bullet);
-            } else {
-                bullet.terminate();
-                this.terminate();
-            }
-        }
-        if (entity instanceof Asteroid){
-            this.terminate();
-        }
-        if (entity instanceof Planetoid){
-            this.teleportShip();
-        }
-    }
-
-    /**
      * Teleport ship to a random location. If location is already occupied, terminate ship.
      */
     public void teleportShip(){
@@ -599,6 +526,8 @@ public class Ship extends Entity{
 
     }
 
+    //TODO COLLISIONRELATED
+
     public void shipBounce(Ship other){
         //(vxi, vyi) = vxi + Jx/mi, vyi + Jy/mi)
         //(vxj, vyj) = vxj + Jx/mj, vyj + JY/mj)
@@ -639,7 +568,23 @@ public class Ship extends Entity{
 
     }
 
-    
+    public void collideWith(Bullet bullet) {
+        if (bullet.getBulletSource() == this){
+            this.loadBullet(bullet);
+        }
+        else {
+            bullet.terminate();
+            this.terminate();
+        }
+    }
+
+    public void collideWith(Ship ship){
+        this.shipBounce(ship);
+    }
+
+    public void collideWith(Collideable other) {
+        other.collideWith(this);
+    }
 }
 
 

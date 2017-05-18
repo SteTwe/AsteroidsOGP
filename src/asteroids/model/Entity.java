@@ -11,7 +11,7 @@ import java.util.DoubleSummaryStatistics;
  * Created by joachim on 09/04/2017.
  * @author joachim
  */
-public abstract class Entity {
+public abstract class Entity implements Collideable {
 
     /**
      * Initialize a new entity with x-position, y-position, velocity in x-direction, velocity in y-direction, radius.
@@ -556,51 +556,20 @@ public abstract class Entity {
         }
     }
 
-    /**
-     * method is implemented in Ship and Bullet
-     */
-    public void collide(Entity entity){
-        if (this instanceof Bullet){
-            Bullet bullet = (Bullet) this;
-            if (entity instanceof Ship){
-                if (bullet.getBulletSource() == entity){
-                    ((Ship) entity).loadBullet(bullet);
-                }
-                else{
-                    bullet.terminate();
-                    entity.terminate();
-                }
-
-            }
-            else {
-                this.terminate();
-                entity.terminate();
-            }
+    public void bounceOffEntity(Entity entity){
+        if (this instanceof Ship) {
+            ((Ship) this).shipBounce((Ship) entity);
         }
-        if (this instanceof Ship){
-            Ship ship = (Ship) this;
-            if (entity instanceof Ship){
-                ship.shipBounce((Ship) entity);
-            }
-            else if (entity instanceof Bullet){
-                Bullet bullet = (Bullet) entity;
-                if (bullet.getBulletSource() == ship){
-                    ship.loadBullet(bullet);
-                }
-                else {
-                    bullet.terminate();
-                    ship.terminate();
-                }
-            }
-            else if (entity instanceof Asteroid){
-                ship.terminate();
-            }
-            else if (entity instanceof Planetoid){
-                ship.teleportShip();
-            }
+        if (this instanceof MinorPlanet){
+            ((MinorPlanet) this).minorPlanetBounce((MinorPlanet) entity);
         }
-
     }
+
 
 }
 
+interface Collideable{
+    void collideWith(final Collideable other);
+    void collideWith(final Ship ship);
+    void collideWith(final Bullet bullet);
+}

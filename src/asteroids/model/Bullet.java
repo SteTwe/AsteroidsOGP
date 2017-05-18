@@ -96,45 +96,28 @@ public class Bullet extends Entity{
     /******************
      * COLLISION RELATED
      **************/
-    /**
-     * Resolve collisions with bullets between this bullet and another entity, being a ship, a bullet or a minorplanet.
-     *
-     * @param entity The entity this bullet collides with.
-     * When two bullets collide, they are both terminated.
-     * When this bullet collides with the ship where it's fired from, the bullet will be reloaded to the ship.
-     * When this bullet collides with another ship, the ship and bullet both die.
-     * When this bullet collides with an asteroid, the asteroid and bullet both die.
-     * When this bullet collides with a planetoid, the planetoid and bullet both die.
-     */
-    @Override
-    //TODO remove cuz in Entity
-    public void collide(Entity entity){
-        if (entity instanceof Ship){
-            if (this.getBulletSource() == entity){
-                ((Ship) entity).loadBullet(this);
-            }
-            else{
-                this.terminate();
-                ((Ship) entity).terminate();
-            }
-        }
-        if (entity instanceof Bullet){
-            this.terminate();
-            ((Bullet) entity).terminate();
-        }
-        if (entity instanceof Asteroid){
-            this.terminate();
-            ((Asteroid) entity).terminate();
-        }
-        if (entity instanceof Planetoid){
-            this.terminate();
-            ((Planetoid) entity).terminate();
-        }
-
-    }
 
     public void collideWithBoundary(){
 
     }
 
+    public void collideWith(Bullet bullet) {
+        this.terminate();
+        bullet.terminate();
+    }
+
+    public void collideWith(Collideable other) {
+        other.collideWith(this);
+    }
+
+    public void collideWith(Ship ship) {
+        if (this.getBulletSource() == ship){
+            ship.loadBullet(this);
+        }
+        else {
+            this.terminate();
+            ship.terminate();
+        }
+    }
 }
+

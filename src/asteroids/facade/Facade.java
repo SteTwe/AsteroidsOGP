@@ -135,7 +135,7 @@ public class Facade implements IFacade {
 
 	@Override
 	public Ship getBulletShip(Bullet bullet) throws ModelException {
-		return bullet.getBulletShip();
+		return bullet.getShip();
 	}
 
 	@Override

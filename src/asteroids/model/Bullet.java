@@ -1,7 +1,4 @@
 package asteroids.model;
-import be.kuleuven.cs.som.annotate.*;
-
-import java.util.IllegalFormatCodePointException;
 
 /**
  * Created by stef on 2-4-17.
@@ -22,13 +19,29 @@ public class Bullet extends Entity{
         super(positionX, positionY, velocityX, velocityY, radius);
     }
 
+    /******************
+     * VARIABLES BULLET
+     **************/
+    /**
+     * Variable holding the ship that the bullet is attached to.
+     */
+    private Ship ship;
+    /**
+     * Variable holding the ship from where the bullet has been fired.
+     */
+    private Ship bulletSource;
+
+
+    /******************
+     * SHIP RELATED
+     **************/
     /**
      * Sets the ship of the current bullet to the given ship.
      * @param ship
      */
     //TODO
     public void setShip(Ship ship){
-
+        this.ship = ship;
     }
 
     /**
@@ -37,39 +50,28 @@ public class Bullet extends Entity{
      * @return The ship
      *          | result == this.ship
      */
-    public Ship getBulletShip(){
-        return  this.bulletShip;
+    public Ship getShip(){
+        return this.ship;
     }
 
-    private Ship bulletShip;
-
-
     /**
-     * Return the source of this bullet as a Ship.
+     * Return the source of the fired bullet as a Ship.
      */
     public Ship getBulletSource(){
         return this.bulletSource;
     }
 
-    private Ship bulletSource;
-
-    private World world;
-
-    public World getWorld(){
-        return this.world;
-    }
-
-
     /**
-     * Set the source of the bullet to the given ship
+     * Set the source of the fired bullet to the given ship
      */
     public void setBulletsource(Ship ship){
         this.bulletSource = ship;
     }
 
-    public void setWorld(World world){
-        this.world = world;
-    }
+
+    /******************
+     * BOUNCE RELATED
+     **************/
     /**
      * Decrements the number of bounces until destruction
      */
@@ -90,6 +92,14 @@ public class Bullet extends Entity{
         return this.numberOfBounces;
     }
 
+
+    /******************
+     * COLLISION RELATED
+     **************/
+    /**
+     * Resolve collisions with bullets. //TODO should go to entity!
+     * @param entity
+     */
     @Override
     public void collide(Entity entity){
         if (entity instanceof Ship){

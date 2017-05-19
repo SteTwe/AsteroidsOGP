@@ -580,7 +580,7 @@ public abstract class Entity implements Collideable {
      *              | return (Math.sqrt(Math.pow((x1 - x2), 2) + Math.pow((y1 - y2), 2)));
      */
     public double getDistanceBetween(Entity entity2) {
-
+        return 0;
     }
 
     /**
@@ -590,6 +590,7 @@ public abstract class Entity implements Collideable {
      */
     public double getDistanceBetweenCenter(Entity entity2){
 
+        return 0;
     }
 
     //TODO doc, implementation?

@@ -203,8 +203,11 @@ public class World {
                 entity.move(duration);
             }
         }
-        // Else resolve collision, substract tC from duration, start again.
+        // Else advance entities tC sec, resolve collision, substract tC from duration, start again.
         else {
+            for (Entity entity : getEntitySet()){
+                entity.move(duration);
+            }
             // TODO Resolve collsion
 
             //Substract and start over

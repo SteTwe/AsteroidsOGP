@@ -288,17 +288,27 @@ public abstract class Entity implements Collideable {
      **************/
     /**
      * Move the entity for a certain amount of time (duration).
+     * If the entity is a ship and the thruster of that ship is enabled,
+     * adjust the velocity of the ship after moving.
      *
      * @param duration  The amount of time to move.
-     * @throws IllegalArgumentException The duration is les than zero.
+     * @throws IllegalArgumentException The duration is less than zero.
      * @post The new position of this entity
      */
     public void move(double duration){
-        //TODO if ship thruster enabled, speed shoud be changed differently.
         if (!isValidDuration(duration))
             throw new IllegalArgumentException("duration not valid");
         setPositionX(getPositionX() + duration * getVelocityX());
         setPositionY(getPositionY() + duration * getVelocityY());
+        if (this instanceof Ship){
+            Ship ship = (Ship) this;
+            if (ship.getActiveThruster()){
+            double newVelocityX = getVelocityX() + ship.getAcceleration() * Math.cos(ship.getAngle()) * duration;
+            double newVelocityY = getVelocityY() + ship.getAcceleration() * Math.sin(ship.getAngle()) * duration;
+            setVelocityX(newVelocityX);
+            setVelocityY(newVelocityY);
+        }
+        }
     }
 
     /**

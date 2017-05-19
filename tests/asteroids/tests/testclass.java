@@ -67,7 +67,7 @@ public class testclass {
         assertEquals(4, facade.getEntities(world).size(), EPSILON);
 
         // Expected : ship1
-        assertEquals(ship1, facade.getEntityAt(world, 250,350));
+       assertEquals(ship1, facade.getEntityAt(world, 250,350));
 
         // Expected: bullet1
         assertEquals(bullet1, facade.getEntityAt(world, 600,150));
@@ -85,7 +85,17 @@ public class testclass {
 
     }
 
+    @Test
     public void testShipMethods() throws ModelException{
+        Ship ship = facade.createShip(5,6,15,20,15,0.2,6);
+        System.out.println(ship.getVelocityX());
+        System.out.println(ship.getVelocityY());
+        System.out.println(ship.getVelocityX()/ship.getVelocityY());
+
+        facade.setThrusterActive(ship, true);
+        System.out.println(ship.getVelocityX());
+        System.out.println(ship.getVelocityY());
+        System.out.println(ship.getVelocityX()/ship.getVelocityY());
 
     }
 

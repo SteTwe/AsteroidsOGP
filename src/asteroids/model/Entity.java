@@ -294,6 +294,7 @@ public abstract class Entity implements Collideable {
      * @post The new position of this entity
      */
     public void move(double duration){
+        //TODO if ship thruster enabled, speed shoud be changed differently.
         if (!isValidDuration(duration))
             throw new IllegalArgumentException("duration not valid");
         setPositionX(getPositionX() + duration * getVelocityX());

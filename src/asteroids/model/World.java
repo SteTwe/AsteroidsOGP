@@ -191,4 +191,26 @@ public class World {
         }
         return null;
     }
+
+    //TODO
+    public void evolve(double duration){
+        //Predict next collision
+        double timeNextCollision =0; //TODO Time next collision
+
+        // If tC > duration: advance entities duration sec
+        if (timeNextCollision > duration){
+            for (Entity entity: getEntitySet()){
+                entity.move(duration);
+            }
+        }
+        // Else resolve collision, substract tC from duration, start again.
+        else {
+            // TODO Resolve collsion
+
+            //Substract and start over
+            double newDuration = duration - timeNextCollision;
+            evolve(newDuration);
+        }
+
+    }
 }

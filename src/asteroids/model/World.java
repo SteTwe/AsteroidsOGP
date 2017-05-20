@@ -141,6 +141,7 @@ public class World {
         if (getEntitySet().contains(entity)) throw new IllegalArgumentException("Entity is already in the world.");
         else {
             this.entitySet.add(entity);
+            entity.setWorld(this);
         }
     }
 
@@ -154,6 +155,7 @@ public class World {
     public void removeEntity(Entity entity){
         try {
             this.entitySet.remove(entity);
+            entity.setWorld(null);
         }
         catch (Exception e){
             }

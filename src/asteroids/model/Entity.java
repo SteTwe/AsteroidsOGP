@@ -590,9 +590,13 @@ public abstract class Entity implements Collideable {
      * @return The distance between this entity and the given other entity.
      *              | return (Math.sqrt(Math.pow((x1 - x2), 2) + Math.pow((y1 - y2), 2)));
      */
-    public double getDistanceBetween(Entity entity2) {
-
-        return 0;
+    public double getDistanceBetween(Entity other) {
+        if (this == other) return 0;
+        double x1 = this.getPositionX();
+        double x2 = other.getPositionX();
+        double y1 = this.getPositionY();
+        double y2 = other.getPositionY();
+        return (Math.sqrt(Math.pow((x1 -x2), 2) + Math.pow((y1-y2),2)));
     }
 
     /**

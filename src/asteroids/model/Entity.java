@@ -564,18 +564,18 @@ public abstract class Entity implements Collideable {
     /**
      * Check if two entities overlap.
      *
-     * @param       entity2
+     * @param       other
      *              | Second entity
      * @return      | True if the entities overlap
      */
-    public boolean overlap(Entity entity2) {
-        if (this == entity2) {
+    public boolean overlap(Entity other) {
+        if (this == other) {
             return true;
         } else {
-            double distance = getDistanceBetween(entity2);
+            double distance = this.getDistanceBetween(other);
             if (this.radius > distance) {
                 return true;
-            } else if (entity2.radius > distance) {
+            } else if (other.getRadius() > distance) {
                 return true;
             } else {
                 return false;
@@ -597,16 +597,6 @@ public abstract class Entity implements Collideable {
         double y1 = this.getPositionY();
         double y2 = other.getPositionY();
         return (Math.sqrt(Math.pow((x1 -x2), 2) + Math.pow((y1-y2),2)));
-    }
-
-    /**
-     * Compute the distance between the centers of two entities.
-     * @param entity2
-     * @return
-     */
-    public double getDistanceBetweenCenter(Entity entity2){
-
-        return 0;
     }
 
     //TODO doc, implementation?

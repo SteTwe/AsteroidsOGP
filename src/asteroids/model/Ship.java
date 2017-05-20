@@ -532,29 +532,34 @@ public class Ship extends Entity{
      * Fire a bullet from the ship.
      */
     public void fireBullet(){
-        Bullet bullet = getBullets().iterator().next();
-        // Remove bullet from ship
-        this.removeBulletShip(bullet);
-        // set ship as bulletSource
-        bullet.setBulletsource(this);
+        if (this.getWorld() != null) {
+            Bullet bullet = getBullets().iterator().next();
+            // Remove bullet from ship
+            this.removeBulletShip(bullet);
+            // set ship as bulletSource
+            bullet.setBulletsource(this);
 
-        // bullet speed is 250 km/s in same direction ship is faced
-        // calculate separate velocities with 2 equations:
-        // sqrt(pow(newVelocityX, 2) + pow(newVelocityY, 2)) = 250 km/s  | basic formula for calculation of bullet speed must equal 250 km/s
-        // newVelocityY / newVelocityX = this.velocityY / this.velocityX     | to maintain the current direction of the ship
-        // rewrite equations to get the used equations for velocity calculations.
-        double newVelocityX = Math.sqrt((Math.pow(250,2)) / (((Math.pow((this.getVelocityY()/this.getVelocityX()),2)) + 1)));
-        double newVelocityY = ((this.getVelocityY() / this.getVelocityX()) * newVelocityX);
-        bullet.setVelocityX(newVelocityX);
-        bullet.setVelocityY(newVelocityY);
+            // bullet speed is 250 km/s in same direction ship is faced
+            // calculate separate velocities with 2 equations:
+            // sqrt(pow(newVelocityX, 2) + pow(newVelocityY, 2)) = 250 km/s  | basic formula for calculation of bullet speed must equal 250 km/s
+            // newVelocityY / newVelocityX = this.velocityY / this.velocityX     | to maintain the current direction of the ship
+            // rewrite equations to get the used equations for velocity calculations.
+            double newVelocityX = Math.sqrt((Math.pow(250, 2)) / (((Math.pow((this.getVelocityY() / this.getVelocityX()), 2)) + 1)));
+            double newVelocityY = ((this.getVelocityY() / this.getVelocityX()) * newVelocityX);
 
-        // bullet position is next to the ship so that both don't overlap
-        // new positionX is current positionX + both radii + 1 (adds a little space)
-        double bulletRadius = bullet.getRadius();
-        double shipRadius = this.getRadius();
-        double newXPositionBullet = bullet.getPositionX() + bulletRadius + shipRadius + 1;
-        bullet.setPositionX(newXPositionBullet);
 
+            // bullet position is next to the ship so that both don't overlap
+            // new positionX is current positionX + both radii + 1 (adds a little space)
+            double bulletRadius = bullet.getRadius();
+            double shipRadius = this.getRadius();
+            double newXPositionBullet = bullet.getPositionX() + bulletRadius + shipRadius + 1;
+            double newYPositionBullet = this.getPositionY();
+
+            bullet.setVelocityX(newVelocityX);
+            bullet.setVelocityY(newVelocityY);
+            bullet.setPositionX(newXPositionBullet);
+            bullet.setPositionY(newYPositionBullet);
+        }
 
     }
 }

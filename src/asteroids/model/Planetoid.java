@@ -19,4 +19,6 @@ public class Planetoid extends MinorPlanet {
     public void collideWith(Ship ship) {
         ship.teleportShip();
     }
+
+    //TODO shrinking radius
 }

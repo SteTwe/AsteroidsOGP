@@ -410,6 +410,18 @@ public class Ship extends Entity{
             this.mass = mass;
         }
 
+    @Override
+    public double getMass(){
+        double totalmass = this.mass;
+        if(getBullets().isEmpty()) return this.mass;
+        else {
+            for (Bullet bullet : getBullets()){
+                totalmass += bullet.getMass();
+            }
+        }
+        return totalmass;
+    }
+
     /**
      * Return true if the mass is valid for this ship.
      *

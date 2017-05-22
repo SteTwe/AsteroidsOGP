@@ -395,15 +395,7 @@ public abstract class Entity implements Collideable {
      *          |       return massEntity
      */
     public double getMass(){
-        if (this instanceof Ship){
-            Ship ship = (Ship) this;
-            double totalmass = this.calcMass();
-            for (Bullet bullet : ship.getBullets()){
-                totalmass += bullet.getMass();
-            }
-            return totalmass;
-        }
-        else return this.calcMass();
+        return this.calcMass();
     }
 
 

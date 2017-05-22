@@ -21,8 +21,7 @@ public abstract class Entity implements Collideable {
      * @param radius    The radius of this new entity.
      */
     public Entity(double positionX, double positionY, double velocityX, double velocityY, double radius) throws IllegalArgumentException {
-        this.setPositionX(positionX);
-        this.setPositionY(positionY);
+        setPosition(positionX, positionY);
         setVelocity(velocityX, velocityY);
         if (this.isValidRadius(radius)) {
             this.setRadius(radius);
@@ -76,7 +75,7 @@ public abstract class Entity implements Collideable {
      * @return true if the position is a number
      *          | result == !Double.isNaN(positionX)
      */
-    private boolean isValidPositionX(double positionX){
+    private boolean  isValidPosition(double positionX){
         return (!Double.isNaN(positionX));
     }
 
@@ -90,19 +89,15 @@ public abstract class Entity implements Collideable {
      *      | new.getPositionX() == positionX;
      */
     public void setPositionX(double positionX){
-        if (isValidPositionX(positionX))
+        if (isValidPosition(positionX))
             this.positionX = positionX;
     }
 
-    /**
-     * Return true if the y-coordinate is valid for this entity.
-     *
-     * @param positionY The given position for this entity.
-     * @return true if the position is a number
-     *          | result == !Double.isNaN(positionY)
-     */
-    private boolean isValidPositionY(double positionY){
-        return (!Double.isNaN(positionY));
+    public void setPosition(double positionX, double positionY) throws IllegalArgumentException{
+        if (!isValidPosition(positionX)) throw new IllegalArgumentException("The given position is not valid.");
+        if (!isValidPosition(positionY)) throw new IllegalArgumentException("The given position is not valid.");
+        this.positionX = positionX;
+        this.positionY = positionY;
     }
 
     /**
@@ -115,7 +110,7 @@ public abstract class Entity implements Collideable {
      *      | new.getPositionY() == positionY;
      */
     public void setPositionY(double positionY){
-        if (isValidPositionY(positionY))
+        if (isValidPosition(positionY))
             this.positionY = positionY;
     }
 

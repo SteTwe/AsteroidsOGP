@@ -243,7 +243,7 @@ public class Facade implements IFacade {
 		try{
 		ship.loadBullet(bullet);
 		}
-		catch (IllegalArgumentException e){
+		catch (Exception e){
 			throw new ModelException(e);
 		}
 
@@ -254,14 +254,19 @@ public class Facade implements IFacade {
 		try{
 			ship.loadSetOfBullets(bullets);
 		}
-		catch (IllegalArgumentException e){
+		catch (Exception e){
 			throw new ModelException(e);
 		}
 	}
 
 	@Override
 	public void removeBulletFromShip(Ship ship, Bullet bullet) throws ModelException {
-		ship.removeBulletShip(bullet);
+		try {
+			ship.removeBulletShip(bullet);
+		}
+		catch (Exception e){
+			throw new ModelException(e);
+		}
 	}
 
 	@Override
@@ -316,7 +321,12 @@ public class Facade implements IFacade {
 
 	@Override
 	public void evolve(World world, double dt, CollisionListener collisionListener) throws ModelException {
-		//TODO
+		try{
+			world.evolve(dt);
+		}
+		catch (Exception e){
+			throw new ModelException(e);
+		}
 	}
 
 	@Override

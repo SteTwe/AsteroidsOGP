@@ -526,6 +526,11 @@ public abstract class Entity implements Collideable {
             return Double.POSITIVE_INFINITY;
         return time;
     }
+    //TODO
+    public double[] getPositionCollisionWithEntity(Entity entity){
+        double[] position = {0,0};
+        return position;
+    }
 
     /**
      * Check if two entities overlap.

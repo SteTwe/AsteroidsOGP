@@ -522,6 +522,9 @@ public abstract class Entity implements Collideable {
             throw new IllegalArgumentException("the ships overlap");
         double[] positionDifference = {entity.getPositionX() - this.getPositionX(), entity.getPositionY() - this.getPositionY()};
         double[] velocityDifference = {entity.getVelocityX() - this.getVelocityX(), entity.getVelocityY() - this.getVelocityY()};
+        double product = positionDifference[0] * velocityDifference[0] + positionDifference[1] * velocityDifference[1];
+        if (product >= 0)
+            return Double.POSITIVE_INFINITY;
         return time;
     }
 

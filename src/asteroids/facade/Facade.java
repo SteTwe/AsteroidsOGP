@@ -5,9 +5,6 @@ import asteroids.part2.CollisionListener;
 import asteroids.part3.facade.IFacade;
 import asteroids.part3.programs.IProgramFactory;
 import asteroids.util.ModelException;
-import com.sun.org.apache.xpath.internal.operations.Mod;
-import jdk.nashorn.internal.runtime.ECMAErrors;
-import jdk.nashorn.internal.runtime.WithObject;
 
 
 import java.util.*;
@@ -65,12 +62,13 @@ public class Facade implements IFacade {
 
 	@Override
 	public boolean isShipThrusterActive(Ship ship) throws ModelException {
-		return ship.getThrusterEnabled();
+		return ship.isThrusterEnabled();
 	}
 
 	@Override
 	public void setThrusterActive(Ship ship, boolean active) throws ModelException {
-		ship.thrustOn();
+		if (active) ship.thrustOn();
+		else ship.thrustOff();
 	}
 
 	@Override

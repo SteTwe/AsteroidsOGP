@@ -322,7 +322,7 @@ public abstract class Entity implements Collideable {
         setPositionY(getPositionY() + duration * getVelocityY());
         if (this instanceof Ship){
             Ship ship = (Ship) this;
-            if (ship.getThrusterEnabled()){
+            if (ship.isThrusterEnabled()){
             double newVelocityX = getVelocityX() + ship.getAcceleration() * Math.cos(ship.getAngle()) * duration;
             double newVelocityY = getVelocityY() + ship.getAcceleration() * Math.sin(ship.getAngle()) * duration;
             setVelocityX(newVelocityX);

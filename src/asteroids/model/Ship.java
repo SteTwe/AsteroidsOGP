@@ -131,9 +131,8 @@ public class Ship extends Entity{
      * |       setVelocityX(newVelocityX)
      * |       setVelocityY(newVelocityY)
      */
-    @Deprecated
     public void thrust(double amount) {
-        if (amount < 0)
+        if (amount < 0 || Double.isNaN(amount))
             amount = 0;
         double newVelocityX = getVelocityX() + amount * Math.cos(getAngle());
         double newVelocityY = getVelocityY() + amount * Math.sin(getAngle());
@@ -164,27 +163,6 @@ public class Ship extends Entity{
     private static double SPEED_OF_LIGHT = 300000;
 
     /**
-     * Activate thruster.
-     */
-    //TODO
-    public void thrustOn(){
-        double newVelocityX = getVelocityX() + getAcceleration() * Math.cos(getAngle());
-        double newVelocityY = getVelocityY() + getAcceleration() * Math.sin(getAngle());
-        double newVelocity = getTotalVelocity();
-        if (newVelocity > SPEED_OF_LIGHT) {
-            setVelocityX((newVelocityX / newVelocity) * SPEED_OF_LIGHT);
-            setVelocityY((newVelocityY / newVelocity) * SPEED_OF_LIGHT);
-            setActiveThruster();
-        }
-        else {
-            setVelocityX(newVelocityX);
-            setVelocityY(newVelocityY);
-            setActiveThruster();
-        }
-
-    }
-
-    /**
      * Variable holding the condition of the thruster.
      */
     private boolean thrusterEnabled = false;
@@ -192,13 +170,13 @@ public class Ship extends Entity{
     /**
      * Set thruster condition active.
      */
-    private void setActiveThruster(){
+    public void thrustOn(){
         thrusterEnabled = true;}
 
     /**
      * Reset condition of the thruster.
      */
-    private void resetActiveThruster(){
+    public void thrustOff(){
         thrusterEnabled = false;}
 
     /**
@@ -206,8 +184,8 @@ public class Ship extends Entity{
      *
      * @return Return the condition of the thruster.
      */
-    public boolean getThrusterEnabled(){
-        return this.thrusterEnabled;
+    public boolean isThrusterEnabled(){
+        return thrusterEnabled;
     }
 
     /**
@@ -221,7 +199,7 @@ public class Ship extends Entity{
      * @return Return the acceleration of the ship.
      */
     public double getAcceleration(){
-        if (!getThrusterEnabled()){
+        if (!isThrusterEnabled()){
             return 0;
         }
         double acceleration = thrustForce/ getMass();

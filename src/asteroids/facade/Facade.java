@@ -93,11 +93,12 @@ public class Facade implements IFacade {
 
 	@Override
 	public Bullet createBullet(double x, double y, double xVelocity, double yVelocity, double radius) throws ModelException {
-		if (Double.isNaN(x) || Double.isNaN(y)
-				|| Double.isNaN(xVelocity) || Double.isNaN(yVelocity)
-				|| Double.isNaN(radius)) throw new ModelException("Invalid argument");
-		if (radius < 0) throw new ModelException("Radius below zero");
-		return new Bullet(x, y, xVelocity, yVelocity, radius);
+		try{
+			return new Bullet(x, y, xVelocity, yVelocity, radius);
+		}
+		catch (Exception e){
+			throw new ModelException(e);
+		}
 	}
 
 	@Override
@@ -427,7 +428,12 @@ public class Facade implements IFacade {
 	 *************/
 	@Override
 	public Asteroid createAsteroid(double x, double y, double xVelocity, double yVelocity, double radius) throws ModelException {
-		return new Asteroid(x, y, xVelocity, yVelocity, radius);
+		try {
+			return new Asteroid(x, y, xVelocity, yVelocity, radius);
+		}
+		catch (Exception e){
+			throw  new ModelException(e);
+		}
 	}
 
 	@Override
@@ -471,7 +477,12 @@ public class Facade implements IFacade {
 
 	@Override
 	public Planetoid createPlanetoid(double x, double y, double xVelocity, double yVelocity, double radius, double totalTraveledDistance) throws ModelException {
-		return new Planetoid(x, y, xVelocity, yVelocity, radius, totalTraveledDistance);
+		try{
+			return new Planetoid(x, y, xVelocity, yVelocity, radius, totalTraveledDistance);
+		}
+		catch (Exception e){
+			throw new ModelException(e);
+		}
 	}
 
 	@Override

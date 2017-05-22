@@ -267,14 +267,14 @@ public abstract class Entity implements Collideable {
      */
     public boolean isValidRadius(double radius){
         if (this instanceof Bullet) {
-            return ((radius > minRadiusBullet) && (!Double.isNaN(radius)));
+            return ((radius >= minRadiusBullet) && (!Double.isNaN(radius)));
         }
         else if (this instanceof Ship){
-            return ((radius > minRadiusShip) && (!Double.isNaN(radius)));
+            return ((radius >= minRadiusShip) && (!Double.isNaN(radius)));
         }
 
         else if (this instanceof MinorPlanet){
-            return ((radius > minRadiusMinorPlanet) && (!Double.isNaN(radius)));
+            return ((radius >= minRadiusMinorPlanet) && (!Double.isNaN(radius)));
         }
         else {
             return false;

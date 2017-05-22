@@ -14,6 +14,7 @@ public class Planetoid extends MinorPlanet {
 
     public void setTotalTraveledDistance(double totalTraveledDistance) {
         this.totalTraveledDistance = totalTraveledDistance;
+        if (this.getRadius() < getMinRadius()) this.terminate();
     }
 
     public double getTotalTraveledDistance() {

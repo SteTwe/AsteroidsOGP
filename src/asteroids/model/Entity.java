@@ -494,7 +494,7 @@ public abstract class Entity implements Collideable {
         double[] collisionPosition = this.getMovementPrediction(getTimeToCollisionWithBoundary());
         return collisionPosition;
     }
-    
+
     /**
      * Method executing the change in velocity in order to resolve a collision with a boundary.
      *

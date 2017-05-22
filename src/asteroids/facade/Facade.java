@@ -7,6 +7,7 @@ import asteroids.part3.programs.IProgramFactory;
 import asteroids.util.ModelException;
 import jdk.nashorn.internal.runtime.WithObject;
 
+
 import java.util.*;
 
 public class Facade implements IFacade {
@@ -61,7 +62,7 @@ public class Facade implements IFacade {
 
 	@Override
 	public boolean isShipThrusterActive(Ship ship) throws ModelException {
-		return ship.getActiveThruster();
+		return ship.getThrusterEnabled();
 	}
 
 	@Override

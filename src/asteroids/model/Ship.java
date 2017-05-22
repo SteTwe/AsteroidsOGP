@@ -194,25 +194,27 @@ public class Ship extends Entity{
     /**
      * Variable holding the condition of the thruster.
      */
-    private boolean activeThruster = false;
+    private boolean thrusterEnabled = false;
 
     /**
      * Set thruster condition active.
      */
-    private void setActiveThruster(){activeThruster = true;}
+    private void setActiveThruster(){
+        thrusterEnabled = true;}
 
     /**
      * Reset condition of the thruster.
      */
-    private void resetActiveThruster(){activeThruster = false;}
+    private void resetActiveThruster(){
+        thrusterEnabled = false;}
 
     /**
      * Return the condition of the thruster.
      *
      * @return Return the condition of the thruster.
      */
-    public boolean getActiveThruster(){
-        return this.activeThruster;
+    public boolean getThrusterEnabled(){
+        return this.thrusterEnabled;
     }
 
     /**
@@ -226,6 +228,9 @@ public class Ship extends Entity{
      * @return Return the acceleration of the ship.
      */
     public double getAcceleration(){
+        if (!getThrusterEnabled()){
+            return 0;
+        }
         double acceleration = thrustForce/ getMass();
         if (acceleration < 0)
             return 0;

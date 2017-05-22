@@ -476,8 +476,7 @@ public class Ship extends Entity{
             world.removeEntity(bullet);
         }
         //change the bullet's position to the position of the ship is loaded on
-        bullet.setPositionX(this.getPositionX());
-        bullet.setPositionY(this.getPositionY());
+        bullet.setPosition(this.getPositionX(), this.getPositionY());
         bullet.setShip(this);
     }
 
@@ -515,6 +514,9 @@ public class Ship extends Entity{
      */
     public boolean isValidBullet(Bullet bullet){
         if (getBullets().contains(bullet)) return false;
+        if (bullet == null) return false;
+        if (bullet.getBulletSource() != this) return false;
+        if (bullet.getShip() != this) return false;
         return true;
     }
 

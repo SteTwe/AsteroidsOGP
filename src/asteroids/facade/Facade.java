@@ -6,6 +6,7 @@ import asteroids.part3.facade.IFacade;
 import asteroids.part3.programs.IProgramFactory;
 import asteroids.util.ModelException;
 import com.sun.org.apache.xpath.internal.operations.Mod;
+import jdk.nashorn.internal.runtime.ECMAErrors;
 import jdk.nashorn.internal.runtime.WithObject;
 
 
@@ -239,12 +240,23 @@ public class Facade implements IFacade {
 
 	@Override
 	public void loadBulletOnShip(Ship ship, Bullet bullet) throws ModelException {
+		try{
 		ship.loadBullet(bullet);
+		}
+		catch (IllegalArgumentException e){
+			throw new ModelException(e);
+		}
+
 	}
 
 	@Override
 	public void loadBulletsOnShip(Ship ship, Collection<Bullet> bullets) throws ModelException {
-		ship.loadSetOfBullets(bullets);
+		try{
+			ship.loadSetOfBullets(bullets);
+		}
+		catch (IllegalArgumentException e){
+			throw new ModelException(e);
+		}
 	}
 
 	@Override

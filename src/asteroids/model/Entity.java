@@ -237,7 +237,7 @@ public abstract class Entity implements Collideable {
     public double getRadius(){
         if (this instanceof Planetoid){
             Planetoid planetoid = (Planetoid) this;
-            return planetoid.getRadius() - planetoid.getTotalTraveledDistance() * 0.000001;
+            return planetoid.radius - planetoid.getTotalTraveledDistance() * 0.000001;
         }
         return this.radius;
     }

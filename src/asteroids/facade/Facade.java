@@ -5,6 +5,7 @@ import asteroids.part2.CollisionListener;
 import asteroids.part3.facade.IFacade;
 import asteroids.part3.programs.IProgramFactory;
 import asteroids.util.ModelException;
+import com.sun.org.apache.xpath.internal.operations.Mod;
 import jdk.nashorn.internal.runtime.WithObject;
 
 
@@ -33,11 +34,12 @@ public class Facade implements IFacade {
 	@Override
 	public Ship createShip(double x, double y, double xVelocity, double yVelocity, double radius, double direction,
 						   double mass) throws ModelException {
-		if (Double.isNaN(x) || Double.isNaN(y)
-				|| Double.isNaN(xVelocity) || Double.isNaN(yVelocity) || Double.isNaN(radius)
-				|| Double.isNaN(direction) || Double.isNaN(mass)) throw new ModelException("Invalid argument");
-		if (radius < 0) throw new ModelException("Radius below zero");
-		return new Ship(x, y, xVelocity, yVelocity, radius, direction, mass);
+		try{
+			return  new Ship(x, y, xVelocity, yVelocity, radius, direction, mass);
+		}
+		catch (Exception e){
+			throw new ModelException(e);
+		}
 	}
 
 	@Override

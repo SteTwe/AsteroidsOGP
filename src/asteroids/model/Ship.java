@@ -100,23 +100,23 @@ public class Ship extends Entity{
      * | else
      * |       this.angle = (getAngle() + angle)
      */
-    private void setAngle(double angle) {
-        assert isValidAngle(angle);
-        if ((this.getAngle() + angle) < maxAngle) {
-            this.angle = getAngle() + angle;
-        } else if ((this.getAngle() + angle) > maxAngle) {
-            this.angle = ((getAngle() + angle) % maxAngle);
+    private void setAngle(double angle) throws IllegalArgumentException {
+        if (isValidAngle(angle)) {
+            if ((this.getAngle() + angle) < maxAngle) {
+                this.angle = getAngle() + angle;
+            } else if ((this.getAngle() + angle) > maxAngle) {
+                this.angle = ((getAngle() + angle) % maxAngle);
+            }
+        }
+        else {
+            throw new IllegalArgumentException();
         }
     }
 
-    /**
-     * Return true if angle is valid for this ship.
-     *
-     * @param angle The given angle to be added to the current angle of this ship.
-     * @return true if the angle is a number.
-     * | !Double.isNaN(angle)
-     */
+
     private boolean isValidAngle(double angle) {
+        if (angle < 0) return false;
+        if (angle > Math.PI * 2) return false;
         return (!Double.isNaN(angle));
     }
 

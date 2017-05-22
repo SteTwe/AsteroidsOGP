@@ -23,8 +23,7 @@ public abstract class Entity implements Collideable {
     public Entity(double positionX, double positionY, double velocityX, double velocityY, double radius) throws IllegalArgumentException {
         this.setPositionX(positionX);
         this.setPositionY(positionY);
-        this.setVelocityX(velocityX);
-        this.setVelocityY(velocityY);
+        setVelocity(velocityX, velocityY);
         if (this.isValidRadius(radius)) {
             this.setRadius(radius);
         }
@@ -172,6 +171,19 @@ public abstract class Entity implements Collideable {
             this.velocityY = velocityY;
     }
 
+    public void setVelocity(double velocityX, double velocityY){
+        if (Double.isNaN(velocityX) || Double.isNaN(velocityY)) return;
+        double velocity = (Math.sqrt(Math.pow(velocityX, 2) + Math.pow(velocityY, 2)));
+        if (isValidVelocity(velocity)){
+            this.velocityX = velocityX;
+            this.velocityY =velocityY;
+        }
+        else {
+            this.velocityX = velocityX * SPEED_OF_LIGHT / velocity;
+            this.velocityY = velocityY * SPEED_OF_LIGHT / velocity;
+        }
+    }
+
     /**
      * Return true if the velocityX is valid for this entity.
      * @param velocityX The given velocityX for this entity.
@@ -180,6 +192,11 @@ public abstract class Entity implements Collideable {
      */
     private boolean isValidVelocityX(double velocityX){
         return(!Double.isNaN(velocityX));
+    }
+
+    private boolean isValidVelocity(double velocity){
+        if (velocity > SPEED_OF_LIGHT) return false;
+        return true;
     }
 
     /**

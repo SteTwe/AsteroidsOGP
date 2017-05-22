@@ -541,8 +541,9 @@ public abstract class Entity implements Collideable {
     }
     //TODO
     public double[] getPositionCollisionWithEntity(Entity entity){
-        double[] position = {0,0};
-        return position;
+        double[] collisionPosition = {0,0};
+        
+        return collisionPosition;
     }
 
     /**

@@ -138,6 +138,7 @@ public class World {
      *       | entitySet.contains(entity)
      */
     public void addEntity(Entity entity) throws IllegalArgumentException {
+        if (entity == null) throw new IllegalArgumentException("Entity is null.");
         if (getEntitySet().contains(entity)) throw new IllegalArgumentException("Entity is already in the world.");
         else {
             this.entitySet.add(entity);

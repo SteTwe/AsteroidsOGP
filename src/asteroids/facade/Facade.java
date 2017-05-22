@@ -194,7 +194,12 @@ public class Facade implements IFacade {
 
 	@Override
 	public void addShipToWorld(World world, Ship ship) throws ModelException {
-		world.addEntity(ship);
+		try{
+			world.addEntity(ship);
+		}
+		catch (Exception e){
+			throw new ModelException(e);
+		}
 	}
 
 	@Override

@@ -506,8 +506,7 @@ public class Facade implements IFacade {
 
 	@Override
 	public double getPlanetoidTotalTraveledDistance(Planetoid planetoid) throws ModelException {
-		//TODO
-		return 0;
+		return planetoid.getTotalTraveledDistance();
 	}
 
 	@Override

@@ -515,13 +515,14 @@ public abstract class Entity implements Collideable {
 
     //TODO
     public double getTimeCollisionWithEntity(Entity entity){
+        double time = 0;
         if (entity == null)
             throw new IllegalArgumentException("ship2 does not exist");
         if (this.overlap(entity))
             throw new IllegalArgumentException("the ships overlap");
         double[] positionDifference = {entity.getPositionX() - this.getPositionX(), entity.getPositionY() - this.getPositionY()};
         double[] velocityDifference = {entity.getVelocityX() - this.getVelocityX(), entity.getVelocityY() - this.getVelocityY()};
-
+        return time;
     }
 
     /**

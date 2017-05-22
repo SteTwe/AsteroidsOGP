@@ -532,9 +532,13 @@ public abstract class Entity implements Collideable {
         return time;
     }
     //TODO
-    public double[] getPositionCollisionWithEntity(Entity entity){
-        double[] position = {0,0};
-        return position;
+    public double[] getPositionCollisionWithEntity(Entity ship2){
+        double[] collisionPosition = {0,0};
+        double[] entityPosition = {this.getPositionX(), this.getPositionY()};
+        double[] shipPosition = {ship2.getPositionX(), ship2.getPositionY()};
+        double[] entityVelocity = {this.getVelocityX(), this.getVelocityY()};
+        double[] shipVelocity = {ship2.getVelocityX(), ship2.getVelocityY()};
+        return collisionPosition;
     }
 
     /**

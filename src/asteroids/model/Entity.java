@@ -3,8 +3,6 @@ package asteroids.model;
 import be.kuleuven.cs.som.annotate.Basic;
 import be.kuleuven.cs.som.annotate.Raw;
 
-import java.awt.*;
-import java.util.DoubleSummaryStatistics;
 
 /**
  * A class representing an Asteroid entity involving a position, a velocity, and a radius.
@@ -202,9 +200,9 @@ public abstract class Entity implements Collideable {
      * @post Gives the total velocity for this entity.
      * | return (Math.sqrt(Math.pow(velocityX, 2) + Math.pow(velocityY, 2)))
      */
-    public double computeVelocity(double velocityX, double velocityY) {
+    public double getTotalVelocity() {
         //TODO Velocity cannot exceed Speed of light!!
-        return (Math.sqrt(Math.pow(velocityX, 2) + Math.pow(velocityY, 2)));
+        return (Math.sqrt(Math.pow(getVelocityX(), 2) + Math.pow(getVelocityY(), 2)));
     }
 
     /**
@@ -225,6 +223,10 @@ public abstract class Entity implements Collideable {
     @Basic
     @Raw
     public double getRadius(){
+        if (this instanceof Planetoid){
+            Planetoid planetoid = (Planetoid) this;
+            return planetoid.getRadius() - planetoid.getTotalTraveledDistance() * 0.000001;
+        }
         return this.radius;
     }
 
@@ -282,6 +284,12 @@ public abstract class Entity implements Collideable {
         }
     }
 
+    public double getMinRadius(){
+        if (this instanceof Bullet) return minRadiusBullet;
+        if (this instanceof Ship) return minRadiusShip;
+        else return minRadiusMinorPlanet;
+    }
+
 
     /******************
      * MOVEMENT RELATED
@@ -308,6 +316,11 @@ public abstract class Entity implements Collideable {
             setVelocityX(newVelocityX);
             setVelocityY(newVelocityY);
         }
+        }
+        if (this instanceof Planetoid){
+            Planetoid planetoid = (Planetoid) this;
+            planetoid.setTotalTraveledDistance(planetoid.getTotalTraveledDistance() + getTotalVelocity() * duration);
+            if (planetoid.getRadius() < planetoid.getMinRadius()) planetoid.terminate();
         }
     }
 

@@ -5,10 +5,20 @@ package asteroids.model;
  */
 public class Planetoid extends MinorPlanet {
 
-    public Planetoid(double positionX, double positionY, double velocityX, double velocityY, double radius) throws IllegalArgumentException{
+    public Planetoid(double positionX, double positionY, double velocityX, double velocityY, double radius, double totalTraveledDistance) throws IllegalArgumentException{
         super(positionX, positionY, velocityX, velocityY, radius);
+        setTotalTraveledDistance(totalTraveledDistance);
     }
 
+    private double totalTraveledDistance;
+
+    public void setTotalTraveledDistance(double totalTraveledDistance) {
+        this.totalTraveledDistance = totalTraveledDistance;
+    }
+
+    public double getTotalTraveledDistance() {
+        return totalTraveledDistance;
+    }
 
     @Override
     public void collideWith(Collideable other) {

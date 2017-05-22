@@ -144,7 +144,7 @@ public class Ship extends Entity{
             amount = 0;
         double newVelocityX = getVelocityX() + amount * Math.cos(getAngle());
         double newVelocityY = getVelocityY() + amount * Math.sin(getAngle());
-        double newVelocity = computeVelocity(newVelocityX, newVelocityY);
+        double newVelocity = getTotalVelocity(newVelocityX, newVelocityY);
         if (newVelocity > SPEED_OF_LIGHT) {
             setVelocityX((newVelocityX / newVelocity) * SPEED_OF_LIGHT);
             setVelocityY((newVelocityY / newVelocity) * SPEED_OF_LIGHT);
@@ -177,7 +177,7 @@ public class Ship extends Entity{
     public void thrustOn(){
         double newVelocityX = getVelocityX() + getAcceleration() * Math.cos(getAngle());
         double newVelocityY = getVelocityY() + getAcceleration() * Math.sin(getAngle());
-        double newVelocity = computeVelocity(newVelocityX, newVelocityY);
+        double newVelocity = getTotalVelocity(newVelocityX, newVelocityY);
         if (newVelocity > SPEED_OF_LIGHT) {
             setVelocityX((newVelocityX / newVelocity) * SPEED_OF_LIGHT);
             setVelocityY((newVelocityY / newVelocity) * SPEED_OF_LIGHT);

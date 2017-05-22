@@ -39,7 +39,7 @@ public class World {
     /**
      * Set containing all the entities present in the world.
      */
-    private Set<Entity> entitySet = new HashSet<>();
+    private Set<Entity> entitySet = new HashSet<Entity>();
 
     /**
      * Variable holding the width of the world.
@@ -166,7 +166,7 @@ public class World {
      *
      * @return Return the set of Entities of this world.
      */
-    public Set<? extends Entity> getEntitySet() {
+    public Set<Entity> getEntitySet() {
         return this.entitySet;
     }
 
@@ -192,6 +192,12 @@ public class World {
             }
         }
         return null;
+    }
+
+
+    public void isValidEntity(Entity entity){
+
+
     }
 
     //TODO

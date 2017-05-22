@@ -540,9 +540,9 @@ public abstract class Entity implements Collideable {
         return time;
     }
     //TODO
-    public double[] getPositionCollisionWithEntity(Entity entity){
+    public double[] getPositionCollisionWithEntity(Entity ship2){
         double[] collisionPosition = {0,0};
-        
+    
         return collisionPosition;
     }
 

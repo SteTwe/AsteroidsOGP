@@ -453,6 +453,11 @@ public abstract class Entity implements Collideable {
         if (getWorld() != null){
             getWorld().removeEntity(this);
         }
+        if (this instanceof Bullet){
+            Bullet bullet = (Bullet) this;
+            bullet.getShip().removeBulletShip(bullet);
+            bullet.setShip(null);
+        }
     }
 
     /**

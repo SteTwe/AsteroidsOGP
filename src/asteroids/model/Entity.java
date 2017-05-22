@@ -467,8 +467,14 @@ public abstract class Entity implements Collideable {
         //in direction Y:
         //double y = (afstand tussen rand radius en verticale boundary) / Ysnelheid
         double timeInDirectionY = (worldSize[1] - position[1] - getRadius()) / velocity[1];
-
         // choose smallest of the two
+        /**
+         *needs shortening with function
+         */
+        if (timeInDirectionX < timeInDirectionY)
+                time = timeInDirectionX;
+        else
+            time = timeInDirectionY;
         return time;
     }
 

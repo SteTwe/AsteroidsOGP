@@ -171,6 +171,10 @@ public class World {
      * Terminate the world by removing all of its entities.
      */
     public void terminateWorld(){
+        System.out.println(getEntitySet());
+        for (Entity entity : getEntitySet()){
+            entity.removeWorld();
+        }
         this.getEntitySet().clear();
     }
 

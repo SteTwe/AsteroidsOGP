@@ -519,9 +519,9 @@ public abstract class Entity implements Collideable {
             throw new IllegalArgumentException("ship2 does not exist");
         if (this.overlap(entity))
             throw new IllegalArgumentException("the ships overlap");
-        double[] deltaR = {entity.getPositionX() - this.getPositionX(), entity.getPositionY() - this.getPositionY()};
-        double[] deltaV = {entity.getVelocityX() - this.getVelocityX(), entity.getVelocityY() - this.getVelocityY()};
-        
+        double[] positionDifference = {entity.getPositionX() - this.getPositionX(), entity.getPositionY() - this.getPositionY()};
+        double[] velocityDifference = {entity.getVelocityX() - this.getVelocityX(), entity.getVelocityY() - this.getVelocityY()};
+
     }
 
     /**

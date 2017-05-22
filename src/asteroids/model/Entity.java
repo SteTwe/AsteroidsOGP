@@ -515,7 +515,7 @@ public abstract class Entity implements Collideable {
 
     //TODO
     public double getTimeCollisionWithEntity(Entity entity){
-        double time = 0;
+        double time = Double.POSITIVE_INFINITY;
         if (entity == null)
             throw new IllegalArgumentException("ship2 does not exist");
         if (this.overlap(entity))

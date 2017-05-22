@@ -521,48 +521,7 @@ public abstract class Entity implements Collideable {
             throw new IllegalArgumentException("the ships overlap");
         double[] deltaR = {entity.getPositionX() - this.getPositionX(), entity.getPositionY() - this.getPositionY()};
         double[] deltaV = {entity.getVelocityX() - this.getVelocityX(), entity.getVelocityY() - this.getVelocityY()};
-
-        //difference in x-coordinate
-        double diffPosX = (entity.getPositionX() - this.getPositionX());
-
-        //difference in y-coordinate
-        double diffPosY = (entity.getPositionY() - this.getPositionY());
-
-        //total position difference
-        double[] differencePosition = new double[]{diffPosX, diffPosY};
-
-        //difference in velocity in the x-direction
-        double diffVelX = (entity.getVelocityX() - this.getVelocityX());
-
-        //difference in velocity in the y-direction
-        double diffVelY = (entity.getVelocityY() - this.getVelocityY());
-
-        //total velocity difference
-        double[] differenceVelocity = new double[]{diffVelX, diffVelY};
-
-        //position difference multiplication
-        double diffPosMult = (Math.pow(differencePosition[0], 2) + (Math.pow(differencePosition[1], 2)));
-
-        //velocity difference multiplication
-        double diffVelMult = (Math.pow(differenceVelocity[0], 2) + (Math.pow(differenceVelocity[1], 2)));
-
-        //velocity position multiplication
-        double diffVelPosMult = ((differenceVelocity[0] * differencePosition[0]) + differenceVelocity[1] * differencePosition[1]);
-
-        //sigma as defined by the assignment (just the sum of the radii of the ships involved)
-        double sigma = (this.getRadius() + entity.getRadius());
-        //d as defined by the assignment
-        double d = (Math.pow((diffVelPosMult), 2)) - (diffVelMult) * (diffPosMult - Math.pow(sigma, 2));
-
-        double time = -((diffVelPosMult + Math.sqrt(d)) / diffVelMult);
-
-        //given by the assignment
-        if (diffVelPosMult >= 0)
-            return Double.POSITIVE_INFINITY;
-        else if (d < 0)
-            return Double.POSITIVE_INFINITY;
-        else
-            return time;
+        
     }
 
     /**

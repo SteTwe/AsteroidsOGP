@@ -513,7 +513,6 @@ public abstract class Entity implements Collideable {
             setVelocityY(-getVelocityY());
     }
 
-    //TODO
     public double getTimeCollisionWithEntity(Entity entity){
         double time = Double.POSITIVE_INFINITY;
         if (entity == null)

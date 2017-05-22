@@ -158,6 +158,12 @@ public class World {
             entity.removeWorld();
     }
 
+    public boolean entityOutOfBounds(Entity entity){
+        if ((entity.getPositionX() > getWidth()) || (entity.getPositionX() < 0)) return true;
+        if ((entity.getPositionY() > getHeight()) || (entity.getPositionY() < 0)) return true;
+        return false;
+    }
+
     /**
      * Return the set of Entities of this world.
      *
@@ -199,6 +205,7 @@ public class World {
     public boolean isValidEntity(Entity entity){
         if (getEntitySet().contains(entity)) return false;
         if (entity == null) return false;
+        if (entityOutOfBounds(entity)) return false;
         if (entity.getWorld() != null) return false;
         if (entity.isTerminated()) return false;
         for (Entity other : getEntitySet()){
@@ -210,9 +217,12 @@ public class World {
     }
 
     //TODO
-    public void evolve(double duration){
+    public void evolve(double duration) throws IllegalArgumentException{
+        if ((duration < 0) || (Double.isNaN(duration))) throw new IllegalArgumentException("Duration is not valid.");
         //Predict next collision
         double timeNextCollision =0; //TODO Time next collision
+        double[] collisionPosition = {0,0}; //TODO collision position
+        Entity[] collidingEntities = {}; //TODO colliding entities
 
         // If tC > duration: advance entities duration sec
         if (timeNextCollision > duration){

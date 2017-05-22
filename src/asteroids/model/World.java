@@ -138,8 +138,7 @@ public class World {
      *       | entitySet.contains(entity)
      */
     public void addEntity(Entity entity) throws IllegalArgumentException {
-        if (entity == null) throw new IllegalArgumentException("Entity is null.");
-        if (getEntitySet().contains(entity)) throw new IllegalArgumentException("Entity is already in the world.");
+        if (!isValidEntity(entity)) throw new IllegalArgumentException("Entity is not valid.");
         else {
             this.entitySet.add(entity);
             entity.setWorld(this);
@@ -153,13 +152,10 @@ public class World {
      * @post The given entity is not in the world.
      *       | !entitySet.contains(entity)
      */
-    public void removeEntity(Entity entity){
-        try {
+    public void removeEntity(Entity entity) throws IllegalArgumentException{
+        if ((entity == null) || entity.getWorld() != this) throw new IllegalArgumentException("Entity is not valid.");
             this.entitySet.remove(entity);
-            entity.setWorld(null);
-        }
-        catch (Exception e){
-            }
+            entity.removeWorld();
     }
 
     /**
@@ -196,9 +192,17 @@ public class World {
     }
 
 
-    public void isValidEntity(Entity entity){
-
-
+    public boolean isValidEntity(Entity entity){
+        if (getEntitySet().contains(entity)) return false;
+        if (entity == null) return false;
+        if (entity.getWorld() != null) return false;
+        if (entity.isTerminated()) return false;
+        for (Entity other : getEntitySet()){
+            if (entity.overlap(other)){
+                return false;
+            }
+        }
+        return true;
     }
 
     //TODO

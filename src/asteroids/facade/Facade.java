@@ -204,7 +204,12 @@ public class Facade implements IFacade {
 
 	@Override
 	public void removeShipFromWorld(World world, Ship ship) throws ModelException {
-		world.removeEntity(ship);
+		try{
+			world.removeEntity(ship);
+		}
+		catch (Exception e){
+			throw new ModelException(e);
+		}
 	}
 
 	@Override

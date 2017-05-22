@@ -369,30 +369,26 @@ public abstract class Entity implements Collideable {
     /**
      * Constant holding the massdensity of Ships.
      */
-    private double densityShip = 1.42 * Math.pow(10, 12);
+    private double minDensityShip = 1.42 * Math.pow(10, 12);
 
     /**
-     * Calculate and return the mass of the entity.
+     * Calculate and return the mass of bullets, planetoids and asteroids.
      *
      * @return  Returns the calculated mass of the entity.
      *          | result == (4/3) * Math.PI * Math.pow(radius,3) * massDensityEntity
      */
     public double calcMass(){
         if (this instanceof Planetoid){
-            double massPlanetoid = ((4/3) * Math.PI * Math.pow(this.getRadius(), 3) * densityPlanetoids);
+            double massPlanetoid = 4/3. * Math.PI * Math.pow(this.getRadius(), 3) * densityPlanetoids;
             return massPlanetoid;
         }
         if (this instanceof Asteroid){
-            double massAsteroid = ((4/3) * Math.PI * Math.pow(this.getRadius(), 3) * densityAsteroids);
+            double massAsteroid = 4/3. * Math.PI * Math.pow(this.getRadius(), 3) * densityAsteroids;
             return massAsteroid;
         }
         if (this instanceof Bullet){
-            double massBullet = ((4/3) * Math.PI * Math.pow(this.getRadius(), 3) * densityBullet);
+            double massBullet = 4/3. * Math.PI * Math.pow(this.getRadius(), 3) * densityBullet;
             return massBullet;
-        }
-        if (this instanceof Ship){
-            double massShip = ((4/3) * Math.PI * Math.pow(this.getRadius(), 3) * densityShip);
-            return massShip;
         }
         return 0;
     }
@@ -408,6 +404,10 @@ public abstract class Entity implements Collideable {
      */
     public double getMass(){
         return this.calcMass();
+    }
+
+    public double getMinShipMass(){
+        return 4/3. * Math.PI * Math.pow(this.getRadius(), 3) * minDensityShip;
     }
 
 

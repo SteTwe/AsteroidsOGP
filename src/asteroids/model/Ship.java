@@ -410,10 +410,14 @@ public class Ship extends Entity{
      * @post The mass of this ship is equal to the given mass.
      *       | new.getMass() == mass
      */
-    public void setMass(double mass){
-        if (isValidMass(mass))
+    public void setMass(double mass) {
+        if (isValidMass(mass)) {
             this.mass = mass;
         }
+        else {
+            this.mass = getMinShipMass();
+        }
+    }
 
     @Override
     public double getMass(){
@@ -435,6 +439,9 @@ public class Ship extends Entity{
      *         | result = !Double.isNaN(mass)
      */
     private boolean isValidMass(double mass){
+        if (mass < getMinShipMass()) {
+            return false;
+        }
         return (!Double.isNaN(mass));
     }
 

@@ -61,7 +61,7 @@ public class Ship extends Entity{
     /**
      * Set holding the bullets of this ship.
      */
-    private Set<Bullet> bulletSet = new HashSet<>();
+    private Set<Bullet> bulletSet = new HashSet<Bullet>();
 
 
     /**********
@@ -104,6 +104,7 @@ public class Ship extends Entity{
         if (isValidAngle(angle)){
             this.angle = angle;
         }
+        else throw new IllegalArgumentException("Angle is not valid.");
     }
 
 
@@ -463,17 +464,7 @@ public class Ship extends Entity{
     public void loadSetOfBullets(Collection<Bullet> bullets) throws IllegalArgumentException{
         for (Bullet bullet : bullets){
             if (!isValidBullet(bullet)) throw new IllegalArgumentException("Bullet is not valid for this ship");
-            //add bullet to the set of bullets of this ship
-            bulletSet.add(bullet);
-            //if ship is linked to a world, remove bullet from world, bullet cannot be in world and on ship at the same time
-            if (this.getWorld() != null){
-                World world = this.getWorld();
-                world.removeEntity(bullet);
-            }
-            //change the bullet's position to the position of the ship is loaded on
-            bullet.setPositionX(this.getPositionX());
-            bullet.setPositionY(this.getPositionY());
-            bullet.setShip(this);
+            this.loadBullet(bullet);
         }
     }
 
@@ -484,16 +475,13 @@ public class Ship extends Entity{
      *          | result == !getBullets().contains(bullet)
      */
     public boolean isValidBullet(Bullet bullet){
-      /*  if (getBullets().contains(bullet)) return false;
+        if (getBullets().contains(bullet)) return false;
         if (bullet == null) return false;
-        if (bullet.getBulletSource() != this) return false;
-        if (bullet.getShip() != this) return false;
-        if ((bullet.getWorld() != null) && (bullet.getWorld() != this.getWorld())) return false;
-        return true;*/
-        if (bullet == null) return false;
+        //TOdo review this
+        //if (bullet.getBulletSource() != this || bullet.getBulletSource() != null) return false;
+        if (bullet.getShip() != null) return false;
         if (bullet.isTerminated()) return false;
-        if (bullet.getShip() != null && bullet.getShip() != this) return false;
-        if (bullet.getBulletSource() != null && bullet.getBulletSource() != this) return false;
+        if ((bullet.getWorld() != null) && (bullet.getWorld() != this.getWorld())) return false;
         return true;
     }
 

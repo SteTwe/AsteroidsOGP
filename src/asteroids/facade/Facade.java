@@ -321,12 +321,12 @@ public class Facade implements IFacade {
 
 	@Override
 	public void evolve(World world, double dt, CollisionListener collisionListener) throws ModelException {
-		try{
+		/*try{
 			world.evolve(dt);
 		}
 		catch (Exception e){
 			throw new ModelException(e);
-		}
+		}*/
 	}
 
 	@Override

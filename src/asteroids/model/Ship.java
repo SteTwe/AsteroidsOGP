@@ -101,15 +101,8 @@ public class Ship extends Entity{
      * |       this.angle = (getAngle() + angle)
      */
     private void setAngle(double angle) throws IllegalArgumentException {
-        if (isValidAngle(angle)) {
-            if ((this.getAngle() + angle) < maxAngle) {
-                this.angle = getAngle() + angle;
-            } else if ((this.getAngle() + angle) > maxAngle) {
-                this.angle = ((getAngle() + angle) % maxAngle);
-            }
-        }
-        else {
-            throw new IllegalArgumentException();
+        if (isValidAngle(angle)){
+            this.angle = angle;
         }
     }
 
@@ -162,7 +155,7 @@ public class Ship extends Entity{
      * | result == setAngle(getAngle() + angle)
      */
     public void turn(double angle) {
-        setAngle(angle);
+        if (isValidAngle(this.getAngle() + angle)) setAngle(this.getAngle() + angle);
     }
 
     /**

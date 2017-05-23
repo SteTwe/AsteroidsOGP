@@ -473,8 +473,8 @@ public abstract class Entity implements Collideable{
                     double velocity = getTotalVelocity();
                     double orientation = 2 * Math.PI * Math.random();
                     //TODO fix new positions
-                    Asteroid asteroid1 = new Asteroid(x,y, velocity * Math.sin(orientation), velocity* Math.cos(orientation), newRadius);
-                    Asteroid asteroid2 = new Asteroid(x,y, -velocity * Math.sin(orientation), -velocity * Math.cos(orientation), newRadius);
+                 //   Asteroid asteroid1 = new Asteroid(x,y, velocity * Math.sin(orientation), velocity* Math.cos(orientation), newRadius);
+                 //  Asteroid asteroid2 = new Asteroid(x,y, -velocity * Math.sin(orientation), -velocity * Math.cos(orientation), newRadius);
                 }
             }
         }

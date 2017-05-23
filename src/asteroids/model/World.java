@@ -141,11 +141,29 @@ public class World {
      *       | entitySet.contains(entity)
      */
     public void addEntity(Entity entity) throws IllegalArgumentException {
-        if (!isValidEntity(entity)) throw new IllegalArgumentException("Entity is not valid.");
-        else {
-            this.entitySet.add(entity);
-            entity.setWorld(this);
+        if (entity instanceof Bullet){
+            Bullet bullet = (Bullet) entity;
+            if (!isValidEntity(bullet)) throw new IllegalArgumentException("Entity is not valid.");
+            double[] position = {bullet.getPositionX(), bullet.getPositionY()};
+            double radius = bullet.getRadius();
+            double distance = position[0]-radius;
+            distance = Math.min(distance, this.width - position[0]-radius);
+            distance = Math.min(distance, position[1]-radius);
+            distance = Math.min(distance, this.height-position[1]-radius);
+            if(distance < 0) bullet.terminate();
+            else{
+                entitySet.add(bullet);
+                bullet.setWorld(this);
+            }
 
+        }
+        else {
+            if (!isValidEntity(entity)) throw new IllegalArgumentException("Entity is not valid.");
+            else {
+                this.entitySet.add(entity);
+                entity.setWorld(this);
+
+            }
         }
 
     }
@@ -264,36 +282,13 @@ public class World {
             timeNextCollision = getTimeNextCollision();
             collisionPosition = getNextCollisionPosition();
             collidingEntities = getNextCollidingEntities();
+            if (timeNextCollision ==0) break;
         }
         for (Entity entity: getEntitySet()){
             //TODO execute program
             entity.move(duration);
         }
 
-        /*
-        // If tC > duration: advance entities duration sec
-        if (timeNextCollision > duration){
-            for (Entity entity: getEntitySet()){
-                entity.move(duration);
-            }
-            return;
-        }
-        // Else advance entities tC sec, resolve collision, substract tC from duration, start again.
-        for (Entity entity : getEntitySet()){
-            entity.move(duration);
-        }
-        // TODO Resolve collsion
-        if (collidingEntities[1] == null){
-            collidingEntities[0].collideWithBoundary();
-        }
-        else{
-            collidingEntities[0].collideWith(collidingEntities[1].getClass().cast(collidingEntities[1]));
-        }
-
-        //Substract and start over
-        double newDuration = duration - timeNextCollision;
-        evolve(newDuration);
-*/
     }
 
     /**
@@ -311,9 +306,7 @@ public class World {
                     if (entity1.overlap(entity2)) return 0;
                     double newTime = entity1.getTimeCollisionWithEntity(entity2);
                     time = Math.min(time, newTime);
-            }
-
-
+                }
             }
         }
         return time;

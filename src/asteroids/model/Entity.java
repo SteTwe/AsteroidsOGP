@@ -327,20 +327,6 @@ public abstract class Entity implements Collideable{
             throw new IllegalArgumentException("duration not valid");
         setPositionX(getPositionX() + duration * getVelocityX());
         setPositionY(getPositionY() + duration * getVelocityY());
-        if (this instanceof Ship){
-            Ship ship = (Ship) this;
-            if (ship.isThrusterEnabled()){
-            double newVelocityX = getVelocityX() + ship.getAcceleration() * Math.cos(ship.getAngle()) * duration;
-            double newVelocityY = getVelocityY() + ship.getAcceleration() * Math.sin(ship.getAngle()) * duration;
-            setVelocityX(newVelocityX);
-            setVelocityY(newVelocityY);
-        }
-        }
-        if (this instanceof Planetoid){
-            Planetoid planetoid = (Planetoid) this;
-            planetoid.setTotalTraveledDistance(planetoid.getTotalTraveledDistance() + getTotalVelocity() * duration);
-            if (planetoid.getRadius() < planetoid.getMinRadius()) planetoid.terminate();
-        }
     }
 
     /**
@@ -506,37 +492,32 @@ public abstract class Entity implements Collideable{
      * shall return Double.POSITIVE_INFINITY if the entity and boundary never collide. => default is Double.POSITIVE_INFINITY
      */
     public double getTimeToCollisionWithBoundary(){
+        if (getWorld() == null) return Double.POSITIVE_INFINITY;
         double[] velocity = {getVelocityX(), getVelocityY()};
         double[] position = {getPositionX(), getPositionY()};
         double[] worldSize = {getWorld().getWidth(), getWorld().getHeight()};
-        double time = Double.POSITIVE_INFINITY;
+        double timeX = Double.POSITIVE_INFINITY;
+        double timeY = Double.POSITIVE_INFINITY;
 
         //Xdirection towards max
-        double newTime = (worldSize[0] - position[0] - getRadius()) / velocity[0];
-        if (newTime >= 0){
-            time = Math.min(time, newTime);
-        }
+        if (velocity[0] > 0) timeX = (worldSize[0] - position[0] - getRadius()) / velocity[0];
         //Xdirection towards 0
-        newTime = (0+position[0] + getRadius()) / velocity[0];
-        if (newTime >= 0){
-            time = Math.min(time, newTime);
-        }
-
+        if (velocity[0] < 0) timeX = -(position[0] - getRadius()) / velocity[0];
         //Ydirection towards max
-        newTime= (worldSize[1] - position[1] - getRadius()) / velocity[1];
-        if (newTime >= 0){
-            time = Math.min(time, newTime);
-        }
-
+        if (velocity[1] > 0) timeY = (worldSize[1] - position[1] - getRadius()) / velocity[1];
         //Ydirection towards 0
-        newTime =(0+position[1] + getRadius() / velocity[1]);
-        if (newTime >= 0){
-            time = Math.min(time, newTime);
-        }
+        if (velocity[1] < 0) timeY = -(position[1] - getRadius()) / velocity[1];
+
+        //time cannot be negative
+        if (timeX < 0) timeX = Double.POSITIVE_INFINITY;
+        if (timeY < 0) timeY = Double.POSITIVE_INFINITY;
+
+        double time = Math.min(timeX, timeY);
         return time;
     }
 
     public double[] getMovementPrediction(double t){
+        if (!isValidDuration(t)) throw new IllegalArgumentException("Duration is not valid.");
         double[] velocity = {getVelocityX(), getVelocityY()};
         double[] position = {getPositionX(), getPositionY()};
         double[] newPosition = {position[0] + velocity[0] * t, position[1] + velocity[1] * t};
@@ -550,6 +531,33 @@ public abstract class Entity implements Collideable{
      */
     public double[] getCollisionPositionWithBoundary() {
         double[] collisionPosition = this.getMovementPrediction(getTimeToCollisionWithBoundary());
+        if (collisionPosition == null || Double.isInfinite(collisionPosition[0]) || Double.isInfinite(collisionPosition[1])) return null;
+        double velocity[] = {getVelocityX(), getVelocityY()};
+
+        //If Xvelocity positive: moving towards max width, else moving towards 0
+        double boundaryX;
+        if (velocity[0] > 0) boundaryX = getWorld().getWidth();
+        else boundaryX = 0;
+
+        //If Yvelocity positive: moving towards max height, else moving towards 0
+        double boundaryY;
+        if (velocity[1] >0) boundaryY = getWorld().getHeight();
+        else boundaryY = 0;
+
+        //If Xvelocity positive: distance to collision = (max width - current position), else distance = current position
+        double distanceX;
+        if (velocity[0] > 0) distanceX = boundaryX - collisionPosition[0];
+        else distanceX = collisionPosition[0];
+
+        //If Yvelocity positive: distance to collision = (max height - current position), else distance = current position
+        double distanceY;
+        if (velocity[1] > 0) distanceY = boundaryY - collisionPosition[1];
+        else distanceY = collisionPosition[1];
+
+        //If x is shortest distance: collisionPosition = (boundary, collisionPositionY), else collisionPosition = (collisionPositionX, boundary)
+        if (distanceX <= distanceY) collisionPosition = new double[]{boundaryX, collisionPosition[1]};
+        else collisionPosition = new double[]{collisionPosition[0], boundaryY};
+
         return collisionPosition;
     }
 
@@ -568,28 +576,21 @@ public abstract class Entity implements Collideable{
         double time = Double.POSITIVE_INFINITY;
         if (ship2 == null)
             throw new IllegalArgumentException("ship2 does not exist");
-        if (this.overlap(ship2))
-            throw new IllegalArgumentException("the ships overlap");
         double[] positionDifference = {ship2.getPositionX() - this.getPositionX(), ship2.getPositionY() - this.getPositionY()};
         double[] velocityDifference = {ship2.getVelocityX() - this.getVelocityX(), ship2.getVelocityY() - this.getVelocityY()};
-        // deltaV * delta R
+
         double productVR = positionDifference[0] * velocityDifference[0] + positionDifference[1] * velocityDifference[1];
-        // deltaV * deltaV
         double productVV = Math.pow(velocityDifference[0], 2) + Math.pow(velocityDifference[1], 2);
-        // deltaR * deltaR
         double productRR = Math.pow(positionDifference[0], 2) + Math.pow(positionDifference[1], 2);
-        // radius1 + radius2
-        double gamma = this.getRadius() + ship2.getRadius();
-        // (x1 - x2)^2 + (y1 - y2)^2
-        double gamma2 = (Math.pow((this.getPositionX() - ship2.getPositionX()), 2) +(Math.pow(this.getPositionY() - ship2.getPositionY(),2)));
-        // [(productVR)^2 - (productVR)*(productRR - gamma^2)]
-        double d = (Math.pow(productVR, 2)) - (productVR) * (productRR - gamma2);
+
+        double d = Math.pow(productVR,2) - (productVV) * (productRR - Math.pow(this.getRadius() + ship2.getRadius(),2));
+        //double d = Math.pow(productVR, 2) - (productVV)*(productRR)-Math.pow(this.getRadius()+ship2.getRadius(), 2);
         if (productVR >= 0)
-            time = Double.POSITIVE_INFINITY;
+            return Double.POSITIVE_INFINITY;
         else if (d <= 0)
             time = Double.POSITIVE_INFINITY;
         else
-            time = ((productVR) + (Math.sqrt(d))) / (productVV);
+            time = -((productVR) + (Math.sqrt(d))) / (productVV);
         return time;
     }
 
@@ -656,36 +657,34 @@ public abstract class Entity implements Collideable{
         //Jy = (J deltay) / sigma
 
         //mi
-        double thisMass = this.getMass();
+        double mi = this.getMass();
         //mj
-        double otherMass = other.getMass();
+        double mj = other.getMass();
 
         double[] deltaR = {other.getPositionX() - this.getPositionX(), other.getPositionY() - this.getPositionY()};
         double[] deltaV = {other.getVelocityX() - this.getVelocityX(), other.getVelocityY() - this.getVelocityY()};
-        double sigma = this.getRadius() + other.getRadius();
+        double sigma = Math.sqrt((deltaR[0] * deltaR[0]) + (deltaR[1] * deltaR[1]));
 
         //J = (2 mi mj * (deltav * deltar)/(radius*(mi + mj))
-        double j = (2 * thisMass * otherMass * (deltaV[0] * deltaR[0] + deltaV[1] * deltaR[1])) / sigma * (thisMass + otherMass);
+        double j = (2 * mi * mj * (deltaV[0] * deltaR[0] + deltaV[1] * deltaR[1])) / sigma * (mi + mj);
 
         //jx & jy
         double jx = (j * deltaR[0] / sigma);
         double jy = (j * deltaR[1] / sigma);
 
 
-        double currentThisVelocityX = this.getVelocityX();      //vxi
-        double currentShipVelocityY = this.getVelocityY();      //vyi
-        double currentEntityVelocityX = other.getVelocityX();  //vxj
-        double currentEntityVelocityY = other.getVelocityY();  //vyj
+        double currentIVelocityX = this.getVelocityX();      //vxi
+        double currentIVelocityY = this.getVelocityY();      //vyi
+        double currentJVelocityX = other.getVelocityX();  //vxj
+        double currentJVelocityY = other.getVelocityY();  //vyj
 
-        double newThisVelocityX = currentThisVelocityX + jx / thisMass;   //vxi + Jx/mi
-        double newThisVelocityY = currentShipVelocityY + jy / thisMass;   //vyi + Jy/mi
-        double newEntityVelocityX = currentEntityVelocityX + jx / otherMass; //vxj + Jx/mj
-        double newEntityVelocityY = currentEntityVelocityY + jy / otherMass; //vyj + Jy/mj
+        double newIVelocityX = currentIVelocityX + jx / mi;   //vxi + Jx/mi
+        double newIVelocityY = currentIVelocityY + jy / mi;   //vyi + Jy/mi
+        double newJVelocityX = currentJVelocityX - jx / mj; //vxj - Jx/mj
+        double newJVelocityY = currentJVelocityY - jy / mj; //vyj - Jy/mj
 
-        this.setVelocityX(newThisVelocityX);
-        this.setVelocityY(newThisVelocityY);
-        other.setVelocityX(newEntityVelocityX);
-        other.setVelocityY(newEntityVelocityY);
+        this.setVelocity(newIVelocityX, newIVelocityY);
+        other.setVelocity(newJVelocityX, newJVelocityY);
     }
 
 }
@@ -694,6 +693,7 @@ interface Collideable{
     void collideWith(final Collideable other);
     void collideWith(final Ship ship);
     void collideWith(final Bullet bullet);
+    void collideWith(final MinorPlanet minorPlanet);
 }
 
 

@@ -599,7 +599,7 @@ public abstract class Entity implements Collideable {
 
     /**
      * Compute the distance between two entities. If the two compared entities are the same, distance is 0.
-     * @param        entity2
+     * @param        other
      *              | Second entity
      * @return The distance between this entity and the given other entity.
      *              | return (Math.sqrt(Math.pow((x1 - x2), 2) + Math.pow((y1 - y2), 2)));

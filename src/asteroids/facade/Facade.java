@@ -565,13 +565,12 @@ public class Facade implements IFacade {
 
 	@Override
 	public Program getShipProgram(Ship ship) throws ModelException {
-		//TODO
-		return null;
+		return ship.getProgram();
 	}
 
 	@Override
 	public void loadProgramOnShip(Ship ship, Program program) throws ModelException {
-		//TODO
+		ship.setProgram(program);
 	}
 
 	@Override

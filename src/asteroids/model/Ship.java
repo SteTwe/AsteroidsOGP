@@ -63,6 +63,11 @@ public class Ship extends Entity{
      */
     private Set<Bullet> bulletSet = new HashSet<Bullet>();
 
+    /**
+     * Variable that holds the program that can be loaded on the ship.
+     */
+    private Program program;
+
 
     /**********
      * ANGLE RELATED
@@ -560,5 +565,25 @@ public class Ship extends Entity{
 
         }
 
+    }
+
+    /**********
+     * PROGRAM RELATED
+     **********/
+
+    /**
+     *
+     * @param program
+     */
+    public void setProgram(Program program) {
+        this.program = program;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public Program getProgram() {
+        return program;
     }
 }

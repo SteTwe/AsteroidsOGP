@@ -461,6 +461,14 @@ public abstract class Entity implements Collideable {
                     bullet.setShip(null);
                 }
             }
+            if (this instanceof Planetoid){
+                Planetoid planetoid = (Planetoid) this;
+                if (planetoid.getRadius() >= 30){
+                    double newRadius = planetoid.getRadius()/2;
+                    //TODO spawn 2 child asteroids
+                    //Asteroid asteroid1 = new Asteroid()
+                }
+            }
         }
 
     }

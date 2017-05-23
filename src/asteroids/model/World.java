@@ -172,7 +172,7 @@ public class World {
      * @return Return the set of Entities of this world.
      */
     public Set<Entity> getEntitySet() {
-        return this.entitySet;
+        return new HashSet<Entity>(entitySet);
     }
 
     /**

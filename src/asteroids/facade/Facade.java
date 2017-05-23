@@ -287,9 +287,8 @@ public class Facade implements IFacade {
 	 * COLLISIONS
 	 **************/
 	@Override
-	public double getTimeCollisionBoundary(Entity entity) throws ModelException {
-		double time = 0;
-		return time;
+	public double getTimeCollisionBoundary(Object object) throws ModelException {
+		return 0;
 	}
 
 	@Override

@@ -228,7 +228,7 @@ public class World {
         if ((duration < 0) || (Double.isNaN(duration))) throw new IllegalArgumentException("Duration is not valid.");
         //Predict next collision
         double timeNextCollision = getTimeNextCollision();
-        double[] collisionPosition = {0,0}; //TODO collision position
+        double[] collisionPosition = getNextCollisionPosition();
         Entity[] collidingEntities = {}; //TODO colliding entities
 
         // If tC > duration: advance entities duration sec
@@ -251,6 +251,12 @@ public class World {
 
     }
 
+    /**
+     * Return the time until the next collision.
+     *
+     * @return Return 0 if two entities overlap
+     * //TODO doc
+     */
     public double getTimeNextCollision(){
         double time = Double.POSITIVE_INFINITY;
         for (Entity entity1 : getEntitySet()){
@@ -265,5 +271,19 @@ public class World {
             }
         }
         return time;
+    }
+
+    //TODO
+    public double[] getNextCollisionPosition(){
+
+        
+
+
+        return new double[]{0,0};
+    }
+
+    //TODO
+    public Entity[] getCollidingEntities(){
+        return new Entity[2];
     }
 }

@@ -3,6 +3,8 @@ package asteroids.model;
 import be.kuleuven.cs.som.annotate.Basic;
 import be.kuleuven.cs.som.annotate.Raw;
 
+import java.util.DoubleSummaryStatistics;
+
 
 /**
  * A class representing an Asteroid entity involving a position, a velocity, and a radius.
@@ -514,11 +516,12 @@ public abstract class Entity implements Collideable{
         /**
          *needs shortening with function
          */
-        if (timeInDirectionX < timeInDirectionY)
+        /**if (timeInDirectionX < timeInDirectionY)
                 time = timeInDirectionX;
         else
             time = timeInDirectionY;
-        return time;
+        return time;*/
+        return Math.min(timeInDirectionX, timeInDirectionY);
     }
 
     public double[] getMovementPrediction(double t){
@@ -555,11 +558,35 @@ public abstract class Entity implements Collideable{
             throw new IllegalArgumentException("ship2 does not exist");
         if (this.overlap(ship2))
             throw new IllegalArgumentException("the ships overlap");
+
         double[] positionDifference = {ship2.getPositionX() - this.getPositionX(), ship2.getPositionY() - this.getPositionY()};
+        double[] deltaR = positionDifference;
+
         double[] velocityDifference = {ship2.getVelocityX() - this.getVelocityX(), ship2.getVelocityY() - this.getVelocityY()};
-        double product = positionDifference[0] * velocityDifference[0] + positionDifference[1] * velocityDifference[1];
+        double[] deltaV = velocityDifference;
+
+        //TODO
+        double product = 0;
+        //TODO
+        double deltaVdeltaRproduct = 0;
+        //TODO
+        double deltaVdeltaVproduct = 0;
+
+        //TODO
+        double d = 0;
+        // if [deltaV * deltaR) >= 0
+        // time = Double.POSITIVE_INFINITY;
+        // if [(deltaV * deltaR)^2 - (deltaV * deltaR)*(deltaR * deltaR - radii^2)] <= 0
+        // time = Double.POSITIVE_INFINITY;
+        // deltaR = positionDifference
+        // deltaV = positionDifference
+        // -[(deltaV * deltaR) + sqrt(d)]/[deltaV * deltaV]
         if (product >= 0)
-            return Double.POSITIVE_INFINITY;
+            time = Double.POSITIVE_INFINITY;
+        else if (d <= 0)
+            time = Double.POSITIVE_INFINITY;
+        else
+            time = ((deltaVdeltaRproduct) + (Math.sqrt(d))) / (deltaVdeltaVproduct);
         return time;
     }
 

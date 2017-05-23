@@ -218,13 +218,18 @@ public class World {
         return true;
     }
 
+
+    /******************
+     * COLLISION RELATED
+     **************/
+
     //TODO
     public void evolve(double duration) throws IllegalArgumentException{
         if ((duration < 0) || (Double.isNaN(duration))) throw new IllegalArgumentException("Duration is not valid.");
         //Predict next collision
-        double timeNextCollision =0; //TODO Time next collision
-        double[] collisionPosition = {0,0}; //TODO collision position
-        Entity[] collidingEntities = {}; //TODO colliding entities
+        double timeNextCollision = getTimeNextCollision();
+        double[] collisionPosition = getNextCollisionPosition();
+        Entity[] collidingEntities = getCollidingEntities();
 
         // If tC > duration: advance entities duration sec
         if (timeNextCollision > duration){
@@ -244,5 +249,69 @@ public class World {
             evolve(newDuration);
         }
 
+    }
+
+    /**
+     * Return the time until the next collision.
+     *
+     * @return Return 0 if two entities overlap
+     * //TODO doc
+     */
+    public double getTimeNextCollision(){
+        double time = Double.POSITIVE_INFINITY;
+        for (Entity entity1 : getEntitySet()){
+            for (Entity entity2 : getEntitySet()){
+                if (entity1 != entity2){
+                    if (entity1.overlap(entity2)) return 0;
+                    double newTime = entity1.getTimeCollisionWithEntity(entity2);
+                    time = Math.min(time, newTime);
+            }
+            time = Math.min(time, entity1.getTimeToCollisionWithBoundary());
+
+            }
+        }
+        return time;
+    }
+
+    //TODO
+
+    /**
+     *
+     * @return
+     */
+    public double[] getNextCollisionPosition(){
+        Entity[] collidingEntities = getCollidingEntities();
+        if (collidingEntities[0] == null && collidingEntities[1] == null) return new double[]{Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY};
+        if (collidingEntities[1] == null) return collidingEntities[0].getCollisionPositionWithBoundary();
+        else return collidingEntities[0].getPositionCollisionWithEntity(collidingEntities[1]);
+    }
+
+    //TODO doc
+
+    /**
+     *
+     * @return
+     */
+    public Entity[] getCollidingEntities(){
+        Entity[] collidingEntities = new Entity[]{null,null};
+        double timeNextCollision = Double.POSITIVE_INFINITY;
+        //Loop over entities and compare time with timeNextCollision
+        for (Entity entity1 : getEntitySet()){
+            for (Entity entity2 : getEntitySet()){
+                // if time is smaller than timeNextCollision --> colliding entities are these + set new time
+                if(entity1.getTimeCollisionWithEntity(entity2) < timeNextCollision){
+                    timeNextCollision = entity1.getTimeCollisionWithEntity(entity2);
+                    collidingEntities = new Entity[]{entity1, entity2};
+
+                }
+
+            }
+            // if time is smaller than timeNextCollision --> colliding entity is this + set new time
+            if (entity1.getTimeToCollisionWithBoundary() < timeNextCollision){
+                timeNextCollision = entity1.getTimeToCollisionWithBoundary();
+                collidingEntities = new Entity[]{entity1, null};
+            }
+        }
+        return collidingEntities;
     }
 }

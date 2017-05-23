@@ -467,8 +467,11 @@ public abstract class Entity implements Collideable{
                 Planetoid planetoid = (Planetoid) this;
                 if (planetoid.getRadius() >= 30){
                     double newRadius = planetoid.getRadius()/2;
-                    //TODO spawn 2 child asteroids
-                    //Asteroid asteroid1 = new Asteroid()
+                    double velocity = getTotalVelocity();
+                    double orientation = 2 * Math.PI * Math.random();
+                    //TODO fix new positions
+                    Asteroid asteroid1 = new Asteroid(x,y, velocity * Math.sin(orientation), velocity* Math.cos(orientation), newRadius);
+                    Asteroid asteroid2 = new Asteroid(x,y, -velocity * Math.sin(orientation), -velocity * Math.cos(orientation), newRadius);
                 }
             }
         }

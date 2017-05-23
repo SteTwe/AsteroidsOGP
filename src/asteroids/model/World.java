@@ -242,12 +242,19 @@ public class World {
             for (Entity entity: getEntitySet()){
                 entity.move(duration);
             }
+            return;
         }
         // Else advance entities tC sec, resolve collision, substract tC from duration, start again.
         for (Entity entity : getEntitySet()){
             entity.move(duration);
         }
         // TODO Resolve collsion
+        if (collidingEntities[1] == null){
+            collidingEntities[0].collideWithBoundary();
+        }
+        else{
+            collidingEntities[0].collideWith(collidingEntities[1].getClass().cast(collidingEntities[1]));
+        }
 
         //Substract and start over
         double newDuration = duration - timeNextCollision;

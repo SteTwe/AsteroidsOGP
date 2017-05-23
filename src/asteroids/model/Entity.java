@@ -510,22 +510,30 @@ public abstract class Entity implements Collideable{
         double[] position = {getPositionX(), getPositionY()};
         double[] worldSize = {getWorld().getWidth(), getWorld().getHeight()};
         double time = Double.POSITIVE_INFINITY;
-        //in direction X:
-        //double x = (afstand tussen rand radius en  horizontale boundary) / Xsnelheid
-        double timeInDirectionX = (worldSize[0] - position[0] - getRadius()) / velocity[0];
-        //in direction Y:
-        //double y = (afstand tussen rand radius en verticale boundary) / Ysnelheid
-        double timeInDirectionY = (worldSize[1] - position[1] - getRadius()) / velocity[1];
-        // choose smallest of the two
-        /**
-         *needs shortening with function
-         */
-        /**if (timeInDirectionX < timeInDirectionY)
-                time = timeInDirectionX;
-        else
-            time = timeInDirectionY;
-        return time;*/
-        return Math.min(timeInDirectionX, timeInDirectionY);
+
+        //Xdirection towards max
+        double newTime = (worldSize[0] - position[0] - getRadius()) / velocity[0];
+        if (newTime >= 0){
+            time = Math.min(time, newTime);
+        }
+        //Xdirection towards 0
+        newTime = (0+position[0] + getRadius()) / velocity[0];
+        if (newTime >= 0){
+            time = Math.min(time, newTime);
+        }
+
+        //Ydirection towards max
+        newTime= (worldSize[1] - position[1] - getRadius()) / velocity[1];
+        if (newTime >= 0){
+            time = Math.min(time, newTime);
+        }
+
+        //Ydirection towards 0
+        newTime =(0+position[1] + getRadius() / velocity[1]);
+        if (newTime >= 0){
+            time = Math.min(time, newTime);
+        }
+        return time;
     }
 
     public double[] getMovementPrediction(double t){

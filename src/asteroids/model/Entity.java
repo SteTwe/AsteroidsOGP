@@ -531,7 +531,7 @@ public abstract class Entity implements Collideable{
      */
     public double[] getCollisionPositionWithBoundary() {
         double[] collisionPosition = this.getMovementPrediction(getTimeToCollisionWithBoundary());
-        if (collisionPosition == null || Double.isInfinite(collisionPosition[0]) || Double.isInfinite(collisionPosition[1])) return null;
+        if (collisionPosition == null || !Double.isFinite(collisionPosition[0]) || !Double.isFinite(collisionPosition[1])) return null;
         double velocity[] = {getVelocityX(), getVelocityY()};
 
         //If Xvelocity positive: moving towards max width, else moving towards 0

@@ -9,7 +9,7 @@ import be.kuleuven.cs.som.annotate.Raw;
  * Created by joachim on 09/04/2017.
  * @author joachim
  */
-public abstract class Entity implements Collideable {
+public abstract class Entity implements Collideable{
 
     /**
      * Initialize a new entity with x-position, y-position, velocity in x-direction, velocity in y-direction, radius.
@@ -207,14 +207,17 @@ public abstract class Entity implements Collideable {
     /**
      * Method computing the total velocity of this entity following the given formula.
      *
-     * @param velocityX The entity's velocity in the x-direction.
-     * @param velocityY The entity's velocity in the y-direction.
      * @post Gives the total velocity for this entity.
      * | return (Math.sqrt(Math.pow(velocityX, 2) + Math.pow(velocityY, 2)))
      */
     public double getTotalVelocity() {
         //TODO Velocity cannot exceed Speed of light!!
-        return (Math.sqrt(Math.pow(getVelocityX(), 2) + Math.pow(getVelocityY(), 2)));
+        double totalVelocity = (Math.sqrt(Math.pow(getVelocityX(), 2) + Math.pow(getVelocityY(), 2)));
+        if (totalVelocity >= SPEED_OF_LIGHT)
+            return SPEED_OF_LIGHT;
+        else
+            return totalVelocity;
+
     }
 
     /**
@@ -540,14 +543,15 @@ public abstract class Entity implements Collideable {
             setVelocityY(-getVelocityY());
     }
 
-    public double getTimeCollisionWithEntity(Entity entity){
+    //TODO: DOC
+    public double getTimeCollisionWithEntity(Entity ship2){
         double time = Double.POSITIVE_INFINITY;
-        if (entity == null)
+        if (ship2 == null)
             throw new IllegalArgumentException("ship2 does not exist");
-        if (this.overlap(entity))
+        if (this.overlap(ship2))
             throw new IllegalArgumentException("the ships overlap");
-        double[] positionDifference = {entity.getPositionX() - this.getPositionX(), entity.getPositionY() - this.getPositionY()};
-        double[] velocityDifference = {entity.getVelocityX() - this.getVelocityX(), entity.getVelocityY() - this.getVelocityY()};
+        double[] positionDifference = {ship2.getPositionX() - this.getPositionX(), ship2.getPositionY() - this.getPositionY()};
+        double[] velocityDifference = {ship2.getVelocityX() - this.getVelocityX(), ship2.getVelocityY() - this.getVelocityY()};
         double product = positionDifference[0] * velocityDifference[0] + positionDifference[1] * velocityDifference[1];
         if (product >= 0)
             return Double.POSITIVE_INFINITY;
@@ -556,32 +560,15 @@ public abstract class Entity implements Collideable {
 
     //TODO
     public double[] getPositionCollisionWithEntity(Entity ship2){
-        double[] collisionPosition;
-
         double time = getTimeCollisionWithEntity(ship2);
-
-        double[] entityPosition = {this.getPositionX(), this.getPositionY()};
-        double[] shipPosition = {ship2.getPositionX(), ship2.getPositionY()};
-        double[] entityVelocity = {this.getVelocityX(), this.getVelocityY()};
-        double[] shipVelocity = {ship2.getVelocityX(), ship2.getVelocityY()};
-
-        collisionPosition = new double[]{,};
-
-        return collisionPosition;
+        /*double[] entityPosition = {this.getPositionX(), this.getPositionY()};
+         *double[] shipPosition = {ship2.getPositionX(), ship2.getPositionY()};
+         *double[] entityVelocity = {this.getVelocityX(), this.getVelocityY()};
+         double[] shipVelocity = {ship2.getVelocityX(), ship2.getVelocityY()};*/
+        double collisionPositionX = getTimeCollisionWithEntity(ship2) * velocityX;
+        double collisionPositionY = getTimeCollisionWithEntity(ship2) * velocityY;
+        return new double[]{collisionPositionX, collisionPositionY};
     }
-
-    //TODO doc, implementation?
-    public double[] getPositionCollisionEntity(Entity ship2){
-        double time = this.getTimeCollisionWithEntity(ship2);
-        if (time == Double.POSITIVE_INFINITY) {
-            return null;
-        } else {
-            double collisionPositionX = getTimeCollisionWithEntity(ship2) * velocityX;
-            double collisionPositionY = getTimeCollisionWithEntity(ship2) * velocityY;
-            return new double[]{collisionPositionX, collisionPositionY};
-        }
-    }
-
 
     /**
      * Check if two entities overlap.
@@ -607,7 +594,7 @@ public abstract class Entity implements Collideable {
 
     /**
      * Compute the distance between two entities. If the two compared entities are the same, distance is 0.
-     * @param        entity2
+     * @param        other
      *              | Second entity
      * @return The distance between this entity and the given other entity.
      *              | return (Math.sqrt(Math.pow((x1 - x2), 2) + Math.pow((y1 - y2), 2)));

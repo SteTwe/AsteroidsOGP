@@ -312,8 +312,7 @@ public class Facade implements IFacade {
 
 	@Override
 	public double getTimeNextCollision(World world) throws ModelException {
-		//TODO
-		return 0;
+		return world.getTimeNextCollision();
 	}
 
 	@Override

@@ -218,11 +218,16 @@ public class World {
         return true;
     }
 
+
+    /******************
+     * COLLISION RELATED
+     **************/
+
     //TODO
     public void evolve(double duration) throws IllegalArgumentException{
         if ((duration < 0) || (Double.isNaN(duration))) throw new IllegalArgumentException("Duration is not valid.");
         //Predict next collision
-        double timeNextCollision =0; //TODO Time next collision
+        double timeNextCollision = getTimeNextCollision();
         double[] collisionPosition = {0,0}; //TODO collision position
         Entity[] collidingEntities = {}; //TODO colliding entities
 
@@ -244,5 +249,19 @@ public class World {
             evolve(newDuration);
         }
 
+    }
+
+    public double getTimeNextCollision(){
+        double time = Double.POSITIVE_INFINITY;
+        for (Entity entity1 : getEntitySet()){
+            for (Entity entity2 : getEntitySet()){
+                double newTime = entity1.getTimeCollisionWithEntity(entity2);
+                time = Math.min(time, newTime);
+            }
+
+            double newTime = entity1.getTimeToCollisionWithBoundary();
+            time = Math.min(time, newTime);
+        }
+        return time;
     }
 }

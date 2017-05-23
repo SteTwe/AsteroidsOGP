@@ -539,8 +539,8 @@ public class Ship extends Entity{
             // new positionX is current positionX + both radii + 1 (adds a little space)
             double bulletRadius = bullet.getRadius();
             double shipRadius = this.getRadius();
-            double newXPositionBullet = bullet.getPositionX() + bulletRadius + shipRadius + 1;
-            double newYPositionBullet = this.getPositionY();
+            double newXPositionBullet = bullet.getPositionX() + (bulletRadius + shipRadius) * Math.cos(orientation);
+            double newYPositionBullet = bullet.getPositionY() + (bulletRadius + shipRadius) * Math.sin(orientation);
 
             bullet.setVelocity(newVelocityX, newVelocityY);
             bullet.setPosition(newXPositionBullet, newYPositionBullet);

@@ -12,12 +12,6 @@ public abstract class MinorPlanet extends Entity {
     }
 
 
-    public World world;
-
-    public void setWorld(World world) {
-        this.world = world;
-    }
-
     @Override
     public void collideWith(Bullet bullet) {
         bullet.terminate();

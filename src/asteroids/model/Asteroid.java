@@ -15,8 +15,21 @@ public class Asteroid extends MinorPlanet {
     }
 
     @Override
+    public void collideWith(MinorPlanet minorPlanet) {
+        this.bounceOffEntity(minorPlanet);
+    }
+
+    @Override
     public void collideWith(Ship ship) {
         ship.terminate();
     }
+
+    @Override
+    public void collideWith(Bullet bullet) {
+        bullet.terminate();
+        this.terminate();
+    }
+
+
 }
 

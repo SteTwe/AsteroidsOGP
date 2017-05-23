@@ -1,5 +1,4 @@
 package asteroids.model;
-
 import be.kuleuven.cs.som.annotate.*;
 
 
@@ -146,10 +145,10 @@ public class World {
         else {
             this.entitySet.add(entity);
             entity.setWorld(this);
+
         }
 
     }
-
 
     /**
      * Remove the given entity from the world.
@@ -251,8 +250,27 @@ public class World {
         //Predict next collision
         double timeNextCollision = getTimeNextCollision();
         double[] collisionPosition = getNextCollisionPosition();
-        Entity[] collidingEntities = getCollidingEntities();
+        Entity[] collidingEntities = getNextCollidingEntities();
 
+        while (timeNextCollision <= duration){
+            for (Entity entity : getEntitySet()){
+                //TODO execute program ship
+                entity.move(timeNextCollision);
+            }
+            if (collidingEntities[1] == null) collidingEntities[0].collideWithBoundary();
+            else collidingEntities[0].collideWith(collidingEntities[1]);
+
+            duration = duration - timeNextCollision;
+            timeNextCollision = getTimeNextCollision();
+            collisionPosition = getNextCollisionPosition();
+            collidingEntities = getNextCollidingEntities();
+        }
+        for (Entity entity: getEntitySet()){
+            //TODO execute program
+            entity.move(duration);
+        }
+
+        /*
         // If tC > duration: advance entities duration sec
         if (timeNextCollision > duration){
             for (Entity entity: getEntitySet()){
@@ -275,7 +293,7 @@ public class World {
         //Substract and start over
         double newDuration = duration - timeNextCollision;
         evolve(newDuration);
-
+*/
     }
 
     /**
@@ -308,7 +326,7 @@ public class World {
      * @return
      */
     public double[] getNextCollisionPosition(){
-        Entity[] collidingEntities = getCollidingEntities();
+        Entity[] collidingEntities = getNextCollidingEntities();
         if (collidingEntities[0] == null && collidingEntities[1] == null) return new double[]{Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY};
         if (collidingEntities[1] == null) return collidingEntities[0].getCollisionPositionWithBoundary();
         else return collidingEntities[0].getPositionCollisionWithEntity(collidingEntities[1]);
@@ -320,7 +338,7 @@ public class World {
      *
      * @return
      */
-    public Entity[] getCollidingEntities(){
+    public Entity[] getNextCollidingEntities(){
         Entity[] collidingEntities = new Entity[]{null,null};
         double timeNextCollision = Double.POSITIVE_INFINITY;
         //Loop over entities and compare time with timeNextCollision

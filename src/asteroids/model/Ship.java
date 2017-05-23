@@ -219,10 +219,7 @@ public class Ship extends Entity{
     public void move(double duration) {
         super.move(duration);
         if (isThrusterEnabled()){
-            double newVelocityX = getVelocityX() + getAcceleration() * Math.cos(getAngle()) * duration;
-            double newVelocityY = getVelocityY() + getAcceleration() * Math.sin(getAngle()) * duration;
-            setVelocityX(newVelocityX);
-            setVelocityY(newVelocityY);
+            thrust(getAcceleration() * duration);
         }
     }
 
@@ -386,6 +383,13 @@ public class Ship extends Entity{
         other.collideWith(this);
     }
 
+    @Override
+    public void collideWith(MinorPlanet minorPlanet) {
+        if (minorPlanet instanceof Asteroid){
+            this.terminate();
+        }
+        else this.teleportShip();
+    }
 
     /**********
      * MASS RELATED

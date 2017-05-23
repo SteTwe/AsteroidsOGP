@@ -119,6 +119,12 @@ public class Bullet extends Entity{
         other.collideWith(this);
     }
 
+    @Override
+    public void collideWith(MinorPlanet minorPlanet) {
+        this.terminate();
+        minorPlanet.terminate();
+    }
+
     /**
      * Resolve collision with a given ship: if this bullet was fired from that ship, reload the bullet,
      * else terminate both ship and bullet.

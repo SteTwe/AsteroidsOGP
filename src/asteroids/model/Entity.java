@@ -564,13 +564,13 @@ public abstract class Entity implements Collideable{
 
         double[] velocityDifference = {ship2.getVelocityX() - this.getVelocityX(), ship2.getVelocityY() - this.getVelocityY()};
         double[] deltaV = velocityDifference;
-
-        //TODO
-        double product = 0;
-        //TODO
-        double deltaVdeltaRproduct = 0;
-        //TODO
-        double deltaVdeltaVproduct = 0;
+        
+        //TODO deltaV * delta R
+        double productVR = 0;
+        //TODO deltaV * deltaV
+        double productVV = 0;
+        //TODO deltaR * deltaR
+        double productRR = 0;
 
         //TODO
         double d = 0;
@@ -581,12 +581,12 @@ public abstract class Entity implements Collideable{
         // deltaR = positionDifference
         // deltaV = positionDifference
         // -[(deltaV * deltaR) + sqrt(d)]/[deltaV * deltaV]
-        if (product >= 0)
+        if (productVR >= 0)
             time = Double.POSITIVE_INFINITY;
         else if (d <= 0)
             time = Double.POSITIVE_INFINITY;
         else
-            time = ((deltaVdeltaRproduct) + (Math.sqrt(d))) / (deltaVdeltaVproduct);
+            time = ((productVR) + (Math.sqrt(d))) / (productVV);
         return time;
     }
 

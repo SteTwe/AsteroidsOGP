@@ -161,7 +161,7 @@ public class Facade implements IFacade {
 
 	@Override
 	public boolean isTerminatedWorld(World world) throws ModelException {
-		return (world.getEntitySet().isEmpty());
+		return (world.
 	}
 
 	@Override
@@ -288,13 +288,12 @@ public class Facade implements IFacade {
 	 **************/
 	@Override
 	public double getTimeCollisionBoundary(Object object) throws ModelException {
-		return 0;
+		return ((Entity) object).getTimeToCollisionWithBoundary();
 	}
 
 	@Override
 	public double[] getPositionCollisionBoundary(Object object) throws ModelException {
-		//TODO
-		return new double[0];
+		return ((Entity)object).getCollisionPositionWithBoundary();
 	}
 
 	@Override

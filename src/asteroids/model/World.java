@@ -51,6 +51,10 @@ public class World {
      */
     private double height;
 
+    /**
+     * Variable holding the condition of the world.
+     */
+    private boolean isTerminated = false;
 
     /******************
      * DIMENSION RELATED
@@ -177,13 +181,25 @@ public class World {
 
     /**
      * Terminate the world by removing all of its entities.
+     * @post All entities are removed from this world.
+     * @post isTerminated is true.
      */
     public void terminateWorld(){
         System.out.println(getEntitySet());
         for (Entity entity : getEntitySet()){
-            entity.removeWorld();
+            this.removeEntity(entity);
         }
-        this.getEntitySet().clear();
+        isTerminated = true;
+    }
+
+    /**
+     * Return the status of this world.
+     *
+     * @return Returns true if the world is terminated.
+     *         | result == isTerminated
+     */
+    public boolean isTerminated() {
+        return isTerminated;
     }
 
     /**

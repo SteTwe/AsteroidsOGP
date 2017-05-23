@@ -75,7 +75,7 @@ public abstract class Entity implements Collideable{
      * @return true if the position is a number
      *          | result == !Double.isNaN(positionX)
      */
-    private boolean  isValidPosition(double positionX){
+    private boolean isValidPosition(double positionX){
         return (!Double.isNaN(positionX));
     }
 
@@ -208,15 +208,18 @@ public abstract class Entity implements Collideable{
      * Method computing the total velocity of this entity following the given formula.
      *
      * @post Gives the total velocity for this entity.
-     * | return (Math.sqrt(Math.pow(velocityX, 2) + Math.pow(velocityY, 2)))
+     *          | totalVelocity = (Math.sqrt(Math.pow(velocityX, 2) + Math.pow(velocityY, 2)))
+     *          | if (isValidVelocity(totalVelocity)
+     *          | return totalVelocity
+     *          | else
+     *          | return SPEED_OF_LIGHT
      */
     public double getTotalVelocity() {
-        //TODO Velocity cannot exceed Speed of light!!
         double totalVelocity = (Math.sqrt(Math.pow(getVelocityX(), 2) + Math.pow(getVelocityY(), 2)));
-        if (totalVelocity >= SPEED_OF_LIGHT)
-            return SPEED_OF_LIGHT;
-        else
+        if (isValidVelocity(totalVelocity))
             return totalVelocity;
+        else
+            return SPEED_OF_LIGHT;
     }
 
     /**

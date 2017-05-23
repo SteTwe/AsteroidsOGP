@@ -161,7 +161,7 @@ public class Facade implements IFacade {
 
 	@Override
 	public boolean isTerminatedWorld(World world) throws ModelException {
-		return (world.
+		return world.isTerminated();
 	}
 
 	@Override

@@ -139,5 +139,11 @@ public class Bullet extends Entity{
             ship.terminate();
         }
     }
+
+    @Override
+    public void terminate() {
+        super.terminate();
+        if (this.getShip() != null) ship.removeBulletShip(this);
+    }
 }
 

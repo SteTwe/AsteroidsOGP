@@ -1,4 +1,5 @@
 package asteroids.model;
+import asteroids.part2.CollisionListener;
 import be.kuleuven.cs.som.annotate.*;
 
 
@@ -238,11 +239,11 @@ public class World {
 
 
     public boolean isValidEntity(Entity entity){
-        if (getEntitySet().contains(entity)) return false;
         if (entity == null) return false;
-        if (entityOutOfBounds(entity)) return false;
+        if (entity instanceof Bullet && ((Bullet) entity).getShip() != null) return false;
+        //if (entityOutOfBounds(entity)) return false;
         if ((entity.getWorld() != null ) && (entity.getWorld() != this)) return false;
-        if (entity.isTerminated()) return false;
+        if (entity.isTerminated() || this.isTerminated()) return false;
         for (Entity other : getEntitySet()){
             if (entity.overlap(other)){
                 return false;
@@ -263,7 +264,7 @@ public class World {
      * @param duration
      * @throws IllegalArgumentException
      */
-    public void evolve(double duration) throws IllegalArgumentException{
+    public void evolve(double duration, CollisionListener collisionListener) throws IllegalArgumentException{
         if ((duration < 0) || (Double.isNaN(duration))) throw new IllegalArgumentException("Duration is not valid.");
         //Predict next collision
         double timeNextCollision = getTimeNextCollision();
@@ -275,8 +276,14 @@ public class World {
                 //TODO execute program ship
                 entity.move(timeNextCollision);
             }
-            if (collidingEntities[1] == null) collidingEntities[0].collideWithBoundary();
-            else collidingEntities[0].collideWith(collidingEntities[1]);
+            if (collidingEntities[1] == null) {
+                if (collisionListener != null) collisionListener.boundaryCollision(collidingEntities[0], collisionPosition[0], collisionPosition[1]);
+                collidingEntities[0].collideWithBoundary();
+            }
+            else {
+                if (collisionListener != null) collisionListener.objectCollision(collidingEntities[0], collidingEntities[1],collisionPosition[0], collisionPosition[1]);
+                collidingEntities[0].collideWith(collidingEntities[1]);
+            }
 
             duration = duration - timeNextCollision;
             timeNextCollision = getTimeNextCollision();

@@ -43,4 +43,20 @@ public class Planetoid extends MinorPlanet {
         if (getRadius() < getMinRadius()) terminate();
 
     }
+
+    public void terminate(){
+        double radius = this.getRadius();
+        super.terminate();
+        if (radius >= 30){
+            double newRadius = radius/2;
+            double velocity = getTotalVelocity();
+            double orientation = 2 * Math.PI * Math.random();
+            Asteroid asteroid1 = new Asteroid(getPositionX() + radius * Math.sin(orientation),getPositionY() - radius * Math.cos(orientation), velocity * Math.sin(orientation), velocity* Math.cos(orientation), newRadius);
+            Asteroid asteroid2 = new Asteroid(getPositionX() - radius * Math.sin(orientation),getPositionY() - radius * Math.cos(orientation), -velocity * Math.sin(orientation), -velocity * Math.cos(orientation), newRadius);
+            if (getWorld() != null){
+                getWorld().addEntity(asteroid1);
+                getWorld().addEntity(asteroid2);
+            }
+        }
+    }
 }

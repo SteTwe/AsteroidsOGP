@@ -442,6 +442,9 @@ public abstract class Entity implements Collideable{
      * Terminate this entity.
      */
     public void terminate(){
+        status = true;
+        if (this.getWorld() != null) getWorld().removeEntity(this);
+
         if (this != null) {
             status = true;
             if (getWorld() != null) {
@@ -452,21 +455,6 @@ public abstract class Entity implements Collideable{
                 if (bullet.getShip() != null) {
                     bullet.getShip().removeBulletShip(bullet);
                     bullet.setShip(null);
-                }
-            }
-            if (this instanceof Planetoid){
-                Planetoid planetoid = (Planetoid) this;
-                double radius = planetoid.getRadius();
-                if (radius >= 30){
-                    double newRadius = radius/2;
-                    double velocity = getTotalVelocity();
-                    double orientation = 2 * Math.PI * Math.random();
-                    Asteroid asteroid1 = new Asteroid(getPositionX() + radius * Math.sin(orientation),getPositionY() - radius * Math.cos(orientation), velocity * Math.sin(orientation), velocity* Math.cos(orientation), newRadius);
-                    Asteroid asteroid2 = new Asteroid(getPositionX() - radius * Math.sin(orientation),getPositionY() - radius * Math.cos(orientation), -velocity * Math.sin(orientation), -velocity * Math.cos(orientation), newRadius);
-                    if (getWorld() != null){
-                        getWorld().addEntity(asteroid1);
-                        getWorld().addEntity(asteroid2);
-                    }
                 }
             }
         }
@@ -619,34 +607,42 @@ public abstract class Entity implements Collideable{
      * @return      | True if the entities overlap
      */
     public boolean overlap(Entity other) {
+        if (other == null) throw new IllegalArgumentException();
         if (this == other) {
             return true;
         } else {
             double distance = this.getDistanceBetween(other);
-            if (this.radius > distance) {
-                return true;
-            } else if (other.getRadius() > distance) {
-                return true;
-            } else {
-                return false;
-            }
+            double sumRadii = this.getRadius()+ other.getRadius();
+            double fraction = distance/sumRadii;
+            return (fraction <= 0.01);
         }
     }
 
     /**
      * Compute the distance between two entities. If the two compared entities are the same, distance is 0.
      * @param        other
-     *              | Second entity
+     *              | Second entity//TODO
      * @return The distance between this entity and the given other entity.
      *              | return (Math.sqrt(Math.pow((x1 - x2), 2) + Math.pow((y1 - y2), 2)));
      */
     public double getDistanceBetween(Entity other) {
+        if (other == null) throw new IllegalArgumentException();
         if (this == other) return 0;
-        double x1 = this.getPositionX();
-        double x2 = other.getPositionX();
-        double y1 = this.getPositionY();
-        double y2 = other.getPositionY();
-        return (Math.sqrt(Math.pow((x1 -x2), 2) + Math.pow((y1-y2),2)));
+        else {
+            double distanceBetweenCenters = this.getDistanceBetweenCenters(other);
+            return (distanceBetweenCenters - this.getRadius() -other.getRadius());
+        }
+    }
+
+    /**
+     *
+     * @param other
+     * @return
+     */
+    public double getDistanceBetweenCenters(Entity other){
+        if (other == null) throw new IllegalArgumentException();
+        double distance = Math.sqrt(Math.pow((other.getPositionX() - this.getPositionX()), 2) + Math.pow((other.getPositionY() - this.getPositionY()),2));
+        return distance;
     }
 
     /**

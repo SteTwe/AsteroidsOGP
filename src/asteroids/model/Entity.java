@@ -562,29 +562,20 @@ public abstract class Entity implements Collideable{
             throw new IllegalArgumentException("ship2 does not exist");
         if (this.overlap(ship2))
             throw new IllegalArgumentException("the ships overlap");
-
         double[] positionDifference = {ship2.getPositionX() - this.getPositionX(), ship2.getPositionY() - this.getPositionY()};
-        double[] deltaR = positionDifference;
-
         double[] velocityDifference = {ship2.getVelocityX() - this.getVelocityX(), ship2.getVelocityY() - this.getVelocityY()};
-        double[] deltaV = velocityDifference;
-
         // deltaV * delta R
         double productVR = positionDifference[0] * velocityDifference[0] + positionDifference[1] * velocityDifference[1];
         // deltaV * deltaV
         double productVV = Math.pow(velocityDifference[0], 2) + Math.pow(velocityDifference[1], 2);
         // deltaR * deltaR
         double productRR = Math.pow(positionDifference[0], 2) + Math.pow(positionDifference[1], 2);
-
         // radius1 + radius2
         double gamma = this.getRadius() + ship2.getRadius();
-
         // (x1 - x2)^2 + (y1 - y2)^2
         double gamma2 = (Math.pow((this.getPositionX() - ship2.getPositionX()), 2) +(Math.pow(this.getPositionY() - ship2.getPositionY(),2)));
-
         // [(productVR)^2 - (productVR)*(productRR - gamma^2)]
         double d = (Math.pow(productVR, 2)) - (productVR) * (productRR - gamma2);
-
         if (productVR >= 0)
             time = Double.POSITIVE_INFINITY;
         else if (d <= 0)

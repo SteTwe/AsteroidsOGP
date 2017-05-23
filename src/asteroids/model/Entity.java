@@ -532,14 +532,14 @@ public abstract class Entity implements Collideable {
             setVelocityY(-getVelocityY());
     }
 
-    public double getTimeCollisionWithEntity(Entity entity){
+    public double getTimeCollisionWithEntity(Entity ship2){
         double time = Double.POSITIVE_INFINITY;
-        if (entity == null)
+        if (ship2 == null)
             throw new IllegalArgumentException("ship2 does not exist");
-        if (this.overlap(entity))
+        if (this.overlap(ship2))
             throw new IllegalArgumentException("the ships overlap");
-        double[] positionDifference = {entity.getPositionX() - this.getPositionX(), entity.getPositionY() - this.getPositionY()};
-        double[] velocityDifference = {entity.getVelocityX() - this.getVelocityX(), entity.getVelocityY() - this.getVelocityY()};
+        double[] positionDifference = {ship2.getPositionX() - this.getPositionX(), ship2.getPositionY() - this.getPositionY()};
+        double[] velocityDifference = {ship2.getVelocityX() - this.getVelocityX(), ship2.getVelocityY() - this.getVelocityY()};
         double product = positionDifference[0] * velocityDifference[0] + positionDifference[1] * velocityDifference[1];
         if (product >= 0)
             return Double.POSITIVE_INFINITY;

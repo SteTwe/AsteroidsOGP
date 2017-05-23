@@ -229,7 +229,7 @@ public class World {
         //Predict next collision
         double timeNextCollision = getTimeNextCollision();
         double[] collisionPosition = getNextCollisionPosition();
-        Entity[] collidingEntities = {}; //TODO colliding entities
+        Entity[] collidingEntities = getCollidingEntities();
 
         // If tC > duration: advance entities duration sec
         if (timeNextCollision > duration){
@@ -274,16 +274,44 @@ public class World {
     }
 
     //TODO
+
+    /**
+     *
+     * @return
+     */
     public double[] getNextCollisionPosition(){
-
-        
-
-
-        return new double[]{0,0};
+        Entity[] collidingEntities = getCollidingEntities();
+        if (collidingEntities[0] == null && collidingEntities[1] == null) return new double[]{Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY};
+        if (collidingEntities[1] == null) return collidingEntities[0].getCollisionPositionWithBoundary();
+        else return collidingEntities[0].getPositionCollisionWithEntity(collidingEntities[1]);
     }
 
-    //TODO
+    //TODO doc
+
+    /**
+     *
+     * @return
+     */
     public Entity[] getCollidingEntities(){
-        return new Entity[2];
+        Entity[] collidingEntities = new Entity[]{null,null};
+        double timeNextCollision = Double.POSITIVE_INFINITY;
+        //Loop over entities and compare time with timeNextCollision
+        for (Entity entity1 : getEntitySet()){
+            for (Entity entity2 : getEntitySet()){
+                // if time is smaller than timeNextCollision --> colliding entities are these + set new time
+                if(entity1.getTimeCollisionWithEntity(entity2) < timeNextCollision){
+                    timeNextCollision = entity1.getTimeCollisionWithEntity(entity2);
+                    collidingEntities = new Entity[]{entity1, entity2};
+
+                }
+
+            }
+            // if time is smaller than timeNextCollision --> colliding entity is this + set new time
+            if (entity1.getTimeToCollisionWithBoundary() < timeNextCollision){
+                timeNextCollision = entity1.getTimeToCollisionWithBoundary();
+                collidingEntities = new Entity[]{entity1, null};
+            }
+        }
+        return collidingEntities;
     }
 }

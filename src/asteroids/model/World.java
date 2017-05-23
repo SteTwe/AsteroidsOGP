@@ -161,8 +161,8 @@ public class World {
     }
 
     public boolean entityOutOfBounds(Entity entity){
-        if ((entity.getPositionX() > getWidth()) || (entity.getPositionX() < 0)) return true;
-        if ((entity.getPositionY() > getHeight()) || (entity.getPositionY() < 0)) return true;
+        if ((entity.getPositionX() + entity.getRadius() > getWidth()) || (entity.getPositionX() - entity.getRadius() < 0)) return true;
+        if ((entity.getPositionY() + entity.getRadius() > getHeight()) || (entity.getPositionY() - entity.getRadius() < 0)) return true;
         return false;
     }
 
@@ -208,7 +208,7 @@ public class World {
         if (getEntitySet().contains(entity)) return false;
         if (entity == null) return false;
         if (entityOutOfBounds(entity)) return false;
-        if (entity.getWorld() != null) return false;
+        if ((entity.getWorld() != null ) && (entity.getWorld() != this)) return false;
         if (entity.isTerminated()) return false;
         for (Entity other : getEntitySet()){
             if (entity.overlap(other)){

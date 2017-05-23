@@ -515,7 +515,8 @@ public class Ship extends Entity{
      * @post Bullet is not loaded on bullet.
      *       | !bulletSet.contains(bullet)
      */
-    public void removeBulletShip(Bullet bullet){
+    public void removeBulletShip(Bullet bullet) throws IllegalArgumentException{
+        if (bullet.getShip() != this) throw new IllegalArgumentException();
         this.bulletSet.remove(bullet);
     }
 
@@ -547,10 +548,14 @@ public class Ship extends Entity{
 
             try{
                 this.getWorld().addEntity(bullet);
-
             }
             catch (Exception e){
+                //TODO Possible collision
 
+            }
+            if (bullet.getWorld().entityOutOfBounds(bullet)) {
+                System.out.println("testje");
+                bullet.terminate();
             }
 
         }

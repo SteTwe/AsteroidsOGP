@@ -297,16 +297,13 @@ public class Facade implements IFacade {
 		return new double[0];
 	}
 
-	@Override
-	public double getTimeCollisionEntity(Object entity1, Object entity2) throws ModelException {
-		//TODO
-		return 0;
+
+	public double getTimeCollisionEntity(Entity entity1, Entity entity2) throws ModelException {
+		return entity1.getTimeCollisionWithEntity(entity2);
 	}
 
-	@Override
-	public double[] getPositionCollisionEntity(Object entity1, Object entity2) throws ModelException {
-		//TODO
-		return new double[0];
+	public double[] getPositionCollisionEntity(Entity entity1, Entity entity2) throws ModelException {
+		return entity1.getPositionCollisionWithEntity(entity2);
 	}
 
 	@Override

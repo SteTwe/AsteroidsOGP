@@ -532,6 +532,7 @@ public abstract class Entity implements Collideable {
             setVelocityY(-getVelocityY());
     }
 
+    //TODO: DOC
     public double getTimeCollisionWithEntity(Entity ship2){
         double time = Double.POSITIVE_INFINITY;
         if (ship2 == null)
@@ -548,33 +549,16 @@ public abstract class Entity implements Collideable {
 
     //TODO
     public double[] getPositionCollisionWithEntity(Entity ship2){
-        double[] collisionPosition;
-
         double time = getTimeCollisionWithEntity(ship2);
-
         double[] entityPosition = {this.getPositionX(), this.getPositionY()};
         double[] shipPosition = {ship2.getPositionX(), ship2.getPositionY()};
         double[] entityVelocity = {this.getVelocityX(), this.getVelocityY()};
         double[] shipVelocity = {ship2.getVelocityX(), ship2.getVelocityY()};
-
-        collisionPosition = new double[]{,};
-
-        return collisionPosition;
+        double collisionPositionX = getTimeCollisionWithEntity(ship2) * velocityX;
+        double collisionPositionY = getTimeCollisionWithEntity(ship2) * velocityY;
+        return new double[]{collisionPositionX, collisionPositionY};
     }
-
-    //TODO doc, implementation?
-    public double[] getPositionCollisionEntity(Entity ship2){
-        double time = this.getTimeCollisionWithEntity(ship2);
-        if (time == Double.POSITIVE_INFINITY) {
-            return null;
-        } else {
-            double collisionPositionX = getTimeCollisionWithEntity(ship2) * velocityX;
-            double collisionPositionY = getTimeCollisionWithEntity(ship2) * velocityY;
-            return new double[]{collisionPositionX, collisionPositionY};
-        }
-    }
-
-
+    
     /**
      * Check if two entities overlap.
      *

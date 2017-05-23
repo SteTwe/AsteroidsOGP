@@ -217,7 +217,6 @@ public abstract class Entity implements Collideable{
             return SPEED_OF_LIGHT;
         else
             return totalVelocity;
-
     }
 
     /**
@@ -652,10 +651,13 @@ public abstract class Entity implements Collideable{
         other.setVelocityX(newEntityVelocityX);
         other.setVelocityY(newEntityVelocityY);
     }
+
 }
 
 interface Collideable{
-    void collideWith(final Collideable other);
+    //void collideWith(final Collideable other);
     void collideWith(final Ship ship);
     void collideWith(final Bullet bullet);
 }
+
+

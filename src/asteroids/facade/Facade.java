@@ -194,7 +194,7 @@ public class Facade implements IFacade {
 	@Override
 	public void addShipToWorld(World world, Ship ship) throws ModelException {
 		try{
-			world.addEntity(ship);
+ 			world.addEntity(ship);
 		}
 		catch (Exception e){
 			throw new ModelException(e);
@@ -442,7 +442,11 @@ public class Facade implements IFacade {
 
 	@Override
 	public void addAsteroidToWorld(World world, Asteroid asteroid) throws ModelException {
-		world.addEntity(asteroid);
+		try {
+			world.addEntity(asteroid);
+		} catch (Exception e){
+			throw new ModelException(e);
+		}
 	}
 
 	@Override
@@ -463,7 +467,11 @@ public class Facade implements IFacade {
 
 	@Override
 	public void addPlanetoidToWorld(World world, Planetoid planetoid) throws ModelException {
-		world.addEntity(planetoid);
+		try {
+			world.addEntity(planetoid);
+		} catch (Exception e){
+			throw new ModelException(e);
+		}
 	}
 
 	@Override

@@ -145,6 +145,7 @@ public class World {
         if (entity instanceof Bullet){
             Bullet bullet = (Bullet) entity;
             if (!isValidEntity(bullet)) throw new IllegalArgumentException("Entity is not valid.");
+
             double[] position = {bullet.getPositionX(), bullet.getPositionY()};
             double radius = bullet.getRadius();
             double distance = position[0]-radius;
@@ -153,7 +154,7 @@ public class World {
             distance = Math.min(distance, this.height-position[1]-radius);
             if(distance < 0) bullet.terminate();
             else{
-                entitySet.add(bullet);
+                this.entitySet.add(bullet);
                 bullet.setWorld(this);
             }
 
@@ -203,7 +204,6 @@ public class World {
      * @post isTerminated is true.
      */
     public void terminateWorld(){
-        System.out.println(getEntitySet());
         for (Entity entity : getEntitySet()){
             this.removeEntity(entity);
         }
@@ -241,9 +241,9 @@ public class World {
     public boolean isValidEntity(Entity entity){
         if (entity == null) return false;
         if (entity instanceof Bullet && ((Bullet) entity).getShip() != null) return false;
-        //if (entityOutOfBounds(entity)) return false;
         if ((entity.getWorld() != null ) && (entity.getWorld() != this)) return false;
         if (entity.isTerminated() || this.isTerminated()) return false;
+        if(entityOutOfBounds(entity)) return false;
         for (Entity other : getEntitySet()){
             if (entity.overlap(other)){
                 return false;

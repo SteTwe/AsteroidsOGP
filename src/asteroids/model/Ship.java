@@ -370,11 +370,11 @@ public class Ship extends Entity{
      *          | result == !getBullets().contains(bullet)
      */
     public boolean isValidBullet(Bullet bullet){
+        if (bullet.getWorld() != null && bullet.getBulletSource() == null) return false;
         if (bullet == null) return false;
         if (bullet.isTerminated()) return false;
         if (bullet.getShip() != null && bullet.getShip() != this) return false;
         if (bullet.getBulletSource() != this && bullet.getBulletSource() != null) return false;
-        if ((bullet.getWorld() != null)) return false;
         return true;
     }
 
@@ -409,61 +409,55 @@ public class Ship extends Entity{
      *       | !bulletSet.contains(bullet)
      */
     public void removeBulletShip(Bullet bullet) throws IllegalArgumentException{
-        if (bullet.getShip() != this) throw new IllegalArgumentException();
+        if (bullet.getShip() != this) throw new IllegalArgumentException("The bullet is not loaded on this ship.");
         this.bulletSet.remove(bullet);
+        bullet.setShip(null);
     }
 
     /**
      * Fire a bullet from the ship.
      */
     public void fireBullet(){
-        if (this.getWorld() != null) {
-            Bullet bullet = getBullets().iterator().next();
-            double orientation = this.getAngle();
+        if (this.getWorld() == null) return;
+        Bullet bullet = getBullets().iterator().next();
+        double orientation = this.getAngle();
 
-            double newVelocityX = 250 * Math.cos(orientation);
-            double newVelocityY = 250 * Math.sin(orientation);
+        double newVelocityX = 250 * Math.cos(orientation);
+        double newVelocityY = 250 * Math.sin(orientation);
 
-            // Remove bullet from ship
-            this.removeBulletShip(bullet);
-            // set ship as bulletSource
-            bullet.setBulletsource(this);
-            // bullet position is next to the ship so that both don't overlap
-            // new positionX is current positionX + both radii + 1 (adds a little space)
-            double bulletRadius = bullet.getRadius();
-            double shipRadius = this.getRadius();
-            double newXPositionBullet = bullet.getPositionX() + (bulletRadius + shipRadius) * Math.cos(orientation);
-            double newYPositionBullet = bullet.getPositionY() + (bulletRadius + shipRadius) * Math.sin(orientation);
+        // Remove bullet from ship
+        this.removeBulletShip(bullet);
+        // set ship as bulletSource
+        bullet.setBulletsource(this);
+        double bulletRadius = bullet.getRadius();
+        double shipRadius = this.getRadius();
+        double newXPositionBullet = this.getPositionX() + (bulletRadius + shipRadius) * Math.cos(orientation);
+        double newYPositionBullet = this.getPositionY() + (bulletRadius + shipRadius) * Math.sin(orientation);
 
-            bullet.setVelocity(newVelocityX, newVelocityY);
-            bullet.setPosition(newXPositionBullet, newYPositionBullet);
-            bullet.setWorld(this.getWorld());
-
-            try{
-                this.getWorld().addEntity(bullet);
-            }
-            catch (Exception e){
-                //Exception --> overlap
-                for (Entity entity : this.getWorld().getEntitySet()){
-                    if (entity.overlap(bullet)){
-                        bullet.collideWith(entity);
-                    }
+        bullet.setVelocity(newVelocityX, newVelocityY);
+        bullet.setPosition(newXPositionBullet, newYPositionBullet);
+        bullet.setWorld(this.getWorld());
+        if (this.getWorld().entityOutOfBounds(bullet)) {
+            bullet.terminate();
+            return;
+        }
+        try{
+            this.getWorld().addEntity(bullet);
+        }
+        catch (Exception e){
+            //Exception --> overlap
+            for (Entity entity : this.getWorld().getEntitySet()){
+                if (entity.overlap(bullet)){
+                    bullet.collideWith(entity);
                 }
             }
-
-            double distanceToBorderWorld = getWorld().getWidth() - bullet.getPositionX();
-            distanceToBorderWorld = Math.min(distanceToBorderWorld, bullet.getPositionX());
-            distanceToBorderWorld = Math.min(distanceToBorderWorld, getWorld().getHeight() -bullet.getPositionY());
-            distanceToBorderWorld = Math.min(distanceToBorderWorld, bullet.getPositionY());
-            if (distanceToBorderWorld <= 0) bullet.terminate();
-            //TOdO bullet out of bounds
-/*            if (bullet.getWorld().entityOutOfBounds(bullet)) {
-                System.out.println("testje");
-                bullet.terminate();
-            }
-*/
         }
 
+        double distanceToBorderWorld = getWorld().getWidth() - bullet.getPositionX();
+        distanceToBorderWorld = Math.min(distanceToBorderWorld, bullet.getPositionX());
+        distanceToBorderWorld = Math.min(distanceToBorderWorld, getWorld().getHeight() -bullet.getPositionY());
+        distanceToBorderWorld = Math.min(distanceToBorderWorld, bullet.getPositionY());
+        if (distanceToBorderWorld <= 0) bullet.terminate();
     }
 
     /**********

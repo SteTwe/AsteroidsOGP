@@ -426,7 +426,7 @@ public abstract class Entity implements Collideable{
      * @return World linked with this entity
      */
     public World getWorld(){
-        return this.world;
+        return world;
     }
 
     /**
@@ -607,7 +607,9 @@ public abstract class Entity implements Collideable{
      * @return      | True if the entities overlap
      */
     public boolean overlap(Entity other) {
+        if (this instanceof Bullet && other instanceof Ship) if (((Bullet) this).getBulletSource() == other) return false;
         if (other == null) throw new IllegalArgumentException();
+
         if (this == other) {
             return true;
         } else {
@@ -630,7 +632,7 @@ public abstract class Entity implements Collideable{
         if (this == other) return 0;
         else {
             double distanceBetweenCenters = this.getDistanceBetweenCenters(other);
-            return (distanceBetweenCenters - this.getRadius() -other.getRadius());
+            return (distanceBetweenCenters - this.getRadius() - other.getRadius());
         }
     }
 

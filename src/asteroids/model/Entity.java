@@ -9,7 +9,7 @@ import be.kuleuven.cs.som.annotate.Raw;
  * Created by joachim on 09/04/2017.
  * @author joachim
  */
-public abstract class Entity implements Collideable {
+public abstract class Entity implements Collideable{
 
     /**
      * Initialize a new entity with x-position, y-position, velocity in x-direction, velocity in y-direction, radius.
@@ -550,10 +550,10 @@ public abstract class Entity implements Collideable {
     //TODO
     public double[] getPositionCollisionWithEntity(Entity ship2){
         double time = getTimeCollisionWithEntity(ship2);
-        double[] entityPosition = {this.getPositionX(), this.getPositionY()};
-        double[] shipPosition = {ship2.getPositionX(), ship2.getPositionY()};
-        double[] entityVelocity = {this.getVelocityX(), this.getVelocityY()};
-        double[] shipVelocity = {ship2.getVelocityX(), ship2.getVelocityY()};
+        /*double[] entityPosition = {this.getPositionX(), this.getPositionY()};
+         *double[] shipPosition = {ship2.getPositionX(), ship2.getPositionY()};
+         *double[] entityVelocity = {this.getVelocityX(), this.getVelocityY()};
+         double[] shipVelocity = {ship2.getVelocityX(), ship2.getVelocityY()};*/
         double collisionPositionX = getTimeCollisionWithEntity(ship2) * velocityX;
         double collisionPositionY = getTimeCollisionWithEntity(ship2) * velocityY;
         return new double[]{collisionPositionX, collisionPositionY};

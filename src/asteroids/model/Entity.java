@@ -449,15 +449,20 @@ public abstract class Entity implements Collideable {
      * Terminate this entity.
      */
     public void terminate(){
-        status = true;
-        if (getWorld() != null){
-            getWorld().removeEntity(this);
+        if (this != null) {
+            status = true;
+            if (getWorld() != null) {
+                getWorld().removeEntity(this);
+            }
+            if (this instanceof Bullet) {
+                Bullet bullet = (Bullet) this;
+                if (bullet.getShip() != null) {
+                    bullet.getShip().removeBulletShip(bullet);
+                    bullet.setShip(null);
+                }
+            }
         }
-        if (this instanceof Bullet){
-            Bullet bullet = (Bullet) this;
-            bullet.getShip().removeBulletShip(bullet);
-            bullet.setShip(null);
-        }
+
     }
 
     /**
@@ -465,7 +470,7 @@ public abstract class Entity implements Collideable {
      * @return
      */
     public boolean isTerminated(){
-        return this.status;
+        return status;
     }
 
 

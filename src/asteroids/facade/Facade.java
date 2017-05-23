@@ -213,7 +213,12 @@ public class Facade implements IFacade {
 
 	@Override
 	public void addBulletToWorld(World world, Bullet bullet) throws ModelException {
-		world.addEntity(bullet);
+		try{
+			world.addEntity(bullet);
+		}
+		catch (IllegalArgumentException e){
+			throw new ModelException(e);
+		}
 	}
 
 	@Override

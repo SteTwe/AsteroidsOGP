@@ -143,7 +143,9 @@ public class World {
             this.entitySet.add(entity);
             entity.setWorld(this);
         }
+
     }
+
 
     /**
      * Remove the given entity from the world.
@@ -154,8 +156,8 @@ public class World {
      */
     public void removeEntity(Entity entity) throws IllegalArgumentException{
         if ((entity == null) || entity.getWorld() != this) throw new IllegalArgumentException("Entity is not valid.");
-            this.entitySet.remove(entity);
-            entity.removeWorld();
+        this.entitySet.remove(entity);
+        entity.removeWorld();
     }
 
     public boolean entityOutOfBounds(Entity entity){

@@ -172,7 +172,7 @@ public class World {
      * @return Return the set of Entities of this world.
      */
     public Set<Entity> getEntitySet() {
-        return this.entitySet;
+        return new HashSet<Entity>(entitySet);
     }
 
     /**
@@ -224,6 +224,12 @@ public class World {
      **************/
 
     //TODO
+
+    /**
+     *
+     * @param duration
+     * @throws IllegalArgumentException
+     */
     public void evolve(double duration) throws IllegalArgumentException{
         if ((duration < 0) || (Double.isNaN(duration))) throw new IllegalArgumentException("Duration is not valid.");
         //Predict next collision
@@ -238,16 +244,14 @@ public class World {
             }
         }
         // Else advance entities tC sec, resolve collision, substract tC from duration, start again.
-        else {
-            for (Entity entity : getEntitySet()){
-                entity.move(duration);
-            }
-            // TODO Resolve collsion
-
-            //Substract and start over
-            double newDuration = duration - timeNextCollision;
-            evolve(newDuration);
+        for (Entity entity : getEntitySet()){
+            entity.move(duration);
         }
+        // TODO Resolve collsion
+
+        //Substract and start over
+        double newDuration = duration - timeNextCollision;
+        evolve(newDuration);
 
     }
 

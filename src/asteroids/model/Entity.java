@@ -558,7 +558,7 @@ public abstract class Entity implements Collideable {
         double collisionPositionY = getTimeCollisionWithEntity(ship2) * velocityY;
         return new double[]{collisionPositionX, collisionPositionY};
     }
-    
+
     /**
      * Check if two entities overlap.
      *

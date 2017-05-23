@@ -317,8 +317,7 @@ public class Facade implements IFacade {
 
 	@Override
 	public double[] getPositionNextCollision(World world) throws ModelException {
-		//TODO
-		return new double[0];
+		return world.getNextCollisionPosition();
 	}
 
 	@Override

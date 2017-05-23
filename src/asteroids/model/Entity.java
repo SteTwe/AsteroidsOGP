@@ -561,8 +561,8 @@ public abstract class Entity implements Collideable{
     public double[] getPositionCollisionWithEntity(Entity ship2){
         double time = getTimeCollisionWithEntity(ship2);
         /*double[] entityPosition = {this.getPositionX(), this.getPositionY()};
-         *double[] shipPosition = {ship2.getPositionX(), ship2.getPositionY()};
-         *double[] entityVelocity = {this.getVelocityX(), this.getVelocityY()};
+         double[] shipPosition = {ship2.getPositionX(), ship2.getPositionY()};
+         double[] entityVelocity = {this.getVelocityX(), this.getVelocityY()};
          double[] shipVelocity = {ship2.getVelocityX(), ship2.getVelocityY()};*/
         double collisionPositionX = getTimeCollisionWithEntity(ship2) * velocityX;
         double collisionPositionY = getTimeCollisionWithEntity(ship2) * velocityY;
@@ -655,7 +655,7 @@ public abstract class Entity implements Collideable{
 }
 
 interface Collideable{
-    //void collideWith(final Collideable other);
+    void collideWith(final Collideable other);
     void collideWith(final Ship ship);
     void collideWith(final Bullet bullet);
 }

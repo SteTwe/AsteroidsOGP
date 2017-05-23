@@ -272,12 +272,13 @@ public class World {
         double time = Double.POSITIVE_INFINITY;
         for (Entity entity1 : getEntitySet()){
             for (Entity entity2 : getEntitySet()){
+                time = Math.min(time, entity1.getTimeToCollisionWithBoundary());
                 if (entity1 != entity2){
                     if (entity1.overlap(entity2)) return 0;
                     double newTime = entity1.getTimeCollisionWithEntity(entity2);
                     time = Math.min(time, newTime);
             }
-            time = Math.min(time, entity1.getTimeToCollisionWithBoundary());
+
 
             }
         }

@@ -215,6 +215,16 @@ public class Ship extends Entity{
             return acceleration;
     }
 
+    @Override
+    public void move(double duration) {
+        super.move(duration);
+        if (isThrusterEnabled()){
+            double newVelocityX = getVelocityX() + getAcceleration() * Math.cos(getAngle()) * duration;
+            double newVelocityY = getVelocityY() + getAcceleration() * Math.sin(getAngle()) * duration;
+            setVelocityX(newVelocityX);
+            setVelocityY(newVelocityY);
+        }
+    }
 
     /**********
      * COLLISION RELATED
@@ -555,14 +565,25 @@ public class Ship extends Entity{
                 this.getWorld().addEntity(bullet);
             }
             catch (Exception e){
-                //TODO Possible collision
-
+                //Exception --> overlap
+                for (Entity entity : this.getWorld().getEntitySet()){
+                    if (entity.overlap(bullet)){
+                        bullet.collideWith(entity);
+                    }
+                }
             }
-            if (bullet.getWorld().entityOutOfBounds(bullet)) {
+
+            double distanceToBorderWorld = getWorld().getWidth() - bullet.getPositionX();
+            distanceToBorderWorld = Math.min(distanceToBorderWorld, bullet.getPositionX());
+            distanceToBorderWorld = Math.min(distanceToBorderWorld, getWorld().getHeight() -bullet.getPositionY());
+            distanceToBorderWorld = Math.min(distanceToBorderWorld, bullet.getPositionY());
+            if (distanceToBorderWorld <= 0) bullet.terminate();
+            //TOdO bullet out of bounds
+/*            if (bullet.getWorld().entityOutOfBounds(bullet)) {
                 System.out.println("testje");
                 bullet.terminate();
             }
-
+*/
         }
 
     }

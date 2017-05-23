@@ -30,4 +30,12 @@ public class Planetoid extends MinorPlanet {
     public void collideWith(Ship ship) {
         ship.teleportShip();
     }
+
+    @Override
+    public void move(double duration) {
+        super.move(duration);
+        setTotalTraveledDistance(getTotalTraveledDistance() + getTotalVelocity() * duration);
+        if (getRadius() < getMinRadius()) terminate();
+
+    }
 }

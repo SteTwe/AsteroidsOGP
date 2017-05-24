@@ -2,6 +2,8 @@ package asteroids.model;
 
 import be.kuleuven.cs.som.annotate.Basic;
 import be.kuleuven.cs.som.annotate.Raw;
+import asteroids.part2.CollisionListener;
+
 
 //import java.util.DoubleSummaryStatistics;
 
@@ -553,8 +555,9 @@ public abstract class Entity implements Collideable{
      * Method executing the change in velocity in order to resolve a collision with a boundary.
      */
     public void collideWithBoundary(){
-        if (getCollisionPositionWithBoundary()[0] == 0 || getCollisionPositionWithBoundary()[0] == getWorld().getHeight())
-            setVelocityX(-getVelocityX());
+  		
+    		if (getCollisionPositionWithBoundary()[0] == 0 || getCollisionPositionWithBoundary()[0] == getWorld().getHeight())
+    			setVelocityX(-getVelocityX());
         if (getCollisionPositionWithBoundary()[1] == 0 || getCollisionPositionWithBoundary()[1] == getWorld().getWidth())
             setVelocityY(-getVelocityY());
     }

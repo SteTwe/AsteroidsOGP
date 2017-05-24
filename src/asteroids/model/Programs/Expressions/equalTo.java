@@ -8,10 +8,10 @@ import java.util.Set;
 
 
 public class equalTo extends Expression<Boolean> {
-    private Expression e1;
-    private Expression e2;
+    private Expression<?> e1;
+    private Expression<?> e2;
 
-    public equalTo(Expression expression1, Expression expression2, SourceLocation location){
+    public equalTo(Expression<?> expression1, Expression<?> expression2, SourceLocation location){
         super(location);
         this.e1 = expression1;
         this.e2 = expression2;

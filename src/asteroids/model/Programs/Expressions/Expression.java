@@ -4,7 +4,7 @@ import asteroids.model.Program;
 import asteroids.model.Programs.Variable;
 import asteroids.part3.programs.SourceLocation;
 
-import java.util.Objects;
+//import java.util.Objects;
 import java.util.Set;
 
 /**

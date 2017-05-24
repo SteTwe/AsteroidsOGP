@@ -327,6 +327,7 @@ public class Facade implements IFacade {
 		catch (Exception e){
 			throw new ModelException(e);
 		}
+		//world.evolve(dt, collisionListener);
 	}
 
 	@Override

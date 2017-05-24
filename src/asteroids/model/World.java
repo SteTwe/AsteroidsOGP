@@ -1,6 +1,6 @@
 package asteroids.model;
 import asteroids.part2.CollisionListener;
-import be.kuleuven.cs.som.annotate.*;
+//import be.kuleuven.cs.som.annotate.*;
 
 
 import java.util.HashSet;

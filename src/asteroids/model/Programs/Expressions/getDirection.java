@@ -1,6 +1,6 @@
 package asteroids.model.Programs.Expressions;
 
-import asteroids.model.Entity;
+//import asteroids.model.Entity;
 import asteroids.model.Program;
 import asteroids.model.Programs.Variable;
 import asteroids.model.Ship;

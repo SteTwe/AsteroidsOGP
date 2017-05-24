@@ -371,7 +371,7 @@ public class Ship extends Entity{
      */
     public boolean isValidBullet(Bullet bullet){
         if (bullet.getWorld() != null && bullet.getBulletSource() == null) return false;
-        if (bullet == null) return false;
+        //if (bullet == null) return false;
         if (bullet.isTerminated()) return false;
         if (bullet.getShip() != null && bullet.getShip() != this) return false;
         if (bullet.getBulletSource() != this && bullet.getBulletSource() != null) return false;

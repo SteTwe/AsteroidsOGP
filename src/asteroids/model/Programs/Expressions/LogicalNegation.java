@@ -7,9 +7,6 @@ import asteroids.part3.programs.SourceLocation;
 
 import java.util.Set;
 
-/**
- * Created by stef on 24-5-17.
- */
 public class LogicalNegation extends Expression<Boolean> {
 
     private Expression<? extends Boolean> expression;

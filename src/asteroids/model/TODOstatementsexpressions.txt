@@ -25,8 +25,7 @@ Joachim:
 * A multiplication
 * An invocation of a function f involving a list of actual arguments
 Stef:
-* A logical negation
-* A sort
+* A sqrt
 * A getx
 * A gety
 * A getvx

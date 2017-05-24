@@ -506,15 +506,7 @@ public abstract class Entity implements Collideable{
         return time;
     }
 
-    public double[] getMovementPrediction(double t){
-        if (!isValidDuration(t)) throw new IllegalArgumentException("Duration is not valid.");
-        double[] velocity = {getVelocityX(), getVelocityY()};
-        double[] position = {getPositionX(), getPositionY()};
-        double[] newPosition = {position[0] + velocity[0] * t, position[1] + velocity[1] * t};
-        return newPosition;
-    }
-
-    //TODO
+    //TODO DOC
     /**
      * Method returning a pair of coordinates that represent the location of collision between an entity and a boundary.
      * @return
@@ -549,6 +541,14 @@ public abstract class Entity implements Collideable{
         else collisionPosition = new double[]{collisionPosition[0], boundaryY};
 
         return collisionPosition;
+    }
+
+    public double[] getMovementPrediction(double t){
+        if (!isValidDuration(t)) throw new IllegalArgumentException("Duration is not valid.");
+        double[] velocity = {getVelocityX(), getVelocityY()};
+        double[] position = {getPositionX(), getPositionY()};
+        double[] newPosition = {position[0] + velocity[0] * t, position[1] + velocity[1] * t};
+        return newPosition;
     }
 
     /**

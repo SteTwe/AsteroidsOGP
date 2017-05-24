@@ -25,13 +25,5 @@ Joachim:
 * A multiplication
 * An invocation of a function f involving a list of actual arguments
 Stef:
-* A logical negation
-* A sort
-* A getx
-* A gety
-* A getvx
-* A getvy
-* A getradius
-* A getdir
 * A Comparison (les than or equal to)
 

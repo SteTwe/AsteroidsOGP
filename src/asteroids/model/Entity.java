@@ -547,8 +547,7 @@ public abstract class Entity implements Collideable{
         if (!isValidDuration(t)) throw new IllegalArgumentException("Duration is not valid.");
         double[] velocity = {getVelocityX(), getVelocityY()};
         double[] position = {getPositionX(), getPositionY()};
-        double[] newPosition = {position[0] + velocity[0] * t, position[1] + velocity[1] * t};
-        return newPosition;
+        return new double[] {position[0] + velocity[0] * t, position[1] + velocity[1] * t};
     }
 
     /**

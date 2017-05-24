@@ -562,18 +562,18 @@ public abstract class Entity implements Collideable{
     }
 
     //TODO: DOC
-    public double getTimeCollisionWithEntity(Entity ship2){
+    public double getTimeCollisionWithEntity(Entity entity2){
         double time = Double.POSITIVE_INFINITY;
-        if (ship2 == null)
-            throw new IllegalArgumentException("ship2 does not exist");
-        double[] positionDifference = {ship2.getPositionX() - this.getPositionX(), ship2.getPositionY() - this.getPositionY()};
-        double[] velocityDifference = {ship2.getVelocityX() - this.getVelocityX(), ship2.getVelocityY() - this.getVelocityY()};
+        if (entity2 == null)
+            throw new IllegalArgumentException("entity2 does not exist");
+        double[] positionDifference = {entity2.getPositionX() - this.getPositionX(), entity2.getPositionY() - this.getPositionY()};
+        double[] velocityDifference = {entity2.getVelocityX() - this.getVelocityX(), entity2.getVelocityY() - this.getVelocityY()};
 
         double productVR = positionDifference[0] * velocityDifference[0] + positionDifference[1] * velocityDifference[1];
         double productVV = Math.pow(velocityDifference[0], 2) + Math.pow(velocityDifference[1], 2);
         double productRR = Math.pow(positionDifference[0], 2) + Math.pow(positionDifference[1], 2);
 
-        double d = Math.pow(productVR,2) - (productVV) * (productRR - Math.pow(this.getRadius() + ship2.getRadius(),2));
+        double d = Math.pow(productVR,2) - (productVV) * (productRR - Math.pow(this.getRadius() + entity2.getRadius(),2));
         //double d = Math.pow(productVR, 2) - (productVV)*(productRR)-Math.pow(this.getRadius()+ship2.getRadius(), 2);
         if (productVR >= 0)
             return Double.POSITIVE_INFINITY;

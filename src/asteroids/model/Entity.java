@@ -601,6 +601,13 @@ public abstract class Entity implements Collideable{
         return new double[]{collisionPositionX, collisionPositionY};
     }
 
+    //TODO
+    public double getTimeCollisionWithShip(Ship ship){
+        if (ship2 == null)
+            throw new IllegalArgumentException("ship2 does not exist");
+        return time;
+    }
+
     /**
      * Check if two entities overlap.
      *

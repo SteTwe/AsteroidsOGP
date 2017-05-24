@@ -602,10 +602,17 @@ public abstract class Entity implements Collideable{
     }
 
     //TODO
-    public double getTimeCollisionWithShip(Ship ship){
+    public double getTimeCollisionWithShip(Ship ship2){
         if (ship2 == null)
             throw new IllegalArgumentException("ship2 does not exist");
+        double time = 0;
+        //double distance = getDistanceBetween(ship2)
         return time;
+    }
+
+    //TODO
+    public double[] getPositionCollisionWithShip(Ship ship2){
+        return new double[] {,};
     }
 
     /**

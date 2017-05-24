@@ -15,11 +15,10 @@ Statement:
 * Doing nothing
 Expressions:
 Joachim:
+
 * A variable X
 * A formal parameter p
-* A double constant c
 * An entity
 * An expression enclosed in parenthesis
-* A change of sign
 * An invocation of a function f involving a list of actual arguments
 

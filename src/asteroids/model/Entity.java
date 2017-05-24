@@ -550,12 +550,12 @@ public abstract class Entity implements Collideable{
         return new double[] {position[0] + velocity[0] * t, position[1] + velocity[1] * t};
     }
 
+    //TODO
     /**
      * Method executing the change in velocity in order to resolve a collision with a boundary.
      */
     public void collideWithBoundary(){
-  		
-    		if (getCollisionPositionWithBoundary()[0] == 0 || getCollisionPositionWithBoundary()[0] == getWorld().getHeight())
+        if (getCollisionPositionWithBoundary()[0] == 0 || getCollisionPositionWithBoundary()[0] == getWorld().getHeight())
     			setVelocityX(-getVelocityX());
         if (getCollisionPositionWithBoundary()[1] == 0 || getCollisionPositionWithBoundary()[1] == getWorld().getWidth())
             setVelocityY(-getVelocityY());

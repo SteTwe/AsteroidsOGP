@@ -1,4 +1,4 @@
-package asteroids.model.Programs;
+package asteroids.model.Programs.Expressions;
 
 /**
  * Created by joachim on 22/05/2017.

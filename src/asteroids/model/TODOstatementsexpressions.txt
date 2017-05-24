@@ -21,9 +21,5 @@ Joachim:
 * An entity
 * An expression enclosed in parenthesis
 * A change of sign
-* An addition
-* A multiplication
 * An invocation of a function f involving a list of actual arguments
-Stef:
-* A Comparison (les than or equal to)
 

@@ -7,11 +7,11 @@ import asteroids.part3.programs.SourceLocation;
 
 import java.util.Set;
 
-public class LogicalNegation extends Expression<Boolean> {
+public class logicalNegation extends Expression<Boolean> {
 
     private Expression<? extends Boolean> expression;
 
-    public LogicalNegation(Expression<? extends Boolean> expression, SourceLocation location){
+    public logicalNegation(Expression<? extends Boolean> expression, SourceLocation location){
         super(location);
         this.expression = expression;
     }

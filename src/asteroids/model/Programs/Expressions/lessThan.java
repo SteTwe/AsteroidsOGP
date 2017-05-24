@@ -13,7 +13,7 @@ public class lessThan extends Expression<Boolean> {
     private Expression<?extends Double> expression1;
     private Expression <? extends Double> expression2;
 
-    public lessThan(Expression expression1, Expression expression2, SourceLocation location){
+    public lessThan(Expression <?extends Double> expression1, Expression <?extends Double> expression2, SourceLocation location){
         super(location);
         this.expression1 = expression1;
         this.expression2 = expression2;

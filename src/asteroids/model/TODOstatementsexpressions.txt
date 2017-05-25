@@ -1,24 +1,18 @@
 Statement:
-* Assignment statement
-* While statement
-* Break statement
-* Return statement
-* If-then-else statement
-* Print statement
-* Block statement
-* Action statement
 5 soorten statements:
 * turning
 * shooting
 * Enabling
 * Disabling thruster
 * Doing nothing
+
+
 Expressions:
 Joachim:
 
 * A variable X
-* A formal parameter p
-* An entity
-* An expression enclosed in parenthesis
-* An invocation of a function f involving a list of actual arguments
 
+
+//FUNCtION RELATED
+* A formal parameter p
+* An expression enclosed in parenthesis

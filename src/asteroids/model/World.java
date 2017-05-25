@@ -183,6 +183,12 @@ public class World {
         entity.removeWorld();
     }
 
+    /**
+     * Return true if the entity is out of bounds.
+     *
+     * @param entity The given entity to evaluate.
+     * @see implementation
+     */
     public boolean entityOutOfBounds(Entity entity){
         if ((entity.getPositionX() + entity.getRadius() > getWidth()) || (entity.getPositionX() - entity.getRadius() < 0)) return true;
         if ((entity.getPositionY() + entity.getRadius() > getHeight()) || (entity.getPositionY() - entity.getRadius() < 0)) return true;
@@ -237,7 +243,12 @@ public class World {
         return null;
     }
 
-
+    /**
+     * Return true if the entity is valid for this world.
+     *
+     * @param entity The given entity to evaluate.
+     * @see implementation
+     */
     public boolean isValidEntity(Entity entity){
         if (entity == null) return false;
         if (entity instanceof Bullet && ((Bullet) entity).getShip() != null) return false;
@@ -257,12 +268,8 @@ public class World {
      * COLLISION RELATED
      **************/
 
-    //TODO
-
     /**
-     *
-     * @param duration
-     * @throws IllegalArgumentException
+     * Method to evolve the world during a given duration.
      */
     public void evolve(double duration, CollisionListener collisionListener) throws IllegalArgumentException{
         if ((duration < 0) || (Double.isNaN(duration)))
@@ -275,7 +282,10 @@ public class World {
 
         while (timeNextCollision <= duration){
             for (Entity entity : getEntitySet()){
-                //TODO execute program ship
+            //Useless cuz programs not on point
+            /*  if (entity instanceof Ship){
+                ((Ship) entity).executeProgram(duration);
+            }*/
                 entity.move(timeNextCollision);
             }
             if (collidingEntities[1] == null) {
@@ -295,26 +305,32 @@ public class World {
             if (timeNextCollision ==0) break;
         }
         for (Entity entity: getEntitySet()){
-            //TODO execute program
+            //Useless cuz programs not on point
+            /*  if (entity instanceof Ship){
+                ((Ship) entity).executeProgram(duration);
+            }*/
             entity.move(duration);
         }
 
     }
 
     /**
-     * Return the time until the next collision.
+     * Return the time until the next collision occurs in this world, if 2 entities overlap, return 0.
+     * If no collisions in return Double.POSITIVE_INFINITY.
+     * @see implementation
      *
-     * @return Return 0 if two entities overlap
-     * //TODO doc
      */
     public double getTimeNextCollision(){
         double time = Double.POSITIVE_INFINITY;
         for (Entity entity1 : getEntitySet()){
             for (Entity entity2 : getEntitySet()){
+                //If timeToCollisionWithBoundary is smaller than current time, time = timeToCollisionWithBoundary
                 time = Math.min(time, entity1.getTimeToCollisionWithBoundary());
                 if (entity1 != entity2){
+                    // If 2 entities overlap return 0
                     if (entity1.overlap(entity2)) return 0;
                     double newTime = entity1.getTimeCollisionWithEntity(entity2);
+                    //If timeToCollisionWithEntity is smaller than current time, time = timeToCollisionWithEntity
                     time = Math.min(time, newTime);
                 }
             }
@@ -322,11 +338,15 @@ public class World {
         return time;
     }
 
-    //TODO
-
     /**
-     *
-     * @return
+     * Method that returns the position of the next collision.
+     * @return The position of the next collision.
+     *          | if there is no collision,  return Double.POSITIVE_INFINITY.
+     *          | if (collidingEntities == null) return Double.POSITIVE_INFINITY
+     *          | if there is a collision with a boundary, return the collision position
+     *          | see implementation
+     *          | if two entities collide, return the collision position.
+     *          | see implementation
      */
     public double[] getNextCollisionPosition(){
         Entity[] collidingEntities = getNextCollidingEntities();
@@ -335,11 +355,10 @@ public class World {
         else return collidingEntities[0].getPositionCollisionWithEntity(collidingEntities[1]);
     }
 
-    //TODO doc
-
     /**
+     * Method that returns the entities involved in the next collision.
      *
-     * @return
+     * @see implementation
      */
     public Entity[] getNextCollidingEntities(){
         Entity[] collidingEntities = new Entity[]{null,null};
@@ -351,9 +370,7 @@ public class World {
                 if(entity1.getTimeCollisionWithEntity(entity2) < timeNextCollision){
                     timeNextCollision = entity1.getTimeCollisionWithEntity(entity2);
                     collidingEntities = new Entity[]{entity1, entity2};
-
                 }
-
             }
             // if time is smaller than timeNextCollision --> colliding entity is this + set new time
             if (entity1.getTimeToCollisionWithBoundary() < timeNextCollision){

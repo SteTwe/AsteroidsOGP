@@ -83,7 +83,7 @@ public abstract class Entity {
      *
      * @param positionX The given x-position of this entity.
      * @pre The given positionX should be a valid positionX for this entity.
-     *      | isValidPositionX(positionX)
+     *      | isValidPosition(positionX)
      * @post The x-coordinate of this entity is equal to the given positionX.
      *      | new.getPositionX() == positionX;
      */
@@ -92,6 +92,18 @@ public abstract class Entity {
             this.positionX = positionX;
     }
 
+    /**
+     * Set the position of this entity to the given position.
+     * @param positionX The given x-coordinate
+     * @param positionY The given y-coordinate
+     * @pre The given coordinates should be valid for this entity.
+     *      | isValidPosition(positionX)
+     *      | isValidPosition(positionY)
+     * @post The position of this entity is equal to the given position.
+     *      | new.getPositionX() == positionX
+     *      | new.getPositionY() == positionY
+     * @throws IllegalArgumentException Throw exception is position is not valid.
+     */
     public void setPosition(double positionX, double positionY) throws IllegalArgumentException{
         if (!isValidPosition(positionX)) throw new IllegalArgumentException("The given position is not valid.");
         if (!isValidPosition(positionY)) throw new IllegalArgumentException("The given position is not valid.");
@@ -165,6 +177,17 @@ public abstract class Entity {
             this.velocityY = velocityY;
     }
 
+    /**
+     * Set the velocity of this entity to the given velocity.
+     * @param velocityX The given x-velocity
+     * @param velocityY The given y-velocity
+     * @pre The given velocities should be valid for this entity.
+     *      | isValidVelocity(velocityX)
+     *      | isValidVelocity(velocityY)
+     * @post The velocity of this entity is equal to the given velocity.
+     *      | new.getVelocityX() == velocityX
+     *      | new.getVelocityY() == velocityY
+     */
     public void setVelocity(double velocityX, double velocityY){
         if (Double.isNaN(velocityX) || Double.isNaN(velocityY)) return;
         double velocity = (Math.sqrt(Math.pow(velocityX, 2) + Math.pow(velocityY, 2)));
@@ -188,6 +211,12 @@ public abstract class Entity {
         return(!Double.isNaN(velocityX));
     }
 
+    /**
+     * Return true if the given velocity is valid.
+     *
+     * @param velocity The given velocity.
+     * @see implementation
+     */
     private boolean isValidVelocity(double velocity){
         if (velocity > SPEED_OF_LIGHT) return false;
         return true;

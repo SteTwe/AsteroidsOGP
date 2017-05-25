@@ -716,6 +716,12 @@ public abstract class Entity implements Collideable{
         // bullet + ship
         // ship + boundary
         // bullet + boundary
+        if ((this instanceof Ship) && (other instanceof Ship))
+                bounceOffEntity(other);
+        else if ((this instanceof MinorPlanet) && (other instanceof MinorPlanet))
+                bounceOffEntity(other);
+        if ((this instanceof Ship) && (other instanceof Planetoid))
+            this.teleport;
     }
 
 }

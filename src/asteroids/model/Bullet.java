@@ -101,49 +101,22 @@ public class Bullet extends Entity{
 
     }
 
-    /**
-     * Resolve collision with another bullet: terminate both bullets.
-     * @param bullet The other bullet.
-     */
-    public void collideWith(Bullet bullet) {
-        this.terminate();
-        bullet.terminate();
-    }
-
-    /**
-     * //TODO update doc
-     * Resolve collision with another entity.
-     * @param other The other entity.
-     */
-    public void collideWith(Collideable other) {
-        other.collideWith(this);
-    }
-
-    @Override
-    public void collideWith(MinorPlanet minorPlanet) {
-        this.terminate();
-        minorPlanet.terminate();
-    }
-
-    /**
-     * Resolve collision with a given ship: if this bullet was fired from that ship, reload the bullet,
-     * else terminate both ship and bullet.
-     * @param ship
-     */
-    public void collideWith(Ship ship) {
-        if (this.getBulletSource() == ship){
-            ship.loadBullet(this);
-        }
-        else {
-            this.terminate();
-            ship.terminate();
-        }
-    }
-
     @Override
     public void terminate() {
         super.terminate();
         if (this.getShip() != null) ship.removeBulletShip(this);
+    }
+
+    @Override
+    public void collide(Entity other) {
+        if (this.getBulletSource() == other){
+            this.setPosition(other.getPositionX(), other.getPositionY());
+            ((Ship) other).loadBullet(this);
+        }
+        else {
+            other.terminate();
+            this.terminate();
+        }
     }
 }
 

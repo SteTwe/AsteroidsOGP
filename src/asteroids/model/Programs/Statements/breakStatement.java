@@ -15,6 +15,7 @@ public class breakStatement  extends  Statement{
         super(location);
     }
 
+
     @Override
     public void execute() {
         return;
@@ -32,5 +33,10 @@ public class breakStatement  extends  Statement{
     @Override
     public Optional execute(Object[] actualArgs, Set<Variable> localVariables) {
         return Optional.empty();
+    }
+
+    @Override
+    public boolean failedToAdvance() {
+        return false;
     }
 }

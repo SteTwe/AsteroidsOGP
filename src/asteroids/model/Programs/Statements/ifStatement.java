@@ -5,7 +5,6 @@ import asteroids.model.Programs.Expressions.Expression;
 import asteroids.model.Programs.Variable;
 import asteroids.part3.programs.SourceLocation;
 
-import javax.swing.plaf.nimbus.State;
 import java.util.Optional;
 import java.util.Set;
 
@@ -13,7 +12,7 @@ import java.util.Set;
  * Created by stef on 25-5-17.
  */
 public class ifStatement extends Statement{
-    private boolean noTimeLeft;
+    private boolean failedToAdvance;
     private Expression<? extends Boolean> condition;
     private Statement bodyIf;
     private Statement bodyElse;
@@ -31,7 +30,7 @@ public class ifStatement extends Statement{
     @Override
     public void execute() {
         setActiveBreak(false);
-        noTimeLeft = false;
+        failedToAdvance = false;
         if(!execIf && !execElse){
             if (condition.evaluate()) execIf = true;
             else {
@@ -42,7 +41,7 @@ public class ifStatement extends Statement{
         if (execIf){
             bodyIf.execute();
             if (bodyIf.failedToAdvance()){
-                setNoTimeLeft(true);
+                setFailedToAdvance(true);
                 return;
             }
             else {
@@ -54,7 +53,7 @@ public class ifStatement extends Statement{
         if (execElse) {
             bodyElse.execute();
             if (bodyElse.failedToAdvance()) {
-                setNoTimeLeft(true);
+                setFailedToAdvance(true);
                 return;
             }
             else{
@@ -69,7 +68,7 @@ public class ifStatement extends Statement{
     @Override
     public Optional execute(Object[] actualArgs, Set<Variable> localVariables) {
         setActiveBreak(false);
-        noTimeLeft = false;
+        failedToAdvance = false;
         if (condition.evaluate(actualArgs, localVariables)) execIf =true;
         else if (bodyElse != null) execElse = true;
 
@@ -104,8 +103,8 @@ public class ifStatement extends Statement{
         this.bodyIf = bodyIf;
     }
 
-    public boolean isNoTimeLeft() {
-        return noTimeLeft;
+    public boolean failedToAdvance() {
+        return failedToAdvance;
     }
 
     public boolean hasActiveBreak() {
@@ -116,8 +115,8 @@ public class ifStatement extends Statement{
         this.activeBreak = activeBreak;
     }
 
-    public void setNoTimeLeft(boolean noTimeLeft) {
-        this.noTimeLeft = noTimeLeft;
+    public void setFailedToAdvance(boolean failedToAdvance) {
+        this.failedToAdvance = failedToAdvance;
     }
 
     @Override

@@ -10,6 +10,7 @@ import java.util.Set;
 public abstract class Statement{
   private SourceLocation location;
   private Program program;
+  private boolean failedToAdvance;
 
   protected Statement(SourceLocation location){
     this.location = location;
@@ -36,6 +37,6 @@ public abstract class Statement{
   public abstract Optional execute(Object[] actualArgs, Set<Variable> localVariables) ;
 
   public boolean failedToAdvance(){
-    return false;
+    return failedToAdvance;
   }
 }

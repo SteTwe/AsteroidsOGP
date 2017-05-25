@@ -1,8 +1,6 @@
 package asteroids.model;
 
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
 
 
@@ -228,43 +226,15 @@ public class Ship extends Entity{
      * COLLISION RELATED
      **********/
     /**
-     * Resolve collision with a given bullet: if the bullet was fired from this ship, reload it,
-     * else terminate both ship and bullet.
-     * @param bullet The given bullet.
+     *
+     * @param other
      */
-    public void collideWith(Bullet bullet) {
-        if (bullet.getBulletSource() == this){
-            this.loadBullet(bullet);
-        }
-        else {
-            bullet.terminate();
-            this.terminate();
-        }
-    }
-
-    /**
-     * Resolve collision with another ship. The ships bounce off each other.
-     * @param ship The other ship.
-     */
-    public void collideWith(Ship ship){
-        this.bounceOffEntity(ship);
-    }
-
-    /**
-     * //TODO Update doc
-     * Resolve collision with another entity.
-     * @param other The other entity.
-     */
-    public void collideWith(Collideable other) {
-        other.collideWith(this);
-    }
-
     @Override
-    public void collideWith(MinorPlanet minorPlanet) {
-        if (minorPlanet instanceof Asteroid){
-            this.terminate();
+    public void collide(Entity other) {
+        if (other instanceof Ship){
+            this.bounceOffEntity(other);
         }
-        else this.teleportShip();
+        else other.collide(this);
     }
 
     /**********
@@ -448,7 +418,7 @@ public class Ship extends Entity{
             //Exception --> overlap
             for (Entity entity : this.getWorld().getEntitySet()){
                 if (entity.overlap(bullet)){
-                    bullet.collideWith(entity);
+                    bullet.collide(entity);
                 }
             }
         }
@@ -464,12 +434,9 @@ public class Ship extends Entity{
      * PROGRAM RELATED
      **********/
 
-    /**
-     *
-     * @param program
-     */
     public void setProgram(Program program) {
         this.program = program;
+        if (program != null) program.setShip(this);
     }
 
     /**
@@ -478,5 +445,9 @@ public class Ship extends Entity{
      */
     public Program getProgram() {
         return program;
+    }
+
+    public List<Object> executeProgram(double duration){
+        return program.execute(duration);
     }
 }

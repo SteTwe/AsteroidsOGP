@@ -26,5 +26,13 @@ public class returnStatement extends  Statement{
         return Optional.of(value.evaluate(args, localVariables));
     }
 
+    @Override
+    public boolean failedToAdvance() {
+        return false;
+    }
 
+    @Override
+    public boolean activeBreakStatement() {
+        return false;
+    }
 }

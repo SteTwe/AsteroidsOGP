@@ -41,4 +41,9 @@ public class printStatement extends Statement{
     public boolean activeBreakStatement() {
         return false;
     }
+
+    @Override
+    public boolean failedToAdvance() {
+        return false;
+    }
 }

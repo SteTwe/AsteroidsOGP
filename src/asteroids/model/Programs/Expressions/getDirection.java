@@ -12,19 +12,18 @@ import java.util.Set;
 public class getDirection extends Expression<Double> {
     private Expression<?extends Ship> expression;
 
-    public getDirection(Expression<?extends Ship> e, SourceLocation location){
+    public getDirection(SourceLocation location){
         super(location);
-        this.expression = e;
     }
 
     @Override
     public Double evaluate() throws IllegalArgumentException {
-        return expression.evaluate().getAngle();
+        return getProgram().getShip().getAngle();
     }
 
     @Override
     public Double evaluate(Object[] args, Set<Variable> variables) throws IllegalArgumentException {
-        return expression.evaluate(args, variables).getAngle();
+        return getProgram().getShip().getAngle();
     }
 
     @Override

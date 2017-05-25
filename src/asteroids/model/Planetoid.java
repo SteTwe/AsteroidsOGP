@@ -22,21 +22,6 @@ public class Planetoid extends MinorPlanet {
     }
 
     @Override
-    public void collideWith(Collideable other) {
-        other.collideWith(this);
-    }
-
-    @Override
-    public void collideWith(Ship ship) {
-        ship.teleportShip();
-    }
-
-    @Override
-    public void collideWith(MinorPlanet minorPlanet) {
-        this.bounceOffEntity(minorPlanet);
-    }
-
-    @Override
     public void move(double duration) {
         super.move(duration);
         setTotalTraveledDistance(getTotalTraveledDistance() + getTotalVelocity() * duration);

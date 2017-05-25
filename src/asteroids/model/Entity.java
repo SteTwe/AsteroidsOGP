@@ -16,8 +16,7 @@ import java.util.Random;
  * Created by joachim on 09/04/2017.
  * @author joachim
  */
-public abstract class Entity implements Collideable{
-
+public abstract class Entity {
     /**
      * Initialize a new entity with x-position, y-position, velocity in x-direction, velocity in y-direction, radius.
      *
@@ -693,7 +692,7 @@ public abstract class Entity implements Collideable{
         double sigma = Math.sqrt((deltaR[0] * deltaR[0]) + (deltaR[1] * deltaR[1]));
 
         //J = (2 mi mj * (deltav * deltar)/(radius*(mi + mj))
-        double j = (2 * mi * mj * (deltaV[0] * deltaR[0] + deltaV[1] * deltaR[1])) / sigma * (mi + mj);
+        double j = 2 * mi * mj * (deltaV[0] * deltaR[0] + deltaV[1] * deltaR[1]) / (sigma * (mi + mj));
 
         //jx & jy
         double jx = (j * deltaR[0] / sigma);
@@ -714,28 +713,6 @@ public abstract class Entity implements Collideable{
         other.setVelocity(newJVelocityX, newJVelocityY);
     }
 
-    public void collide(Entity other) {
-        // 2 ships done
-        // bullet + owner ship
-        // bullet + ship
-        // ship + boundary
-        // bullet + boundary
-        if ((this instanceof Ship) && (other instanceof Ship))
-            bounceOffEntity(other);
-        else if ((this instanceof MinorPlanet) && (other instanceof MinorPlanet))
-            bounceOffEntity(other);
-        if ((this instanceof Ship) && (other instanceof Planetoid))
-            this.teleport();
-        if ((this instanceof Ship) && (other instanceof Bullet)){
-            if (((Bullet) other).getBulletSource() == this)
-                ((Ship) this).loadBullet((Bullet) other);
-                ((Bullet) other).setShip((Ship) this);
-            }else {
-                this.terminate();
-                other.terminate();
-            }
-    }
-
     private void teleport(){
         double min = 0;
         double heightMax = world.getHeight();
@@ -747,13 +724,11 @@ public abstract class Entity implements Collideable{
         this.setPositionX(randomValue1);
         this.setPositionY(randomValue2);
     }
-}
 
-interface Collideable{
-    void collideWith(final Collideable other);
-    void collideWith(final Ship ship);
-    void collideWith(final Bullet bullet);
-    void collideWith(final MinorPlanet minorPlanet);
+
+    public abstract void collide(Entity other);
+
+
 }
 
 

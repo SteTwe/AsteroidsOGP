@@ -277,10 +277,6 @@ public class World {
         //else case: evolving
         //for (Entity entity: this.getEntitySet())
 
-//        for (Entity entity : getEntitySet()){
-//            entity.terminate();
-//        }
-//
         while (timeNextCollision <= duration){
             for (Entity entity : getEntitySet()){
                 //TODO execute program ship
@@ -289,7 +285,7 @@ public class World {
             if (collidingEntities[1] == null) {
                 if (collisionListener != null) collisionListener.boundaryCollision(collidingEntities[0], collisionPosition[0], collisionPosition[1]);
                 collidingEntities[0].collideWithBoundary();
-                //collidingEntities[0].terminate();
+
             }
             else {
                 if (collisionListener != null) collisionListener.objectCollision(collidingEntities[0], collidingEntities[1],collisionPosition[0], collisionPosition[1]);

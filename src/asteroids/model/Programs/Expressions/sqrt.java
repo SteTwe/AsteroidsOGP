@@ -6,11 +6,11 @@ import asteroids.part3.programs.SourceLocation;
 
 import java.util.Set;
 
-public class Sqrt extends Expression<Double> {
+public class sqrt extends Expression<Double> {
 
     Expression<Double> expression;
 
-    public Sqrt(Expression<Double> e, SourceLocation location){
+    public sqrt(Expression<Double> e, SourceLocation location){
         super(location);
         this.expression = e;
     }

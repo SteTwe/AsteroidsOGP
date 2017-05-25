@@ -23,7 +23,6 @@ public abstract class entity extends Expression<Entity>{
 
     @Override
     public Entity evaluate(Object[] args, Set<Variable> variables) throws IllegalArgumentException {
-        //Mogelijk evaluate()
         return evaluate(args, variables);
     }
 }

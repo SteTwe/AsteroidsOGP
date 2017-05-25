@@ -4,6 +4,8 @@ import be.kuleuven.cs.som.annotate.Basic;
 import be.kuleuven.cs.som.annotate.Raw;
 import asteroids.part2.CollisionListener;
 
+import java.util.Random;
+
 
 //import java.util.DoubleSummaryStatistics;
 
@@ -711,7 +713,7 @@ public abstract class Entity implements Collideable{
     }
 
     public void collide(Entity other){
-        // 2 ships
+        // 2 ships done
         // bullet + owner ship
         // bullet + ship
         // ship + boundary
@@ -721,9 +723,20 @@ public abstract class Entity implements Collideable{
         else if ((this instanceof MinorPlanet) && (other instanceof MinorPlanet))
                 bounceOffEntity(other);
         if ((this instanceof Ship) && (other instanceof Planetoid))
-            this.teleport;
+            this.teleport();
     }
 
+    private void teleport(){
+        double min = 0;
+        double heightMax = world.getHeight();
+        double widthMax = world.getWidth();
+        Random h = new Random();
+        double randomValue1 = min + (heightMax - min) * h.nextDouble();
+        Random w = new Random();
+        double randomValue2 = min + (widthMax - min) * w.nextDouble();
+        this.setPositionX(randomValue1);
+        this.setPositionY(randomValue2);
+    }
 }
 
 interface Collideable{

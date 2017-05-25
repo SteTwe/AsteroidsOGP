@@ -265,36 +265,45 @@ public class World {
      * @throws IllegalArgumentException
      */
     public void evolve(double duration, CollisionListener collisionListener) throws IllegalArgumentException{
-        if ((duration < 0) || (Double.isNaN(duration))) throw new IllegalArgumentException("Duration is not valid.");
+        if ((duration < 0) || (Double.isNaN(duration)))
+            throw new IllegalArgumentException("Duration is not valid.");
         //Predict next collision
         double timeNextCollision = getTimeNextCollision();
         double[] collisionPosition = getNextCollisionPosition();
         Entity[] collidingEntities = getNextCollidingEntities();
 
-        while (timeNextCollision <= duration){
-            for (Entity entity : getEntitySet()){
-                //TODO execute program ship
-                entity.move(timeNextCollision);
-            }
-            if (collidingEntities[1] == null) {
-                if (collisionListener != null) collisionListener.boundaryCollision(collidingEntities[0], collisionPosition[0], collisionPosition[1]);
-                collidingEntities[0].collideWithBoundary();
-            }
-            else {
-                if (collisionListener != null) collisionListener.objectCollision(collidingEntities[0], collidingEntities[1],collisionPosition[0], collisionPosition[1]);
-                collidingEntities[0].collideWith(collidingEntities[1]);
-            }
+        //split set in entities colliding with boundary and entities colliding with entities
+        //moving + colliding
+        //else case: evolving
 
-            duration = duration - timeNextCollision;
-            timeNextCollision = getTimeNextCollision();
-            collisionPosition = getNextCollisionPosition();
-            collidingEntities = getNextCollidingEntities();
-            if (timeNextCollision ==0) break;
-        }
-        for (Entity entity: getEntitySet()){
-            //TODO execute program
-            entity.move(duration);
-        }
+//        for (Entity entity : getEntitySet()){
+//            entity.terminate();
+//        }
+
+//        while (timeNextCollision <= duration){
+//            for (Entity entity : getEntitySet()){
+//                //TODO execute program ship
+//                entity.move(timeNextCollision);
+//            }
+//            if (collidingEntities[1] == null) {
+//                if (collisionListener != null) collisionListener.boundaryCollision(collidingEntities[0], collisionPosition[0], collisionPosition[1]);
+//                collidingEntities[0].collideWithBoundary();
+//            }
+//            else {
+//                if (collisionListener != null) collisionListener.objectCollision(collidingEntities[0], collidingEntities[1],collisionPosition[0], collisionPosition[1]);
+//                collidingEntities[0].collideWith(collidingEntities[1]);
+//            }
+//
+//            duration = duration - timeNextCollision;
+//            timeNextCollision = getTimeNextCollision();
+//            collisionPosition = getNextCollisionPosition();
+//            collidingEntities = getNextCollidingEntities();
+//            if (timeNextCollision ==0) break;
+//        }
+//        for (Entity entity: getEntitySet()){
+//            //TODO execute program
+//            entity.move(duration);
+//        }
 
     }
 

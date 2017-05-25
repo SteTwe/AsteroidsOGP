@@ -356,6 +356,9 @@ public abstract class Entity implements Collideable{
      */
     private double densityAsteroids = 2.65 * Math.pow(10, 12);
 
+    public double getDensityAsteroids(){
+        return densityAsteroids;
+    }
     /**
      * Constant holding the massdensity of Bullets.
      */
@@ -704,6 +707,11 @@ public abstract class Entity implements Collideable{
 
         this.setVelocity(newIVelocityX, newIVelocityY);
         other.setVelocity(newJVelocityX, newJVelocityY);
+    }
+
+    public void collide(Entity other){
+        // 2 ships
+        //
     }
 
 }

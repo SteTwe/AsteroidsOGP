@@ -88,8 +88,8 @@ public class Bullet extends Entity{
      * Returns the number of bounces left until destruction of this bullet.
      * @return
      */
-    public double getNumberOfBounces(){
-        return this.numberOfBounces;
+    public double getNumberOfBouncesLeft(){
+        return numberOfBounces;
     }
 
 
@@ -98,7 +98,9 @@ public class Bullet extends Entity{
      **************/
 
     public void collideWithBoundary(){
-
+        super.collideWithBoundary();
+        this.bounce();
+        if (getNumberOfBouncesLeft() < 0) this.terminate();
     }
 
     @Override

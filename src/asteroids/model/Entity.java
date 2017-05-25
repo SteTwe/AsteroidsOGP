@@ -564,6 +564,7 @@ public abstract class Entity {
             setVelocityX(-getVelocityX());
         if (getCollisionPositionWithBoundary()[1]== 0 || getCollisionPositionWithBoundary()[1] == getWorld().getWidth())
             setVelocityY(-getVelocityY());
+
     }
 
     //TODO: DOC

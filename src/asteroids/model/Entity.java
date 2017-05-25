@@ -711,7 +711,10 @@ public abstract class Entity implements Collideable{
 
     public void collide(Entity other){
         // 2 ships
-        //
+        // bullet + owner ship
+        // bullet + ship
+        // ship + boundary
+        // bullet + boundary
     }
 
 }

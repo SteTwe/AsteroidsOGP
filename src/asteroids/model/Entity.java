@@ -2,13 +2,6 @@ package asteroids.model;
 
 import be.kuleuven.cs.som.annotate.Basic;
 import be.kuleuven.cs.som.annotate.Raw;
-import asteroids.part2.CollisionListener;
-import sun.util.resources.cldr.ebu.CurrencyNames_ebu;
-
-import java.util.Random;
-
-
-//import java.util.DoubleSummaryStatistics;
 
 
 /**
@@ -248,7 +241,7 @@ public abstract class Entity {
     public double getRadius(){
         if (this instanceof Planetoid){
             Planetoid planetoid = (Planetoid) this;
-            return planetoid.radius - planetoid.getTotalTraveledDistance() * 0.000001;
+            return planetoid.radius - planetoid.getTotalTravelledDistance() * 0.000001;
         }
         return this.radius;
     }

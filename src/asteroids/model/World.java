@@ -11,7 +11,7 @@ import java.util.Set;
 * A class representing an Asteroid World involving the dimensions, witdh and height.
  *
  * @author Stef & Joachim
- * @version pre-alpha
+ * @version 1.0
  * @invar The width must be valid for any world.
  * | isValidWidth(width)
  * @invar The height must be valid for any world.

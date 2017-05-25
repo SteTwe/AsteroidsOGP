@@ -1,7 +1,7 @@
 package asteroids.model;
 
-/**
- * Created by stef on 2-4-17.
+/***
+ * A class representing a Bullet involving a position, a velocity, and a radius.
  * @author Joachim & Stef
  */
 public class Bullet extends Entity{
@@ -39,7 +39,6 @@ public class Bullet extends Entity{
      * Sets the ship of the current bullet to the given ship.
      * @param ship
      */
-    //TODO
     public void setShip(Ship ship){
         this.ship = ship;
     }
@@ -56,6 +55,8 @@ public class Bullet extends Entity{
 
     /**
      * Return the source of the fired bullet as a Ship.
+     * @return The ship where the bullet was fired from.
+     *          | result == this.bulletSource
      */
     public Ship getBulletSource(){
         return this.bulletSource;
@@ -92,6 +93,9 @@ public class Bullet extends Entity{
         return numberOfBounces;
     }
 
+    /**
+     * Set the number of bounces back to 2.
+     */
     public void resetBounces(){
         numberOfBounces = 2;
     }
@@ -107,6 +111,12 @@ public class Bullet extends Entity{
         if (getNumberOfBouncesLeft() < 0) this.terminate();
     }
 
+    /**
+     * Method to terminate a bullet.
+     * @effect see superclass
+     * @effect
+     *
+     */
     @Override
     public void terminate() {
         super.terminate();

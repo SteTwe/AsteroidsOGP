@@ -31,10 +31,12 @@ public class EntityTest {
 
     @Test
     public void testMove(){
+        double duration = 10;
         entity = new Ship(100,100,300,300,15, minAngle, minMass);
         entity.move(10);
-        //double[] position = {entity.getPositionX(), entity.getVelocityY()};
-        assertEquals(1000, entity.getPositionX(), EPSILON);
+        double positionX = (entity.getPositionX() + duration * entity.getVelocityX());
+        double positionY = (entity.getPositionY() + duration * entity.getVelocityY());
+        assertEquals(3000, entity.getPositionX(), EPSILON);
     }
 
 

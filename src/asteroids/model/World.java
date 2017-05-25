@@ -272,10 +272,6 @@ public class World {
         double[] collisionPosition = getNextCollisionPosition();
         Entity[] collidingEntities = getNextCollidingEntities();
 
-        //split set in entities colliding with boundary and entities colliding with entities
-        //moving + colliding
-        //else case: evolving
-        //for (Entity entity: this.getEntitySet())
 
         while (timeNextCollision <= duration){
             for (Entity entity : getEntitySet()){

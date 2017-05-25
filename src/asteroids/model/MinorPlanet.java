@@ -18,8 +18,6 @@ public abstract class MinorPlanet extends Entity {
     }
 
 
-    
-
     @Override
     public void collideWith(Bullet bullet) {
         bullet.terminate();
@@ -35,10 +33,4 @@ public abstract class MinorPlanet extends Entity {
 
     @Override
     public abstract void collideWith(Ship ship);
-
-
-    @Override
-    public void terminate(){
-        super.terminate();
-    }
 }

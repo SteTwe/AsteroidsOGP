@@ -590,10 +590,19 @@ public abstract class Entity {
         return time;
     }
 
-    //TODO
+    /**
+     * Method returning the position of the collision between this and another entity
+     * @param other the entity this entity is colliding with
+     * 	
+     * @return null
+     * 			| if the time till collision is positive infinity there will be no collision (see method getTimeCollisionWithEntity )
+     * 			| if (time == Double.POSITIVE_INFINITY) return null;
+     * @return new double[]{collisionPositionX, collisionPositionY}
+     * 			| {(positionThis[0] + deltaR[0] * radius),(positionThis[1] + deltaR[1] * radius)}
+     */
     public double[] getPositionCollisionWithEntity(Entity other){
         double time = this.getTimeCollisionWithEntity(other);
-        //If no collision: return null
+             //If no collision: return null
         if (time == Double.POSITIVE_INFINITY) return null;
 
         // Predict positions

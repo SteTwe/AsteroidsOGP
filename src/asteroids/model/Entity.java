@@ -630,14 +630,12 @@ public abstract class Entity {
     public boolean overlap(Entity other) {
         if (this instanceof Bullet && other instanceof Ship) if (((Bullet) this).getBulletSource() == other) return false;
         if (other == null) throw new IllegalArgumentException();
-
-        if (this == other) {
-            return true;
-        } else {
+        if (this == other) return true;
+        else {
             double distance = this.getDistanceBetween(other);
             double sumRadii = this.getRadius()+ other.getRadius();
             double fraction = distance/sumRadii;
-            return (fraction <= 0.01);
+            return (fraction <= -0.01);
         }
     }
 

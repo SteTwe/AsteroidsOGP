@@ -71,7 +71,6 @@ public class ifStatement extends Statement{
         failedToAdvance = false;
         if (condition.evaluate(actualArgs, localVariables)) execIf =true;
         else if (bodyElse != null) execElse = true;
-
         if (execIf){
             Optional result = bodyIf.execute(actualArgs, localVariables);
             if (bodyIf.activeBreakStatement()) setActiveBreak(true);

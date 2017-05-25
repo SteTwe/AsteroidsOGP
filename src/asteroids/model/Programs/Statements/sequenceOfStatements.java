@@ -22,6 +22,7 @@ public class sequenceOfStatements extends Statement{
 
     @Override
     public void execute() {
+
         failedToAdvance = false;
         activeBreak = false;
         SourceLocation location = getProgram().getLocation();
@@ -34,7 +35,7 @@ public class sequenceOfStatements extends Statement{
                 statement.execute();
 
                 if (statement.failedToAdvance()){
-                    failedToAdvance = true;
+                    statement.setFailedToAdvance(true);
                     return;
                 }
 

@@ -39,4 +39,8 @@ public abstract class Statement{
   public boolean failedToAdvance(){
     return failedToAdvance;
   }
+
+  public void setFailedToAdvance(boolean failedToAdvance) {
+    this.failedToAdvance = failedToAdvance;
+  }
 }

@@ -292,7 +292,7 @@ public class Ship extends Entity{
      * @return Return the bullets loaded onto this ship.
      */
     public Set<Bullet> getBullets(){
-        return this.bulletSet;
+        return new HashSet<Bullet>(bulletSet);
     }
 
     /**
@@ -421,6 +421,7 @@ public class Ship extends Entity{
                     bullet.collide(entity);
                 }
             }
+            bullet.terminate();
         }
 
         double distanceToBorderWorld = getWorld().getWidth() - bullet.getPositionX();

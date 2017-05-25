@@ -10,7 +10,7 @@ import java.util.Optional;
 import java.util.Set;
 
 
-public class assignmentStatement extends  Statement{
+public class assignmentStatement extends Statement{
     private Expression value;
     private String name;
     private boolean activeBreakStatement;
@@ -35,6 +35,7 @@ public class assignmentStatement extends  Statement{
         setActiveBreakStatement(false);
         try {
             getProgram().getFunction(name);
+            throw new IllegalArgumentException();
         } catch (Exception e){}
         Optional<Variable> variableToAssign = getProgram().getVariables().stream().filter(variable -> variable.getVariableName().equals(name)).findFirst();
         if (variableToAssign.isPresent()) variableToAssign.get().setValue(value.evaluate());

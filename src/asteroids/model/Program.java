@@ -30,11 +30,14 @@ public class Program {
     public List<Object> execute(double duration) throws IllegalArgumentException{
         executionTimeLeft = executionTimeLeft + duration;
         main.execute();
-        if (main.activeBreakStatement()) throw new IllegalArgumentException();
-        location = new SourceLocation(0,0);
-        List<Object> result = results;
-        results = null;
-        return result;
+        if (!main.failedToAdvance()) {
+            if (main.activeBreakStatement()) throw new IllegalArgumentException();
+            location = new SourceLocation(0, 0);
+            List<Object> result = results;
+            results = null;
+            return result;
+        }
+    return null;
     }
 
     public void setShip(Ship ship) {

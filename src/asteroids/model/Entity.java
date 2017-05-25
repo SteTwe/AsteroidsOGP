@@ -294,9 +294,8 @@ public abstract class Entity {
      * Return if the given radius is a valid radius for this entity.
      *
      * @param radius The given radius.
-     * @return True if the given radius is larger than the minimum radius and must be a number.
-     *          | return ((radius > minRadius) && (Double.isNaN(radius)))
-     * @pre The radius should be larger than the minimum radius
+     * @see implementation
+     *
      */
     public boolean isValidRadius(double radius){
         if (this instanceof Bullet) {
@@ -329,6 +328,10 @@ public abstract class Entity {
         }
     }
 
+    /**
+     * Return the minimun radius of the entity.
+     * @see implementation
+     */
     public double getMinRadius(){
         if (this instanceof Bullet) return minRadiusBullet;
         if (this instanceof Ship) return minRadiusShip;
@@ -380,9 +383,6 @@ public abstract class Entity {
      */
     private double densityAsteroids = 2.65 * Math.pow(10, 12);
 
-    public double getDensityAsteroids(){
-        return densityAsteroids;
-    }
     /**
      * Constant holding the massdensity of Bullets.
      */
@@ -416,18 +416,19 @@ public abstract class Entity {
     }
 
     /**
-     * Return the mass of the entity. If the entity is a ship, return mass + mass of the loaded bullets.
+     * Return the mass of the entity.
      *
-     * @return  Returns the total mass of the entity.
-     *          | if (entity instanceof Ship)
-     *          |       return (massShip + massBulletsOfShip)
-     *          | else
-     *          |       return massEntity
+     * @return  Returns the calculated mass of the entity.
      */
     public double getMass(){
         return this.calcMass();
     }
 
+    /**
+     * Get the minimum mass a ship must have.
+     *
+     * @see implementation
+     */
     public double getMinShipMass(){
         return 4/3. * Math.PI * Math.pow(this.getRadius(), 3) * minDensityShip;
     }
@@ -453,6 +454,7 @@ public abstract class Entity {
      * Return this entities world. Returns null if the entity isn't linked to a world.
      *
      * @return World linked with this entity
+     *         | result == world
      */
     public World getWorld(){
         return world;
@@ -468,7 +470,9 @@ public abstract class Entity {
     }
 
     /**
-     * Terminate this entity.
+     * Terminate the entity.
+     * @post The entity is terminated
+     *       | status == true
      */
     public void terminate(){
         status = true;
@@ -492,7 +496,8 @@ public abstract class Entity {
 
     /**
      * Return true if this entity's status (if it's already terminated or not)
-     * @return
+     * @return The status of the entity.
+     * | result == status
      */
     public boolean isTerminated(){
         return status;
@@ -502,7 +507,7 @@ public abstract class Entity {
     /******************
      * COLLISION RELATED
      **************/
-    //TODO
+
     /**
      * Method returning the time until THE FIRST collision that happens between this entity and a boundary.
      * @return
@@ -768,7 +773,9 @@ public abstract class Entity {
      * Resolve the bouncing of this entity with another given entity.
      *
      * @param other The other entity.
-     * //TODO @post?
+     * @post Both entities have new velocities
+     *
+     *
      */
     public void bounceOffEntity(Entity other){
         //(vxi, vyi) = vxi + Jx/mi, vyi + Jy/mi)
@@ -807,8 +814,14 @@ public abstract class Entity {
         other.setVelocity(newJVelocityX, newJVelocityY);
     }
 
+
     public abstract void collide(Entity other);
 
+    /**
+     * Check whether entity is in range of another entity or not.
+     * @param other The other entity.
+     * @see implementation
+     */
     public boolean isInRange(Entity other){
         if (other == null) throw new IllegalArgumentException("Entity is not in range.");
         else return (this.getDistanceBetweenCenters(other) + this.getRadius() < 0.99*other.getRadius());

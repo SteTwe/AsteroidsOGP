@@ -11,6 +11,14 @@ public abstract class MinorPlanet extends Entity {
         super(positionX, positionY, velocityX, velocityY, radius);
     }
 
+    //m = 4/3 * pi * r^3 * density
+    //density = 2.65 * 10^12kg/km^3 (found in entity)
+    public double getMass(){
+        return ((4/3) * Math.PI * Math.pow(this.getRadius(), 3) * getDensityAsteroids());
+    }
+
+
+    
 
     @Override
     public void collideWith(Bullet bullet) {
@@ -27,4 +35,10 @@ public abstract class MinorPlanet extends Entity {
 
     @Override
     public abstract void collideWith(Ship ship);
+
+
+    @Override
+    public void terminate(){
+        super.terminate();
+    }
 }

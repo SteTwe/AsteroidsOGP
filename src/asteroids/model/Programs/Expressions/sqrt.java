@@ -21,12 +21,12 @@ public class sqrt extends Expression<Double> {
 
     @Override
     public Double evaluate() throws IllegalArgumentException {
-        return Math.sqrt(evaluate());
+        return Math.sqrt(expression.evaluate());
     }
 
     @Override
     public Double evaluate(Object[] args, Set<Variable> variables) throws IllegalArgumentException {
-        return Math.sqrt(evaluate(args, variables));
+        return Math.sqrt(expression.evaluate(args, variables));
     }
 
     @Override

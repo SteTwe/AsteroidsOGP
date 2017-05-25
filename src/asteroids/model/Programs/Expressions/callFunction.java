@@ -8,9 +8,7 @@ import asteroids.part3.programs.SourceLocation;
 import java.util.List;
 import java.util.Set;
 
-/**
- * Created by stef on 25-5-17.
- */
+
 public class callFunction extends Expression<Object> {
     private String functionName;
     private List<Expression> arguments;

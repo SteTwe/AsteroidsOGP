@@ -1,8 +1,6 @@
 package asteroids.model.Programs;
 
-/**
- * Created by stef on 24-5-17.
- */
+
 public class Variable<T> {
     private String variableName;
     private T value;

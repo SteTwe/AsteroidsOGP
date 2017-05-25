@@ -6,9 +6,6 @@ import asteroids.part3.programs.SourceLocation;
 
 import java.util.Set;
 
-/**
- * Created by stef on 24-5-17.
- */
 public class lessThan extends Expression<Boolean> {
     private Expression<?extends Double> expression1;
     private Expression <? extends Double> expression2;

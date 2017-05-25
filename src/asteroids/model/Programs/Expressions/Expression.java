@@ -6,9 +6,7 @@ import asteroids.part3.programs.SourceLocation;
 
 import java.util.Set;
 
-/**
- * Created by joachim on 24/05/2017.
- */
+
 public abstract class Expression<T>{
     private SourceLocation location;
     private Program program;

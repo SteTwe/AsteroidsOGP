@@ -7,10 +7,12 @@ import asteroids.part3.programs.SourceLocation;
 import java.util.Optional;
 import java.util.Set;
 
-/**
- * Created by joachim on 24/05/2017.
- */
+
 public class breakStatement  extends  Statement{
+
+    public Statement breakInWhile;
+    public Program program;
+
     public breakStatement(SourceLocation location){
         super(location);
     }

@@ -8,9 +8,7 @@ import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
 
-/**
- * Created by stef on 24-5-17.
- */
+
 public class Function {
 
     private String name;

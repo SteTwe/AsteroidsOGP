@@ -23,4 +23,8 @@ public abstract class MinorPlanet extends Entity {
         }
     }
 
+    @Override
+    public void collideWithBoundary() {
+        super.collideWithBoundary();
+    }
 }

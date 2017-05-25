@@ -1,6 +1,5 @@
 package asteroids.model.Programs.Expressions;
 
-//import asteroids.model.Entity;
 import asteroids.model.Program;
 import asteroids.model.Programs.Variable;
 import asteroids.model.Ship;
@@ -29,6 +28,5 @@ public class getDirection extends Expression<Double> {
     @Override
     public void setProgram(Program program) {
         super.setProgram(program);
-        expression.setProgram(program);
     }
 }

@@ -8,9 +8,6 @@ import asteroids.part3.programs.SourceLocation;
 import java.util.Optional;
 import java.util.Set;
 
-/**
- * Created by stef on 25-5-17.
- */
 public class ifStatement extends Statement{
     private boolean failedToAdvance;
     private Expression<? extends Boolean> condition;

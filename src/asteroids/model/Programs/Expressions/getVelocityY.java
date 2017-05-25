@@ -7,9 +7,6 @@ import asteroids.part3.programs.SourceLocation;
 
 import java.util.Set;
 
-/**
- * Created by stef on 24-5-17.
- */
 public class getVelocityY extends Expression<Double> {
     private Expression<?extends Entity> e;
 

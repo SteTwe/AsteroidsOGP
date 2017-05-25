@@ -631,12 +631,41 @@ public abstract class Entity {
         return new double[]{collisionPositionX, collisionPositionY};
     }
 
-    //TODO
+    /**
+     * Method returning the time until a collision happens between this entity and ship2
+     * @param ship2 the entity this entity is colliding with
+     * @return positive infinity
+     *          | if product of the positionDifference and the velocityDifference is greater than or equal to zero
+     *          | they thus will never collide
+     * @return positive infinity
+     *          | if d is smaller than or equal to zero
+     *          | they thus will never collide
+     * @return time until this entity and ship2 collide
+     *          | timeToCollision ==  -((productVR) + (Math.sqrt(Math.pow(productVR,2) - (productVV)
+     *          | * (productRR - Math.pow(this.getRadius() + entity2.getRadius(),2))))) / (productVV);
+     * @throws IllegalArgumentException
+     *          | if ship2 == null
+     *          | ship2 does not exist
+     */
     public double getTimeCollisionWithShip(Ship ship2){
+        double time = Double.POSITIVE_INFINITY;
         if (ship2 == null)
             throw new IllegalArgumentException("ship2 does not exist");
-        double time = 0;
-        //double distance = getDistanceBetween(ship2)
+        double[] positionDifference = {ship2.getPositionX() - this.getPositionX(), ship2.getPositionY() - this.getPositionY()};
+        double[] velocityDifference = {ship2.getVelocityX() - this.getVelocityX(), ship2.getVelocityY() - this.getVelocityY()};
+
+        double productVR = positionDifference[0] * velocityDifference[0] + positionDifference[1] * velocityDifference[1];
+        double productVV = Math.pow(velocityDifference[0], 2) + Math.pow(velocityDifference[1], 2);
+        double productRR = Math.pow(positionDifference[0], 2) + Math.pow(positionDifference[1], 2);
+
+        double d = Math.pow(productVR,2) - (productVV) * (productRR - Math.pow(this.getRadius() + ship2.getRadius(),2));
+        //double d = Math.pow(productVR, 2) - (productVV)*(productRR)-Math.pow(this.getRadius()+ship2.getRadius(), 2);
+        if (productVR >= 0)
+            return Double.POSITIVE_INFINITY;
+        else if (d <= 0)
+            time = Double.POSITIVE_INFINITY;
+        else
+            time = -((productVR) + (Math.sqrt(d))) / (productVV);
         return time;
     }
 

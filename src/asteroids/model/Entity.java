@@ -581,7 +581,7 @@ public abstract class Entity {
      *          | * (productRR - Math.pow(this.getRadius() + entity2.getRadius(),2))))) / (productVV);
      * @throws IllegalArgumentException
      *          | if entity 2 == null
-     *          | entity2 does not exist 
+     *          | entity2 does not exist
      */
     public double getTimeCollisionWithEntity(Entity entity2){
         double time = Double.POSITIVE_INFINITY;

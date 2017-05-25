@@ -248,7 +248,7 @@ public abstract class Entity {
     public double getRadius(){
         if (this instanceof Planetoid){
             Planetoid planetoid = (Planetoid) this;
-            return planetoid.radius - planetoid.getTotalTraveledDistance() * 0.000001;
+            return planetoid.radius - planetoid.getTotalTravelledDistance() * 0.000001;
         }
         return this.radius;
     }

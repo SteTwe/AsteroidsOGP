@@ -558,10 +558,11 @@ public abstract class Entity implements Collideable{
      * Method executing the change in velocity in order to resolve a collision with a boundary.
      */
     public void collideWithBoundary(){
+        double[] velocity = {getVelocityX(), getVelocityY()};
         if (getCollisionPositionWithBoundary()[0] == 0 || getCollisionPositionWithBoundary()[0] == getWorld().getHeight())
-    			setVelocityX(-getVelocityX());
+            this.setVelocity(-getVelocityX(), velocity[1]);
         if (getCollisionPositionWithBoundary()[1] == 0 || getCollisionPositionWithBoundary()[1] == getWorld().getWidth())
-            setVelocityY(-getVelocityY());
+            this.setVelocity(velocity[0] ,-getVelocityY());
     }
 
     //TODO: DOC

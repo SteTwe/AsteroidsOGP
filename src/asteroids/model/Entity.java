@@ -669,9 +669,29 @@ public abstract class Entity {
         return time;
     }
 
-    //TODO
+    /**
+     *
+     * @param ship2 the ship that this entity is colliding with
+     * @return null if the time is positive infinity there won't be a collision, so return 0
+     *              | if getTimeCollisionWithEntity(ship2) == Double.POSITIVE_INFINITY
+     *              | return null
+     * @return new double[]{collisionPositionX, collisionPositionY}
+     * 			| {(positionThis[0] + deltaR[0] * radius),(positionThis[1] + deltaR[1] * radius)}
+     */
     public double[] getPositionCollisionWithShip(Ship ship2){
-        return new double[] {,};
+        double time = this.getTimeCollisionWithEntity(ship2);
+        //If no collision: return null
+        if (time == Double.POSITIVE_INFINITY) return null;
+
+        // Predict positions
+        double positionThis[] = this.getMovementPrediction(time);
+        double positionOther[] = ship2.getMovementPrediction(time);
+        double deltaR[] = new double[]{positionOther[0] - positionThis[0], positionOther[1] - positionThis[1]};
+        double radius = this.getRadius() / (this.getRadius() + ship2.getRadius());
+
+        double collisionPositionX = positionThis[0] + deltaR[0] * radius;
+        double collisionPositionY = positionThis[1] + deltaR[1] * radius;
+        return new double[]{collisionPositionX, collisionPositionY};
     }
 
     /**

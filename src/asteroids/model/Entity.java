@@ -730,9 +730,11 @@ public abstract class Entity {
     }
 
     /**
-     *
+     * Method getting returning the distance between the centers of two entitues
      * @param other
-     * @return
+     *              | second entity
+     * @return The distance between the center of this entity and the center of the given other entity.
+     *              | Math.sqrt(Math.pow((other.getPositionX() - this.getPositionX()), 2) + Math.pow((other.getPositionY() - this.getPositionY()),2))
      */
     public double getDistanceBetweenCenters(Entity other){
         if (other == null) throw new IllegalArgumentException();

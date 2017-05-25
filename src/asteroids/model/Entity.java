@@ -3,6 +3,7 @@ package asteroids.model;
 import be.kuleuven.cs.som.annotate.Basic;
 import be.kuleuven.cs.som.annotate.Raw;
 import asteroids.part2.CollisionListener;
+import sun.util.resources.cldr.ebu.CurrencyNames_ebu;
 
 import java.util.Random;
 
@@ -712,18 +713,26 @@ public abstract class Entity implements Collideable{
         other.setVelocity(newJVelocityX, newJVelocityY);
     }
 
-    public void collide(Entity other){
+    public void collide(Entity other) {
         // 2 ships done
         // bullet + owner ship
         // bullet + ship
         // ship + boundary
         // bullet + boundary
         if ((this instanceof Ship) && (other instanceof Ship))
-                bounceOffEntity(other);
+            bounceOffEntity(other);
         else if ((this instanceof MinorPlanet) && (other instanceof MinorPlanet))
-                bounceOffEntity(other);
+            bounceOffEntity(other);
         if ((this instanceof Ship) && (other instanceof Planetoid))
             this.teleport();
+        if ((this instanceof Ship) && (other instanceof Bullet)){
+            if (((Bullet) other).getBulletSource() == this)
+                ((Ship) this).loadBullet((Bullet) other);
+                ((Bullet) other).setShip((Ship) this);
+            }else {
+                this.terminate();
+                other.terminate();
+            }
     }
 
     private void teleport(){

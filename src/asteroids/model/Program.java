@@ -6,16 +6,14 @@ import asteroids.model.Programs.Statements.Statement;
 import asteroids.model.Programs.Variable;
 import asteroids.part3.programs.SourceLocation;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 public class Program {
 
     private List<Function> functions;
     private Statement main;
     private Set<Variable> variables = new HashSet<>();
-    private List<Object> results;
+    private List<Object> results = new ArrayList<Object>();
 
     private SourceLocation location = new SourceLocation(0,0);
     private double executionTimeLeft;

@@ -29,7 +29,7 @@ public class sequenceOfStatements extends Statement{
             Statement statement = statements.get(i);
             SourceLocation nextLocation;
             if (i == statements.size() -1)  nextLocation = null;
-            else nextLocation = statements.get((i-1)).getSourceLocation();
+            else nextLocation = statements.get((i+1)).getSourceLocation();
             if(i == statements.size()-1 || nextLocation.getLine()> location.getLine()||(nextLocation.getLine()==location.getLine()&&nextLocation.getColumn()>location.getColumn())){
                 statement.execute();
 

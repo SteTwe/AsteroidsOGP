@@ -567,7 +567,22 @@ public abstract class Entity {
 
     }
 
-    //TODO: DOC
+    /**
+     * Method returning the time until a collision happens between this entity and entity2
+     * @param entity2 the entity this entity is colliding with
+     * @return positive infinity
+     *          | if product of the positionDifference and the velocityDifference is greater than or equal to zero
+     *          | they thus will never collide
+     * @return positive infinity
+     *          | if d is smaller than or equal to zero
+     *          | they thus will never collide
+     * @return time until both entities collide
+     *          | timeToCollision ==  -((productVR) + (Math.sqrt(Math.pow(productVR,2) - (productVV)
+     *          | * (productRR - Math.pow(this.getRadius() + entity2.getRadius(),2))))) / (productVV);
+     * @throws IllegalArgumentException
+     *          | if entity 2 == null
+     *          | entity2 does not exist 
+     */
     public double getTimeCollisionWithEntity(Entity entity2){
         double time = Double.POSITIVE_INFINITY;
         if (entity2 == null)

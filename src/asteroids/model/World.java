@@ -281,32 +281,31 @@ public class World {
 //            entity.terminate();
 //        }
 //
-//        this.get
-//        while (timeNextCollision <= duration){
-//            for (Entity entity : getEntitySet()){
-//                //TODO execute program ship
-//                entity.move(timeNextCollision);
-//            }
-//            if (collidingEntities[1] == null) {
-//                if (collisionListener != null) collisionListener.boundaryCollision(collidingEntities[0], collisionPosition[0], collisionPosition[1]);
-//                collidingEntities[0].collideWithBoundary();
-//                //collidingEntities[0].terminate();
-//            }
-//            else {
-//                if (collisionListener != null) collisionListener.objectCollision(collidingEntities[0], collidingEntities[1],collisionPosition[0], collisionPosition[1]);
-//                collidingEntities[0].collideWith(collidingEntities[1]);
-//            }
-//
-//            duration = duration - timeNextCollision;
-//            timeNextCollision = getTimeNextCollision();
-//            collisionPosition = getNextCollisionPosition();
-//            collidingEntities = getNextCollidingEntities();
-//            if (timeNextCollision ==0) break;
-//        }
-//        for (Entity entity: getEntitySet()){
-//            //TODO execute program
-//            entity.move(duration);
-//        }
+        while (timeNextCollision <= duration){
+            for (Entity entity : getEntitySet()){
+                //TODO execute program ship
+                entity.move(timeNextCollision);
+            }
+            if (collidingEntities[1] == null) {
+                if (collisionListener != null) collisionListener.boundaryCollision(collidingEntities[0], collisionPosition[0], collisionPosition[1]);
+                collidingEntities[0].collideWithBoundary();
+                //collidingEntities[0].terminate();
+            }
+            else {
+                if (collisionListener != null) collisionListener.objectCollision(collidingEntities[0], collidingEntities[1],collisionPosition[0], collisionPosition[1]);
+                collidingEntities[0].collide(collidingEntities[1]);
+            }
+
+            duration = duration - timeNextCollision;
+            timeNextCollision = getTimeNextCollision();
+            collisionPosition = getNextCollisionPosition();
+            collidingEntities = getNextCollidingEntities();
+            if (timeNextCollision ==0) break;
+        }
+        for (Entity entity: getEntitySet()){
+            //TODO execute program
+            entity.move(duration);
+        }
 
     }
 

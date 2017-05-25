@@ -110,7 +110,12 @@ public class Ship extends Entity{
         else throw new IllegalArgumentException("Angle is not valid.");
     }
 
-
+    /**
+     * Returns if the given angle is valid for this ship.
+     *
+     * @param angle The angle to evaluate.
+     * @see implementation
+     */
     private boolean isValidAngle(double angle) {
         if (angle < 0) return false;
         if (angle > Math.PI * 2) return false;
@@ -174,12 +179,14 @@ public class Ship extends Entity{
 
     /**
      * Set thruster condition active.
+     * @post thrusterEnabled == true
      */
     public void thrustOn(){
         thrusterEnabled = true;}
 
     /**
      * Reset condition of the thruster.
+     * @post thrusterEnabled == false
      */
     public void thrustOff(){
         thrusterEnabled = false;}
@@ -188,6 +195,7 @@ public class Ship extends Entity{
      * Return the condition of the thruster.
      *
      * @return Return the condition of the thruster.
+     *         | result == thrusterEnabled
      */
     public boolean isThrusterEnabled(){
         return thrusterEnabled;
@@ -202,6 +210,7 @@ public class Ship extends Entity{
      * Return the acceleration of the ship.
      *
      * @return Return the acceleration of the ship.
+     *         |result == acceleration
      */
     public double getAcceleration(){
         if (!isThrusterEnabled()){
@@ -214,6 +223,12 @@ public class Ship extends Entity{
             return acceleration;
     }
 
+    /**
+     * Move the ship for a given amount of time.
+     *
+     * @param duration  The amount of time to move.
+     * @effect The ship moves for the given period. If the thruster is enabled, the ship accelerates.
+     */
     @Override
     public void move(double duration) {
         super.move(duration);
@@ -226,8 +241,13 @@ public class Ship extends Entity{
      * COLLISION RELATED
      **********/
     /**
+     * Resolve the collision of a ship with another entity.
      *
-     * @param other
+     * @param other The other entity
+     * @effect If the ship collides with another ship, they bounce of eachother.
+     *         | if (other instanceof Ship) this.bounceOffEntity(other)
+     * @effect If the ship collides with another entity, the other entity collides with the ship.
+     *         | else other.collide(this)
      */
     @Override
     public void collide(Entity other) {
@@ -256,6 +276,12 @@ public class Ship extends Entity{
         }
     }
 
+    /**
+     * Return the total mass of the ship.
+     *
+     * @return The mass of the ship + the mass of the bullets loaded onto it.
+     *         | see implementation
+     */
     @Override
     public double getMass(){
         double totalmass = this.mass;
@@ -436,19 +462,31 @@ public class Ship extends Entity{
      * PROGRAM RELATED
      **********/
 
+    /**
+     * Set the program of this ship to the given program.
+     *
+     * @param program The given program.
+     * @post The program of this ship equals the given program.
+     *       | ship.getProgram() == program
+     */
     public void setProgram(Program program) {
         this.program = program;
         if (program != null) program.setShip(this);
     }
 
     /**
+     * Get the program loaded on this ship.
      *
-     * @return
+     * @return This ship's program.
+     *         | result == program
      */
     public Program getProgram() {
         return program;
     }
 
+    /**
+     * Execute the program for a given duration.
+     */
     public List<Object> executeProgram(double duration){
         return program.execute(duration);
     }

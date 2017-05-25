@@ -1,34 +1,70 @@
 package asteroids.model;
 
 /**
- * Created by joachim on 18/05/2017.
+ * A class representing a MinorPlanet of the type Planetoid, involving a position, a velocity and a radius.
+ * @author Stef & Joachim
+ * @version 1.0
+ *
  */
 public class Planetoid extends MinorPlanet {
 
-    public Planetoid(double positionX, double positionY, double velocityX, double velocityY, double radius, double totalTraveledDistance) throws IllegalArgumentException{
+    /**
+     * Create a new planetoid.
+     * @param positionX The x-coordinate of the planetoid.
+     * @param positionY The y-coordinate of the planetoid.
+     * @param velocityX The x-velocity of the planetoid.
+     * @param velocityY The y-velocity of the planetoid.
+     * @param radius    The radius of the planetoid.
+     * @param totalTravelledDistance The total distance the planetoid has already travelled.
+     * @throws IllegalArgumentException
+     */
+    public Planetoid(double positionX, double positionY, double velocityX, double velocityY, double radius, double totalTravelledDistance) throws IllegalArgumentException{
         super(positionX, positionY, velocityX, velocityY, radius);
-        setTotalTraveledDistance(totalTraveledDistance);
+        setTotalTravelledDistance(totalTravelledDistance);
     }
 
-    private double totalTraveledDistance;
+    /**
+     * Variable holding the total distance that the planetoid has travelled.
+     */
+    private double totalTravelledDistance;
 
-    public void setTotalTraveledDistance(double totalTraveledDistance) {
-        this.totalTraveledDistance = totalTraveledDistance;
+    /**
+     * Set the travelle distance of this planetoid to a given distance.
+     *
+     * @param totalTravelledDistance The given distance.
+     */
+    public void setTotalTravelledDistance(double totalTravelledDistance) {
+        this.totalTravelledDistance = totalTravelledDistance;
         if (this.getRadius() < getMinRadius()) this.terminate();
     }
 
-    public double getTotalTraveledDistance() {
-        return totalTraveledDistance;
+    /**
+     * Return the total distance travelled by this planetoid.
+     *
+     * @return result == this.totalTravelledDistance
+     */
+    public double getTotalTravelledDistance() {
+        return totalTravelledDistance;
     }
 
+    /**
+     * Move the planetoid a given amount of time.
+     *
+     * @param duration  The amount of time to move.
+     * @see implementation
+     */
     @Override
     public void move(double duration) {
         super.move(duration);
-        setTotalTraveledDistance(getTotalTraveledDistance() + getTotalVelocity() * duration);
+        setTotalTravelledDistance(getTotalTravelledDistance() + getTotalVelocity() * duration);
         if (getRadius() < getMinRadius()) terminate();
 
     }
 
+    /**
+     * Terminate the planetoid. If the radius of the planetoid is higher or equal to 30, spawn 2 asteroids.
+     * @effect if(radius >= 30) world.addAsteroid(asteroid1) && world.addAsteroid(asteroid2)
+     */
     public void terminate(){
         double radius = this.getRadius();
         super.terminate();
@@ -43,5 +79,17 @@ public class Planetoid extends MinorPlanet {
                 getWorld().addEntity(asteroid2);
             }
         }
+    }
+
+    /**
+     * Resolve the collision of a Planetoid with another Entity.
+     * @see implementation
+     */
+    @Override
+    public void collide(Entity other) {
+        if (other instanceof Ship){
+            ((Ship) other).teleportShip();
+        }
+        else super.collide(other);
     }
 }

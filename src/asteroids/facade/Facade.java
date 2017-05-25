@@ -401,7 +401,7 @@ public class Facade implements IFacade {
 	@Override
 	public double getTimeToCollision(Ship ship1, Ship ship2) throws ModelException {
 		try {
-			return ship1.getTimeCollisionWithShip(ship2);
+			return ship1.getTimeCollisionWithEntity(ship2);
 		} catch (Exception e){
 			throw new ModelException(e);
 		}

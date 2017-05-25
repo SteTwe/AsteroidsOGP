@@ -23,7 +23,9 @@ public class Asteroid extends MinorPlanet {
 
     /**
      * Method to resolve collisions between an Asteroid and another entity.
-     * @see implementation
+     * @post If the Asteroid collides with a ship, terminate the ship.
+     *      | if (other instanceof Ship) other.terminate()
+     * @post If it collides with a different Entity, see superclass
      */
     @Override
     public void collide(Entity other) {

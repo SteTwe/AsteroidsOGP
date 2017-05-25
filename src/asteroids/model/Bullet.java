@@ -114,7 +114,8 @@ public class Bullet extends Entity{
     /**
      * Method to terminate a bullet.
      * @effect see superclass
-     * @effect
+     * @effect  if the bullet is loaded on a ship, remove the bullet from the ship.
+     *          | ship.removeBullet(this)
      *
      */
     @Override
@@ -123,6 +124,14 @@ public class Bullet extends Entity{
         if (this.getShip() != null) ship.removeBulletShip(this);
     }
 
+    /**
+     * Resolve collisions between a bullet and another entity.
+     *
+     * @post If the source of the bullet equals the other entity, reload the bullet to the ship.
+     *       | if (this.getBulletsource() == other) other.loadBullet(this)
+     * @post If not, terminate both
+     *       | else other.terminate; this.terminate;
+     */
     @Override
     public void collide(Entity other) {
         if (this.getBulletSource() == other){

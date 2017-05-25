@@ -23,7 +23,10 @@ public abstract class MinorPlanet extends Entity {
 
     /**
      * Resolve the collision of a MinorPlanet with another entity.
-     * @see implementation
+     * @post If the MinorPlanet collides with another MinorPlanet they bounce off eachother.
+     *       | if (other instanceof MinorPlanet) this.bounceOffEntity(other)
+     * @post If the MinorPlanet collides with a Bullet, terminate both.
+     *       | if (other instanceof Bullet) this.terminate; other.terminate;
      */
     @Override
     public void collide(Entity other) {

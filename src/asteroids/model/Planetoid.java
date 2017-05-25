@@ -63,6 +63,7 @@ public class Planetoid extends MinorPlanet {
 
     /**
      * Terminate the planetoid. If the radius of the planetoid is higher or equal to 30, spawn 2 asteroids.
+     * @effect see superclass
      * @effect if(radius >= 30) world.addAsteroid(asteroid1) && world.addAsteroid(asteroid2)
      */
     public void terminate(){
@@ -83,7 +84,9 @@ public class Planetoid extends MinorPlanet {
 
     /**
      * Resolve the collision of a Planetoid with another Entity.
-     * @see implementation
+     * @post If the planetoid collides with a Ship, teleport the ship to a random location in the world.
+     *       | if (other instanceof Ship) other.teleport()
+     * @post If it collides with a different Entity, see superclass
      */
     @Override
     public void collide(Entity other) {

@@ -92,6 +92,10 @@ public class Bullet extends Entity{
         return numberOfBounces;
     }
 
+    public void resetBounces(){
+        numberOfBounces = 2;
+    }
+
 
     /******************
      * COLLISION RELATED

@@ -710,21 +710,13 @@ public abstract class Entity {
         other.setVelocity(newJVelocityX, newJVelocityY);
     }
 
-    private void teleport(){
-        double min = 0;
-        double heightMax = world.getHeight();
-        double widthMax = world.getWidth();
-        Random h = new Random();
-        double randomValue1 = min + (heightMax - min) * h.nextDouble();
-        Random w = new Random();
-        double randomValue2 = min + (widthMax - min) * w.nextDouble();
-        this.setPositionX(randomValue1);
-        this.setPositionY(randomValue2);
-    }
-
-
     public abstract void collide(Entity other);
 
+    public boolean isInRange(Entity other){
+        if (other == null) throw new IllegalArgumentException("Entity is not in range.");
+        else return (this.getDistanceBetweenCenters(other) + this.getRadius() < 0.99*other.getRadius());
+
+    }
 
 }
 

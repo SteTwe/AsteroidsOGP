@@ -315,6 +315,7 @@ public class Ship extends Entity{
         //change the bullet's position to the position of the ship is loaded on
         bullet.setPosition(this.getPositionX(), this.getPositionY());
         bullet.setShip(this);
+        bullet.resetBounces();
     }
 
     /**
@@ -341,11 +342,11 @@ public class Ship extends Entity{
      */
     public boolean isValidBullet(Bullet bullet){
         if (bullet.getWorld() != null && bullet.getBulletSource() == null) return false;
-        //if (bullet == null) return false;
+        if (bullet == null) return false;
         if (bullet.isTerminated()) return false;
         if (bullet.getShip() != null && bullet.getShip() != this) return false;
         if (bullet.getBulletSource() != this && bullet.getBulletSource() != null) return false;
-        return true;
+        return (bullet.isInRange(this));
     }
 
     /**

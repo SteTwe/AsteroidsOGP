@@ -39,7 +39,7 @@ public abstract class Entity {
     private World world;
 
     /**
-     * Boolean holding the condition of this entity (not terminated => false).
+     * Boolean holding the condition of this entity (not termirnated => false).
      */
     private boolean status = false;
 
@@ -289,6 +289,11 @@ public abstract class Entity {
      * Constant holding the minimum radius of a MinorPlanet.
      */
     public double minRadiusMinorPlanet = 5;
+
+    /**
+     * Constant holding the minimum radius of a BlackHole.
+     */
+    public double minRadiusBlackHole = 100;
 
     /**
      * Return if the given radius is a valid radius for this entity.

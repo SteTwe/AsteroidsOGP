@@ -13,6 +13,21 @@ public class BlackHole extends Entity {
 
     @Override
     public void collide(Entity other) {
+        if (other instanceof Ship){
+            other.terminate();
+        }
+        if (other instanceof MinorPlanet){
+            other.terminate();
+        }
+        // destroy both, replace with new position = collisionpoint, radius = sum radii
+        if (other instanceof BlackHole){
+            double newRadius = this.getRadius() + other.getRadius();
+            double position[] = this.getPositionCollisionWithEntity(other);
+            BlackHole newBlackHole = new BlackHole(position[0], position[1], newRadius);
+            this.terminate();
+            other.terminate();
+
+        }
 
     }
 

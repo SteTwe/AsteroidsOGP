@@ -17,13 +17,23 @@ public class BlackHole extends Entity {
     }
 
     public void grow(double amount){
-        this.radius = getRadius() + amount;
+        if(getRadius() + amount > 100) {
+            this.radius = getRadius() + amount;
+        }
+        else {
+            this.radius = minRadiusBlackHole;
+        }
     }
 
     public void shrink(double amount){
-        this.radius = getRadius() - amount;
+        if(getRadius() - amount > 100){
+            this.radius = getRadius() - amount;
+        }
+        else {
+            this.radius = minRadiusBlackHole;
+        }
     }
 
-    
+
 
 }

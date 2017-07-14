@@ -28,6 +28,7 @@ public class BlackHole extends Entity {
             other.terminate();
 
         }
+        else other.collide(this);
 
     }
 

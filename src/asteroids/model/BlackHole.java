@@ -15,4 +15,15 @@ public class BlackHole extends Entity {
     public void collide(Entity other) {
 
     }
+
+    public void grow(double amount){
+        this.radius = getRadius() + amount;
+    }
+
+    public void shrink(double amount){
+        this.radius = getRadius() - amount;
+    }
+
+    
+
 }

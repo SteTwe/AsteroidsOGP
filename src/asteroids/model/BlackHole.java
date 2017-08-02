@@ -13,6 +13,9 @@ public class BlackHole extends Entity {
 
     @Override
     public void collide(Entity other) {
+        if (other instanceof Bullet){
+            return;
+        }
         if (other instanceof Ship){
             other.terminate();
         }
@@ -49,7 +52,6 @@ public class BlackHole extends Entity {
             this.radius = minRadiusBlackHole;
         }
     }
-
 
 
 }

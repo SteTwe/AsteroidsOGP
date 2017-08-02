@@ -319,8 +319,10 @@ public abstract class Entity {
     }
 
     /**
-     *
-     * @param radius
+     * @param radius The radius of the entity
+     * @post The new radius is set to the given radius
+     *          | new.getRadius() = radius
+     * TODO @throws? zie sjoseph
      */
     public void setRadius(double radius){
         if (isValidRadius(radius)) {
